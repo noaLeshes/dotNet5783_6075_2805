@@ -8,15 +8,20 @@ public class DalProduct
     public int Add(Product product)
     {
         if (DataSource.Config.arrProductIndex == 50)
-            throw new Exception("the array is full");
+            throw new Exception("The array is full");
+        for(int i = 0; i<DataSource.Config.arrProductIndex; i++)
+        {
+            if (DataSource.ProductArr[i].ID == product.ID)    
+                throw new Exception("The product is already in stock");
+        }
         DataSource.ProductArr[DataSource.Config.arrProductIndex] = product;
         return product.ID;
-       //להוסיף בדיקה עםהפריט כבר קיים או לא
+      
     }
     public Product GetById(int id)
     {
         Product p;
-        for(int i=0; i<50; i++)
+        for(int i=0; i<DataSource.Config.arrProductIndex; i++)
         {
             p = DataSource.ProductArr[i];
             if (p.ID == id)
@@ -26,14 +31,28 @@ public class DalProduct
     }
     public void Update(Product p)
     {
-        Product d;
+        for(int i = 0; i<DataSource.Config.arrProductIndex; i++)
+        {
+            if (DataSource.ProductArr[i].ID == p.ID) 
+                DataSource.ProductArr[i] = p;
+       }
+
     }
     public void Delete(int id)
     {
+        for(int i = 0; i<DataSource.Config.arrProductIndex; i++)
+        {
+            if (DataSource.ProductArr[i].ID == id)
+            {
+                DataSource.ProductArr[i] = DataSource.ProductArr[DataSource.Config.arrProductIndex];
+                DataSource.ProductArr[DataSource.Config.arrProductIndex] = 0;
+                DataSource.Config.arrProductIndex--;
+            }
 
+        }
     }
-    public IEnumerable<Order?> GetAll()
+    public IEnumerable<Product?> GetAll()
     {
-        
+        internal Product[] ProductArr = ne
     }
 }

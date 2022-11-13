@@ -24,6 +24,8 @@ internal static class DataSource
     internal static class Config
     {
         static internal int arrProductIndex = 0;
+        static internal int arrOrderIndex = 0;  
+        internal static int arrOrderItemIndex = 0;  
         internal const int s_startOrderNumber = 1000;
          private static int s_nextOrderNumber = s_startOrderNumber;
         internal static int NextOrderNumber { get => s_nextOrderNumber++; }//order
@@ -39,10 +41,10 @@ internal static class DataSource
                                                   {"Face-Mask","Moisturizer", "Makeup-Wipes" }/*beauty*/ };
     private static void createAndInitProducts()
     {
-        int c = s_rand.Next(4);
-        int n = s_rand.Next(2);
         for (int i = 0; i < 10; i++)
         {
+            int c = s_rand.Next(4);
+            int n = s_rand.Next(2);
             ProductArr[i] = new Product
             {
                 ID = i+100000,
