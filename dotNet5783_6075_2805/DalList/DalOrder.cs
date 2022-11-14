@@ -35,6 +35,8 @@ public class DalOrder
         {
             if (DataSource.OrderArr[i].ID == order.ID)
                 DataSource.OrderArr[i] = order;
+            else
+                throw new Exception("no order found");
         }
 
     }
@@ -45,7 +47,7 @@ public class DalOrder
             if (DataSource.OrderArr[i].ID == id)
             {
                 DataSource.OrderArr[i] = DataSource.OrderArr[DataSource.Config.arrOrderIndex];
-                DataSource.OrderArr[DataSource.Config.arrOrderIndex] = 0;
+                //DataSource.OrderArr[DataSource.Config.arrOrderIndex] = 0;
                 DataSource.Config.arrOrderIndex--;
             }
 

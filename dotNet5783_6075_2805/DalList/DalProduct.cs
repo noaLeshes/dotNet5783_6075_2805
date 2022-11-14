@@ -35,7 +35,9 @@ public class DalProduct
         {
             if (DataSource.ProductArr[i].ID == p.ID) 
                 DataSource.ProductArr[i] = p;
-       }
+            else
+                throw new Exception("no products found");
+        }
 
     }
     public void Delete(int id)
@@ -45,7 +47,7 @@ public class DalProduct
             if (DataSource.ProductArr[i].ID == id)
             {
                 DataSource.ProductArr[i] = DataSource.ProductArr[DataSource.Config.arrProductIndex];
-                DataSource.ProductArr[DataSource.Config.arrProductIndex] = 0;
+                //DataSource.ProductArr[DataSource.Config.arrProductIndex] = 0;
                 DataSource.Config.arrProductIndex--;
             }
 

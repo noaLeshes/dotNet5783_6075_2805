@@ -47,27 +47,34 @@ public class DalOrderItem
             if (DataSource.OrderItemArr[i].ID == id)
             {
                 DataSource.OrderItemArr[i] = DataSource.OrderItemArr[DataSource.Config.arrOrderItemIndex];
-                DataSource.OrderArr[DataSource.Config.arrOrderIndex] = 0;
+                DataSource.OrderArr[DataSource.Config.arrOrderIndex].;
                 DataSource.Config.arrOrderItemIndex--;
             }
         }
     }
     public IEnumerable<Order?> GetAll()
     {
-
+      
     }
-}
-public static Product[] ProductsInOrder(int orderId)
-{
-    Product[] newArr = new Product[DataSource.Config.arrOrderItemIndex];
-    Product p;
-    for (int i = 0; i < DataSource.Config.arrOrderItemIndex; i++)
+    public static Product[] ProductsInOrder(int orderId)
     {
-        if (DataSource.OrderItemArr[i].OrderId == orderId)
+        Product[] newArr = new Product[DataSource.Config.arrOrderItemIndex];
+        Product p = new Product() ;
+        for (int i = 0; i < DataSource.Config.arrOrderItemIndex; i++)
         {
-           // p = DalProduct.GetById(DataSource.OrderItemArr[i].ProductId);//??????????????????????????????????????
-            newArr[i] = p;  
-        }   
+            if (DataSource.OrderItemArr[i].OrderId == orderId)
+            {
+                // p = DalProduct.GetById(DataSource.OrderItemArr[i].ProductId);//??????????????????????????????????????
+                for (int j = 0; j < DataSource.Config.arrProductIndex; i++)
+                {
+                    p = DataSource.ProductArr[j];
+                    if (p.ID == DataSource.OrderItemArr[j].ProductId)
+                        newArr[i] = p;
+                }
+            }
+        }
+        return newArr;
     }
-    return newArr[];
 }
+
+
