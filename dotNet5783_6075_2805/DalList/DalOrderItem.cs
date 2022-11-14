@@ -52,11 +52,11 @@ public class DalOrderItem
             }
         }
     }
-    public IEnumerable<Order?> GetAll()
+    public OrderItem[] GetAll()
     {
-      
+        OrderItem[] newArr 
     }
-    public static Product[] ProductsInOrder(int orderId)
+    public  Product[] ProductsInOrder(int orderId)
     {
         Product[] newArr = new Product[DataSource.Config.arrOrderItemIndex];
         Product p = new Product() ;
