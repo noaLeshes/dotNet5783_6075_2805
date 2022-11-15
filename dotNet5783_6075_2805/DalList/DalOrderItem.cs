@@ -47,14 +47,19 @@ public class DalOrderItem
             if (DataSource.OrderItemArr[i].ID == id)
             {
                 DataSource.OrderItemArr[i] = DataSource.OrderItemArr[DataSource.Config.arrOrderItemIndex];
-                DataSource.OrderArr[DataSource.Config.arrOrderIndex].;
+               // DataSource.OrderArr[DataSource.Config.arrOrderIndex]=0;
                 DataSource.Config.arrOrderItemIndex--;
             }
         }
     }
     public OrderItem[] GetAll()
     {
-        OrderItem[] newArr 
+        OrderItem[] newArr = new OrderItem[DataSource.Config.arrOrderItemIndex];
+        for(int i = 0; i< DataSource.Config.arrOrderItemIndex; i++)
+        {
+            newArr[i] = DataSource.OrderItemArr[i];
+        }
+        return newArr;
     }
     public  Product[] ProductsInOrder(int orderId)
     {

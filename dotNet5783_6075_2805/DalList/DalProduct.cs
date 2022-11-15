@@ -53,8 +53,13 @@ public class DalProduct
 
         }
     }
-    public IEnumerable<Product?> GetAll()
+    public Product[] GetAll()
     {
-        internal Product[] ProductArr = ne
+        Product[] newArr = new Product[DataSource.Config.arrProductIndex];
+        for (int i = 0; i < DataSource.Config.arrProductIndex; i++)
+        {
+            newArr[i] = DataSource.ProductArr[i];
+        }
+        return newArr;
     }
 }

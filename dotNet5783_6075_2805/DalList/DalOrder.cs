@@ -53,8 +53,13 @@ public class DalOrder
 
         }
     }
-    public IEnumerable<Order?> GetAll()
+    public Order[] GetAll()
     {
-
+        Order[] newArr = new Order[DataSource.Config.arrOrderIndex];
+        for (int i = 0; i < DataSource.Config.arrOrderIndex; i++)
+        {
+            newArr[i] = DataSource.OrderArr[i];
+        }
+        return newArr;
     }
 }
