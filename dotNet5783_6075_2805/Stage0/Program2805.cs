@@ -4,21 +4,21 @@
     {
         partial class program
         {
-             static void main(string[] args)
-        {
-            Welcome2805();
-            Welcome6075();
-            Console.ReadKey();
+             static void Main(string[] args)
+             {
+                  Welcome2805();
+                  Welcome6075();
+                 Console.ReadKey();
 
-        }
+             }
 
-        static partial void Welcome6075();
-        private static void Welcome2805()
-        {
-            Console.WriteLine("Enter your name: ");
-            string a = Console.ReadLine();
-            Console.WriteLine("{0}, welcome to my first console application", a);
-        }
+             static partial void Welcome6075();
+             private static void Welcome2805()
+             {
+                Console.WriteLine("Enter your name: ");
+                string a = Console.ReadLine();
+                Console.WriteLine("{0}, welcome to my first console application", a);
+            }
     }
 
      

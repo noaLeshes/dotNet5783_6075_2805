@@ -2,6 +2,7 @@
 using Dal;
 using System.Xml.Linq;
 using System;
+using System.Data;
 
 public enum MainChoice { End=0, Product, Order, OrderItem }
 public enum SecondaryChoice { Add=1, Delete, Update, GetById, GetAll, GetAllOrderProducts, GetByProductIdAndOrderId }
@@ -21,7 +22,7 @@ internal class Program
                             5 - getting all the products");
         try
         {
-            SecondaryChoice productChoice = new SecondaryChoice();
+            SecondaryChoice productChoice = SecondaryChoice.Add;
             int myId, myInStock;
             string? myName;
             double myPrice;
@@ -138,10 +139,10 @@ internal class Program
                             5 - getting all the orders");
         try
         {
-            SecondaryChoice orderChoice = new SecondaryChoice();
+            SecondaryChoice orderChoice = SecondaryChoice.Add;
             int myId;
             string? myCustomerName, myCustomerEmail, myCustomerAddress;
-            DateTime? myOrderDate, myShipDate, myDeliveryDate;
+            DateTime myOrderDate/*, myShipDate, myDeliveryDate*/;
             if (SecondaryChoice.TryParse(Console.ReadLine(), out orderChoice))
             {
                 switch (orderChoice)
@@ -155,14 +156,15 @@ internal class Program
                         myCustomerEmail = Console.ReadLine();
                         Console.WriteLine("Enter the costumer's address: ");
                         myCustomerAddress = Console.ReadLine();
+                        myOrderDate = DateTime.Now;
                         Order o = new Order
                         {
                             CustomerName = myCustomerName,
                             CustomerEmail = myCustomerEmail,
                             CustomerAddress = myCustomerAddress,
-                            OrderDate = DateTime.Now,
-                            ShipDate = null,
-                            DeliveryDate = null,
+                            OrderDate = myOrderDate,
+                            ShipDate = /*null*/myOrderDate.AddHours(10),
+                            DeliveryDate = /*null*/myOrderDate.AddDays(2),
                         };
                         dalOrder.Add(o);
                         break;
@@ -186,16 +188,18 @@ internal class Program
                         myCustomerEmail = Console.ReadLine();
                         Console.WriteLine("Enter the costumer's address: ");
                         myCustomerAddress = Console.ReadLine();
-                        // לעשות עדכון תאריכים
+                        Console.WriteLine("Enter the order's date: ");
+                        if (DateTime.TryParse(Console.ReadLine(), out myOrderDate) == false) throw new Exception("incorrect id");
+                        
                         Order o1 = new Order
                         {
                             ID = dalOrder.GetById(myId).ID,
                             CustomerName = myCustomerName,
                             CustomerEmail = myCustomerEmail,
                             CustomerAddress = myCustomerAddress,
-                            OrderDate = dalOrder.GetById(myId).OrderDate,
-                            //ShipDate = myShipDate,
-                            //DeliveryDate = myDeliveryDate,
+                            OrderDate = /*dalOrder.GetById(myId).OrderDate*/ myOrderDate,
+                            ShipDate = myOrderDate.AddHours(10),
+                            DeliveryDate = myOrderDate.AddDays(2),
                         };
                         dalOrder.Update(o1);
                         break;
@@ -246,7 +250,7 @@ internal class Program
                             7- getting a product by its product id and order id");
         try
         {
-            SecondaryChoice orderItemChoice = new SecondaryChoice();
+            SecondaryChoice orderItemChoice = SecondaryChoice.Add;
             int myId, myOrderId, myProductId, myAmount;
             double myPrice;
             if (SecondaryChoice.TryParse(Console.ReadLine(), out orderItemChoice))
@@ -326,10 +330,23 @@ internal class Program
 
 
                     case SecondaryChoice.GetAllOrderProducts:
+                        Console.WriteLine("Enter the order's id");
+                        if (int.TryParse(Console.ReadLine(), out myId) == false) throw new Exception("incorrect id");
+                        OrderItem[] newAllOrderProductsArr = dalOrderItem.GetAllOrderProducts(myId);
+                        foreach (OrderItem oi4 in newAllOrderProductsArr)
+                        {
+                            Console.WriteLine(oi4);
+                        }
                         break;
 
 
                     case SecondaryChoice.GetByProductIdAndOrderId:
+                        Console.WriteLine("Enter the orders's id: ");
+                        if (int.TryParse(Console.ReadLine(), out myOrderId) == false) throw new Exception("incorrect order id");
+                        Console.WriteLine("Enter the product's id: ");
+                        if (int.TryParse(Console.ReadLine(), out myProductId) == false) throw new Exception("incorrect product id");
+                        OrderItem oi5 = dalOrderItem.GetByProductIdAndOrderId(myOrderId, myProductId);
+                        Console.WriteLine(oi5);
                         break;
 
 
@@ -349,7 +366,7 @@ internal class Program
 
     private static void Main(string[] args)
     {
-        MainChoice choice = new MainChoice();
+        MainChoice choice = MainChoice.Order;
         Console.WriteLine(@"Hello! 
                             please enter your choice:
                             0 for End

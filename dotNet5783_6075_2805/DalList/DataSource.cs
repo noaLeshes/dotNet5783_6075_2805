@@ -70,7 +70,7 @@ internal static class DataSource
             DateTime orderDate = DateTime.Now.AddDays(-days);
             DateTime? deliveryDate;
             DateTime? shippingDate;
-            if(i%5==0)
+            if (i % 5 == 0) 
             {
                 deliveryDate = null;
                 shippingDate= null; 
@@ -80,7 +80,7 @@ internal static class DataSource
                 days = s_rand.Next(1, 3);
                 TimeSpan timeS1 = new TimeSpan(days, 0, 0, 0);
                 deliveryDate = orderDate + timeS1;
-                if((i+2)%3==0)
+                if ((i + 2) % 3 == 0) 
                 {
                     shippingDate = null;    
                 }
@@ -127,7 +127,7 @@ internal static class DataSource
                     Price = p.Price*amount,
                     ID = Config.NextOrderItemNumber,
                     ProductId = p.ID,
-                    OrderId = OrderArr[i].ID,
+                    OrderId = OrderArr[i++].ID,
                 };
                 //numOfOrderItems++; ?????????????
             }

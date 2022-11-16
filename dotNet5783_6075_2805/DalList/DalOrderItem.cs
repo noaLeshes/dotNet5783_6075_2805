@@ -63,7 +63,7 @@ public class DalOrderItem
     public OrderItem[] GetAllOrderProducts(int orderId)
     {
         OrderItem[] newArr = new OrderItem[DataSource.Config.arrOrderItemIndex];
-        OrderItem p = new OrderItem() ;
+        OrderItem p = new OrderItem();
         for (int i = 0; i < DataSource.Config.arrOrderItemIndex; i++)
         {
             int j = 0;
