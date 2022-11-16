@@ -7,7 +7,6 @@ public class DalOrderItem
 {
     public int Add(OrderItem oi)
     {
-
         if (DataSource.Config.arrOrderItemIndex == 200)
             throw new Exception("The array is full");
         for (int i = 0; i < DataSource.Config.arrOrderItemIndex; i++)
@@ -28,7 +27,7 @@ public class DalOrderItem
             if (d.ID == id)
                 return d;
         }
-        throw new Exception("no order found");
+        throw new Exception("not found");
     }
     public void Update(OrderItem oi)
     {
@@ -38,7 +37,7 @@ public class DalOrderItem
             if (DataSource.OrderItemArr[i].ID == oi.ID)
                 DataSource.OrderItemArr[i] = oi;
         }
-
+        throw new Exception("not found");
     }
     public void Delete(int id)
     {
@@ -61,25 +60,39 @@ public class DalOrderItem
         }
         return newArr;
     }
-    public  Product[] ProductsInOrder(int orderId)
+    public OrderItem[] GetAllOrderProducts(int orderId)
     {
-        Product[] newArr = new Product[DataSource.Config.arrOrderItemIndex];
-        Product p = new Product() ;
+        OrderItem[] newArr = new OrderItem[DataSource.Config.arrOrderItemIndex];
+        OrderItem p = new OrderItem() ;
         for (int i = 0; i < DataSource.Config.arrOrderItemIndex; i++)
         {
+            int j = 0;
             if (DataSource.OrderItemArr[i].OrderId == orderId)
             {
-                // p = DalProduct.GetById(DataSource.OrderItemArr[i].ProductId);//??????????????????????????????????????
-                for (int j = 0; j < DataSource.Config.arrProductIndex; i++)
-                {
-                    p = DataSource.ProductArr[j];
-                    if (p.ID == DataSource.OrderItemArr[j].ProductId)
-                        newArr[i] = p;
-                }
+                p = DataSource.OrderItemArr[i];
+                newArr[j] = p;
+                j++;
             }
         }
         return newArr;
     }
+    public OrderItem GetByProductIdAndOrderId(int orderId, int productId)
+    {
+        OrderItem p = new OrderItem();
+        for (int i = 0; i < DataSource.Config.arrOrderItemIndex; i++)
+        {
+            if (DataSource.OrderItemArr[i].OrderId == orderId)
+            {
+                if (DataSource.OrderItemArr[i].ProductId == productId)
+                {
+                    p = DataSource.OrderItemArr[i];
+                    return p;
+                }
+            }
+        }
+        throw new Exception("The item doesn't exist");
+    }
+
 }
 
 

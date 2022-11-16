@@ -38,7 +38,6 @@ public class DalProduct
             else
                 throw new Exception("no products found");
         }
-
     }
     public void Delete(int id)
     {

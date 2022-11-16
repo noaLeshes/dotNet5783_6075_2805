@@ -59,18 +59,47 @@ internal static class DataSource
     {
         string[] firstNames = { "Moshe", "Yosi", "Avi", "Adi" , "Rachel" };
         string[] lastNames = { "Cohen", "Levi", "Miller", "David", "Hadad" };
-        string[] arrayAdresses = { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j" };
+        string[] arrayAdresses = {"Hadekel 1", "Hadekel 2", "Hadekel 3", "Hadekel 4", "Hadekel 5",
+                                  "Pinkas 1", "Pinkas 2", "Pinkas 3","Pinkas 4", "Pinkas 5",
+                                  "Herzl 1", "Herzl 2", "Herzl 3", "Herzl 4", "Herzl 5",
+                                  "Bagno 1", "Bagno 2", "Bagno 3", "Bagno 4", "Bagno 5", };
         for (int i = 0; i < 20; i++)
         {
+            
+            int days = s_rand.Next(1000);
+            DateTime orderDate = DateTime.Now.AddDays(-days);
+            DateTime? deliveryDate;
+            DateTime? shippingDate;
+            if(i%5==0)
+            {
+                deliveryDate = null;
+                shippingDate= null; 
+            }
+            else
+            {
+                days = s_rand.Next(1, 3);
+                TimeSpan timeS1 = new TimeSpan(days, 0, 0, 0);
+                deliveryDate = orderDate + timeS1;
+                if((i+2)%3==0)
+                {
+                    shippingDate = null;    
+                }
+                else
+                {
+                    days = s_rand.Next(3, 7);
+                    TimeSpan timeS2 = new TimeSpan(days, 0, 0, 0);
+                    shippingDate=orderDate + timeS2;
+                }
+            }
+
             string firstName = firstNames[s_rand.Next(4)];
             string lastName = lastNames[s_rand.Next(4)];
-
             OrderArr[i] = new Order
             {
                 ID = Config.NextOrderNumber,
-                OrderDate = DateTime.MinValue,
-                // ShipDate = TimeSpan
-                //DeliveryDate
+                OrderDate = orderDate,
+                ShipDate = shippingDate,
+                DeliveryDate = deliveryDate,
                 CustomerName = firstName + " " + lastName,
                 CustomerAddress = arrayAdresses[s_rand.Next(9)] ,
                 CustomerEmail = firstName + lastName + "@gmail.com"

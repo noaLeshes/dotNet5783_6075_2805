@@ -17,9 +17,4 @@ Amount     =   {Amount}
 ";
 }
 
-namespace Dal;
 
-public class DalOrderItem
-{
-
-}
