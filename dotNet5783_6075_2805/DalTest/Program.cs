@@ -108,7 +108,7 @@ internal class Program
                     case SecondaryChoice.GetAll:
                         Console.WriteLine("all of the products: ");
                         Product[] newProductArr = dalProduct.GetAll();
-                        foreach(Product p3 in newProductArr)
+                        foreach (Product p3 in newProductArr)
                         {
                             Console.WriteLine(p3);
                         }
@@ -190,7 +190,7 @@ internal class Program
                         myCustomerAddress = Console.ReadLine();
                         Console.WriteLine("Enter the order's date: ");
                         if (DateTime.TryParse(Console.ReadLine(), out myOrderDate) == false) throw new Exception("incorrect id");
-                        
+
                         Order o1 = new Order
                         {
                             ID = dalOrder.GetById(myId).ID,
@@ -231,7 +231,7 @@ internal class Program
                 throw new Exception("incorrect choice");
             }
         }
-                
+
         catch (Exception newException)
         {
             Console.WriteLine(newException.ToString());
@@ -367,18 +367,18 @@ internal class Program
     private static void Main(string[] args)
     {
         MainChoice choice = MainChoice.Order;
-        Console.WriteLine(@"Hello! 
+        do
+        {
+            try
+            {
+                Console.WriteLine(@"Hello! 
                             please enter your choice:
                             0 for End
                             1 for Product
                             2 for Order
                             3 for OrderItem");
-        while (choice != MainChoice.End)
-        {
-            try
-            {
-                if (MainChoice.TryParse(Console.ReadLine(),out choice))
-                    {
+                if (MainChoice.TryParse(Console.ReadLine(), out choice))
+                {
                     switch (choice)
                     {
                         case MainChoice.End:
@@ -395,7 +395,7 @@ internal class Program
                             break;
                         default: throw new Exception("Error");
                     }
-                    }
+                }
                 else
                 {
                     throw new Exception("incorrect choice");
@@ -407,5 +407,7 @@ internal class Program
 
             }
         }
+
+        while (choice != MainChoice.End);
     }
 }
