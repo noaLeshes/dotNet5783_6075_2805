@@ -1,4 +1,8 @@
-﻿using DO;
+﻿// Noa Leshes 
+// Hadas Carmen 
+// we did the bonus
+
+using DO;
 using Dal;
 using System.Xml.Linq;
 using System;
@@ -22,7 +26,7 @@ internal class Program
                             5 - getting all the products");
         try
         {
-            SecondaryChoice productChoice = SecondaryChoice.Add;
+            SecondaryChoice productChoice = SecondaryChoice.Add;//initalize the choise
             int myId, myInStock;
             string? myName;
             double myPrice;
@@ -33,22 +37,22 @@ internal class Program
                 {
 
                     case SecondaryChoice.Add:
-                        Console.WriteLine("Enter the product's id: ");
-                        if (int.TryParse(Console.ReadLine(), out myId) == false) throw new Exception("incorrect id");
+                        Console.WriteLine("Enter the product's id: ");//getting details from user
+                        if (int.TryParse(Console.ReadLine(), out myId) == false) throw new Exception("incorrect id");//if not valid
                         Console.WriteLine("Enter the product's name: ");
                         myName = Console.ReadLine();
                         Console.WriteLine("Enter the product's price: ");
-                        if (double.TryParse(Console.ReadLine(), out myPrice) == false) throw new Exception("incorrect price");
+                        if (double.TryParse(Console.ReadLine(), out myPrice) == false) throw new Exception("incorrect price");//if not valid
                         Console.WriteLine(@"Enter the product's category:
                                            0 - EYES
                                            1 - FACE
                                            2- LIPS
                                            3 - BRUSHES
                                            4 - BEAUTY");
-                        if (Category.TryParse(Console.ReadLine(), out myCategory) == false || (int)myCategory > 5 || (int)myCategory < 0) throw new Exception("incorrect category");
+                        if (Category.TryParse(Console.ReadLine(), out myCategory) == false || (int)myCategory > 4 || (int)myCategory < 0) throw new Exception("incorrect category");
                         Console.WriteLine("Enter the amount of products in stock: ");
-                        if (int.TryParse(Console.ReadLine(), out myInStock) == false) throw new Exception("incorrect amount");
-                        Product p = new Product
+                        if (int.TryParse(Console.ReadLine(), out myInStock) == false) throw new Exception("incorrect amount");//if not valid
+                        Product p = new Product //initalize the new product
                         {
                             ID = myId,
                             Name = myName,
@@ -62,16 +66,16 @@ internal class Program
 
                     case SecondaryChoice.Delete:
                         Console.WriteLine("Enter the product's id to delete: ");
-                        if (int.TryParse(Console.ReadLine(), out myId) == false) throw new Exception("incorrect id");
+                        if (int.TryParse(Console.ReadLine(), out myId) == false) throw new Exception("incorrect id");//if not valid
                         dalProduct.Delete(myId);
                         break;
 
 
                     case SecondaryChoice.Update:
                         Console.WriteLine("Enter the product's id to update: ");
-                        if (int.TryParse(Console.ReadLine(), out myId) == false) throw new Exception("incorrect id");
-                        Console.WriteLine(dalProduct.GetById(myId));
-                        Console.WriteLine("Enter product's details to update: ");
+                        if (int.TryParse(Console.ReadLine(), out myId) == false) throw new Exception("incorrect id");//if not valid
+                        Console.WriteLine(dalProduct.GetById(myId)); //find the product we want to update
+                        Console.WriteLine("Enter product's details to update: ");//recive the changes we want to update
                         Console.WriteLine("Enter the product's name: ");
                         myName = Console.ReadLine();
                         Console.WriteLine("Enter the product's price: ");
@@ -82,10 +86,10 @@ internal class Program
                                            2- LIPS
                                            3 - BRUSHES
                                            4 - BEAUTY");
-                        if (Category.TryParse(Console.ReadLine(), out myCategory) == false || (int)myCategory > 5 || (int)myCategory < 0) throw new Exception("incorrect category");
+                        if (Category.TryParse(Console.ReadLine(), out myCategory) == false || (int)myCategory > 4 || (int)myCategory < 0) throw new Exception("incorrect category");
                         Console.WriteLine("Enter the amount of products in stock: ");
                         if (int.TryParse(Console.ReadLine(), out myInStock) == false) throw new Exception("incorrect amount");
-                        Product p1 = new Product
+                        Product p1 = new Product //updating the changes the user gave
                         {
                             ID = myId,
                             Name = myName,
@@ -93,14 +97,14 @@ internal class Program
                             Category = myCategory,
                             InStock = myInStock,
                         };
-                        dalProduct.Update(p1);
+                        dalProduct.Update(p1); 
                         break;
 
 
                     case SecondaryChoice.GetById:
                         Console.WriteLine("Enter the product's id: ");
-                        if (int.TryParse(Console.ReadLine(), out myId) == false) throw new Exception("incorrect id");
-                        Product p2 = dalProduct.GetById(myId);
+                        if (int.TryParse(Console.ReadLine(), out myId) == false) throw new Exception("incorrect id");//throw if not valid
+                        Product p2 = dalProduct.GetById(myId);// find the wanted product
                         Console.WriteLine(p2);
                         break;
 
@@ -110,7 +114,7 @@ internal class Program
                         Product[] newProductArr = dalProduct.GetAll();
                         foreach (Product p3 in newProductArr)
                         {
-                            Console.WriteLine(p3);
+                            Console.WriteLine(p3);//print all the producs
                         }
                         break;
 
@@ -120,7 +124,7 @@ internal class Program
             }
             else
             {
-                throw new Exception("incorrect choice");
+                throw new Exception("incorrect choice");// for unknown choice
             }
         }
         catch (Exception newException)
@@ -139,10 +143,10 @@ internal class Program
                             5 - getting all the orders");
         try
         {
-            SecondaryChoice orderChoice = SecondaryChoice.Add;
+            SecondaryChoice orderChoice = SecondaryChoice.Add;//initalize the choise
             int myId;
             string? myCustomerName, myCustomerEmail, myCustomerAddress;
-            DateTime myOrderDate/*, myShipDate, myDeliveryDate*/;
+            DateTime myOrderDate;
             if (SecondaryChoice.TryParse(Console.ReadLine(), out orderChoice))
             {
                 switch (orderChoice)
@@ -150,15 +154,17 @@ internal class Program
 
 
                     case SecondaryChoice.Add:
-                        Console.WriteLine("Enter the costumer's name: ");
+
+                        Console.WriteLine("Enter the costumer's name: ");//getting details from user
                         myCustomerName = Console.ReadLine();
                         Console.WriteLine("Enter the costumer's email: ");
                         myCustomerEmail = Console.ReadLine();
                         Console.WriteLine("Enter the costumer's address: ");
                         myCustomerAddress = Console.ReadLine();
                         myOrderDate = DateTime.Now;
-                        Order o = new Order
+                        Order o = new Order //initalize the new order
                         {
+                            //ID = myId,
                             CustomerName = myCustomerName,
                             CustomerEmail = myCustomerEmail,
                             CustomerAddress = myCustomerAddress,
@@ -172,16 +178,16 @@ internal class Program
 
                     case SecondaryChoice.Delete:
                         Console.WriteLine("Enter the order's id to delete: ");
-                        if (int.TryParse(Console.ReadLine(), out myId) == false) throw new Exception("incorrect id");
-                        dalOrder.Delete(myId);
+                        if (int.TryParse(Console.ReadLine(), out myId) == false) throw new Exception("incorrect id");//throw if not valid
+                        dalOrder.Delete(myId);//deleting
                         break;
 
 
                     case SecondaryChoice.Update:
                         Console.WriteLine("Enter the order's id to update: ");
-                        if (int.TryParse(Console.ReadLine(), out myId) == false) throw new Exception("incorrect id");
-                        Console.WriteLine(dalOrder.GetById(myId));
-                        Console.WriteLine("Enter product's details to update: ");
+                        if (int.TryParse(Console.ReadLine(), out myId) == false) throw new Exception("incorrect id");//throw if not valid
+                        Console.WriteLine(dalOrder.GetById(myId));//find the order we want to update
+                        Console.WriteLine("Enter product's details to update: ");//geting changes from user
                         Console.WriteLine("Enter the costumer's name: ");
                         myCustomerName = Console.ReadLine();
                         Console.WriteLine("Enter the costumer's email: ");
@@ -189,15 +195,15 @@ internal class Program
                         Console.WriteLine("Enter the costumer's address: ");
                         myCustomerAddress = Console.ReadLine();
                         Console.WriteLine("Enter the order's date: ");
-                        if (DateTime.TryParse(Console.ReadLine(), out myOrderDate) == false) throw new Exception("incorrect id");
+                        if (DateTime.TryParse(Console.ReadLine(), out myOrderDate) == false) throw new Exception("incorrect id");//throw if not valid
 
-                        Order o1 = new Order
+                        Order o1 = new Order // updating the order with the changes the user gave
                         {
                             ID = dalOrder.GetById(myId).ID,
                             CustomerName = myCustomerName,
                             CustomerEmail = myCustomerEmail,
                             CustomerAddress = myCustomerAddress,
-                            OrderDate = /*dalOrder.GetById(myId).OrderDate*/ myOrderDate,
+                            OrderDate =  myOrderDate,
                             ShipDate = myOrderDate.AddHours(10),
                             DeliveryDate = myOrderDate.AddDays(2),
                         };
@@ -207,7 +213,7 @@ internal class Program
 
                     case SecondaryChoice.GetById:
                         Console.WriteLine("Enter the orders's id: ");
-                        if (int.TryParse(Console.ReadLine(), out myId) == false) throw new Exception("incorrect id");
+                        if (int.TryParse(Console.ReadLine(), out myId) == false) throw new Exception("incorrect id");//invalid input
                         Order o2 = dalOrder.GetById(myId);
                         Console.WriteLine(o2);
                         break;
@@ -216,9 +222,9 @@ internal class Program
                     case SecondaryChoice.GetAll:
                         Console.WriteLine("all of the orders: ");
                         Order[] newOrderArr = dalOrder.GetAll();
-                        foreach (Order o3 in newOrderArr)
+                        foreach (Order o3 in newOrderArr)  
                         {
-                            Console.WriteLine(o3);
+                            Console.WriteLine(o3); // print all the orders in the array
                         }
                         break;
 
@@ -228,7 +234,7 @@ internal class Program
             }
             else
             {
-                throw new Exception("incorrect choice");
+                throw new Exception("incorrect choice");// unknown choice
             }
         }
 
@@ -250,7 +256,7 @@ internal class Program
                             7- getting a product by its product id and order id");
         try
         {
-            SecondaryChoice orderItemChoice = SecondaryChoice.Add;
+            SecondaryChoice orderItemChoice = SecondaryChoice.Add;//initalize the choise
             int myId, myOrderId, myProductId, myAmount;
             double myPrice;
             if (SecondaryChoice.TryParse(Console.ReadLine(), out orderItemChoice))
@@ -260,28 +266,28 @@ internal class Program
 
 
                     case SecondaryChoice.Add:
-                        Console.WriteLine("Enter the orders's id: ");
-                        if (int.TryParse(Console.ReadLine(), out myOrderId) == false) throw new Exception("incorrect order id");
+                        Console.WriteLine("Enter the orders's id: ");//getting details from user
+                        if (int.TryParse(Console.ReadLine(), out myOrderId) == false) throw new Exception("incorrect order id");//throw if not valid
                         Console.WriteLine("Enter the product's id: ");
-                        if (int.TryParse(Console.ReadLine(), out myProductId) == false) throw new Exception("incorrect product id");
+                        if (int.TryParse(Console.ReadLine(), out myProductId) == false) throw new Exception("incorrect product id");//throw if not valid
                         Console.WriteLine("Enter the product's price: ");
-                        if (double.TryParse(Console.ReadLine(), out myPrice) == false) throw new Exception("incorrect price");
+                        if (double.TryParse(Console.ReadLine(), out myPrice) == false) throw new Exception("incorrect price");//throw if not valid
                         Console.WriteLine("Enter amount: ");
-                        if (int.TryParse(Console.ReadLine(), out myAmount) == false) throw new Exception("incorrect amount");
-                        OrderItem oi = new OrderItem
+                        if (int.TryParse(Console.ReadLine(), out myAmount) == false) throw new Exception("incorrect amount");//throw if not valid
+                        OrderItem oi = new OrderItem // initalize the new OrderItem
                         {
                             OrderId = myOrderId,
                             ProductId = myProductId,
                             Price = myPrice,
                             Amount = myAmount,
                         };
-                        dalOrderItem.Add(oi);
+                        dalOrderItem.Add(oi);//add to array
                         break;
 
 
                     case SecondaryChoice.Delete:
                         Console.WriteLine("Enter the product-order's id to delete: ");
-                        if (int.TryParse(Console.ReadLine(), out myId) == false) throw new Exception("incorrect id");
+                        if (int.TryParse(Console.ReadLine(), out myId) == false) throw new Exception("incorrect id");//throw if not valid
                         dalOrderItem.Delete(myId);
                         break;
 
@@ -289,8 +295,8 @@ internal class Program
                     case SecondaryChoice.Update:
                         Console.WriteLine("Enter the product-order's id to update: ");
                         if (int.TryParse(Console.ReadLine(), out myId) == false) throw new Exception("incorrect id");
-                        Console.WriteLine(dalOrderItem.GetById(myId));
-                        Console.WriteLine("Enter product-order's details to update: ");
+                        Console.WriteLine(dalOrderItem.GetById(myId));//find the product we want to update
+                        Console.WriteLine("Enter product-order's details to update: "); //geting changes from user
                         Console.WriteLine("Enter the orders's id: ");
                         if (int.TryParse(Console.ReadLine(), out myOrderId) == false) throw new Exception("incorrect order id");
                         Console.WriteLine("Enter the product's id: ");
@@ -299,7 +305,7 @@ internal class Program
                         if (double.TryParse(Console.ReadLine(), out myPrice) == false) throw new Exception("incorrect price");
                         Console.WriteLine("Enter amount: ");
                         if (int.TryParse(Console.ReadLine(), out myAmount) == false) throw new Exception("incorrect amount");
-                        OrderItem oi1 = new OrderItem
+                        OrderItem oi1 = new OrderItem //updating the changes
                         {
                             ID = dalOrderItem.GetById(myId).ID,
                             OrderId = myOrderId,
@@ -313,8 +319,8 @@ internal class Program
 
                     case SecondaryChoice.GetById:
                         Console.WriteLine("Enter the product-order's id: ");
-                        if (int.TryParse(Console.ReadLine(), out myId) == false) throw new Exception("incorrect id");
-                        OrderItem oi2 = dalOrderItem.GetById(myId);
+                        if (int.TryParse(Console.ReadLine(), out myId) == false) throw new Exception("incorrect id");//throw if not valid
+                        OrderItem oi2 = dalOrderItem.GetById(myId);//find the OrderItem with the wanted id
                         Console.WriteLine(oi2);
                         break;
 
@@ -324,7 +330,7 @@ internal class Program
                         OrderItem[] newOrderItemArr = dalOrderItem.GetAll();
                         foreach (OrderItem oi3 in newOrderItemArr)
                         {
-                            Console.WriteLine(oi3);
+                            Console.WriteLine(oi3);//ptint all the OrderItem in the array
                         }
                         break;
 
@@ -332,20 +338,20 @@ internal class Program
                     case SecondaryChoice.GetAllOrderProducts:
                         Console.WriteLine("Enter the order's id");
                         if (int.TryParse(Console.ReadLine(), out myId) == false) throw new Exception("incorrect id");
-                        OrderItem[] newAllOrderProductsArr = dalOrderItem.GetAllOrderProducts(myId);
+                        OrderItem[] newAllOrderProductsArr = dalOrderItem.GetAllOrderProducts(myId);// find the OrderItems of the wanted order
                         foreach (OrderItem oi4 in newAllOrderProductsArr)
                         {
-                            Console.WriteLine(oi4);
+                            Console.WriteLine(oi4);//ptint all the OrderItems in the same order
                         }
                         break;
 
 
                     case SecondaryChoice.GetByProductIdAndOrderId:
-                        Console.WriteLine("Enter the orders's id: ");
+                        Console.WriteLine("Enter the orders's id: ");//get the wanted order id
                         if (int.TryParse(Console.ReadLine(), out myOrderId) == false) throw new Exception("incorrect order id");
-                        Console.WriteLine("Enter the product's id: ");
+                        Console.WriteLine("Enter the product's id: ");//get the wanted product id
                         if (int.TryParse(Console.ReadLine(), out myProductId) == false) throw new Exception("incorrect product id");
-                        OrderItem oi5 = dalOrderItem.GetByProductIdAndOrderId(myOrderId, myProductId);
+                        OrderItem oi5 = dalOrderItem.GetByProductIdAndOrderId(myOrderId, myProductId);//find the wanted OrderItem
                         Console.WriteLine(oi5);
                         break;
 
@@ -366,12 +372,13 @@ internal class Program
 
     private static void Main(string[] args)
     {
+        Console.WriteLine("Hello!" );
         MainChoice choice = MainChoice.Order;
         do
         {
             try
             {
-                Console.WriteLine(@"Hello! 
+                Console.WriteLine(@"
                             please enter your choice:
                             0 for End
                             1 for Product

@@ -7,24 +7,27 @@ public class DalOrderItem
 {
     public int Add(OrderItem oi)
     {
-        if (DataSource.Config.arrOrderItemIndex == 200)
-            throw new Exception("The array is full");
-        for (int i = 0; i < DataSource.Config.arrOrderItemIndex; i++)
+        if (DataSource.Config._arrOrderItemIndex == 200)
+            throw new Exception("The array is full");//if the array is full throw
+        oi.ID = DataSource.Config.NextOrderItemNumber;//updating the running number
+        for (int i = 0; i < DataSource.Config._arrOrderItemIndex; i++)
         {
-            if (DataSource.OrderItemArr[i].ID == oi.ID)
+            if (DataSource.OrderItemArr[i].ID == oi.ID)//if already exsist
+            {
                 throw new Exception("The orderItem is already existing");
+            }
         }
-        DataSource.OrderItemArr[DataSource.Config.arrOrderItemIndex] = oi;
+        DataSource.OrderItemArr[DataSource.Config._arrOrderItemIndex++] = oi;
         return oi.ID;
+       
     }
     public OrderItem GetById(int id)
     {
-
         OrderItem d;
-        for (int i = 0; i < DataSource.Config.arrOrderItemIndex; i++)
+        for (int i = 0; i < DataSource.Config._arrOrderItemIndex; i++)
         {
             d = DataSource.OrderItemArr[i];
-            if (d.ID == id)
+            if (d.ID == id)//serch the array to find the wanted id
                 return d;
         }
         throw new Exception("not found");
@@ -32,45 +35,50 @@ public class DalOrderItem
     public void Update(OrderItem oi)
     {
 
-        for (int i = 0; i < DataSource.Config.arrOrderItemIndex; i++)
+        for (int i = 0; i < DataSource.Config._arrOrderItemIndex; i++)
         {
             if (DataSource.OrderItemArr[i].ID == oi.ID)
-                DataSource.OrderItemArr[i] = oi;
+            {
+                DataSource.OrderItemArr[i] = oi;//updating the wanted orderItem
+                return;
+            }
         }
         throw new Exception("not found");
     }
     public void Delete(int id)
     {
-        for (int i = 0; i < DataSource.Config.arrOrderItemIndex; i++)
+        for (int i = 0; i < DataSource.Config._arrOrderItemIndex; i++)
         {
             if (DataSource.OrderItemArr[i].ID == id)
-            {
-                DataSource.OrderItemArr[i] = DataSource.OrderItemArr[DataSource.Config.arrOrderItemIndex];
-               // DataSource.OrderArr[DataSource.Config.arrOrderIndex]=0;
-                DataSource.Config.arrOrderItemIndex--;
+            {//איזה בדיקת תקינות צריך לבצע
+                DataSource.OrderItemArr[i] = DataSource.OrderItemArr[DataSource.Config._arrOrderItemIndex];
+                //taking the last orderItem and replacing it with what we want to delete
+                DataSource.Config._arrOrderItemIndex--;//reducing the index to delete orderItem
+                return;
             }
         }
+        throw new Exception("not found");//if not found
     }
     public OrderItem[] GetAll()
     {
-        OrderItem[] newArr = new OrderItem[DataSource.Config.arrOrderItemIndex];
-        for(int i = 0; i< DataSource.Config.arrOrderItemIndex; i++)
+        OrderItem[] newArr = new OrderItem[DataSource.Config._arrOrderItemIndex];
+        for(int i = 0; i< DataSource.Config._arrOrderItemIndex; i++)
         {
-            newArr[i] = DataSource.OrderItemArr[i];
+            newArr[i] = DataSource.OrderItemArr[i];//copy all the orderItems to the new array
         }
         return newArr;
     }
     public OrderItem[] GetAllOrderProducts(int orderId)
     {
-        OrderItem[] newArr = new OrderItem[DataSource.Config.arrOrderItemIndex];
+        OrderItem[] newArr = new OrderItem[4];//there is limit of up to 4 produts in order
         OrderItem p = new OrderItem();
-        for (int i = 0; i < DataSource.Config.arrOrderItemIndex; i++)
+        for (int i = 0; i < DataSource.Config._arrOrderItemIndex; i++)
         {
             int j = 0;
-            if (DataSource.OrderItemArr[i].OrderId == orderId)
+            if (DataSource.OrderItemArr[i].OrderId == orderId)//search for a certain order
             {
                 p = DataSource.OrderItemArr[i];
-                newArr[j] = p;
+                newArr[j] = p;//add the orderItem that belongs to the order to the array
                 j++;
             }
         }
@@ -79,13 +87,13 @@ public class DalOrderItem
     public OrderItem GetByProductIdAndOrderId(int orderId, int productId)
     {
         OrderItem p = new OrderItem();
-        for (int i = 0; i < DataSource.Config.arrOrderItemIndex; i++)
+        for (int i = 0; i < DataSource.Config._arrOrderItemIndex; i++)
         {
-            if (DataSource.OrderItemArr[i].OrderId == orderId)
+            if (DataSource.OrderItemArr[i].OrderId == orderId)//search for order
             {
-                if (DataSource.OrderItemArr[i].ProductId == productId)
+                if (DataSource.OrderItemArr[i].ProductId == productId)//search for product
                 {
-                    p = DataSource.OrderItemArr[i];
+                    p = DataSource.OrderItemArr[i];//return orderItem
                     return p;
                 }
             }
