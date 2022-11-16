@@ -7,22 +7,22 @@ public class DalOrder
 {
     public int Add(Order order)
     {
-        if (DataSource.Config._arrOrderIndex == 100)
+        if (DataSource.Config.arrOrderIndex == 100)
             throw new Exception("The array is full");//if the array is full throw
-        order.ID = DataSource.Config.nextOrderNumber;//updating the running number
-        for (int i = 0; i<DataSource.Config._arrOrderIndex; i++)
+        order.ID = DataSource.Config.NextOrderNumber;//updating the running number
+        for (int i = 0; i<DataSource.Config.arrOrderIndex; i++)
         {//איזה בדיקת תקינות צריך לבצע
             if (DataSource.OrderArr[i].ID == order.ID)//if already exsist
                 throw new Exception("The order is already existing");
         }
-        DataSource.OrderArr[DataSource.Config._arrOrderIndex++] = order;
+        DataSource.OrderArr[DataSource.Config.arrOrderIndex++] = order;
         return order.ID;
       
     }
     public Order GetById(int id)
     {
         Order d;
-        for(int i=0; i<DataSource.Config._arrOrderIndex; i++)
+        for(int i=0; i<DataSource.Config.arrOrderIndex; i++)
         {
             d = DataSource.OrderArr[i];
             if (d.ID == id)//serch the array to find the wanted id
@@ -32,7 +32,7 @@ public class DalOrder
     }
     public void Update(Order order)
     {
-        for (int i = 0; i < DataSource.Config._arrOrderIndex; i++)
+        for (int i = 0; i < DataSource.Config.arrOrderIndex; i++)
         {
             if (DataSource.OrderArr[i].ID == order.ID)
             {
@@ -45,13 +45,13 @@ public class DalOrder
     }
     public void Delete(int id)
     {
-        for (int i = 0; i < DataSource.Config._arrOrderIndex; i++)
+        for (int i = 0; i < DataSource.Config.arrOrderIndex; i++)
         {
             if (DataSource.OrderArr[i].ID == id)
             {
-                DataSource.OrderArr[i] = DataSource.OrderArr[DataSource.Config._arrOrderIndex];
+                DataSource.OrderArr[i] = DataSource.OrderArr[DataSource.Config.arrOrderIndex];
                 //taking the last order and replacing it with what we want to delete
-                DataSource.Config._arrOrderIndex--;//reducing the index to delete order
+                DataSource.Config.arrOrderIndex--;//reducing the index to delete order
                 return;
             }
 
@@ -60,8 +60,8 @@ public class DalOrder
     }
     public Order[] GetAll()
     {
-        Order[] newArr = new Order[DataSource.Config._arrOrderIndex];
-        for (int i = 0; i < DataSource.Config._arrOrderIndex; i++)
+        Order[] newArr = new Order[DataSource.Config.arrOrderIndex];
+        for (int i = 0; i < DataSource.Config.arrOrderIndex; i++)
         {
             newArr[i] = DataSource.OrderArr[i];//copy all the orders to the new array
         }

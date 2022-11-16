@@ -26,18 +26,18 @@ internal static class DataSource
     /// <summary>
     /// index for the arrays
     /// </summary>
-        internal static int _arrProductIndex = 10;
-        internal static int _arrOrderIndex = 20;  
-        internal static int _arrOrderItemIndex = 40;  
+        internal static int arrProductIndex = 10;
+        internal static int arrOrderIndex = 20;  
+        internal static int arrOrderItemIndex = 40;  
      /// <summary>
         /// creating the runing numbers for the add func
         /// </summary>
-        internal const int _startOrderNumber = 100000;
-        private static int _nextOrderNumber = _startOrderNumber;
-        internal static int nextOrderNumber { get => _nextOrderNumber++; }//order
-        internal const int _startOrderItemNumber = 100000;
-        private static int _nextOrderItemNumber = _startOrderItemNumber;
-        internal static int NextOrderItemNumber { get => _nextOrderItemNumber++; }//orderItem
+        internal const int s_startOrderNumber = 100000;
+        private static int s_nextOrderNumber = s_startOrderNumber;
+        internal static int NextOrderNumber { get => s_nextOrderNumber++; }//order
+        internal const int s_startOrderItemNumber = 100000;
+        private static int s_nextOrderItemNumber = s_startOrderItemNumber;
+        internal static int NextOrderItemNumber { get => s_nextOrderItemNumber++; }//orderItem
     }
 
     //matrix of products
@@ -108,7 +108,7 @@ internal static class DataSource
             string lastName = lastNames[s_rand.Next(4)];
             OrderArr[i] = new Order//add the order to the array
             {
-                ID = Config.nextOrderNumber,
+                ID = Config.NextOrderNumber,
                 OrderDate = orderDate,
                 ShipDate = shippingDate,
                 DeliveryDate = deliveryDate,
