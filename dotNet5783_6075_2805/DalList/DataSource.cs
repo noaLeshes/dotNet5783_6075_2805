@@ -2,7 +2,6 @@
 using System.Diagnostics;
 using System.Xml.Linq;
 using static Dal.DataSource;
-
 namespace Dal;
 
 internal static class DataSource
@@ -12,37 +11,35 @@ internal static class DataSource
         s_Initialize();
     }
     private static readonly Random s_rand = new();
-    internal static Product[] ProductArr { get; } = new Product[50];
-    internal static Order[] OrderArr { get; } = new Order[100];
-    internal static OrderItem[] OrderItemArr { get; } = new OrderItem[200];
+    internal static Product[] productArr { get; } = new Product[50];
+    internal static Order[] orderArr { get; } = new Order[100];
+    internal static OrderItem[] orderItemArr { get; } = new OrderItem[200];
     private static void s_Initialize()
     {
         createAndInitProducts();
         createAndInitOrders();
         createAndInitOrderItems();
     }
-    internal static class Config
-    {
     /// <summary>
     /// index for the arrays
     /// </summary>
-        internal static int arrProductIndex = 10;
-        internal static int arrOrderIndex = 20;  
-        internal static int arrOrderItemIndex = 40;  
+        internal static int arrProductIndex = 0;
+        internal static int arrOrderIndex = 0;  
+        internal static int arrOrderItemIndex = 0;  
      /// <summary>
         /// creating the runing numbers for the add func
         /// </summary>
-        internal const int s_startOrderNumber = 100000;
-        private static int s_nextOrderNumber = s_startOrderNumber;
-        internal static int NextOrderNumber { get => s_nextOrderNumber++; }//order
-        internal const int s_startOrderItemNumber = 100000;
-        private static int s_nextOrderItemNumber = s_startOrderItemNumber;
-        internal static int NextOrderItemNumber { get => s_nextOrderItemNumber++; }//orderItem
-    }
+        internal const int startOrderNumber = 100000;
+        private static int nextOrderNumber = startOrderNumber;
+        internal static int _nextOrderNumber { get => nextOrderNumber++; }//order
+        internal const int startOrderItemNumber = 100000;
+        private static int nextOrderItemNumber = startOrderItemNumber;
+        internal static int _nextOrderItemNumber { get => nextOrderItemNumber++; }//orderItem
+    
 
     //matrix of products
     private static string[,] productNames = new string[5, 3] { { "EyeLiner", "Mascara", "Eyeshadow-Palette" }, //eyes
-                                                  { "foundation","Concealer", "Blush" },// face
+                                                  { "Foundation","Concealer", "Blush" },// face
                                                   { "Eyeshadow-Brush", "Blender-Brush", "Blush-Brush"},// brushes
                                                   {"LipStick","Gloss", "Lip-Liner" },// lips
                                                   {"Face-Mask","Moisturizer", "Makeup-Wipes" }/*beauty*/ };
@@ -50,9 +47,9 @@ internal static class DataSource
     {
         for (int i = 0; i < 10; i++)//creating 10 products
         {
-            int c = s_rand.Next(4);
-            int n = s_rand.Next(2);
-            ProductArr[i] = new Product//add the product to the array
+            int c = s_rand.Next(5);
+            int n = s_rand.Next(3);
+            productArr[i] = new Product//add the product to the array
             {
                 ID = i + 100000,
                 Name = productNames[c, n],//get the product's name from the matrix
@@ -60,7 +57,7 @@ internal static class DataSource
                 Category = (Category)c,
                 InStock = s_rand.Next(50)
             };
-
+            arrProductIndex++;
         }
     }
    
@@ -104,20 +101,22 @@ internal static class DataSource
                 }
             }
 
-            string firstName = firstNames[s_rand.Next(4)];
-            string lastName = lastNames[s_rand.Next(4)];
-            OrderArr[i] = new Order//add the order to the array
+            string firstName = firstNames[s_rand.Next(5)];
+            string lastName = lastNames[s_rand.Next(5)];
+            orderArr[i] = new Order//add the order to the array
             {
-                ID = Config.NextOrderNumber,
+                ID = _nextOrderNumber,
                 OrderDate = orderDate,
                 ShipDate = shippingDate,
                 DeliveryDate = deliveryDate,
                 CustomerName = firstName + " " + lastName,
-                CustomerAddress = arrayAdresses[s_rand.Next(9)] ,
+                CustomerAddress = arrayAdresses[s_rand.Next(20)] ,
                 CustomerEmail = firstName + lastName + "@gmail.com"
 
             };
-            
+            arrOrderIndex++;
+
+
         }
     }
 
@@ -135,18 +134,19 @@ internal static class DataSource
             int amountOfOrderItems = s_rand.Next(1, 4);//between 1 to 4 items per order
             for (int j = 0; j < amountOfOrderItems; j++)
             {
-                Product p = ProductArr[s_rand.Next(amountOfOrderItems)];
+                Product p = productArr[s_rand.Next(amountOfOrderItems)];
                 int amount = s_rand.Next(1, 10);
-                OrderItemArr[i] = new OrderItem//add the order-item to the array
+                orderItemArr[i] = new OrderItem//add the order-item to the array
                 {
                     Amount = amount,
                     Price = p.Price * amount,//caculate the price
-                    ID = Config.NextOrderItemNumber,
+                    ID = _nextOrderItemNumber,
                     ProductId = p.ID,
-                    OrderId = OrderArr[count].ID,
+                    OrderId = orderArr[count].ID,
                 };
                 
             }
+            arrOrderItemIndex++;
             count++;
         }
     }

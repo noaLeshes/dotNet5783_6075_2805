@@ -16,7 +16,7 @@ internal class Program
     private static DalOrder dalOrder = new DalOrder();
     private static DalOrderItem dalOrderItem = new DalOrderItem();
 
-    private static void ProductFunc()
+    private static void productFunc()
     {
         Console.WriteLine(@"please enter your choice:
                             1 - adding a product
@@ -133,7 +133,7 @@ internal class Program
 
         }
     }
-    private static void OrderFunc()
+    private static void orderFunc()
     {
         Console.WriteLine(@"please enter your choice:
                             1 - adding an order
@@ -244,7 +244,7 @@ internal class Program
 
         }
     }
-    private static void OrderItemFunc()
+    private static void orderItemFunc()
     {
         Console.WriteLine(@"please enter your choice:
                             1 - adding a product to an order
@@ -392,13 +392,13 @@ internal class Program
                             Console.WriteLine("GoodBye!");
                             break;
                         case MainChoice.Product:
-                            ProductFunc();
+                            productFunc();
                             break;
                         case MainChoice.Order:
-                            OrderFunc();
+                            orderFunc();
                             break;
                         case MainChoice.OrderItem:
-                            OrderItemFunc();
+                            orderItemFunc();
                             break;
                         default: throw new Exception("Error");
                     }
