@@ -15,7 +15,6 @@ Price     =   {Price},
 Category  =   {Category},
 InStock   =   {InStock}
 ";
-
 }
 
 

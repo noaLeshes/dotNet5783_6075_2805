@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace BO;
 
-namespace BO
+public class OrderForList
 {
-    public class OrderForList
-    {
-    }
+    int ID { get; set; }    
+    OrderStatus Status { get; set; }
+    int AmountOfItems { get; set; }
+    double TotalPrice { get; set; }
 }

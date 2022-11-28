@@ -1,8 +1,5 @@
-﻿
-using DalApi;
+﻿using DalApi;
 using DO;
-using System.Diagnostics;
-using System.Xml.Linq;
 namespace Dal;
 
 internal class DalProduct : IProduct
@@ -11,14 +8,15 @@ internal class DalProduct : IProduct
     {
         bool isExist = DataSource.ProductList.Contains(product);
         if (isExist)
+        {
             throw new Exception("not found");
+        }
         DataSource.ProductList.Add(product);
         return product.ID;
     }
     public Product GetById(int id)
     {
-        Product p = DataSource.ProductList.Find(x => x?.ID == id) ?? throw new Exception("not found");
-        return p;
+        return DataSource.ProductList.Find(x => x?.ID == id) ?? throw new Exception("not found");
     }
     public void Update(Product p)
     {
@@ -39,11 +37,6 @@ internal class DalProduct : IProduct
     }
     public IEnumerable<Product?> GetAll()
     {
-        List<Product?> newList = new List<Product?>();
-        foreach (Product o in DataSource.ProductList)
-        {
-            newList.Add(o);
-        }
-        return newList;
+        return new List<Product?>(DataSource.ProductList);
     }
 }

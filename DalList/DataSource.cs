@@ -1,8 +1,4 @@
-﻿
-using DO;
-using System.Diagnostics;
-using System.Xml.Linq;
-using static Dal.DataSource;
+﻿using DO;
 namespace Dal;
 internal static class DataSource
 {
@@ -113,6 +109,7 @@ internal static class DataSource
     private static void createAndInitOrderItems()//orderItem constructor
     {
         int count = 0;
+        int orderNum = 0;
         for (int i = 0; i < 40; i++)//creating 40 orderitems
         {
             int amountOfOrderItems = s_rand.Next(1, 4);//between 1 to 4 items per order
@@ -122,14 +119,14 @@ internal static class DataSource
                 //    ProductList.Count;
                 Product p = ProductList.in s_rand.Next(amountOfOrderItems)];
                 //productArr[s_rand.Next(amountOfOrderItems)];
-                int amount = s_rand.Next(1, 10);
+                int amount = s_rand.Next(10);
                 OrderItemList.Add(new OrderItem//add the order-item to the array
                 {
                     Amount = amount,
-                    Price = p.Price * amount,//caculate the price
+                    Price = p.Price,//caculate the price
                     ID = _nextOrderItemNumber,
                     ProductId = p.ID,
-                    OrderId = OrderList
+                    OrderId = OrderList[orderNum].
                 });
 
             }
