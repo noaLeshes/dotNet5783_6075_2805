@@ -143,20 +143,15 @@ internal class DalOrderItem : IOrderItem
     }
     public IEnumerable<OrderItem?> GetAll()
     {
-
-        List<OrderItem?> newList = new List<OrderItem?>();
-        foreach (OrderItem oi in DataSource.OrderItemList)
-        {
-            newList.Add(oi);
-        }
-        return newList;
+        return new List<OrderItem?>(DataSource.OrderItemList);
     }
+
     public IEnumerable<OrderItem?> GetAllOrderProducts(int orderId)
     {
         List<OrderItem?> newList = new List<OrderItem?>();
-        foreach (OrderItem oi in DataSource.OrderItemList)
+        foreach (var oi in DataSource.OrderItemList)
         {
-            if (oi.OrderId == orderId)
+            if (oi?.OrderId == orderId)
             {
                 newList.Add(oi);
             }
@@ -165,9 +160,7 @@ internal class DalOrderItem : IOrderItem
     }
     public OrderItem GetByProductIdAndOrderId(int orderId, int productId)
     {
-        OrderItem oi = DataSource.OrderItemList.Find(x => x?.OrderId == orderId && x?.ProductId == productId) ?? throw new Exception("The item doesn't exist");
-        return oi;
-
+        return DataSource.OrderItemList.Find(x => x?.OrderId == orderId && x?.ProductId == productId) ?? throw new Exception("The item doesn't exist");
     }
 
 }
