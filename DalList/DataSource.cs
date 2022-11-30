@@ -117,7 +117,7 @@ internal static class DataSource
             {
                 //int ind = s_rand.Next
                 //    ProductList.Count;
-                Product p = ProductList.in s_rand.Next(amountOfOrderItems)];
+                Product p = ProductList[i]//ProductList.in s_rand.Next(amountOfOrderItems)];
                 //productArr[s_rand.Next(amountOfOrderItems)];
                 int amount = s_rand.Next(10);
                 OrderItemList.Add(new OrderItem//add the order-item to the array

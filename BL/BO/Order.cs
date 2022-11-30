@@ -11,6 +11,9 @@ public class Order
     public DateTime? ShipDate { get; set; }
     public DateTime? DeliveryDate { get; set; }
     public OrderItem? Items { get; set; }    
-    public double TotalPrice { get; set; }   
-
+    public double TotalPrice { get; set; }
+    public override ToString()
+    {
+        return this.ToStringProperty();
+    }
 }
