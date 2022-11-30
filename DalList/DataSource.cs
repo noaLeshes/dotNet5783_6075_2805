@@ -108,7 +108,6 @@ internal static class DataSource
     private static int[] amounts = new int[5] { 2, 25, 15, 3, 5 };
     private static void createAndInitOrderItems()//orderItem constructor
     {
-        int count = 0;
         int orderNum = 0;
         for (int i = 0; i < 40; i++)//creating 40 orderitems
         {
@@ -117,20 +116,26 @@ internal static class DataSource
             {
                 //int ind = s_rand.Next
                 //    ProductList.Count;
-                Product p = ProductList[i]//ProductList.in s_rand.Next(amountOfOrderItems)];
+                int num = s_rand.Next(9);
+                Product? p = ProductList[num];//ProductList.in s_rand.Next(amountOfOrderItems)];
                 //productArr[s_rand.Next(amountOfOrderItems)];
+                while (p?.InStock == 0)// if not in stock find another product
+                {
+                     num = s_rand.Next(9);
+                     p = ProductList[num];
+                }
                 int amount = s_rand.Next(10);
                 OrderItemList.Add(new OrderItem//add the order-item to the array
                 {
                     Amount = amount,
-                    Price = p.Price,//caculate the price
+                    Price = p?.Price,//caculate the price
                     ID = _nextOrderItemNumber,
-                    ProductId = p.ID,
-                    OrderId = OrderList[orderNum].
-                });
-
+                    ProductId = p?.ID,
+                    OrderId = OrderList[orderNum]?.ID
+                }) ;
+                ProductList[num]?.InStock -= amount;
             }
-            count++;
+            orderNum++;
         }
     }
 }

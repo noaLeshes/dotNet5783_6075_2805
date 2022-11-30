@@ -12,7 +12,7 @@ public class Order
     public DateTime? DeliveryDate { get; set; }
     public OrderItem? Items { get; set; }    
     public double TotalPrice { get; set; }
-    public override ToString()
+    public override string ToString()
     {
         return this.ToStringProperty();
     }

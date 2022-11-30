@@ -8,7 +8,7 @@ public class ProductItem
     public Category Category { get; set; }
     public int Amount { get; set; }
     public bool InStock { get; set; }
-    public override ToString()
+    public override string ToString()
     {
         return this.ToStringProperty();
     }

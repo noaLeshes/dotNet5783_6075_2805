@@ -7,7 +7,7 @@ public class Product
     public double Price { get; set; }
     public Category Category { get; set; }
     public int InStock { get; set; }
-    public override ToString()
+    public override string ToString()
     {
         return this.ToStringProperty();
     }

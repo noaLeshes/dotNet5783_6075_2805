@@ -10,10 +10,4 @@ public interface IProduct
     Cart AddProduct(int id, string name, double price, int amount);
     Cart DeleteProduct(int id);
     Cart UpdateProduct(int id, string name, double price, int amount);
-
-
-
-
-
-
 }

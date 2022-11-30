@@ -6,7 +6,7 @@ public class OrderForList
     OrderStatus Status { get; set; }
     int AmountOfItems { get; set; }
     double TotalPrice { get; set; }
-    public override ToString()
+    public override string ToString()
     {
         return this.ToStringProperty();
     }
