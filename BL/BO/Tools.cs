@@ -7,7 +7,17 @@ static class Tools
         string str = "";
         foreach (var item in t.GetType().GetProperties())
         {
-            str += "\n" + item.Name + ": " + item.GetValue(t, null);
+            if(item is List<T> && item != null)
+            {
+                str += "\n" + item.Name + ": ";
+                List<T> mylist = item as List<T>;
+                foreach (var obj in mylist)
+                {
+                    str += obj+" ";
+                }
+            }
+            else 
+                str += "\n" + item.Name + ": " + item.GetValue(t, null);
         }
          return str;
 
