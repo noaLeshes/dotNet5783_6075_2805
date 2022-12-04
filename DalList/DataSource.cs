@@ -91,7 +91,7 @@ internal static class DataSource
 
             string firstName = firstNames[s_rand.Next(5)];
             string lastName = lastNames[s_rand.Next(5)];
-            OrderList.Add(new Order//add the order to the array
+            OrderList.Add(new Order                        //add the order to the array
             {
                 ID = _nextOrderNumber,
                 OrderDate = orderDate,

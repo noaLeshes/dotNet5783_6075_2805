@@ -5,9 +5,12 @@ namespace BlImplementation;
 
 internal class Order : IOrder
 {
+    DalApi.IDal dal = new Dal.DalList();
     BO.Order IOrder.GetOrderDitailes(int id)
     {
-        throw new NotImplementedException();
+        if(id< 0)   
+            throw new NotImplementedException();
+         
     }
 
     IEnumerable<OrderForList?> IOrder.GetOrders()

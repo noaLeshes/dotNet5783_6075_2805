@@ -1,22 +1,36 @@
 ﻿using BlApi;
+using Dal;
 
 namespace BlImplementation;
 
 internal class Cart : ICart
 {
-    BO.Cart ICart.AddItem(BO.Cart c, int productId)
+    DalApi.IDal dal = new Dal.DalList();
+   public BO.Cart AddItem(BO.Cart c, int productId)
     {
+           if( DO.OrderItem oi = dal.OrderItem.GetById(productId))
+          {
+            from BO.OrderItem item in c.Items
+            where item.ProductId == productId
+            select 
+          }
+            if(P.InStock > 0)
 
+ 
+
+    }
+
+    public void ConfirmCart(BO.Cart c, string name, string address, string email)
+    {
         throw new NotImplementedException();
     }
 
-    void ICart.ConfirmCart(BO.Cart c, string name, string address, string email)
+    public BO.Cart UpdateItem(BO.Cart c, int productId, int amount)
     {
-        throw new NotImplementedException();
-    }
+        try
+        { DO.Product P = dal.Product.GetById(productId);
+        if(P.InStock == 0)
 
-    BO.Cart ICart.UpdateItem(BO.Cart c, int productId, int amount)
-    {
-        throw new NotImplementedException();
+
     }
 }
