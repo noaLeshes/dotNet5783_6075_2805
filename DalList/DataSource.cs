@@ -133,7 +133,7 @@ internal static class DataSource
                     ProductId = p?.ID,
                     OrderId = OrderList[orderNum]?.ID
                 }) ;
-                ProductList[num]?.InStock -= amount;
+                //ProductList[num].InStock-= amount;
             }
             orderNum++;
         }

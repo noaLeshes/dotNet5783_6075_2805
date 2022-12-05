@@ -106,7 +106,7 @@ internal class Program
                     case SecondaryChoice.GetAll:
                         Console.WriteLine("all of the products: ");
                         IEnumerable<Product?> newProductArr = dal.Product.GetAll();
-                        foreach (Product p3 in newProductArr)
+                        foreach (var p3 in newProductArr)
                         {
                             Console.WriteLine(p3);//print all the producs
                         }
@@ -210,7 +210,7 @@ internal class Program
                     case SecondaryChoice.GetAll:
                         Console.WriteLine("all of the orders: ");
                         IEnumerable<Order?> newOrderArr = dal.Order.GetAll();
-                        foreach (Order o3 in newOrderArr)
+                        foreach (var o3 in newOrderArr)
                         {
                             Console.WriteLine(o3); // print all the orders in the array
                         }
@@ -310,7 +310,7 @@ internal class Program
                     case SecondaryChoice.GetAll:
                         Console.WriteLine("all of the products: ");
                         IEnumerable<OrderItem?> newOrderItemArr = dal.OrderItem.GetAll();
-                        foreach (OrderItem oi3 in newOrderItemArr)
+                        foreach (var oi3 in newOrderItemArr)
                         {
                             Console.WriteLine(oi3);//ptint all the OrderItem in the array
                         }
@@ -319,7 +319,7 @@ internal class Program
                         Console.WriteLine("Enter the order's id");
                         if (int.TryParse(Console.ReadLine(), out myId) == false) throw new Exception("incorrect id");
                         IEnumerable<OrderItem?> newAllOrderProductsArr = dal.OrderItem.GetAllOrderProducts(myId);// find the OrderItems of the wanted order
-                        foreach (OrderItem oi4 in newAllOrderProductsArr)
+                        foreach (var oi4 in newAllOrderProductsArr)
                         {
                             Console.WriteLine(oi4);//ptint all the OrderItems in the same order
                         }

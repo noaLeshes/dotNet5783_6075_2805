@@ -10,7 +10,7 @@ internal class DalOrder : IOrder
         bool isExist = DataSource.OrderList.Contains(order);
         if (isExist)
         {
-            throw new Exception("not found");
+            throw new DalAlreadyExistsIdException(order.ID, "Order");
         }
         DataSource.OrderList.Add(order);
         return order.ID;
@@ -18,7 +18,7 @@ internal class DalOrder : IOrder
     }
     public Order GetById(int id)
     {
-        return DataSource.OrderList.Find(x => x?.ID == id) ?? throw new Exception("not found");
+        return DataSource.OrderList.Find(x => x?.ID == id) ?? throw new DalMissingIdException(id, "Order");
     }
     public void Update(Order order)
     {
@@ -30,11 +30,11 @@ internal class DalOrder : IOrder
             DataSource.OrderList.Add(order);//updating the wanted order
             return;
         }
-        throw new Exception("no order found");
+        throw new DalMissingIdException(order.ID, "Order");
     }
     public void Delete(int id)
     {
-        Order o = DataSource.OrderList.Find(x => x?.ID == id) ?? throw new Exception("not found");
+        Order o = DataSource.OrderList.Find(x => x?.ID == id) ?? throw new DalMissingIdException(id, "Order");
         DataSource.OrderList.Remove(o);
     }
     public IEnumerable<Order?> GetAll()

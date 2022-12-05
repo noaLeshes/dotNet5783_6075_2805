@@ -10,14 +10,14 @@ internal class DalOrderItem : IOrderItem
         bool isExist = DataSource.OrderItemList.Contains(oi);
         if (isExist)
         {
-            throw new Exception("not found");
+            throw new DalAlreadyExistsIdException(oi.ID, "OrderItem");
         }
         DataSource.OrderItemList.Add(oi);
         return oi.ID;
     }
     public OrderItem GetById(int id)
     {
-        return DataSource.OrderItemList.Find(x => x?.ID == id) ?? throw new Exception("not found");
+        return DataSource.OrderItemList.Find(x => x?.ID == id) ?? throw new DalMissingIdException(id, "OrderItem");
     }
     public void Update(OrderItem oi)
     {
@@ -29,12 +29,11 @@ internal class DalOrderItem : IOrderItem
             DataSource.OrderItemList.Add(oi);//updating the wanted order
             return;
         }
-        throw new Exception("not found");
+        throw new DalMissingIdException(oi.ID, "OrderItem");
     }
     public void Delete(int id)
     {
-        OrderItem oi = DataSource.OrderItemList.Find(x => x?.ID == id) ?? throw new Exception("not found");
-        DataSource.OrderItemList.Remove(oi);
+        DataSource.OrderItemList.Remove(DataSource.OrderItemList.Find(x => x?.ID == id) ?? throw new DalMissingIdException(id, "OrderItem"));
     }
     public IEnumerable<OrderItem?> GetAll()
     {
