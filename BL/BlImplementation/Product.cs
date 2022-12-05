@@ -10,7 +10,7 @@ internal class Product : IProduct
     DalApi.IDal dal = new Dal.DalList();
     public void AddProduct(int id, string name, double price, int amount)
     {
-        dal.Product.Add(new DO.Product()
+        int i = dal.Product.Add(new DO.Product()
         {
             ID = id > 0 ? id : throw new NullReferenceException("Missing id"),
             Name = name != "" ? name : throw new NullReferenceException("Missing name"),
