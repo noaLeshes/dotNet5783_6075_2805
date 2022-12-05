@@ -1,25 +1,25 @@
-﻿namespace BO;
+﻿using System.Reflection;
 
+namespace BO;
+ 
 static class Tools
 {
     public static string ToStringProperty<T>(this T t)
     {
         string str = "";
-        foreach (var item in t.GetType().GetProperties())
+        foreach (PropertyInfo item in t.GetType().GetProperties())
         {
-            if(item is List<T> && item != null)
+            str += "\n" + item.Name + ": ";
+            if (item.GetValue(t,null) is IEnumerable<object>)
             {
-                str += "\n" + item.Name + ": ";
-                List<T> mylist = item as List<T>;
-                foreach (var obj in mylist)
-                {
-                    str += obj+" ";
-                }
+                IEnumerable<object> list = (IEnumerable<object>)item.GetValue(obj:t, null);
+                string s = String.Join(" ", list);
+                str += s;
             }
             else 
-                str += "\n" + item.Name + ": " + item.GetValue(t, null);
+                str += item.GetValue(t, null);
         }
-         return str;
+         return str + "\n";
 
     }
 }

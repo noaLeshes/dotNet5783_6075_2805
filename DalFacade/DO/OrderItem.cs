@@ -8,13 +8,17 @@ public struct OrderItem
     public double? Price { get; set; }
     public int Amount { get; set; }
 
-    public override string ToString() => $@"
-ID         =   {ID},
-OrderId    =   {OrderId},
-ProductId  =   {ProductId},
-Price      =   {Price},
-Amount     =   {Amount}
-";
+    //    public override string ToString() => $@"
+    //ID         =   {ID},
+    //OrderId    =   {OrderId},
+    //ProductId  =   {ProductId},
+    //Price      =   {Price},
+    //Amount     =   {Amount}
+    //";
+    public override string ToString()
+    {
+        return this.ToStringProperty();
+    }
 }
 
 
