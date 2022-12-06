@@ -41,8 +41,8 @@ internal class Program
                         Console.WriteLine(@"Enter the product's category:
                                            0 - EYES
                                            1 - FACE
-                                           2- LIPS
-                                           3 - BRUSHES
+                                           2 - BRUSHES
+                                           3 - LIPS
                                            4 - BEAUTY");
                         if (Category.TryParse(Console.ReadLine(), out myCategory) == false || (int)myCategory > 4 || (int)myCategory < 0) throw new Exception("incorrect category");
                         Console.WriteLine("Enter the amount of products in stock: ");
@@ -78,8 +78,8 @@ internal class Program
                         Console.WriteLine(@"Enter the product's category:
                                            0 - EYES
                                            1 - FACE
-                                           2- LIPS
-                                           3 - BRUSHES
+                                           2 - BRUSHES
+                                           3 - LIPS
                                            4 - BEAUTY");
                         if (Category.TryParse(Console.ReadLine(), out myCategory) == false || (int)myCategory > 4 || (int)myCategory < 0) throw new Exception("incorrect category");
                         Console.WriteLine("Enter the amount of products in stock: ");

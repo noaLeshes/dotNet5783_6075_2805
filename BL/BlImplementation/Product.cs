@@ -10,14 +10,19 @@ internal class Product : IProduct
     DalApi.IDal dal = new Dal.DalList();
     public void AddProduct(int id, string name, double price, int amount)
     {
-        int i = dal.Product.Add(new DO.Product()
+        try
         {
-            ID = id > 0 ? id : throw new NullReferenceException("Missing id"),
-            Name = name != "" ? name : throw new NullReferenceException("Missing name"),
-            //Category = (DO.Category)c,
-            Price = price > 0 ? price : throw new NullReferenceException("Wrong price"),
-            InStock = amount > 0 ? amount : throw new NullReferenceException("Wrong amount")
-        }) ;
+           DO.Product p = dal.Product.GetById(id);
+            int i = dal.Product.Add(new DO.Product()
+            {
+                ID = id > 0 ? id : throw new NullReferenceException("Missing id"),
+                Name = name != "" ? name : throw new NullReferenceException("Missing name"),
+                Category = p.Category,
+                Price = price > 0 ? price : throw new NullReferenceException("Wrong price"),
+                InStock = amount > 0 ? amount : throw new NullReferenceException("Wrong amount")
+            });
+        }
+
     }
 
     public void DeleteProduct(int id)
