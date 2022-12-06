@@ -7,11 +7,9 @@ internal class DalOrderItem : IOrderItem
     public int Add(OrderItem oi)
     {
         oi.ID = DataSource._nextOrderItemNumber;//updating the running number
-        bool isExist = DataSource.OrderItemList.Contains(oi);
-        if (isExist)
-        {
+        var o = DataSource.ProductList.Find(x => x?.ID == oi.ID);
+        if (o != null)
             throw new DalAlreadyExistsIdException(oi.ID, "OrderItem");
-        }
         DataSource.OrderItemList.Add(oi);
         return oi.ID;
     }
@@ -21,8 +19,8 @@ internal class DalOrderItem : IOrderItem
     }
     public void Update(OrderItem oi)
     {
-        bool isExist = DataSource.OrderItemList.Contains(oi);
-        if (isExist)
+        var isExist = DataSource.OrderItemList.Find(x => x?.ID == oi.ID);
+        if (isExist != null)
         {
             OrderItem? o = DataSource.OrderItemList.Find(x => x?.ID == oi.ID);
             DataSource.OrderItemList.Remove(o);

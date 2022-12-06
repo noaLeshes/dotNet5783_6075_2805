@@ -1,7 +1,4 @@
-﻿using System.Runtime.Serialization;
-using System.Xml.Linq;
-
-namespace DO
+﻿namespace DO
 {
     [Serializable]
     public class DalMissingIdException : Exception
@@ -20,14 +17,7 @@ namespace DO
 
         public override string ToString()
         {
-            if (EntityID != -1)
-            {
                 return $"{EntityName} number {EntityID} does not exist.";
-            }
-            else  //in case it's an orderItem and or the productID wasn't found or the orderID wasn't found 
-            {
-                return $"{EntityName} does not exist.";// לא נראה לי צריך סתם יותר מדי
-            }
         }
 
     }

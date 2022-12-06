@@ -35,6 +35,7 @@ internal class Program
                         if (int.TryParse(Console.ReadLine(), out myId) == false) throw new Exception("incorrect id");//if not valid
                         Console.WriteLine("Enter the product's name: ");
                         myName = Console.ReadLine();
+                        
                         Console.WriteLine("Enter the product's price: ");
                         if (double.TryParse(Console.ReadLine(), out myPrice) == false) throw new Exception("incorrect price");//if not valid
                         Console.WriteLine(@"Enter the product's category:

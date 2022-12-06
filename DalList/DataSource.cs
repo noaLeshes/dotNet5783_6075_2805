@@ -109,7 +109,7 @@ internal static class DataSource
     private static void createAndInitOrderItems()//orderItem constructor
     {
         int orderNum = 0;
-        for (int i = 0; i < 40; i++)//creating 40 orderitems
+        for (int i = 0; i < 20; i++)//creating 40 orderitems
         {
             int amountOfOrderItems = s_rand.Next(1, 4);//between 1 to 4 items per order
             for (int j = 0; j < amountOfOrderItems; j++)
