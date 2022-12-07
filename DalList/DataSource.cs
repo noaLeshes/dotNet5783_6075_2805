@@ -63,31 +63,50 @@ internal static class DataSource
         for (int i = 0; i < 20; i++)//creating 20 orders
         {
 
-            int days = s_rand.Next(1000);
-            DateTime orderDate = DateTime.Now.AddDays(-days);
-            DateTime? deliveryDate;
-            DateTime? shippingDate;
-            if (i % 5 == 0)//making sure that 80% of the orders have deliveryDate and that 60% of the orders have shipDate
+            int days = s_rand.Next(200);
+            DateTime orderDate = DateTime.Now.AddDays(-days); // order date is berfore current date
+            DateTime? deliveryDate = null;
+            DateTime? shipDate = null;
+            TimeSpan timeSpan;
+            if (i < 0.8 * 20) // 5% doesnt get delivery and ship date
             {
-                deliveryDate = null;
-                shippingDate = null;
+                days = s_rand.Next(10, 20);
+                timeSpan = new TimeSpan(days, 0, 0, 0);
+                shipDate = orderDate + timeSpan;
             }
-            else
+            if (i < 0.8 * 0.6 * 20)
             {
-                days = s_rand.Next(1, 3);
-                TimeSpan timeS1 = new TimeSpan(days, 0, 0, 0);
-                deliveryDate = orderDate + timeS1;
-                if ((i + 2) % 3 == 0)//making sure that 80% of the orders have deliveryDate and that 60% of the orders have shipDate
-                {
-                    shippingDate = null;
-                }
+                days = s_rand.Next(1, 10);
+                timeSpan = new TimeSpan(days, 0, 0, 0);
+                if (shipDate != null)
+                    deliveryDate = shipDate + timeSpan;
                 else
-                {
-                    days = s_rand.Next(3, 7);
-                    TimeSpan timeS2 = new TimeSpan(days, 0, 0, 0);
-                    shippingDate = orderDate + timeS2;
-                }
+                    deliveryDate = DateTime.MinValue + timeSpan;
             }
+            //DateTime orderDate = DateTime.Now.AddDays(-days);
+            //DateTime? deliveryDate;
+            //DateTime? shippingDate;
+            //if (i % 5 == 0)//making sure that 80% of the orders have deliveryDate and that 60% of the orders have shipDate
+            //{
+            //    deliveryDate = null;
+            //    shippingDate = null;
+            //}
+            //else
+            //{
+            //    days = s_rand.Next(1, 3);
+            //    TimeSpan timeS1 = new TimeSpan(days, 0, 0, 0);
+            //    deliveryDate = orderDate + timeS1;
+            //    if ((i + 2) % 3 == 0)//making sure that 80% of the orders have deliveryDate and that 60% of the orders have shipDate
+            //    {
+            //        shippingDate = null;
+            //    }
+            //    else
+            //    {
+            //        days = s_rand.Next(3, 7);
+            //        TimeSpan timeS2 = new TimeSpan(days, 0, 0, 0);
+            //        shippingDate = orderDate + timeS2;
+            //    }
+            //}
 
             string firstName = firstNames[s_rand.Next(5)];
             string lastName = lastNames[s_rand.Next(5)];
@@ -95,7 +114,7 @@ internal static class DataSource
             {
                 ID = _nextOrderNumber,
                 OrderDate = orderDate,
-                ShipDate = shippingDate,
+                ShipDate = shipDate,
                 DeliveryDate = deliveryDate,
                 CustomerName = firstName + " " + lastName,
                 CustomerAddress = arrayAdresses[s_rand.Next(20)],
@@ -108,7 +127,6 @@ internal static class DataSource
     private static int[] amounts = new int[5] { 2, 25, 15, 3, 5 };
     private static void createAndInitOrderItems()//orderItem constructor
     {
-        int orderNum = 0;
         for (int i = 0; i < 20; i++)//creating 40 orderitems
         {
             int amountOfOrderItems = s_rand.Next(1, 4);//between 1 to 4 items per order
@@ -131,13 +149,9 @@ internal static class DataSource
                     Price = p?.Price??0,//caculate the price
                     ID = _nextOrderItemNumber,
                     ProductId = p?.ID??0,
-                    OrderId = OrderList[orderNum]?.ID
+                    OrderId = OrderList[i]?.ID
                 }) ;
-                //int n = ProductList[num]?.InStock?? 0;
-                //ProductList[num]?.InStock = ;
-                //ProductList[num].InStock -= amount;
             }
-            orderNum++;
         }
     }
 }

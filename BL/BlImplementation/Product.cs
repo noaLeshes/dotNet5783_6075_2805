@@ -42,7 +42,11 @@ internal class Product : IProduct
             var listtodel = list.Select(x => x?.ProductId == id);
             if (listtodel != null)
                 dal.Product.Delete(id);
-            
+            foreach (DO.OrderItem? item in list)
+            {
+                if (item?.ProductId == id)
+                    throw new Exception("error");
+            }
         }
         catch(DO.DalMissingIdException exception)
         {
@@ -111,7 +115,7 @@ internal class Product : IProduct
                 Category = (BO.Category)p.Category,
                 InStock = p.InStock > 0 ? true : false,
                 Amount = c.Items == null? 0: (from i in c.Items
-                         where i.Id == id
+                         where i.ProductId == id
                          select i.Amount).Sum() /*a.Sum(x =>x?.Amount??0)*/ 
             };
         }

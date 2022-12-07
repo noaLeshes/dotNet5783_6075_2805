@@ -16,23 +16,17 @@ internal class Order : IOrder
             IEnumerable<DO.OrderItem?> orderItems = dal.OrderItem.GetAllOrderProducts(o.ID);
             IEnumerable<BO.OrderItem?> b_orderItems = new List<BO.OrderItem?>(); //create item for BO.Order
             DO.Product p;//product to find name
-
             //Create Items for order:
-            foreach (DO.OrderItem? item in orderItems)
-            {
-                p = dal.Product.GetById(item?.ProductId ?? 0);
-                 b_orderItems = from DO.OrderItem x in orderItems
+                b_orderItems = from DO.OrderItem x in orderItems
                                    select new BO.OrderItem()
                                    {
-                                       Id = item?.ID ?? 0,
-                                       Name = dal.Product.GetById(item?.ProductId ?? 0).Name ?? " ",
-                                       ProductId = item?.ProductId ?? 0,
-                                       Price = item?.Price ?? 0,
-                                       Amount = item?.Amount ?? 0,
-                                       TotalPrice = item?.Price * item?.Amount ?? 0
+                                       Id = x.ID ,
+                                       Name = dal.Product.GetById(x.ProductId ).Name ?? " ",
+                                       ProductId = x.ProductId ,
+                                       Price = x.Price ,
+                                       Amount = x.Amount ,
+                                       TotalPrice = x.Price * x.Amount 
                                    };
-            }
-
             return new BO.Order()
             {
                 ID = o.ID,
@@ -55,11 +49,15 @@ internal class Order : IOrder
     private OrderStatus findStatus(DO.Order o)
     {
         OrderStatus stat = OrderStatus.Initiated;
-        if (o.OrderDate < DateTime.Now)
+        if(o.DeliveryDate != null &&o.OrderDate == null || (o.ShipDate != null && o.OrderDate == null))
+            throw new BlIncorrectDateException("OrderDate not updated ");
+        if (o.DeliveryDate != null && o.ShipDate == null)
+            throw new BlIncorrectDateException("shipping not updated ");
+        if (o.OrderDate != null)
             stat = OrderStatus.Ordered;
-        if (o.ShipDate < DateTime.Now)
+        if (o.ShipDate != null)
             stat = OrderStatus.Shipped;
-        if (o.DeliveryDate < DateTime.Now)
+        if (o.DeliveryDate != null)
             stat = OrderStatus.Delivered;
         return stat;
     }
@@ -91,6 +89,7 @@ internal class Order : IOrder
             orderforlists.Add(new BO.OrderForList()
             {
                 ID = o.ID,
+                CustomerName = o.CustomerName,
                 AmountOfItems = orderitems.Count(),
                 TotalPrice = orderitems.Sum(x => x?.Price ?? 0 ),
                 Status = findStatus(o)
@@ -105,12 +104,13 @@ internal class Order : IOrder
         {
             DO.Order o = dal.Order.GetById(id);
             List<Tuple<DateTime?, string>> list = new List<Tuple<DateTime?, string>>();
-            if (o.OrderDate != null)
+            if (o.OrderDate != DateTime.MinValue )
                 list.Add(Tuple.Create(o.OrderDate, "your order has been accepted"));
-            if (o.ShipDate != null)
+            if (o.ShipDate != DateTime.MinValue)
                 list.Add(Tuple.Create(o.OrderDate, "your order has been shipped "));
-            if (o.DeliveryDate != null)
+            if (o.DeliveryDate != DateTime.MinValue)
                 list.Add(Tuple.Create(o.OrderDate, "your order has been deliverd "));
+
             return new BO.OrderTracking()
             {
                 ID = id,
@@ -128,13 +128,20 @@ internal class Order : IOrder
     {
         try
         {
+            BO.Order t = new();
             DO.Order o = dal.Order.GetById(id);
-            if (o.DeliveryDate > DateTime.Now)
+            if (o.DeliveryDate != null)
+                throw new BlIncorrectDateException("delevery already updated ");
+            if ( o.ShipDate == null)
+                throw new BlIncorrectDateException("shipping not updated");
+            if (o.DeliveryDate == null && o.ShipDate != null)
             {
-                o.DeliveryDate = DateTime.Now.AddDays(5);
+                o.DeliveryDate = DateTime.Now;
                 dal.Order.Update(o);
+                t = createOrder(o);
             }
-            return createOrder(o);
+
+            return t;
         }
         catch (DO.DalMissingIdException exception)
         {
@@ -147,11 +154,15 @@ internal class Order : IOrder
         try
         {
             DO.Order o = dal.Order.GetById(id);
-            if (o.ShipDate > DateTime.Now)
+            if (o.ShipDate == null && o.OrderDate != null)
             {
-                o.ShipDate = DateTime.Now.AddDays(5);
+                o.ShipDate = DateTime.Now;
                 dal.Order.Update(o);
             }
+            else if (o.OrderDate == null)
+                throw new BlIncorrectDateException("orderdate not updated");
+            else
+                throw new BlIncorrectDateException("shipping already updated ");
             return createOrder(o);
         }
         catch (DO.DalMissingIdException exception)

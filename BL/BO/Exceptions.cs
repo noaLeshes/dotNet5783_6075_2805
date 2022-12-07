@@ -1,4 +1,6 @@
-﻿namespace BO;
+﻿using System.Xml.Linq;
+
+namespace BO;
 
 [Serializable]
 public class BlMissingEntityException : Exception
@@ -43,22 +45,17 @@ public class BlNullPropertyException : Exception
 [Serializable]
 public class BlIncorrectDateException : Exception
 {
-    public string DateName;
-    //public string State;
-    public BlIncorrectDateException(string name/*, string state*/)
-        : base() { DateName = name; /*State = state; */}
-    public BlIncorrectDateException(string name/*, string state*/, string massage)
-        : base(massage) { DateName = name; /*State = state;*/ }
-    public BlIncorrectDateException(string name, string state, string massage, Exception innerException)
-        : base(massage, innerException) { DateName = name; /*State = state;*/ }
+    public string ex;
+    
+    public BlIncorrectDateException(string name)
+        : base() { ex = name;  }
+    public BlIncorrectDateException(string name, string massage)
+        : base(massage) { ex = name; }
+    public BlIncorrectDateException(string name, string massage, Exception innerException)
+        : base(massage, innerException) { ex = name; }
     public override string ToString()
     {
-        //if (State == "current")
-        //    return $"{DateName} is already updated!";
-        //else if (State == "previous")
-        //    return $"Ship date isn't updated yet!";
-        //else
-            return "Error in date";
+            return $"{ ex}";
     }
 }
 
@@ -74,7 +71,7 @@ public class BlWrongCategoryException
         : base(massage, innerException) { }
     public override string ToString()
     {
-        return base.ToString();//מה זה אומר????????????
+        return base.ToString();
     }
 }
 
@@ -109,4 +106,18 @@ public class BlNotInStockException : Exception
     }
 }
 
+public class BlWrongChoiceException : Exception
+{
+    public BlWrongChoiceException()
+        : base() { }
+    public BlWrongChoiceException(string massage)
+        : base(massage) { }
+    public BlWrongChoiceException(string massage, Exception innerException)
+        : base(massage, innerException) { }
+    public override string ToString()
+    {
+        return "Wrong choice";
+    
+    }
+}
 

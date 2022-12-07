@@ -15,13 +15,12 @@ internal class Cart : ICart
                                 where item.ProductId == productId
                                 select item).FirstOrDefault();
             DO.Product p = dal.Product.GetById(productId);
-
             if (oi == null)
             {
-                if (p.InStock > 0)
+                if (p.InStock >= 0)
                 {
                     c.TotalPrice += p.Price;
-                    c.Items.ToList().Add(new BO.OrderItem
+                    ((List<BO.OrderItem?>)c.Items!).Add(new BO.OrderItem
                     {
                         Name = p.Name,
                         ProductId = p.ID,
@@ -33,13 +32,13 @@ internal class Cart : ICart
             }
             else if (p.InStock >= oi.Amount + 1)
             {
+                oi.Price = p.Price;
                 oi.Amount++;
-                oi.TotalPrice += oi.Price;//update the total price
-                c.TotalPrice += p.Price;
+                oi.TotalPrice += oi.Price;//update the total price 
             }
             else
             {
-                throw new BO.BlNotInStockException(p.Name, p.ID);
+                throw new BO.BlNotInStockException(p.Name!, p.ID);
             }
 
             return c;
@@ -54,11 +53,11 @@ internal class Cart : ICart
     {
         try
         {
-            foreach (BO.OrderItem oi in c.Items)
+            foreach (BO.OrderItem oi in c.Items!)
             {
                 DO.Product p = dal.Product.GetById(oi.Id);
                 if (oi.Amount > p.InStock)
-                    throw new BO.BlNotInStockException(p.Name, p.ID);
+                    throw new BO.BlNotInStockException(p.Name!, p.ID);
                 if (oi.Amount <= 0)
                     throw new BO.BlInvalidExspressionException("Amount");
             }
@@ -74,7 +73,7 @@ internal class Cart : ICart
                 CustomerAddress = c.CostomerAddress,
                 CustomerEmail = c.CostomerEmail,
                 DeliveryDate = null,
-                OrderDate = DateTime.Now,
+                OrderDate = DateTime.MinValue,
                 ShipDate = null,
             });
             foreach (BO.OrderItem oi in c.Items)
@@ -119,7 +118,7 @@ internal class Cart : ICart
                                 select item).First();
             if (amount == 0)
             {
-                c.Items.ToList().Remove(oi);
+                ((List<BO.OrderItem?>)c.Items!).Remove(oi);
                 c.TotalPrice -= oi.Price;
             }
             else if (amount > oi.Amount)
@@ -132,7 +131,7 @@ internal class Cart : ICart
                 }
                 else
                 {
-                    throw new BO.BlNotInStockException(oi.Name, oi.Id);
+                    throw new BO.BlNotInStockException(oi.Name!, oi.Id);
                 }
             }
             else if (amount < oi.Amount)

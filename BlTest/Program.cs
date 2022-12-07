@@ -35,20 +35,20 @@ namespace BlTest
                     {
                         case productChoice.Add:
                             Console.WriteLine("Enter the product's id: ");//getting details from user
-                            if (int.TryParse(Console.ReadLine(), out myId) == false) throw new Exception("incorrect id");//if not valid
+                            if (int.TryParse(Console.ReadLine(), out myId) == false) throw new BlInvalidExspressionException("Id");//if not valid
                             Console.WriteLine("Enter the product's name: ");
                             myName = Console.ReadLine();
                             Console.WriteLine("Enter the product's price: ");
-                            if (double.TryParse(Console.ReadLine(), out myPrice) == false) throw new Exception("incorrect price");//if not valid
+                            if (double.TryParse(Console.ReadLine(), out myPrice) == false) throw new BlInvalidExspressionException("Price");//if not valid
                             Console.WriteLine(@"Enter the product's category:
                                            0 - EYES
                                            1 - FACE
                                            2 - BRUSHES
                                            3 - LIPS
                                            4 - BEAUTY");
-                            if (Category.TryParse(Console.ReadLine(), out myCategory) == false || (int)myCategory > 4 || (int)myCategory < 0) throw new Exception("incorrect category");
+                            if (Category.TryParse(Console.ReadLine(), out myCategory) == false || (int)myCategory > 4 || (int)myCategory < 0) throw new BlWrongCategoryException();
                             Console.WriteLine("Enter the amount of products in stock: ");
-                            if (int.TryParse(Console.ReadLine(), out myInStock) == false) throw new Exception("incorrect amount");//if not valid
+                            if (int.TryParse(Console.ReadLine(), out myInStock) == false) throw new BlInvalidExspressionException("Amount");//if not valid
                             BO.Product p = new BO.Product //initalize the new product
                             {
                                 Id = myId,
@@ -57,37 +57,37 @@ namespace BlTest
                                 Category = myCategory,
                                 InStock = myInStock,
                             };
-                            bl.Product.AddProduct(p.Id, p.Name, p.Price, p.InStock);
+                            bl.Product.AddProduct(p.Id, p.Name!, p.Price, p.InStock);
                             break;
 
 
                         case productChoice.Delete:
                             Console.WriteLine("Enter the product's id to delete: ");
-                            if (int.TryParse(Console.ReadLine(), out myId) == false) throw new Exception("incorrect id");//if not valid
+                            if (int.TryParse(Console.ReadLine(), out myId) == false) throw new BlInvalidExspressionException("Id");//if not valid
                             bl.Product.DeleteProduct(myId);
                             break;
 
 
                         case productChoice.Update:
                             Console.WriteLine("Enter the product's id to update: ");
-                            if (int.TryParse(Console.ReadLine(), out myId) == false) throw new Exception("incorrect id");//if not valid
+                            if (int.TryParse(Console.ReadLine(), out myId) == false) throw new BlInvalidExspressionException("Id");//if not valid
                             Console.WriteLine(bl.Product.GetProductDitailes(myId, c)); //find the product we want to update
                             Console.WriteLine("Enter product's details to update: ");//recive the changes we want to update
                             Console.WriteLine("Enter the product's name: ");
                             myName = Console.ReadLine();
                             Console.WriteLine("Enter the product's price: ");
-                            if (double.TryParse(Console.ReadLine(), out myPrice) == false) throw new Exception("incorrect price");
+                            if (double.TryParse(Console.ReadLine(), out myPrice) == false) throw new BlInvalidExspressionException("Price");
                             Console.WriteLine(@"Enter the product's category:
                                            0 - EYES
                                            1 - FACE
                                            2 - BRUSHES
                                            3 - LIPS
                                            4 - BEAUTY");
-                            if (Category.TryParse(Console.ReadLine(), out myCategory) == false || (int)myCategory > 4 || (int)myCategory < 0) throw new Exception("incorrect category");
+                            if (Category.TryParse(Console.ReadLine(), out myCategory) == false || (int)myCategory > 4 || (int)myCategory < 0) throw new BlWrongCategoryException();
                             Console.WriteLine("Enter the amount of products: ");
-                            if (int.TryParse(Console.ReadLine(), out myAmount) == false) throw new Exception("incorrect amount");
+                            if (int.TryParse(Console.ReadLine(), out myAmount) == false) throw new BlInvalidExspressionException("Amount");
                             Console.WriteLine("Enter the amount of products in stock: ");
-                            if (int.TryParse(Console.ReadLine(), out myInStock) == false) throw new Exception("incorrect stock");
+                            if (int.TryParse(Console.ReadLine(), out myInStock) == false) throw new BlInvalidExspressionException("Stock");
                             Product p1 = new Product //updating the changes the user gave
                             {
                                 Id = myId,
@@ -98,16 +98,6 @@ namespace BlTest
                             };
                             bl.Product.UpdateProduct(p1);
                             break;
-
-
-                        //case productChoice.GetProducts:
-                        //    Console.WriteLine("all of the products: ");
-                        //    IEnumerable<ProductItem?> newProductArr = bl.Product.GetProducts();
-                        //    foreach (var p4 in newProductArr)
-                        //    {
-                        //        Console.WriteLine(p4);//print all the producs
-                        //    }
-                        //    break;
 
 
                         case productChoice.GetProductsList:
@@ -121,7 +111,7 @@ namespace BlTest
 
                         case productChoice.GetProductDitailes:
                             Console.WriteLine("Enter the product's id: ");
-                            if (int.TryParse(Console.ReadLine(), out myId) == false) throw new Exception("incorrect id");//throw if not valid
+                            if (int.TryParse(Console.ReadLine(), out myId) == false) throw new BlInvalidExspressionException("Id");//throw if not valid
                             BO.ProductItem p2 = bl.Product.GetProductDitailes(myId, c);// find the wanted product
                             Console.WriteLine(p2);
                             break;
@@ -129,16 +119,16 @@ namespace BlTest
 
                         case productChoice.GetProductDitailesManager:
                             Console.WriteLine("Enter the product's id: ");
-                            if (int.TryParse(Console.ReadLine(), out myId) == false) throw new Exception("incorrect id");//throw if not valid
+                            if (int.TryParse(Console.ReadLine(), out myId) == false) throw new BlInvalidExspressionException("Id");//throw if not valid
                             BO.Product p3 = bl.Product.GetProductDitailesManager(myId);// find the wanted product
                             Console.WriteLine(p3);
                             break;
-                        default: throw new Exception("Error");
+                        default: throw new BlWrongChoiceException();
                     }
                 }
                 else
                 {
-                    throw new Exception("incorrect choice");// for unknown choice
+                    throw new BlWrongChoiceException();// for unknown choice
                 }
             }
             catch (Exception newException)
@@ -165,8 +155,8 @@ namespace BlTest
                     {
 
                         case orderChoice.GetOrderDitails:
-                            Console.WriteLine("Enter the orders's id: ");
-                            if (int.TryParse(Console.ReadLine(), out myId) == false) throw new Exception("incorrect id");//invalid input
+                            Console.WriteLine("Enter the order id: ");
+                            if (int.TryParse(Console.ReadLine(), out myId) == false) throw new BlInvalidExspressionException("Id");//invalid input
                             Order o4 = bl.Order.GetOrderDitailes(myId);
                             Console.WriteLine(o4);
                             break;
@@ -183,34 +173,34 @@ namespace BlTest
 
 
                         case orderChoice.GetOrderTracking:
-                            Console.WriteLine("Enter the orders's id: ");
-                            if (int.TryParse(Console.ReadLine(), out myId) == false) throw new Exception("incorrect id");//invalid input
+                            Console.WriteLine("Enter the order id: ");
+                            if (int.TryParse(Console.ReadLine(), out myId) == false) throw new BlInvalidExspressionException("Id");//invalid input
                             OrderTracking o1 = bl.Order.GetOrderTracking(myId);
                             Console.WriteLine(o1);
                             break;
 
 
                         case orderChoice.UpdateIfProvided:
-                            Console.WriteLine("Enter the orders's id: ");
-                            if (int.TryParse(Console.ReadLine(), out myId) == false) throw new Exception("incorrect id");//invalid input
+                            Console.WriteLine("Enter the order id: ");
+                            if (int.TryParse(Console.ReadLine(), out myId) == false) throw new BlInvalidExspressionException("Id");//invalid input
                             Order o3 = bl.Order.UpdateIfProvided(myId);
                             Console.WriteLine(o3);
                             break;
 
 
                         case orderChoice.UpdateShipping:
-                            Console.WriteLine("Enter the orders's id: ");
-                            if (int.TryParse(Console.ReadLine(), out myId) == false) throw new Exception("incorrect id");//invalid input
+                            Console.WriteLine("Enter the order id: ");
+                            if (int.TryParse(Console.ReadLine(), out myId) == false) throw new BlInvalidExspressionException("Id");//invalid input
                             Order o2 = bl.Order.UpdateShipping(myId);
                             Console.WriteLine(o2);
                             break;
 
-                        default: throw new Exception("Error");
+                        default: throw new BlWrongChoiceException(); 
                     }
                 }
                 else
                 {
-                    throw new Exception("incorrect choice");// unknown choice
+                    throw new BlWrongChoiceException();// unknown choice
                 }
             }
             catch (Exception newException)
@@ -235,7 +225,7 @@ namespace BlTest
                     {
                         case cartChoice.Add:
                             Console.WriteLine("Enter the product's id to add: ");
-                            if (int.TryParse(Console.ReadLine(), out myId) == false) throw new Exception("incorrect id");//throw if not valid
+                            if (int.TryParse(Console.ReadLine(), out myId) == false) throw new BlInvalidExspressionException("Id");//throw if not valid
                             c = bl.Cart.AddItem(c, myId);//adding
                             Console.WriteLine(c);
                             break;
@@ -253,19 +243,19 @@ namespace BlTest
 
                         case cartChoice.UpdateItem:
                             Console.WriteLine("Enter the product's id to update: ");
-                            if (int.TryParse(Console.ReadLine(), out myId) == false) throw new Exception("incorrect id");//throw if not valid
-                            Console.WriteLine("Enter the product's amount: ");
-                            if (int.TryParse(Console.ReadLine(), out myAmount) == false) throw new Exception("incorrect id");//throw if not valid    
+                            if (int.TryParse(Console.ReadLine(), out myId) == false) throw new BlInvalidExspressionException("Id");//throw if not valid
+                            Console.WriteLine("Enter the amount: ");
+                            if (int.TryParse(Console.ReadLine(), out myAmount) == false) throw new BlInvalidExspressionException("Id");//throw if not valid    
                             c = bl.Cart.UpdateItem(c, myId, myAmount);
                             Console.WriteLine(c);
                             break;
 
-                        default: throw new Exception("Error");
+                        default: throw new BlWrongChoiceException();
                     }
                 }
                 else
                 {
-                    throw new Exception("incorrect choice");// unknown choice
+                    throw new BlWrongChoiceException();// unknown choice
                 }
             }
             catch (Exception newException)
@@ -317,7 +307,7 @@ namespace BlTest
                     }
                     else
                     {
-                        throw new Exception("incorrect choice");
+                        throw new BlWrongCategoryException();
                     }
                 }
                 catch (Exception newException)
