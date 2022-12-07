@@ -128,12 +128,14 @@ internal static class DataSource
                 OrderItemList.Add(new OrderItem//add the order-item to the array
                 {
                     Amount = amount,
-                    Price = p?.Price,//caculate the price
+                    Price = p?.Price??0,//caculate the price
                     ID = _nextOrderItemNumber,
-                    ProductId = p?.ID,
+                    ProductId = p?.ID??0,
                     OrderId = OrderList[orderNum]?.ID
                 }) ;
-                //ProductList[num].InStock-= amount;
+                int n = ProductList[num]?.InStock?? 0;
+                n -= amount;
+                ProductList[num].InStock = n;
             }
             orderNum++;
         }

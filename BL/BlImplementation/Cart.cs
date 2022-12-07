@@ -1,9 +1,4 @@
 ﻿using BlApi;
-using BO;
-using Dal;
-using DalApi;
-using DO;
-using System.Diagnostics;
 
 
 namespace BlImplementation;
@@ -13,78 +8,94 @@ internal class Cart : ICart
     DalApi.IDal dal = new Dal.DalList();
    public BO.Cart AddItem(BO.Cart c, int productId)
     {
-
-        BO.OrderItem?oi = (from  item in c.Items
-                           where item.ProductId == productId
-                           select item).FirstOrDefault();
-        DO.Product p = dal.Product.GetById(productId);
-
-        if (oi == null)
+        try
         {
-            if (p.InStock > 0)
+
+            BO.OrderItem? oi = (from item in c.Items
+                                where item.ProductId == productId
+                                select item).FirstOrDefault();
+            DO.Product p = dal.Product.GetById(productId);
+
+            if (oi == null)
             {
-                c.TotalPrice += p.Price;
-                c.Items.Append(new BO.OrderItem
+                if (p.InStock > 0)
                 {
-                    Name = p.Name,
-                    ProductId = p.ID,
-                    Amount = 1,
-                    Price = p.Price,
-                    TotalPrice = p.Price
-                });
+                    c.TotalPrice += p.Price;
+                    c.Items.ToList().Add(new BO.OrderItem
+                    {
+                        Name = p.Name,
+                        ProductId = p.ID,
+                        Amount = 1,
+                        Price = p.Price,
+                        TotalPrice = p.Price
+                    });
+                }
             }
-        }
-        else if (p.InStock >= oi.Amount + 1)
-        {
-            oi.Amount++;
-            oi.TotalPrice += oi.Price;//update the total price
-            c.TotalPrice += p.Price;
-        }
-        else
-            throw new Exception("not in stock");
+            else if (p.InStock >= oi.Amount + 1)
+            {
+                oi.Amount++;
+                oi.TotalPrice += oi.Price;//update the total price
+                c.TotalPrice += p.Price;
+            }
+            else
+            {
+                throw new BO.BlNotInStockException(p.Name, p.ID);
+            }
 
-        return c;
+            return c;
+        }
+        catch (DO.DalMissingIdException exception)
+        {
+            throw new BO.BlMissingEntityException("Cart doesn't exist", exception);
+        }
     }
 
     public void ConfirmCart(BO.Cart c, string name, string address, string email)
     {
-        foreach (BO.OrderItem oi in c.Items)
+        try
         {
-            DO.Product p = dal.Product.GetById(oi.Id);
-            if (oi.Amount > p.InStock)
-                throw new NullReferenceException("not in stock");
-            if (oi.Amount <= 0)
-                throw new Exception();
-        }
-        if(c.CostomerEmail == null)
-            throw new Exception();
-        if (c.CostomerName == null)
-            throw new Exception();
-        if (c.CostomerAddress == null)
-            throw new Exception();
-        int orderid = dal.Order.Add(new DO.Order()
-        {
-            CustomerName = c.CostomerName,
-            CustomerAddress = c.CostomerAddress,
-            CustomerEmail = c.CostomerEmail,
-            DeliveryDate = null,
-            OrderDate = DateTime.Now,
-            ShipDate = null,
-        });
-        foreach (BO.OrderItem oi in c.Items)
-        {
-            int orderitem_id = dal.OrderItem.Add(new DO.OrderItem()
+            foreach (BO.OrderItem oi in c.Items)
             {
-               ID = oi.Id,
-               ProductId = oi.ProductId,
-               OrderId = orderid,
-               Price = oi.Price,
-               Amount = oi.Amount
+                DO.Product p = dal.Product.GetById(oi.Id);
+                if (oi.Amount > p.InStock)
+                    throw new BO.BlNotInStockException(p.Name, p.ID);
+                if (oi.Amount <= 0)
+                    throw new BO.BlInvalidExspressionException("Amount");
+            }
+            if (c.CostomerEmail == null)
+                throw new BO.BlNullPropertyException("Email");
+            if (c.CostomerName == null)
+                throw new BO.BlNullPropertyException("Name");
+            if (c.CostomerAddress == null)
+                throw new BO.BlNullPropertyException("Address");
+            int orderid = dal.Order.Add(new DO.Order()
+            {
+                CustomerName = c.CostomerName,
+                CustomerAddress = c.CostomerAddress,
+                CustomerEmail = c.CostomerEmail,
+                DeliveryDate = null,
+                OrderDate = DateTime.Now,
+                ShipDate = null,
             });
-            DO.OrderItem orderitem = dal.OrderItem.GetById(orderitem_id);
-            DO.Product product = dal.Product.GetById(oi.ProductId);
-            product.InStock -= orderitem.Amount;
-            dal.Product.Update(product);
+            foreach (BO.OrderItem oi in c.Items)
+            {
+                int orderitem_id = dal.OrderItem.Add(new DO.OrderItem()
+                {
+                    ID = oi.Id,
+                    ProductId = oi.ProductId,
+                    OrderId = orderid,
+                    Price = oi.Price,
+                    Amount = oi.Amount
+                });
+                DO.OrderItem orderitem = dal.OrderItem.GetById(orderitem_id);
+                DO.Product product = dal.Product.GetById(oi.ProductId);
+                product.InStock -= orderitem.Amount;
+                dal.Product.Update(product);
+            }
+        }
+        catch (DO.DalMissingIdException exception)
+        {
+            throw new BO.BlMissingEntityException("Cart doesn't exist", exception);
         }
 
     }
@@ -93,6 +104,15 @@ internal class Cart : ICart
     {
         try
         {
+         if(productId < 100000)
+            {
+                throw new BO.BlInvalidExspressionException("Id");
+            }
+            if (productId < 0)
+            {
+                throw new BO.BlInvalidExspressionException("Amount");
+            }
+
             DO.Product p = dal.Product.GetById(productId);
             BO.OrderItem? oi = (from item in c.Items
                                 where item.ProductId == productId
@@ -110,8 +130,10 @@ internal class Cart : ICart
                     oi.TotalPrice += oi.Price * (amount - oi.Amount);
                     oi.Amount = amount;
                 }
-                //else 
-                //throw
+                else
+                {
+                    throw new BO.BlNotInStockException(oi.Name, oi.Id);
+                }
             }
             else if (amount < oi.Amount)
             {
@@ -121,10 +143,9 @@ internal class Cart : ICart
             }
             return c;
         }
-        catch (DO.DalDoesNotExistException ex)
+        catch (DO.DalMissingIdException exception)
         {
-            throw new Exception(ex.Message);
-            // throw new BO.BoDoesNoExistException("Data exception:", ex);
+            throw new BO.BlMissingEntityException("Cart doesn't exist", exception);
         }
 
     }

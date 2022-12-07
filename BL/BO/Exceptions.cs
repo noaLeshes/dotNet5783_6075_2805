@@ -1,7 +1,4 @@
-﻿
-using System.Reflection.Metadata.Ecma335;
-
-namespace BO;
+﻿namespace BO;
 
 [Serializable]
 public class BlMissingEntityException : Exception
@@ -13,8 +10,8 @@ public class BlMissingEntityException : Exception
         return base.ToString() + $"Missing Entity";
     }
 }
-
 [Serializable]
+
 public class BlAlreadyExistsEntityException : Exception
 {
     public BlAlreadyExistsEntityException(string message)
@@ -26,19 +23,19 @@ public class BlAlreadyExistsEntityException : Exception
         return base.ToString() + $"Entity is already exists";
     }
 }
-
+[Serializable]
 public class BlNullPropertyException : Exception
 {
-    public string MyName;
+    public string PropertyName;
     public BlNullPropertyException(string name)
-        : base() { MyName = name; }
+        : base() { PropertyName = name; }
     public BlNullPropertyException(string name, string massage)
-        : base(massage) { MyName = name; }
+        : base(massage) { PropertyName = name; }
     public BlNullPropertyException(string name, string massage, Exception innerException)
-        : base(massage, innerException) { MyName = name; }
+        : base(massage, innerException) { PropertyName = name; }
     public override string ToString()
     {
-        return $"{MyName} is null!";
+        return $"{PropertyName} is null!";
     }
         
 }
@@ -81,5 +78,35 @@ public class BlWrongCategoryException
     }
 }
 
+public class BlInvalidExspressionException : Exception
+{
+    public string PropertyName;
+    public BlInvalidExspressionException(string name)
+        : base() { PropertyName = name; }
+    public BlInvalidExspressionException(string name, string massage)
+        : base(massage) { PropertyName = name; }
+    public BlInvalidExspressionException(string name, string massage, Exception innerException)
+        : base(massage, innerException) { PropertyName = name; }
+    public override string ToString()
+    {
+        return $"The {PropertyName} is invalid";
+    }
 
-///////// אולי להוסיף עוד פונקציות לפח חריגות שיש לנו
+}
+public class BlNotInStockException : Exception
+{
+    public string ProductName;
+    public int ProductId;
+    public BlNotInStockException(string name, int id)
+        : base() { ProductName = name; ProductId = id; }
+    public BlNotInStockException(string name, int id, string massage)
+        : base(massage) { ProductName = name; ProductId = id; }
+    public BlNotInStockException(string name, int id, string massage, Exception innerException)
+        : base(massage, innerException) { ProductName = name; ProductId = id; }
+    public override string ToString()
+    {
+            return $"Not enough of {ProductName} in stock";
+    }
+}
+
+
