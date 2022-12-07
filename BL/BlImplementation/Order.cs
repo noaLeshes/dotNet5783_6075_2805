@@ -13,23 +13,24 @@ internal class Order : IOrder
     {
         try
         {
-            var orderItems = dal.OrderItem.GetAllOrderProducts(o.ID);
+            IEnumerable<DO.OrderItem?> orderItems = dal.OrderItem.GetAllOrderProducts(o.ID);
             IEnumerable<BO.OrderItem?> b_orderItems = new List<BO.OrderItem?>(); //create item for BO.Order
             DO.Product p;//product to find name
 
             //Create Items for order:
             foreach (DO.OrderItem? item in orderItems)
             {
-                p = dal.Product.GetById(item?.ID ?? 0);
-                b_orderItems.ToList().Add(new BO.OrderItem()
-                {
-                    Id = item?.ID ?? 0,
-                    Name = dal.Product.GetById(item?.ID ?? 0).Name ?? " ",
-                    ProductId = item?.ProductId ?? 0,
-                    Price = item?.Price ?? 0,
-                    Amount = item?.Amount ?? 0,
-                    TotalPrice = item?.Price * item?.Amount ?? 0
-                });
+                p = dal.Product.GetById(item?.ProductId ?? 0);
+                 b_orderItems = from DO.OrderItem x in orderItems
+                                   select new BO.OrderItem()
+                                   {
+                                       Id = item?.ID ?? 0,
+                                       Name = dal.Product.GetById(item?.ProductId ?? 0).Name ?? " ",
+                                       ProductId = item?.ProductId ?? 0,
+                                       Price = item?.Price ?? 0,
+                                       Amount = item?.Amount ?? 0,
+                                       TotalPrice = item?.Price * item?.Amount ?? 0
+                                   };
             }
 
             return new BO.Order()
@@ -66,7 +67,7 @@ internal class Order : IOrder
     {
         try
         {
-            if (id < 100000)
+            if (id < 0)
             {
                 throw new BO.BlInvalidExspressionException("Id");
             }

@@ -1,5 +1,6 @@
 ﻿using BlApi;
 using BO;
+using System.Collections.Generic;
 using System.Xml.Linq;
 
 
@@ -12,12 +13,12 @@ internal class Product : IProduct
     {
         try
         {
-            DO.Product p = dal.Product.GetById(id);
+        //    DO.Product p = dal.Product.GetById(id);
             int i = dal.Product.Add(new DO.Product()
             {
-                ID = id > 100000 ? id : throw new BO.BlInvalidExspressionException("Id"),
+                ID = id > 0 ? id : throw new BO.BlInvalidExspressionException("Id"),
                 Name = name != "" ? name : throw new BO.BlNullPropertyException("Name"),
-                Category = p.Category,
+                Category = DO.Category.FACE,//??????????????????????????????????????????
                 Price = price > 0 ? price : throw new BO.BlInvalidExspressionException("Price"),
                 InStock = amount > 0 ? amount : throw new BO.BlNotInStockException(name, id)
                 //להוסיף לתז אם פחות מ6 ספרות ולסטוק עוד סוג זריקה עם מינוס 1
@@ -33,18 +34,15 @@ internal class Product : IProduct
     {
         try
         {
-            if(id < 0 || id < 100000)
+            if(id < 0)
             {
                 throw new BO.BlInvalidExspressionException("Id");
             }
-            foreach (DO.Order o in dal.Order.GetAll())
-            {
-                var list = from DO.Product p in dal.OrderItem.GetAllOrderProducts(o.ID)
-                           where p.ID == id
-                           select p;
-                if (list != null)
-                    dal.Product.Delete(id);
-            }
+            var list = dal.OrderItem.GetAll();
+            var listtodel = list.Select(x => x?.ProductId == id);
+            if (listtodel != null)
+                dal.Product.Delete(id);
+            
         }
         catch(DO.DalMissingIdException exception)
         {
@@ -52,42 +50,42 @@ internal class Product : IProduct
         }
     }
 
-    public IEnumerable<ProductItem?> GetProducts()
-    {
-        try
-        {
-            var list = dal.Product.GetAll();
-            var productItems = new List<ProductItem?>();
-            foreach (DO.Product p in list)
-            {
-                productItems.Add(new BO.ProductItem()
-                {
-                    Id = p.ID,
-                    Name = p.Name,
-                    Price = p.Price,
-                    Category = (BO.Category)p.Category,
-                    InStock = p.InStock > 0 ? true : false,
-                    Amount = p.InStock,
-                });
-            }
-            return productItems;
-        }
-        catch (DO.DalAlreadyExistsIdException exception)
-        {
-            throw new BO.BlAlreadyExistsEntityException("Product alresdy exists", exception);
-        }
+    //public IEnumerable<ProductItem?> GetProducts()
+    //{
+    //    try
+    //    {
+    //        var list = dal.Product.GetAll();
+    //        var productItems = new List<ProductItem?>();
+    //        foreach (DO.Product p in list)
+    //        {
+    //            productItems.Add(new BO.ProductItem()
+    //            {
+    //                Id = p.ID,
+    //                Name = p.Name,
+    //                Price = p.Price,
+    //                Category = (BO.Category)p.Category,
+    //                InStock = p.InStock > 0 ? true : false,
+    //                Amount = p.InStock,
+    //            });
+    //        }
+    //        return productItems;
+    //    }
+    //    catch (DO.DalAlreadyExistsIdException exception)
+    //    {
+    //        throw new BO.BlAlreadyExistsEntityException("Product alresdy exists", exception);
+    //    }
 
-    }
+    //}
 
    public IEnumerable<ProductForList?> GetProductsList()
     {
         return from DO.Product? p in dal.Product.GetAll()
                select new BO.ProductForList
                {
-                   ID = p?.ID ?? throw new NullReferenceException("Missing id"),
-                   Name = p?.Name ?? throw new NullReferenceException("Missing name"),
-                   Category = (BO.Category?)p?.Category ?? throw new NullReferenceException("Wrong category"),
-                   Price = p?.Price ?? 0
+                   ID = p?.ID ?? throw new BO.BlInvalidExspressionException("Id"),
+                   Name = p?.Name ?? throw new BO.BlNullPropertyException("Name"),
+                   Category = (BO.Category?)p?.Category ?? throw new BO.BlWrongCategoryException(),
+                   Price = p?.Price ?? 0 
                };
     }
 
@@ -95,11 +93,16 @@ internal class Product : IProduct
     {
         try
         {
-            if (id < 0 || id < 100000)
+            if (id < 0)
             {
                 throw new BO.BlInvalidExspressionException("Id");
             }
             DO.Product p = dal.Product.GetById(id);
+            //IEnumerable<OrderItem?> cartItems = c.Items;
+            //var a = cartItems.Where(x => x?.ProductId == id);
+            //var a = from i in c.Items
+            //       where i.Id == id
+            //            select i.Amount;
             return new BO.ProductItem()
             {
                 Id = p.ID,
@@ -107,7 +110,9 @@ internal class Product : IProduct
                 Price = p.Price,
                 Category = (BO.Category)p.Category,
                 InStock = p.InStock > 0 ? true : false,
-                Amount = p.InStock,
+                Amount = c.Items == null? 0: (from i in c.Items
+                         where i.Id == id
+                         select i.Amount).Sum() /*a.Sum(x =>x?.Amount??0)*/ 
             };
         }
         catch (DO.DalMissingIdException exception)

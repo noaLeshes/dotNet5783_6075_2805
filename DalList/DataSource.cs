@@ -133,9 +133,9 @@ internal static class DataSource
                     ProductId = p?.ID??0,
                     OrderId = OrderList[orderNum]?.ID
                 }) ;
-                int n = ProductList[num]?.InStock?? 0;
-                n -= amount;
-                ProductList[num].InStock = n;
+                //int n = ProductList[num]?.InStock?? 0;
+                //ProductList[num]?.InStock = ;
+                //ProductList[num].InStock -= amount;
             }
             orderNum++;
         }
