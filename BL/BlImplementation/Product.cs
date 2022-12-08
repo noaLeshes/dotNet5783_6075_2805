@@ -9,7 +9,7 @@ namespace BlImplementation;
 internal class Product : IProduct
 {
     DalApi.IDal dal = new Dal.DalList();
-    public void AddProduct(int id, string name, double price, int amount)
+    public void AddProduct(int id, string name, double price, int amount, BO.Category c)
     {
         try
         {
@@ -18,7 +18,7 @@ internal class Product : IProduct
             {
                 ID = id > 0 ? id : throw new BO.BlInvalidExspressionException("Id"),
                 Name = name != "" ? name : throw new BO.BlNullPropertyException("Name"),
-                Category = DO.Category.FACE,//??????????????????????????????????????????
+                Category = (DO.Category)c,
                 Price = price > 0 ? price : throw new BO.BlInvalidExspressionException("Price"),
                 InStock = amount > 0 ? amount : throw new BO.BlNotInStockException(name, id)
                 //להוסיף לתז אם פחות מ6 ספרות ולסטוק עוד סוג זריקה עם מינוס 1
