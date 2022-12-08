@@ -5,7 +5,7 @@ namespace BlImplementation;
 
 internal class Cart : ICart
 {
-    private static int index_orderItem =1000000;// a running number for when we create a new orderItem
+    private static int index_orderItem =1000000;//  running number for when we create a new orderItem
     DalApi.IDal dal = new Dal.DalList();
    public BO.Cart AddItem(BO.Cart c, int productId)
     {
