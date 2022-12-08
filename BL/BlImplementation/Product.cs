@@ -13,20 +13,18 @@ internal class Product : IProduct
     {
         try
         {
-        //    DO.Product p = dal.Product.GetById(id);
+           // DO.Product p = dal.Product.GetById(id);
             int i = dal.Product.Add(new DO.Product()
             {
                 ID = id > 0 ? id : throw new BO.BlInvalidExspressionException("Id"),
                 Name = name != "" ? name : throw new BO.BlNullPropertyException("Name"),
                 Category = (DO.Category)c,
                 Price = price > 0 ? price : throw new BO.BlInvalidExspressionException("Price"),
-                InStock = amount > 0 ? amount : throw new BO.BlNotInStockException(name, id)
-                //להוסיף לתז אם פחות מ6 ספרות ולסטוק עוד סוג זריקה עם מינוס 1
-            });
+                InStock = amount > 0 ? amount : throw new BO.BlNotInStockException(name, id)            });
         }
         catch(DO.DalAlreadyExistsIdException exception)
         {
-            throw new BO.BlAlreadyExistsEntityException("Product alresdy exists", exception);
+            throw new BO.BlAlreadyExistsEntityException("Product", id, exception);
         }
     }
 
@@ -39,14 +37,10 @@ internal class Product : IProduct
                 throw new BO.BlInvalidExspressionException("Id");
             }
             var list = dal.OrderItem.GetAll();
-            var listtodel = list.Select(x => x?.ProductId == id);
-            if (listtodel != null)
-                dal.Product.Delete(id);
-            foreach (DO.OrderItem? item in list)
-            {
-                if (item?.ProductId == id)
-                    throw new Exception("error");
-            }
+            var listtodel = list.Where(x => x?.ProductId == id);
+            if (listtodel.Any() )
+                throw new BO.BlAlreadyExistsEntityException("Product", -1);
+            dal.Product.Delete(id);
         }
         catch(DO.DalMissingIdException exception)
         {
@@ -129,7 +123,7 @@ internal class Product : IProduct
     {
         try
         {
-            if (id < 0 || id < 100000)
+            if (id < 0)
             {
                 throw new BO.BlInvalidExspressionException("Id");
             }

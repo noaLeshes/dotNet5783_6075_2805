@@ -104,11 +104,11 @@ internal class Order : IOrder
         {
             DO.Order o = dal.Order.GetById(id);
             List<Tuple<DateTime?, string>> list = new List<Tuple<DateTime?, string>>();
-            if (o.OrderDate != DateTime.MinValue )
+            if (o.OrderDate != null )
                 list.Add(Tuple.Create(o.OrderDate, "your order has been accepted"));
-            if (o.ShipDate != DateTime.MinValue)
+            if (o.ShipDate != null)
                 list.Add(Tuple.Create(o.OrderDate, "your order has been shipped "));
-            if (o.DeliveryDate != DateTime.MinValue)
+            if (o.DeliveryDate != null)
                 list.Add(Tuple.Create(o.OrderDate, "your order has been deliverd "));
 
             return new BO.OrderTracking()

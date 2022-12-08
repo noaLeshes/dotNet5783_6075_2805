@@ -5,6 +5,7 @@ namespace BlImplementation;
 
 internal class Cart : ICart
 {
+    private static int index_orderItem =1000000;
     DalApi.IDal dal = new Dal.DalList();
    public BO.Cart AddItem(BO.Cart c, int productId)
     {
@@ -22,12 +23,16 @@ internal class Cart : ICart
                     c.TotalPrice += p.Price;
                     ((List<BO.OrderItem?>)c.Items!).Add(new BO.OrderItem
                     {
+                        Id = index_orderItem,
                         Name = p.Name,
                         ProductId = p.ID,
                         Amount = 1,
                         Price = p.Price,
                         TotalPrice = p.Price
                     });
+                    p.InStock -= 1;
+                    dal.Product.Update(p);
+                    index_orderItem++;
                 }
             }
             else if (p.InStock >= oi.Amount + 1)
@@ -45,7 +50,7 @@ internal class Cart : ICart
         }
         catch (DO.DalMissingIdException exception)
         {
-            throw new BO.BlMissingEntityException("Cart doesn't exist", exception);
+            throw new BO.BlMissingEntityException("Product doesn't exist", exception);
         }
     }
 
@@ -73,7 +78,7 @@ internal class Cart : ICart
                 CustomerAddress = c.CostomerAddress,
                 CustomerEmail = c.CostomerEmail,
                 DeliveryDate = null,
-                OrderDate = DateTime.MinValue,
+                OrderDate = DateTime.Now,
                 ShipDate = null,
             });
             foreach (BO.OrderItem oi in c.Items)
