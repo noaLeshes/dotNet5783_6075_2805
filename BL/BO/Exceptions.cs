@@ -18,15 +18,15 @@ public class BlAlreadyExistsEntityException : Exception
 {
     public int EntityId;
     public string EntityName;
-    public BlAlreadyExistsEntityException(string name, int id, string message)
-        : base(message) { EntityName = name;  EntityId = id; }
+    public BlAlreadyExistsEntityException(string name, int id)
+        : base() { EntityName = name;  EntityId = id; }
     public BlAlreadyExistsEntityException(string name, int id, string message, Exception innerException)
         : base(message, innerException) { EntityName = name; EntityId = id; }
     public override string ToString()
     {
-        if (EntityId != -1)
+        if (EntityId == -1)
         {
-            return $"{EntityName} number already exists in an order.";
+            return $"{EntityName} already exists in an order.";
         }
         else
         {

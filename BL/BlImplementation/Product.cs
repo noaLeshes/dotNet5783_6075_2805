@@ -22,9 +22,9 @@ internal class Product : IProduct
                 Price = price > 0 ? price : throw new BO.BlInvalidExspressionException("Price"),
                 InStock = amount > 0 ? amount : throw new BO.BlNotInStockException(name, id)            });
         }
-        catch(DO.DalAlreadyExistsIdException exception)
+        catch(DO.DalAlreadyExistsIdException )
         {
-            throw new BO.BlAlreadyExistsEntityException("Product", id, exception);
+            throw new BO.BlAlreadyExistsEntityException("Product", id);
         }
     }
 
