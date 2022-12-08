@@ -5,23 +5,23 @@ namespace BlImplementation;
 
 internal class Cart : ICart
 {
-    private static int index_orderItem =1000000;
+    private static int index_orderItem =1000000;// a running number for when we create a new orderItem
     DalApi.IDal dal = new Dal.DalList();
    public BO.Cart AddItem(BO.Cart c, int productId)
     {
         try
         {
 
-            BO.OrderItem? oi = (from item in c.Items
+            BO.OrderItem? oi = (from item in c.Items// finding an orderItem
                                 where item.ProductId == productId
                                 select item).FirstOrDefault();
-            DO.Product p = dal.Product.GetById(productId);
-            if (oi == null)
+            DO.Product p = dal.Product.GetById(productId);// finding a product
+            if (oi == null)// if not found
             {
-                if (p.InStock >= 0)
+                if (p.InStock >= 0)// if the wanted product id in stock
                 {
                     c.TotalPrice += p.Price;
-                    ((List<BO.OrderItem?>)c.Items!).Add(new BO.OrderItem
+                    ((List<BO.OrderItem?>)c.Items!).Add(new BO.OrderItem// adding a new product
                     {
                         Id = index_orderItem,
                         Name = p.Name,
@@ -30,25 +30,25 @@ internal class Cart : ICart
                         Price = p.Price,
                         TotalPrice = p.Price
                     });
-                    p.InStock -= 1;
-                    dal.Product.Update(p);
+                    p.InStock -= 1;// updating the amount of product in stock
+                    dal.Product.Update(p);// update the produt stock
                     index_orderItem++;
                 }
             }
-            else if (p.InStock >= oi.Amount + 1)
+            else if (p.InStock >= oi.Amount + 1)// if the product is found and there are enough of it in stock
             {
                 oi.Price = p.Price;
-                oi.Amount++;
-                oi.TotalPrice += oi.Price;//update the total price 
+                oi.Amount++;// update the amount
+                oi.TotalPrice += oi.Price;// update the total price 
             }
-            else
+            else// if the product is found and there aren't enough of it in stock
             {
                 throw new BO.BlNotInStockException(p.Name!, p.ID);
             }
 
             return c;
         }
-        catch (DO.DalMissingIdException exception)
+        catch (DO.DalMissingIdException exception)//if product doesn't exist 
         {
             throw new BO.BlMissingEntityException("Product doesn't exist", exception);
         }
@@ -58,21 +58,25 @@ internal class Cart : ICart
     {
         try
         {
-            foreach (BO.OrderItem oi in c.Items!)
+            foreach (BO.OrderItem oi in c.Items!)// checking the cart's items
             {
                 DO.Product p = dal.Product.GetById(oi.Id);
-                if (oi.Amount > p.InStock)
+                if (oi.Amount > p.InStock)// not enough in stock
                     throw new BO.BlNotInStockException(p.Name!, p.ID);
-                if (oi.Amount <= 0)
+                if (oi.Amount <= 0)// throwing if a detail is invalid
                     throw new BO.BlInvalidExspressionException("Amount");
             }
-            if (c.CostomerEmail == null)
+            if (c.CostomerEmail == null)// throwing if a detail is invalid
                 throw new BO.BlNullPropertyException("Email");
             if (c.CostomerName == null)
                 throw new BO.BlNullPropertyException("Name");
             if (c.CostomerAddress == null)
                 throw new BO.BlNullPropertyException("Address");
-            int orderid = dal.Order.Add(new DO.Order()
+            if (!c.CostomerEmail.Contains('@'))
+            {
+                throw new BO.BlInvalidExspressionException("Email");
+            }
+            int orderid = dal.Order.Add(new DO.Order()// adding a new order
             {
                 CustomerName = c.CostomerName,
                 CustomerAddress = c.CostomerAddress,
@@ -81,7 +85,7 @@ internal class Cart : ICart
                 OrderDate = DateTime.Now,
                 ShipDate = null,
             });
-            foreach (BO.OrderItem oi in c.Items)
+            foreach (BO.OrderItem oi in c.Items)// creating items for the order
             {
                 int orderitem_id = dal.OrderItem.Add(new DO.OrderItem()
                 {
@@ -93,11 +97,11 @@ internal class Cart : ICart
                 });
                 DO.OrderItem orderitem = dal.OrderItem.GetById(orderitem_id);
                 DO.Product product = dal.Product.GetById(oi.ProductId);
-                product.InStock -= orderitem.Amount;
+                product.InStock -= orderitem.Amount;// updating the amount of product in stock
                 dal.Product.Update(product);
             }
         }
-        catch (DO.DalMissingIdException exception)
+        catch (DO.DalMissingIdException exception)//if product doesn't exist 
         {
             throw new BO.BlMissingEntityException("Cart doesn't exist", exception);
         }
@@ -108,46 +112,46 @@ internal class Cart : ICart
     {
         try
         {
-         if(productId < 100000)
+            if (productId < 0)// if id is inavalid 
             {
                 throw new BO.BlInvalidExspressionException("Id");
             }
-            if (productId < 0)
+            if (amount < 0)// if amount is inavalid 
             {
                 throw new BO.BlInvalidExspressionException("Amount");
             }
 
-            DO.Product p = dal.Product.GetById(productId);
-            BO.OrderItem? oi = (from item in c.Items
+            DO.Product p = dal.Product.GetById(productId);// getting the product
+            BO.OrderItem? oi = (from item in c.Items  // finding orsderItem
                                 where item.ProductId == productId
                                 select item).First();
             if (amount == 0)
             {
-                ((List<BO.OrderItem?>)c.Items!).Remove(oi);
-                c.TotalPrice -= oi.Price;
+                ((List<BO.OrderItem?>)c.Items!).Remove(oi);// if out of stock
+                c.TotalPrice -= oi.Price;// updating total price
             }
-            else if (amount > oi.Amount)
+            else if (amount > oi.Amount)// increasing the amount
             {
                 if (p.InStock >= amount)
                 {
-                    c.TotalPrice += oi.Price * (amount - oi.Amount);
+                    c.TotalPrice += oi.Price * (amount - oi.Amount);// updating the prices and the amount
                     oi.TotalPrice += oi.Price * (amount - oi.Amount);
                     oi.Amount = amount;
                 }
-                else
+                else// if wanting to increase the amount and there aren't enough products in stock
                 {
                     throw new BO.BlNotInStockException(oi.Name!, oi.Id);
                 }
             }
-            else if (amount < oi.Amount)
+            else if (amount < oi.Amount)// decreasing the amount
             {
-                c.TotalPrice -= oi.Price * (oi.Amount - amount);
+                c.TotalPrice -= oi.Price * (oi.Amount - amount);// updating the prices and the amount
                 oi.TotalPrice -= oi.Price * (oi.Amount - amount);
                 oi.Amount = amount;
             }
             return c;
         }
-        catch (DO.DalMissingIdException exception)
+        catch (DO.DalMissingIdException exception)//if product doesn't exist 
         {
             throw new BO.BlMissingEntityException("Cart doesn't exist", exception);
         }
