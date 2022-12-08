@@ -33,8 +33,11 @@ internal class DalProduct : IProduct
     {
         DataSource.ProductList.Remove(DataSource.ProductList.Find(x => x?.ID == id) ?? throw new DalMissingIdException(id, "Product"));
     }
-    public IEnumerable<Product?> GetAll()
+    public IEnumerable<Product?> GetAll(Func<Product?, bool>? filter = null)
     {
-        return new List<Product?>(DataSource.ProductList);
+        if(filter == null)
+            return new List<Product?>(DataSource.ProductList);
+        else
+            return new List<Product?>(DataSource.ProductList).Where(p => filter(p));
     }
 }

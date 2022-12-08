@@ -1,5 +1,7 @@
 ﻿using DalApi;
 using DO;
+using System.Linq;
+
 namespace Dal;
 
 internal class DalOrderItem : IOrderItem
@@ -33,9 +35,12 @@ internal class DalOrderItem : IOrderItem
     {
         DataSource.OrderItemList.Remove(DataSource.OrderItemList.Find(x => x?.ID == id) ?? throw new DalMissingIdException(id, "OrderItem"));
     }
-    public IEnumerable<OrderItem?> GetAll()
+    public IEnumerable<OrderItem?> GetAll(Func<OrderItem?, bool>? filter = null)
     {
-        return new List<OrderItem?>(DataSource.OrderItemList);
+        if (filter == null)
+            return new List<OrderItem?>(DataSource.OrderItemList);
+        else
+            return new List<OrderItem?>(DataSource.OrderItemList).Where(p => filter(p));
     }
     public IEnumerable<OrderItem?> GetAllOrderProducts(int orderId)
     {

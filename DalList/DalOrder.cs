@@ -34,9 +34,12 @@ internal class DalOrder : IOrder
     {
         DataSource.OrderList.Remove(DataSource.OrderList.Find(x => x?.ID == id) ?? throw new DalMissingIdException(id, "Order"));
     }
-    public IEnumerable<Order?> GetAll()
+    public IEnumerable<Order?> GetAll(Func<Order?, bool>? filter = null)
     {
-        return new List<Order?>(DataSource.OrderList);
+        if (filter == null)
+            return new List<Order?>(DataSource.OrderList);
+        else
+            return new List<Order?>(DataSource.OrderList).Where(p => filter(p));
     }
 }
 
