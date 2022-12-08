@@ -42,7 +42,7 @@ internal static class DataSource
             {
                 ID = i + 100000,
                 Name = productNames[c, n],//get the product's name from the matrix
-                Price = s_rand.Next(200),
+                Price = s_rand.Next(50, 250),
                 Category = (Category)c,
                 InStock = s_rand.Next(50)
             });
@@ -62,7 +62,6 @@ internal static class DataSource
                                   "Bagno 1", "Bagno 2", "Bagno 3", "Bagno 4", "Bagno 5", };
         for (int i = 0; i < 20; i++)//creating 20 orders
         {
-
             int days = s_rand.Next(200);
             DateTime orderDate = DateTime.Now.AddDays(-days); // order date is berfore current date
             DateTime? deliveryDate = null;
@@ -83,31 +82,6 @@ internal static class DataSource
                 else
                     deliveryDate = DateTime.MinValue + timeSpan;
             }
-            //DateTime orderDate = DateTime.Now.AddDays(-days);
-            //DateTime? deliveryDate;
-            //DateTime? shippingDate;
-            //if (i % 5 == 0)//making sure that 80% of the orders have deliveryDate and that 60% of the orders have shipDate
-            //{
-            //    deliveryDate = null;
-            //    shippingDate = null;
-            //}
-            //else
-            //{
-            //    days = s_rand.Next(1, 3);
-            //    TimeSpan timeS1 = new TimeSpan(days, 0, 0, 0);
-            //    deliveryDate = orderDate + timeS1;
-            //    if ((i + 2) % 3 == 0)//making sure that 80% of the orders have deliveryDate and that 60% of the orders have shipDate
-            //    {
-            //        shippingDate = null;
-            //    }
-            //    else
-            //    {
-            //        days = s_rand.Next(3, 7);
-            //        TimeSpan timeS2 = new TimeSpan(days, 0, 0, 0);
-            //        shippingDate = orderDate + timeS2;
-            //    }
-            //}
-
             string firstName = firstNames[s_rand.Next(5)];
             string lastName = lastNames[s_rand.Next(5)];
             OrderList.Add(new Order                        //add the order to the array
@@ -132,11 +106,8 @@ internal static class DataSource
             int amountOfOrderItems = s_rand.Next(1, 4);//between 1 to 4 items per order
             for (int j = 0; j < amountOfOrderItems; j++)
             {
-                //int ind = s_rand.Next
-                //    ProductList.Count;
                 int num = s_rand.Next(9);
-                Product? p = ProductList[num];//ProductList.in s_rand.Next(amountOfOrderItems)];
-                //productArr[s_rand.Next(amountOfOrderItems)];
+                Product? p = ProductList[num];
                 while (p?.InStock == 0)// if not in stock find another product
                 {
                      num = s_rand.Next(9);

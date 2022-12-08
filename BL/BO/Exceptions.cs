@@ -16,13 +16,22 @@ public class BlMissingEntityException : Exception
 
 public class BlAlreadyExistsEntityException : Exception
 {
-    public BlAlreadyExistsEntityException(string message)
-        : base(message) { }
-    public BlAlreadyExistsEntityException(string message, Exception innerException)
-        : base(message, innerException) { }
+    public int EntityId;
+    public string EntityName;
+    public BlAlreadyExistsEntityException(string name, int id, string message)
+        : base(message) { EntityName = name;  EntityId = id; }
+    public BlAlreadyExistsEntityException(string name, int id, string message, Exception innerException)
+        : base(message, innerException) { EntityName = name; EntityId = id; }
     public override string ToString()
     {
-        return base.ToString() + $"Entity is already exists";
+        if (EntityId != -1)
+        {
+            return $"{EntityName} number already exists in an order.";
+        }
+        else
+        {
+            return $"{EntityName} number {EntityId} already exists.";
+        }
     }
 }
 [Serializable]
