@@ -57,7 +57,7 @@ namespace BlTest
                                 Category = myCategory,
                                 InStock = myInStock,
                             };
-                            bl.Product.AddProduct(p.Id, p.Name!, p.Price, p.InStock);
+                            bl.Product.AddProduct(p.Id, p.Name!, p.Price, p.InStock, p.Category);
                             break;
 
 
@@ -231,12 +231,28 @@ namespace BlTest
                             break;
 
                         case cartChoice.ConfirmCart:
-                            Console.WriteLine("Enter the costumer's name: ");//getting details from user
+                            Console.WriteLine("Enter the costumer's name: ");    //getting details from user
                             myCustomerName = Console.ReadLine();
+                            if (myCustomerName == null )
+                            {
+                                throw new BO.BlNullPropertyException("Name");
+                            }
                             Console.WriteLine("Enter the costumer's address: ");
                             myCustomerAddress = Console.ReadLine();
+                            if (myCustomerAddress == null)
+                            {
+                                throw new BO.BlNullPropertyException("Address");
+                            }
                             Console.WriteLine("Enter the costumer's email: ");
-                            myCustomerEmail = Console.ReadLine();
+                                myCustomerEmail = Console.ReadLine();
+                            if (myCustomerEmail == null)
+                            {
+                                throw new BO.BlNullPropertyException("Email");
+                            }
+                            if (!myCustomerEmail.Contains('@'))
+                            {
+                                throw new BO.BlInvalidExspressionException("Email");
+                            }
                             bl.Cart.ConfirmCart(c, myCustomerName!, myCustomerAddress!, myCustomerEmail!);
                             break;
 

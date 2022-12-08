@@ -37,7 +37,7 @@ public class BlNullPropertyException : Exception
         : base(massage, innerException) { PropertyName = name; }
     public override string ToString()
     {
-        return $"{PropertyName} is null!";
+        return $"{PropertyName} is empty";
     }
         
 }
@@ -74,7 +74,7 @@ public class BlWrongCategoryException
         return base.ToString();
     }
 }
-
+[Serializable]
 public class BlInvalidExspressionException : Exception
 {
     public string PropertyName;
@@ -90,6 +90,7 @@ public class BlInvalidExspressionException : Exception
     }
 
 }
+[Serializable]
 public class BlNotInStockException : Exception
 {
     public string ProductName;
@@ -105,7 +106,7 @@ public class BlNotInStockException : Exception
             return $"Not enough of {ProductName} in stock";
     }
 }
-
+[Serializable]
 public class BlWrongChoiceException : Exception
 {
     public BlWrongChoiceException()
@@ -116,7 +117,7 @@ public class BlWrongChoiceException : Exception
         : base(massage, innerException) { }
     public override string ToString()
     {
-        return "Wrong choice";
+        return $"Wrong choice";
     
     }
 }
