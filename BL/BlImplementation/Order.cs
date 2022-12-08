@@ -13,12 +13,11 @@ internal class Order : IOrder
     {
         try
         {
-            IEnumerable<DO.OrderItem?> orderItems = dal.OrderItem.GetAllOrderProducts(o.ID);
-            IEnumerable<BO.OrderItem?> b_orderItems = new List<BO.OrderItem?>(); //create item for BO.Order
-            DO.Product p;//product to find name
+            IEnumerable<DO.OrderItem?> orderItems = dal.OrderItem.GetAllOrderProducts(o.ID);//get all the orders
+            IEnumerable<BO.OrderItem?> b_orderItems = new List<BO.OrderItem?>(); //create list of BO.OrderItems
             //Create Items for order:
-                b_orderItems = from DO.OrderItem x in orderItems
-                                   select new BO.OrderItem()
+                b_orderItems = from DO.OrderItem x in orderItems  //add every OrderItem ass BO to list of items
+                               select new BO.OrderItem() 
                                    {
                                        Id = x.ID ,
                                        Name = dal.Product.GetById(x.ProductId ).Name ?? " ",
@@ -27,7 +26,7 @@ internal class Order : IOrder
                                        Amount = x.Amount ,
                                        TotalPrice = x.Price * x.Amount 
                                    };
-            return new BO.Order()
+            return new BO.Order() //creat new BO order
             {
                 ID = o.ID,
                 CostumerName = o.CustomerName,
@@ -38,7 +37,7 @@ internal class Order : IOrder
                 PaymentDate = DateTime.Now,
                 Status = findStatus(o),
                 Items = b_orderItems,
-                TotalPrice = b_orderItems.Sum(x => x.Amount * x.Price),
+                TotalPrice = b_orderItems.Sum(x => x!.Amount * x.Price)
             };
         }
         catch (DO.DalMissingIdException exception)
@@ -49,10 +48,10 @@ internal class Order : IOrder
     private OrderStatus findStatus(DO.Order o)
     {
         OrderStatus stat = OrderStatus.Initiated;
-        if(o.DeliveryDate != null &&o.OrderDate == null || (o.ShipDate != null && o.OrderDate == null))
-            throw new BlIncorrectDateException("OrderDate not updated ");
+        if (o.DeliveryDate != null &&o.OrderDate == null || (o.ShipDate != null && o.OrderDate == null))
+            throw new BlIncorrectDateException("OrderDate not updated ");//if DeliveryDate\ShipDate is updated and OrderDate is not
         if (o.DeliveryDate != null && o.ShipDate == null)
-            throw new BlIncorrectDateException("shipping not updated ");
+            throw new BlIncorrectDateException("shipping not updated ");//if DeliveryDate is updated and ShipDate is not
         if (o.OrderDate != null)
             stat = OrderStatus.Ordered;
         if (o.ShipDate != null)
@@ -65,12 +64,12 @@ internal class Order : IOrder
     {
         try
         {
-            if (id < 0)
+            if (id < 0)//not valid id
             {
                 throw new BO.BlInvalidExspressionException("Id");
             }
-            DO.Order o = dal.Order.GetById(id);
-            return createOrder(o);
+            DO.Order o = dal.Order.GetById(id);// find the wanted order
+            return createOrder(o);//turn DO.order into BO.order
         }
         catch (DO.DalMissingIdException exception)
         {
@@ -82,17 +81,17 @@ internal class Order : IOrder
     public IEnumerable<OrderForList?> GetOrders()
     {
         List<BO.OrderForList?> orderforlists = new();
-        var orders = dal.Order.GetAll();
+        var orders = dal.Order.GetAll();//get all the DO.orders
         foreach (DO.Order o in orders)
         {
-            IEnumerable<DO.OrderItem?> orderitems = dal.OrderItem.GetAllOrderProducts(o.ID);
-            orderforlists.Add(new BO.OrderForList()
+            IEnumerable<DO.OrderItem?> orderitems = dal.OrderItem.GetAllOrderProducts(o.ID);//for each order find all of its orderItems
+            orderforlists.Add(new BO.OrderForList()// adds and create OrderForList to orderforlists 
             {
                 ID = o.ID,
                 CustomerName = o.CustomerName,
-                AmountOfItems = orderitems.Count(),
-                TotalPrice = orderitems.Sum(x => x?.Price ?? 0 ),
-                Status = findStatus(o)
+                AmountOfItems = orderitems.Count(),//count the number of orderitems in order
+                TotalPrice = orderitems.Sum(x => x?.Price ?? 0 ),// summarize all the products price
+                Status = findStatus(o) // find the current status
             }) ;
         }
         return orderforlists;
@@ -103,18 +102,18 @@ internal class Order : IOrder
         try
         {
             DO.Order o = dal.Order.GetById(id);
-            List<Tuple<DateTime?, string>> list = new List<Tuple<DateTime?, string>>();
-            if (o.OrderDate != null )
-                list.Add(Tuple.Create(o.OrderDate, "your order has been accepted"));
-            if (o.ShipDate != null)
-                list.Add(Tuple.Create(o.OrderDate, "your order has been shipped "));
-            if (o.DeliveryDate != null)
-                list.Add(Tuple.Create(o.OrderDate, "your order has been deliverd "));
+            List<Tuple<DateTime?, string>> list = new List<Tuple<DateTime?, string>>();// create new list<Tuple>
+            if (o.OrderDate != null)// check if OrderDate updated
+                list.Add(Tuple.Create(o.OrderDate, "your order has been accepted")); //add to Tracking
+            if (o.ShipDate != null)// check if ShipDate updated
+                list.Add(Tuple.Create(o.OrderDate, "your order has been shipped ")); //add to Tracking
+            if (o.DeliveryDate != null)// check if DeliveryDate updated
+                list.Add(Tuple.Create(o.OrderDate, "your order has been deliverd ")); //add to Tracking
 
             return new BO.OrderTracking()
             {
                 ID = id,
-                Status = findStatus(o),
+                Status = findStatus(o),// get status
                 Tracking = list
             };
         }
@@ -129,16 +128,16 @@ internal class Order : IOrder
         try
         {
             BO.Order t = new();
-            DO.Order o = dal.Order.GetById(id);
-            if (o.DeliveryDate != null)
+            DO.Order o = dal.Order.GetById(id);//find the wanted order
+            if (o.DeliveryDate != null)  
                 throw new BlIncorrectDateException("delevery already updated ");
             if ( o.ShipDate == null)
                 throw new BlIncorrectDateException("shipping not updated");
-            if (o.DeliveryDate == null && o.ShipDate != null)
+            if (o.DeliveryDate == null && o.ShipDate != null)// DeliveryDate not updated and allready Shipped
             {
-                o.DeliveryDate = DateTime.Now;
-                dal.Order.Update(o);
-                t = createOrder(o);
+                o.DeliveryDate = DateTime.Now;// updating DeliveryDate
+                dal.Order.Update(o); // updating Order
+                t = createOrder(o); // turn DO.order into BO.order
             }
 
             return t;
@@ -156,14 +155,14 @@ internal class Order : IOrder
             DO.Order o = dal.Order.GetById(id);
             if (o.ShipDate == null && o.OrderDate != null)
             {
-                o.ShipDate = DateTime.Now;
-                dal.Order.Update(o);
+                o.ShipDate = DateTime.Now;// updating ShipDate 
+                dal.Order.Update(o); // updating Order
             }
-            else if (o.OrderDate == null)
+            else if (o.OrderDate == null) 
                 throw new BlIncorrectDateException("orderdate not updated");
-            else
+            else 
                 throw new BlIncorrectDateException("shipping already updated ");
-            return createOrder(o);
+            return createOrder(o);//turn DO.order into BO.order
         }
         catch (DO.DalMissingIdException exception)
         {
