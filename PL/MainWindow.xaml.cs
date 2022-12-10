@@ -23,16 +23,17 @@ namespace PL
     /// </summary>
     public partial class MainWindow : Window
     {
+        IBl bl = new Bl();
         public MainWindow()
         {
             InitializeComponent();
-            IBl bl = new Bl();
+           
         }
 
         private void Products_Click(object sender, RoutedEventArgs e)
         {
-            ProductListWindow productListWindow = new ProductListWindow();
-            productListWindow.Show();
+            new ProductListWindow().Show();
+     
         }
     }
 }
