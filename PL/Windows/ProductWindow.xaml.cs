@@ -83,10 +83,7 @@ namespace PL.Windows
             {
                 MessageBox.Show(ex.ToString(), "ERROR", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
-            catch (BO.BlNotInStockException ex)
-            {
-                MessageBox.Show(ex.ToString(), "ERROR", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
+          
         }
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
@@ -130,11 +127,7 @@ namespace PL.Windows
             {
                 MessageBox.Show(ex.ToString(), "ERROR", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
-            catch (BO.BlNotInStockException ex)
-            {
-                MessageBox.Show(ex.ToString(), "ERROR", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
-          
+           
 
 
         }

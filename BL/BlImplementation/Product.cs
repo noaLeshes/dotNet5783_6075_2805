@@ -133,7 +133,7 @@ internal class Product : IProduct
                 Name = p.Name != "" ? p.Name : throw new BO.BlNullPropertyException("Name"),
                 Category = (DO.Category)p.Category,
                 Price = p.Price > 0 ? p.Price : throw new BO.BlInvalidExspressionException("Price"),
-                InStock = p.InStock > 0 ? p.InStock : throw new BO.BlNotInStockException(p.Name!, p.Id)// if there are not enough products in stock
+                InStock = p.InStock > 0 ? p.InStock : throw new BO.BlInvalidExspressionException("Amount in stock")//if there are not enough products in stock
             });
         }
         catch (DO.DalMissingIdException exception)// if product doesn't exist 
