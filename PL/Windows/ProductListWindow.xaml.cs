@@ -1,7 +1,9 @@
 ﻿using BlApi;
 using BlImplementation;
+using BO;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,30 +33,27 @@ namespace PL.Windows
 
         private void cmbCategorySelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //bl.Product.GetProductsList(p => (BO.Category)p.Value.Category == (BO.Category)cmbCategorySelector.SelectedItem);
             ProductListview.ItemsSource = bl.Product.GetProductsListByCategory((BO.Category)cmbCategorySelector.SelectedItem);
         }
 
         private void btnAddProduct_Click(object sender, RoutedEventArgs e)
         {
             ProductWindow pw =new ProductWindow();
-            //pw.addOrUpdate = "add";
             pw.btnAdd.Visibility = Visibility.Visible;
             pw.btnUpdate.Visibility = Visibility.Hidden;
             pw.Show();
-            
-            
         }
 
         private void ProductListview_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             ProductWindow pw = new ProductWindow();
-           // pw.addOrUpdate = "update";
             pw.btnAdd.Visibility = Visibility.Hidden;
             pw.btnUpdate.Visibility = Visibility.Visible;
-            //pw.txtId.Text = ProductListview.SelectedItem
+            pw.txtId.Text = ProductListview.Items[ProductListview.SelectedIndex].;
+            MessageBox.Show(str.ToString());
             pw.Show();
-
         }
+
+        
     }
 }

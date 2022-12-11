@@ -17,9 +17,10 @@ internal class Product : IProduct
             {
                 ID = id > 0 ? id : throw new BO.BlInvalidExspressionException("Id"),// throwing if the detail is invalid
                 Name = name != "" ? name : throw new BO.BlNullPropertyException("Name"),
-                Category = (DO.Category)c,
+                Category = (DO.Category)c ,
                 Price = price > 0 ? price : throw new BO.BlInvalidExspressionException("Price"),
-                InStock = amount > 0 ? amount : throw new BO.BlNotInStockException(name, id)            });
+                InStock = amount > 0 ? amount : throw new BO.BlInvalidExspressionException("Amount in stock")
+            });
         }
         catch(DO.DalAlreadyExistsIdException )// if the product already exists
         {

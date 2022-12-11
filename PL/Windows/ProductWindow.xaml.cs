@@ -35,12 +35,33 @@ namespace PL.Windows
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-            int id = Int32.Parse(txtId.Text);
-            string name = txtName.Text;
-            int price = Int32.Parse(txtPrice.Text);
-            int inStock = Int32.Parse(txtInStock.Text);
-            Category category = (BO.Category)cmbProductCategory.SelectedItem;
-            bl.Product.AddProduct(id, name, price, inStock, category);
+            try
+            {
+                int id = Int32.Parse(txtId.Text);/* > 0 ? Int32.Parse(txtId.Text) : throw new BO.BlInvalidExspressionException("Id");*/
+                string name = txtName.Text;
+                int price = Int32.Parse(txtPrice.Text);
+                int inStock = Int32.Parse(txtInStock.Text);
+                Category category = (BO.Category)cmbProductCategory.SelectedItem;
+                bl.Product.AddProduct(id, name, price, inStock, category);
+            }
+            catch(BO.BlInvalidExspressionException ex)
+            {
+                MessageBox.Show(ex.ToString(), "ERROR", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            catch(BO.BlAlreadyExistsEntityException ex)
+            {
+                MessageBox.Show(ex.ToString(), "ERROR", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            catch (BO.BlNullPropertyException ex)
+            {
+                MessageBox.Show(ex.ToString(), "ERROR", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            catch (BO.BlNotInStockException ex)
+            {
+                MessageBox.Show(ex.ToString(), "ERROR", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+          
+           
         }
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
@@ -55,5 +76,6 @@ namespace PL.Windows
             });
            
         }
+
     }
 }
