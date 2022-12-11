@@ -9,7 +9,7 @@ public class BlMissingEntityException : Exception
         : base(message, innerException) { }
     public override string ToString()
     {
-        return base.ToString() + $"Missing Entity";
+        return base.Message;
     }
 }
 [Serializable]

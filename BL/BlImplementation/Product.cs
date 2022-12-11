@@ -129,7 +129,7 @@ internal class Product : IProduct
         {
             dal.Product.Update(new DO.Product()// updating the product
             {
-                ID = p.Id > 100000 ? p.Id : throw new BO.BlInvalidExspressionException("Id"),// throwing if the detail is invalid
+                ID = p.Id > 0 ? p.Id : throw new BO.BlInvalidExspressionException("Id"),// throwing if the detail is invalid
                 Name = p.Name != "" ? p.Name : throw new BO.BlNullPropertyException("Name"),
                 Category = (DO.Category)p.Category,
                 Price = p.Price > 0 ? p.Price : throw new BO.BlInvalidExspressionException("Price"),
