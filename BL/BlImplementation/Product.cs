@@ -47,6 +47,18 @@ internal class Product : IProduct
         }
     }
 
+    public IEnumerable<ProductForList?> GetProductsListByCategory(BO.Category c)
+    {
+        return from DO.Product? p in dal.Product.GetAll(p => (BO.Category)p.Value.Category == c)// getting all the products
+               select new BO.ProductForList// conversion from product to productForList
+               {
+                   ID = p?.ID ?? throw new BO.BlInvalidExspressionException("Id"),// throwing if the detail is invalid
+                   Name = p?.Name ?? throw new BO.BlNullPropertyException("Name"),
+                   Category = (BO.Category?)p?.Category ?? throw new BO.BlWrongCategoryException(),// throwing if wrong category
+                   Price = p?.Price ?? 0
+               };
+    }
+
    public IEnumerable<ProductForList?> GetProductsList()
     {
         return from DO.Product? p in dal.Product.GetAll()// getting all the products
