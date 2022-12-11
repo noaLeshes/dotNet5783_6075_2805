@@ -41,6 +41,7 @@ internal class Cart : ICart
                 oi.Price = p.Price;
                 oi.Amount++;// update the amount
                 oi.TotalPrice += oi.Price;// update the total price 
+                c.TotalPrice += p.Price;
             }
             else// if the product is found and there aren't enough of it in stock
             {

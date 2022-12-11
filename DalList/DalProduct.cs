@@ -18,7 +18,8 @@ internal class DalProduct : IProduct
     }
     public void Update(Product p)
     {
-        var isExist = DataSource.OrderList.Find(x => x?.ID == p.ID);
+        //var isExist = DataSource.OrderList.Find(x => x?.ID == p.ID);
+        var isExist = DataSource.ProductList.Find(x => x?.ID == p.ID);
         if (isExist != null)
         {
             Product? pr = DataSource.ProductList.Find(x => x?.ID == p.ID);
