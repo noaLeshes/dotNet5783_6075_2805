@@ -33,8 +33,35 @@ namespace PL.Windows
          
         }
 
+
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
+
+            if (txtId.Text == "")
+            {
+                MessageBox.Show("Id is empty", "ERROR", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            if (txtPrice.Text == "")
+            {
+                MessageBox.Show("Price is empty", "ERROR", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            if (txtInStock.Text == "")
+            {
+                MessageBox.Show("In Stock is empty", "ERROR", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            if (txtName.Text == "")
+            {
+                MessageBox.Show("Name is empty", "ERROR", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            if (cmbProductCategory.Text == "")
+            {
+                MessageBox.Show("Category is empty", "ERROR", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
             try
             {
                 int id = Int32.Parse(txtId.Text);/* > 0 ? Int32.Parse(txtId.Text) : throw new BO.BlInvalidExspressionException("Id");*/
@@ -60,21 +87,56 @@ namespace PL.Windows
             {
                 MessageBox.Show(ex.ToString(), "ERROR", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
-          
-           
         }
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
-            bl.Product.UpdateProduct(new BO.Product
+            if (txtPrice.Text == "")
             {
-                Id = Int32.Parse(txtId.Text),
-                Name = txtName.Text,
-                Price = Int32.Parse(txtPrice.Text),
-                InStock = Int32.Parse(txtInStock.Text),
-                Category = (BO.Category)cmbProductCategory.SelectedItem
-            });
-           
+                MessageBox.Show("Price is empty", "ERROR", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            if (txtInStock.Text == "")
+            {
+                MessageBox.Show("In Stock is empty", "ERROR", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            if (txtName.Text == "")
+            {
+                MessageBox.Show("Name is empty", "ERROR", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            try
+            {
+                
+                bl.Product.UpdateProduct(new BO.Product
+                {
+                    Id = Int32.Parse(txtId.Text),
+                    Name = txtName.Text,
+                    Price = Int32.Parse(txtPrice.Text),
+                    InStock = Int32.Parse(txtInStock.Text),
+                    Category = (BO.Category)cmbProductCategory.SelectedItem
+                });
+            }
+            catch (BO.BlInvalidExspressionException ex)
+            {
+                MessageBox.Show(ex.ToString(), "ERROR", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            catch (BO.BlMissingEntityException ex)
+            {
+                MessageBox.Show(ex.ToString(), "ERROR", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            catch (BO.BlNullPropertyException ex)
+            {
+                MessageBox.Show(ex.ToString(), "ERROR", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            catch (BO.BlNotInStockException ex)
+            {
+                MessageBox.Show(ex.ToString(), "ERROR", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+          
+
+
         }
 
     }

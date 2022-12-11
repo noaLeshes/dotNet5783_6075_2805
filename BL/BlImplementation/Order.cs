@@ -1,5 +1,6 @@
 ﻿using BlApi;
 using BO;
+using DO;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -82,18 +83,28 @@ internal class Order : IOrder
     {
         List<BO.OrderForList?> orderforlists = new();
         var orders = dal.Order.GetAll();//get all the DO.orders
-        foreach (DO.Order o in orders)
-        {
-            IEnumerable<DO.OrderItem?> orderitems = dal.OrderItem.GetAllOrderProducts(o.ID);//for each order find all of its orderItems
-            orderforlists.Add(new BO.OrderForList()// adds and create OrderForList to orderforlists 
-            {
-                ID = o.ID,
-                CustomerName = o.CustomerName,
-                AmountOfItems = orderitems.Count(),//count the number of orderitems in order
-                TotalPrice = orderitems.Sum(x => x?.Price ?? 0 ),// summarize all the products price
-                Status = findStatus(o) // find the current status
-            }) ;
-        }
+        orderforlists.AddRange(from DO.Order o in orders
+                               let orderitems = dal.OrderItem.GetAllOrderProducts(o.ID)
+                               select new BO.OrderForList()// adds and create OrderForList to orderforlists 
+                               {
+                              ID = o.ID,
+                              CustomerName = o.CustomerName,
+                              AmountOfItems = orderitems.Count(),//count the number of orderitems in order
+                              TotalPrice = orderitems.Sum(x => x?.Price ?? 0),// summarize all the products price
+                              Status = findStatus(o) // find the current status
+                          });
+        //foreach (DO.Order o in orders)
+        //{
+        //    IEnumerable<DO.OrderItem?> orderitems = dal.OrderItem.GetAllOrderProducts(o.ID);//for each order find all of its orderItems
+        //    orderforlists.Add(new BO.OrderForList()// adds and create OrderForList to orderforlists 
+        //    {
+        //        ID = o.ID,
+        //        CustomerName = o.CustomerName,
+        //        AmountOfItems = orderitems.Count(),//count the number of orderitems in order
+        //        TotalPrice = orderitems.Sum(x => x?.Price ?? 0 ),// summarize all the products price
+        //        Status = findStatus(o) // find the current status
+        //    }) ;
+        //}
         return orderforlists;
     }
 

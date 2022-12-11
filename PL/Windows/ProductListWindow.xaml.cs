@@ -46,15 +46,17 @@ namespace PL.Windows
 
         private void ProductListview_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            string line = ProductListview.SelectedItem.ToString();//[ProductListview.SelectedIndex].ToString();
+            string line = ProductListview.SelectedItem.ToString();
             string[] listStrLineElements = line.Split(new char[] { ' ', '\r', '\n' });
             ProductWindow pw = new ProductWindow();
             pw.btnAdd.Visibility = Visibility.Hidden;
             pw.btnUpdate.Visibility = Visibility.Visible;
             pw.txtId.Text = listStrLineElements[2];//get the chosen id
+            pw.txtId.IsEnabled = false;
             pw.txtName.Text = listStrLineElements[4];
             pw.txtPrice.Text = listStrLineElements[6];
             pw.cmbProductCategory.Text = listStrLineElements[8];
+            pw.cmbProductCategory.IsEnabled = false;
             Product p = bl.Product.GetProductDitailesManager(Int32.Parse(listStrLineElements[2]));
             pw.txtInStock.Text = p.InStock.ToString();
             pw.Show();
