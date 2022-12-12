@@ -5,13 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <Grid>
-            <Grid>
-                <Button Content="Products" x:Name="Products" HorizontalAlignment="Left" Margin="378,175,0,0" VerticalAlignment="Top" Click="Products_Click"/>
-            </Grid>
-        </Grid>
+        Title="MainWindow" Height="824" Width="576">
+    <Canvas>
+        <Canvas>
+            <Canvas>
+                <MediaElement x:Name="media" HorizontalAlignment="Left" Width="848" LoadedBehavior="Play" Source="C:\Users\User\Downloads\Screen_Recording_20221212-141946_Pinterest_1 (1).mp4" Canvas.Top="-218" RenderTransformOrigin="0.5,0.5" Height="1002" VerticalAlignment="Top" Canvas.Left="4" >
+                    <MediaElement.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform AngleX="0.073"/>
+                            <RotateTransform/>
+                            <TranslateTransform X="0.749"/>
+                        </TransformGroup>
+                    </MediaElement.RenderTransform>
+                </MediaElement>
+                <Button Content="Products" x:Name="Products" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Products_Click" RenderTransformOrigin="0.5,0.5" Width="280" Background="#FF847272" Height="36" Foreground="#FFDBCECE" FontSize="30" FontWeight="Bold" FontFamily="Brush Script MT" Canvas.Left="152" Canvas.Top="502" />
+            </Canvas>
+        </Canvas>
 
-    </Grid>
+    </Canvas>
 </Window>
