@@ -64,14 +64,18 @@ namespace PL.Windows
             }
             try
             {
-                int id = Int32.Parse(txtId.Text);/* > 0 ? Int32.Parse(txtId.Text) : throw new BO.BlInvalidExspressionException("Id");*/
+                int id, price, inStock;
+                if (int.TryParse(txtId.Text, out id) == false) throw new BlInvalidExspressionException("Id");// if not vali
                 string name = txtName.Text;
-                int price = Int32.Parse(txtPrice.Text);
-                int inStock = Int32.Parse(txtInStock.Text);
+                if (int.TryParse(txtPrice.Text, out price) == false) throw new BlInvalidExspressionException("Price");// if not vali
+                if (int.TryParse(txtInStock.Text, out inStock) == false) throw new BlInvalidExspressionException("Amount in stock");// if not vali
                 Category category = (BO.Category)cmbProductCategory.SelectedItem;
                 bl.Product.AddProduct(id, name, price, inStock, category);
+                this.Close();
+
+
             }
-            catch(BO.BlInvalidExspressionException ex)
+            catch (BO.BlInvalidExspressionException ex)
             {
                 MessageBox.Show(ex.ToString(), "ERROR", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
@@ -105,7 +109,9 @@ namespace PL.Windows
             }
             try
             {
-                
+                int price, inStock;
+                if (int.TryParse(txtPrice.Text, out price) == false) throw new BlInvalidExspressionException("Price");// if not vali
+                if (int.TryParse(txtInStock.Text, out inStock) == false) throw new BlInvalidExspressionException("Amount in stock");// if not vali
                 bl.Product.UpdateProduct(new BO.Product
                 {
                     Id = Int32.Parse(txtId.Text),
@@ -114,6 +120,8 @@ namespace PL.Windows
                     InStock = Int32.Parse(txtInStock.Text),
                     Category = (BO.Category)cmbProductCategory.SelectedItem
                 });
+                this.Close();
+
             }
             catch (BO.BlInvalidExspressionException ex)
             {

@@ -15,6 +15,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Xml.Linq;
 
 namespace PL.Windows
 {
@@ -41,7 +42,9 @@ namespace PL.Windows
             ProductWindow pw =new ProductWindow();
             pw.btnAdd.Visibility = Visibility.Visible;
             pw.btnUpdate.Visibility = Visibility.Hidden;
-            pw.Show();
+            pw.ShowDialog();
+            ProductListview.ItemsSource = bl.Product.GetProductsList();
+
         }
 
         private void ProductListview_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -59,7 +62,8 @@ namespace PL.Windows
             pw.cmbProductCategory.IsEnabled = false;
             Product p = bl.Product.GetProductDitailesManager(Int32.Parse(listStrLineElements[2]));
             pw.txtInStock.Text = p.InStock.ToString();
-            pw.Show();
+            pw.ShowDialog();
+            ProductListview.ItemsSource = bl.Product.GetProductsList();
         }
 
         
