@@ -5,11 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="MainWindow" Height="824" Width="576">
-    <Canvas>
-        <Canvas>
-            <Canvas>
-                <MediaElement x:Name="media" HorizontalAlignment="Left" Width="848" LoadedBehavior="Play" Source="C:\Users\User\Downloads\Screen_Recording_20221212-141946_Pinterest_1 (1).mp4" Canvas.Top="-218" RenderTransformOrigin="0.5,0.5" Height="1002" VerticalAlignment="Top" Canvas.Left="4" >
+        Title="MainWindow" Height="824" Width="700">
+    <Grid>
+        <Grid Margin="-24,-133,-24,0">
+            <Grid.Background>
+                <ImageBrush ImageSource="/background.jfif"/>
+            </Grid.Background>
+            <Grid>
+                <!--<MediaElement x:Name="media" HorizontalAlignment="Left" Width="848" LoadedBehavior="Play" Source="C:\Users\User\Downloads\Screen_Recording_20221212-141946_Pinterest_1 (1).mp4" Canvas.Top="-218" RenderTransformOrigin="0.5,0.5" Height="1002" VerticalAlignment="Top" Canvas.Left="4" >
                     <MediaElement.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -18,10 +21,10 @@
                             <TranslateTransform X="0.749"/>
                         </TransformGroup>
                     </MediaElement.RenderTransform>
-                </MediaElement>
-                <Button Content="Products" x:Name="Products" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Products_Click" RenderTransformOrigin="0.5,0.5" Width="280" Background="#FF847272" Height="36" Foreground="#FFDBCECE" FontSize="30" FontWeight="Bold" FontFamily="Brush Script MT" Canvas.Left="152" Canvas.Top="502" />
-            </Canvas>
-        </Canvas>
+                </MediaElement>-->
+                <Button Content="Products" x:Name="Products" VerticalAlignment="Top" Click="Products_Click" RenderTransformOrigin="0.5,0.5" Width="295" Background="#FF97AD96" Height="92" Foreground="#FF35442F" FontSize="60" FontWeight="Bold" FontFamily="Brush Script MT" Canvas.Left="152" Canvas.Top="502" Margin="195,625,0,0" HorizontalAlignment="Left" BorderBrush="#FF97AD96" />
+            </Grid>
+        </Grid>
 
-    </Canvas>
+    </Grid>
 </Window>
