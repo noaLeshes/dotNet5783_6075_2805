@@ -13,6 +13,16 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <None Remove="Windows\makeup.jpg" />
+	  <None Remove="Windows\Screenshot %2848%29.png" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <ProjectReference Include="..\BL\BL.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Resource Include="Windows\makeup.jpg" />
+	  <Resource Include="Windows\Screenshot (48).png" />
 	</ItemGroup>
 </Project>

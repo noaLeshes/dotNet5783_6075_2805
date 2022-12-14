@@ -21,6 +21,9 @@
         </Grid>
         <Label Content="Category" HorizontalAlignment="Left" Grid.Column="0" Width="400" Height="40" Margin="0,3,0,0" />
         <ListView x:Name="ProductListview" d:ItemsSource="{d:SampleData ItemCount=5}" MouseDoubleClick="ProductListview_MouseDoubleClick" Grid.ColumnSpan="2" Margin="0,43,0,0" Grid.RowSpan="2">
+            <ListView.Background>
+                <ImageBrush ImageSource="/Windows/makeup.jpg" TileMode="Tile"/>
+            </ListView.Background>
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>
