@@ -319,7 +319,7 @@ internal class Program
                     case SecondaryChoice.GetAllOrderProducts:
                         Console.WriteLine("Enter the order's id");
                         if (int.TryParse(Console.ReadLine(), out myId) == false) throw new Exception("incorrect id");
-                        IEnumerable<OrderItem?> newAllOrderProductsArr = dal.OrderItem.GetAllOrderProducts(myId);// find the OrderItems of the wanted order
+                        IEnumerable<OrderItem?> newAllOrderProductsArr = dal.OrderItem.GetAll(x=> x?.OrderId == myId);// find the OrderItems of the wanted order
                         foreach (var oi4 in newAllOrderProductsArr)
                         {
                             Console.WriteLine(oi4);//ptint all the OrderItems in the same order
@@ -330,7 +330,7 @@ internal class Program
                         if (int.TryParse(Console.ReadLine(), out myOrderId) == false) throw new Exception("incorrect order id");
                         Console.WriteLine("Enter the product's id: ");//get the wanted product id
                         if (int.TryParse(Console.ReadLine(), out myProductId) == false) throw new Exception("incorrect product id");
-                        OrderItem oi5 = dal.OrderItem.GetByProductIdAndOrderId(myOrderId, myProductId);//find the wanted OrderItem
+                        OrderItem oi5 = dal.OrderItem.GetByFilter(x=> x?.ProductId == myProductId && x?.OrderId == myOrderId);//find the wanted OrderItem
                         Console.WriteLine(oi5);
                         break;
 

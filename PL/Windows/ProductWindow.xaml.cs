@@ -72,6 +72,7 @@ namespace PL.Windows
                 Category category = (BO.Category)cmbProductCategory.SelectedItem;
                 bl.Product.AddProduct(id, name, price, inStock, category);
                 this.Close();
+                MessageBox.Show("Product added successfully ", " 😃 ", MessageBoxButton.OK, MessageBoxImage.None);
 
 
             }
@@ -87,8 +88,6 @@ namespace PL.Windows
             {
                 MessageBox.Show(ex.ToString(), "ERROR", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
-            MessageBox.Show("Product added successfully ", " 😃 ", MessageBoxButton.OK, MessageBoxImage.None);
-
 
         }
 
@@ -123,6 +122,7 @@ namespace PL.Windows
                     Category = (BO.Category)cmbProductCategory.SelectedItem
                 });
                 this.Close();
+                MessageBox.Show("Product updated successfully ", " 😃 ", MessageBoxButton.OK, MessageBoxImage.None);
 
             }
             catch (BO.BlInvalidExspressionException ex)
@@ -137,7 +137,6 @@ namespace PL.Windows
             {
                 MessageBox.Show(ex.ToString(), "ERROR", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
-            MessageBox.Show("Product updated successfully ", " 😃 ", MessageBoxButton.OK, MessageBoxImage.None);
 
 
         }

@@ -14,7 +14,7 @@ internal class Order : IOrder
     {
         try
         {
-            IEnumerable<DO.OrderItem?> orderItems = dal.OrderItem.GetAllOrderProducts(o.ID);//get all the orders
+            IEnumerable<DO.OrderItem?> orderItems = dal.OrderItem.GetAll(x=> x?.OrderId == o.ID);//get all the orders
             IEnumerable<BO.OrderItem?> b_orderItems = new List<BO.OrderItem?>(); //create list of BO.OrderItems
             //Create Items for order:
                 b_orderItems = from DO.OrderItem x in orderItems  //add every OrderItem ass BO to list of items
@@ -84,7 +84,7 @@ internal class Order : IOrder
         List<BO.OrderForList?> orderforlists = new();
         var orders = dal.Order.GetAll();//get all the DO.orders
         orderforlists.AddRange(from DO.Order o in orders
-                               let orderitems = dal.OrderItem.GetAllOrderProducts(o.ID)
+                               let orderitems = dal.OrderItem.GetAll(x=> x?.OrderId == o.ID)
                                select new BO.OrderForList()// adds and create OrderForList to orderforlists 
                                {
                               ID = o.ID,
@@ -93,18 +93,7 @@ internal class Order : IOrder
                               TotalPrice = orderitems.Sum(x => x?.Price ?? 0),// summarize all the products price
                               Status = findStatus(o) // find the current status
                           });
-        //foreach (DO.Order o in orders)
-        //{
-        //    IEnumerable<DO.OrderItem?> orderitems = dal.OrderItem.GetAllOrderProducts(o.ID);//for each order find all of its orderItems
-        //    orderforlists.Add(new BO.OrderForList()// adds and create OrderForList to orderforlists 
-        //    {
-        //        ID = o.ID,
-        //        CustomerName = o.CustomerName,
-        //        AmountOfItems = orderitems.Count(),//count the number of orderitems in order
-        //        TotalPrice = orderitems.Sum(x => x?.Price ?? 0 ),// summarize all the products price
-        //        Status = findStatus(o) // find the current status
-        //    }) ;
-        //}
+     
         return orderforlists;
     }
 

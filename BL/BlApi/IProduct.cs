@@ -3,9 +3,9 @@ namespace BlApi;
 
 public interface IProduct
 {
-    IEnumerable<ProductForList?> GetProductsList();// get list of products
+    IEnumerable<ProductForList?> GetProductsList(Func<BO.ProductForList?, bool>? filter = null);// get list of products
     BO.Product GetProductDitailesManager(int id);// get by id for manager
-    IEnumerable<ProductForList?> GetProductsListByCategory(BO.Category c);
+    //IEnumerable<ProductForList?> GetProductsListByCategory(BO.Category c);
     BO.ProductItem GetProductDitailes(int id, BO.Cart c);// get by id
     void AddProduct(int id, string name, double price, int amount, BO.Category c);// add product
     void DeleteProduct(int id);// delete product

@@ -27,7 +27,6 @@ internal class Product : IProduct
             throw new BO.BlAlreadyExistsEntityException("Product", id);
         }
     }
-    
     public void DeleteProduct(int id)
     {
         try
@@ -47,22 +46,9 @@ internal class Product : IProduct
             throw new BO.BlMissingEntityException("Product doesn't exist", exception);
         }
     }
-
-    public IEnumerable<ProductForList?> GetProductsListByCategory(BO.Category c)
+   public IEnumerable<ProductForList?> GetProductsList(Func<BO.ProductForList?, bool>? filter = null)
     {
-        return from DO.Product? p in dal.Product.GetAll(p => (BO.Category)p.Value.Category == c)// getting all the products
-               select new BO.ProductForList// conversion from product to productForList
-               {
-                   ID = p?.ID ?? throw new BO.BlInvalidExspressionException("Id"),// throwing if the detail is invalid
-                   Name = p?.Name ?? throw new BO.BlNullPropertyException("Name"),
-                   Category = (BO.Category?)p?.Category ?? throw new BO.BlWrongCategoryException(),// throwing if wrong category
-                   Price = p?.Price ?? 0
-               };
-    }
-
-   public IEnumerable<ProductForList?> GetProductsList()
-    {
-        return from DO.Product? p in dal.Product.GetAll()// getting all the products
+        var l = from DO.Product? p in dal.Product.GetAll()// getting all the products
                select new BO.ProductForList// conversion from product to productForList
                {
                    ID = p?.ID ?? throw new BO.BlInvalidExspressionException("Id"),// throwing if the detail is invalid
@@ -70,8 +56,8 @@ internal class Product : IProduct
                    Category = (BO.Category?)p?.Category ?? throw new BO.BlWrongCategoryException(),// throwing if wrong category
                    Price = p?.Price ?? 0 
                };
+        return filter is null ? l : l.Where(filter);    
     }
-
    public BO.ProductItem GetProductDitailes(int id, BO.Cart c)
     {
         try
@@ -98,7 +84,6 @@ internal class Product : IProduct
             throw new BO.BlMissingEntityException("Product doesn't exist", exception);
         }
     }
-
     public BO.Product GetProductDitailesManager(int id)
     {
         try
@@ -122,7 +107,6 @@ internal class Product : IProduct
             throw new BO.BlMissingEntityException("Product doesn't exist", exception);
         }
     }
-
     public void UpdateProduct(BO.Product p)
     {
         try

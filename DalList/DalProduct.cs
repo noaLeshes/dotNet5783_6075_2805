@@ -41,4 +41,8 @@ internal class DalProduct : IProduct
         else
             return new List<Product?>(DataSource.ProductList).Where(p => filter(p));
     }
+    public Product GetByFilter(Func<Product?, bool>? filter = null)
+    {
+        return DataSource.ProductList.Find(x => filter!(x)) ?? throw new DalMissingIdException(-1, "Product");
+    }
 }

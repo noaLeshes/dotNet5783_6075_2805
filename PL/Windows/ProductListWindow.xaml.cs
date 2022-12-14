@@ -36,7 +36,8 @@ namespace PL.Windows
         {
             if(cmbCategorySelector.SelectedItem != null)
             {
-                ProductListview.ItemsSource = bl.Product.GetProductsListByCategory((BO.Category)cmbCategorySelector.SelectedItem);
+                Category c = (BO.Category)cmbCategorySelector.SelectedItem;
+                ProductListview.ItemsSource = bl.Product.GetProductsList(x=> x?.Category == c);
             }
         }
 
@@ -76,3 +77,4 @@ namespace PL.Windows
         }
     }
 }
+ 

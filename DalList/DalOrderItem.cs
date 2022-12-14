@@ -42,21 +42,9 @@ internal class DalOrderItem : IOrderItem
         else
             return new List<OrderItem?>(DataSource.OrderItemList).Where(p => filter(p));
     }
-    public IEnumerable<OrderItem?> GetAllOrderProducts(int orderId)
+    public OrderItem GetByFilter(Func<OrderItem?, bool>? filter = null)
     {
-        List<OrderItem?> newList = new List<OrderItem?>();
-        foreach (var oi in DataSource.OrderItemList)
-        {
-            if (oi?.OrderId == orderId)
-            {
-                newList.Add(oi);
-            }
-        }
-        return newList;
-    }
-    public OrderItem GetByProductIdAndOrderId(int orderId, int productId)
-    {
-        return DataSource.OrderItemList.Find(x => x?.OrderId == orderId && x?.ProductId == productId) ?? throw new Exception("The item doesn't exist");
+        return DataSource.OrderItemList.Find(x => filter!(x)) ?? throw new DalMissingIdException(-1, "OrderItem");
     }
 
 }

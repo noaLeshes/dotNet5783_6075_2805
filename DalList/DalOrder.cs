@@ -41,6 +41,10 @@ internal class DalOrder : IOrder
         else
             return new List<Order?>(DataSource.OrderList).Where(p => filter(p));
     }
+    public Order GetByFilter(Func<Order?, bool>? filter = null)
+    {
+        return DataSource.OrderList.Find(x => filter!(x)) ?? throw new DalMissingIdException(-1, "Order");
+    }
 }
 
 
