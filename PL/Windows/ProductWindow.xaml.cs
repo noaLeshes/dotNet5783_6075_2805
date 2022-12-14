@@ -87,7 +87,9 @@ namespace PL.Windows
             {
                 MessageBox.Show(ex.ToString(), "ERROR", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
-          
+            MessageBox.Show("Product added successfully ", " 😃 ", MessageBoxButton.OK, MessageBoxImage.None);
+
+
         }
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
@@ -135,7 +137,7 @@ namespace PL.Windows
             {
                 MessageBox.Show(ex.ToString(), "ERROR", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
-           
+            MessageBox.Show("Product updated successfully ", " 😃 ", MessageBoxButton.OK, MessageBoxImage.None);
 
 
         }

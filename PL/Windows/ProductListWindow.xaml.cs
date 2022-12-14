@@ -34,7 +34,10 @@ namespace PL.Windows
 
         private void cmbCategorySelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ProductListview.ItemsSource = bl.Product.GetProductsListByCategory((BO.Category)cmbCategorySelector.SelectedItem);
+            if(cmbCategorySelector.SelectedItem != null)
+            {
+                ProductListview.ItemsSource = bl.Product.GetProductsListByCategory((BO.Category)cmbCategorySelector.SelectedItem);
+            }
         }
 
         private void btnAddProduct_Click(object sender, RoutedEventArgs e)
@@ -66,6 +69,10 @@ namespace PL.Windows
             ProductListview.ItemsSource = bl.Product.GetProductsList();
         }
 
-        
+        private void btnRefresh_Click(object sender, RoutedEventArgs e)
+        {
+            ProductListview.ItemsSource = bl.Product.GetProductsList();
+            cmbCategorySelector.SelectedItem = null;
+        }
     }
 }

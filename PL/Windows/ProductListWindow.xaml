@@ -7,10 +7,6 @@
         mc:Ignorable="d"
         Title="ProductListWindow" Height="640" Width="800">
     <Grid Name="MainGrid">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="191*"/>
-            <ColumnDefinition Width="9*"/>
-        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="40*"/>
             <RowDefinition Height="500*"/>
@@ -31,6 +27,7 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button x:Name="btnAddProduct" Content="Add new Product" Grid.Row="2" HorizontalAlignment="Left" Margin="691,5,0,5" Padding="5" Click="btnAddProduct_Click" Grid.ColumnSpan="2"/>
+        <Button x:Name="btnAddProduct" Content="Add new Product" Grid.Row="2" HorizontalAlignment="Left" Margin="655,5,0,5" Click="btnAddProduct_Click" Width="125"/>
+        <Button x:Name="btnRefresh" Content="Refresh" HorizontalAlignment="Left" Margin="590,0,0,0" Grid.Row="2" VerticalAlignment="Center" Width="55" Click="btnRefresh_Click"/>
     </Grid>
 </Window>
