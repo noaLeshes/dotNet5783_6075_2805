@@ -29,17 +29,27 @@ namespace PL.Windows
         {
 
             InitializeComponent();
-            cmbProductCategory.ItemsSource = Enum.GetValues(typeof(BO.Category));
-         
+            cmbProductCategory.ItemsSource = Enum.GetValues(typeof(BO.Category));// gettin all the categories for the combobox
+
         }
 
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
 
-            if (txtId.Text == "")
+            if (txtId.Text == "")// a message box appears when one of the feilds is empty
             {
                 MessageBox.Show("Id is empty", "ERROR", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            if (cmbProductCategory.Text == "")
+            {
+                MessageBox.Show("Category is empty", "ERROR", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            if (txtName.Text == "")
+            {
+                MessageBox.Show("Name is empty", "ERROR", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
             if (txtPrice.Text == "")
@@ -52,31 +62,23 @@ namespace PL.Windows
                 MessageBox.Show("In Stock is empty", "ERROR", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
-            if (txtName.Text == "")
-            {
-                MessageBox.Show("Name is empty", "ERROR", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
-            }
-            if (cmbProductCategory.Text == "")
-            {
-                MessageBox.Show("Category is empty", "ERROR", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
-            }
+            
+            
             try
             {
                 int id, price, inStock;
-                if (int.TryParse(txtId.Text, out id) == false) throw new BlInvalidExspressionException("Id");// if not vali
+                if (int.TryParse(txtId.Text, out id) == false) throw new BlInvalidExspressionException("Id");// if id is a string
                 string name = txtName.Text;
-                if (int.TryParse(txtPrice.Text, out price) == false) throw new BlInvalidExspressionException("Price");// if not vali
-                if (int.TryParse(txtInStock.Text, out inStock) == false) throw new BlInvalidExspressionException("Amount in stock");// if not vali
+                if (int.TryParse(txtPrice.Text, out price) == false) throw new BlInvalidExspressionException("Price");// if price is a string
+                if (int.TryParse(txtInStock.Text, out inStock) == false) throw new BlInvalidExspressionException("Amount in stock");// if amount is a string
                 Category category = (BO.Category)cmbProductCategory.SelectedItem;
-                bl.Product.AddProduct(id, name, price, inStock, category);
-                this.Close();
-                MessageBox.Show("Product added successfully ", " 😃 ", MessageBoxButton.OK, MessageBoxImage.None);
+                bl.Product.AddProduct(id, name, price, inStock, category);// addin the new product
+                this.Close();// closing the window after the product is added
+                MessageBox.Show("Product added successfully ", " 😃 ", MessageBoxButton.OK, MessageBoxImage.None);// a messagebox appears when the product is added
 
 
             }
-            catch (BO.BlInvalidExspressionException ex)
+            catch (BO.BlInvalidExspressionException ex)// catching exceptions from Bl
             {
                 MessageBox.Show(ex.ToString(), "ERROR", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
@@ -93,7 +95,7 @@ namespace PL.Windows
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
-            if (txtPrice.Text == "")
+            if (txtPrice.Text == "")// a message box appears when one of the feilds is empty
             {
                 MessageBox.Show("Price is empty", "ERROR", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
@@ -111,9 +113,9 @@ namespace PL.Windows
             try
             {
                 int price, inStock;
-                if (int.TryParse(txtPrice.Text, out price) == false) throw new BlInvalidExspressionException("Price");// if not vali
-                if (int.TryParse(txtInStock.Text, out inStock) == false) throw new BlInvalidExspressionException("Amount in stock");// if not vali
-                bl.Product.UpdateProduct(new BO.Product
+                if (int.TryParse(txtPrice.Text, out price) == false) throw new BlInvalidExspressionException("Price");// if price is a string
+                if (int.TryParse(txtInStock.Text, out inStock) == false) throw new BlInvalidExspressionException("Amount in stock");// if amont is a string
+                bl.Product.UpdateProduct(new BO.Product// updating the product's details 
                 {
                     Id = Int32.Parse(txtId.Text),
                     Name = txtName.Text,
@@ -121,11 +123,11 @@ namespace PL.Windows
                     InStock = Int32.Parse(txtInStock.Text),
                     Category = (BO.Category)cmbProductCategory.SelectedItem
                 });
-                this.Close();
-                MessageBox.Show("Product updated successfully ", " 😃 ", MessageBoxButton.OK, MessageBoxImage.None);
+                this.Close();// closing the window after the product is added
+                MessageBox.Show("Product updated successfully ", " 😃 ", MessageBoxButton.OK, MessageBoxImage.None);// a messagebox appears when the product is updated
 
             }
-            catch (BO.BlInvalidExspressionException ex)
+            catch (BO.BlInvalidExspressionException ex)// catching exceptions from Bl
             {
                 MessageBox.Show(ex.ToString(), "ERROR", MessageBoxButton.OK, MessageBoxImage.Warning);
             }

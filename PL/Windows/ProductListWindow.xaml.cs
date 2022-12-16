@@ -28,52 +28,52 @@ namespace PL.Windows
         public ProductListWindow()
         {
             InitializeComponent();
-            ProductListview.ItemsSource = bl.Product.GetProductsList();
-            cmbCategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Category));
+            ProductListview.ItemsSource = bl.Product.GetProductsList();// getting the list of products
+            cmbCategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Category));// gettin all the categories for the combobox
         }
 
         private void cmbCategorySelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(cmbCategorySelector.SelectedItem != null)
+            if(cmbCategorySelector.SelectedItem != null)// if the combobox choice is not empty
             {
-                Category c = (BO.Category)cmbCategorySelector.SelectedItem;
-                ProductListview.ItemsSource = bl.Product.GetProductsList(x=> x?.Category == c);
+                Category c = (BO.Category)cmbCategorySelector.SelectedItem;// setting the combobox choice
+                ProductListview.ItemsSource = bl.Product.GetProductsList(x=> x?.Category == c);// getting the wanted products that belong to a specific category 
             }
         }
 
         private void btnAddProduct_Click(object sender, RoutedEventArgs e)
         {
-            ProductWindow pw =new ProductWindow();
-            pw.btnAdd.Visibility = Visibility.Visible;
-            pw.btnUpdate.Visibility = Visibility.Hidden;
-            pw.ShowDialog();
-            ProductListview.ItemsSource = bl.Product.GetProductsList();
+            ProductWindow pw =new ProductWindow();// a new productWindow
+            pw.btnAdd.Visibility = Visibility.Visible;// add button is visible
+            pw.btnUpdate.Visibility = Visibility.Hidden;// update button is hidden
+            pw.ShowDialog();// showing the window 
+            ProductListview.ItemsSource = bl.Product.GetProductsList();// getting the product list with the new product
 
         }
 
         private void ProductListview_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            string line = ProductListview.SelectedItem.ToString();
-            string[] listStrLineElements = line.Split(new char[] { ' ', '\r', '\n' });
-            ProductWindow pw = new ProductWindow();
-            pw.btnAdd.Visibility = Visibility.Hidden;
-            pw.btnUpdate.Visibility = Visibility.Visible;
-            pw.txtId.Text = listStrLineElements[2];//get the chosen id
-            pw.txtId.IsEnabled = false;
+            string line = ProductListview.SelectedItem.ToString();// all the product's details 
+            string[] listStrLineElements = line.Split(new char[] { ' ', '\r', '\n' });// spliting the product's details 
+            ProductWindow pw = new ProductWindow();// a new product window
+            pw.btnAdd.Visibility = Visibility.Hidden;// add button is hidden
+            pw.btnUpdate.Visibility = Visibility.Visible;// update button is visible
+            pw.txtId.Text = listStrLineElements[2];// get the chosen product's details to the new window
+            pw.txtId.IsEnabled = false;// enabling the option to update the product's id
             pw.txtName.Text = listStrLineElements[4];
             pw.txtPrice.Text = listStrLineElements[6];
             pw.cmbProductCategory.Text = listStrLineElements[8];
-            pw.cmbProductCategory.IsEnabled = false;
+            pw.cmbProductCategory.IsEnabled = false;// enabling the option to update the product's category
             Product p = bl.Product.GetProductDitailesManager(Int32.Parse(listStrLineElements[2]));
             pw.txtInStock.Text = p.InStock.ToString();
-            pw.ShowDialog();
-            ProductListview.ItemsSource = bl.Product.GetProductsList();
+            pw.ShowDialog();// showing the window 
+            ProductListview.ItemsSource = bl.Product.GetProductsList();// getting the product list with the updated product
         }
 
         private void btnRefresh_Click(object sender, RoutedEventArgs e)
         {
-            ProductListview.ItemsSource = bl.Product.GetProductsList();
-            cmbCategorySelector.SelectedItem = null;
+            ProductListview.ItemsSource = bl.Product.GetProductsList();// getting the product list 
+            cmbCategorySelector.SelectedItem = null;// setting the combobox choice to empty
         }
     }
 }
