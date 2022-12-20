@@ -1,21 +1,9 @@
-﻿using BlApi;
-using BlImplementation;
-using BO;
+﻿using BO;
 using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using System.Xml.Linq;
+
 
 namespace PL.Windows
 {
@@ -24,7 +12,7 @@ namespace PL.Windows
     /// </summary>
     public partial class ProductListWindow : Window
     {
-        IBl bl = new Bl();
+        BlApi.IBl? bl = BlApi.Factory.Get();
         public ProductListWindow()
         {
             InitializeComponent();
@@ -37,7 +25,7 @@ namespace PL.Windows
             if(cmbCategorySelector.SelectedItem != null)// if the combobox choice is not empty
             {
                 Category c = (BO.Category)cmbCategorySelector.SelectedItem;// setting the combobox choice
-                ProductListview.ItemsSource = bl.Product.GetProductsList(x=> x?.Category == c);// getting the wanted products that belong to a specific category 
+                ProductListview.ItemsSource = bl?.Product.GetProductsList(x=> x?.Category == c);// getting the wanted products that belong to a specific category 
             }
         }
 
@@ -47,13 +35,13 @@ namespace PL.Windows
             pw.btnAdd.Visibility = Visibility.Visible;// add button is visible
             pw.btnUpdate.Visibility = Visibility.Hidden;// update button is hidden
             pw.ShowDialog();// showing the window 
-            ProductListview.ItemsSource = bl.Product.GetProductsList();// getting the product list with the new product
+            ProductListview.ItemsSource = bl?.Product.GetProductsList();// getting the product list with the new product
 
         }
 
         private void ProductListview_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            string line = ProductListview.SelectedItem.ToString();// all the product's details 
+            string line = ProductListview.SelectedItem.ToString()!;// all the product's details 
             string[] listStrLineElements = line.Split(new char[] { ' ', '\r', '\n' });// spliting the product's details 
             ProductWindow pw = new ProductWindow();// a new product window
             pw.btnAdd.Visibility = Visibility.Hidden;// add button is hidden
@@ -64,15 +52,15 @@ namespace PL.Windows
             pw.txtPrice.Text = listStrLineElements[6];
             pw.cmbProductCategory.Text = listStrLineElements[8];
             pw.cmbProductCategory.IsEnabled = false;// enabling the option to update the product's category
-            Product p = bl.Product.GetProductDitailesManager(Int32.Parse(listStrLineElements[2]));
-            pw.txtInStock.Text = p.InStock.ToString();
+            Product? p = bl?.Product.GetProductDitailesManager(Int32.Parse(listStrLineElements[2]));
+            pw.txtInStock.Text = p?.InStock.ToString();
             pw.ShowDialog();// showing the window 
-            ProductListview.ItemsSource = bl.Product.GetProductsList();// getting the product list with the updated product
+            ProductListview.ItemsSource = bl?.Product.GetProductsList();// getting the product list with the updated product
         }
 
         private void btnRefresh_Click(object sender, RoutedEventArgs e)
         {
-            ProductListview.ItemsSource = bl.Product.GetProductsList();// getting the product list 
+            ProductListview.ItemsSource = bl?.Product.GetProductsList();// getting the product list 
             cmbCategorySelector.SelectedItem = null;// setting the combobox choice to empty
         }
     }

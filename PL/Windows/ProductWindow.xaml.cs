@@ -1,20 +1,7 @@
-﻿using BlApi;
-using BlImplementation;
-using BO;
+﻿using BO;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+
 
 namespace PL.Windows
 {
@@ -23,7 +10,7 @@ namespace PL.Windows
     /// </summar
     public partial class ProductWindow : Window
     {
-        IBl bl = new Bl();
+        BlApi.IBl? bl = BlApi.Factory.Get();
 
         public ProductWindow()
         {
@@ -72,7 +59,7 @@ namespace PL.Windows
                 if (int.TryParse(txtPrice.Text, out price) == false) throw new BlInvalidExspressionException("Price");// if price is a string
                 if (int.TryParse(txtInStock.Text, out inStock) == false) throw new BlInvalidExspressionException("Amount in stock");// if amount is a string
                 Category category = (BO.Category)cmbProductCategory.SelectedItem;
-                bl.Product.AddProduct(id, name, price, inStock, category);// addin the new product
+                bl?.Product.AddProduct(id, name, price, inStock, category);// addin the new product
                 this.Close();// closing the window after the product is added
                 MessageBox.Show("Product added successfully ", " 😃 ", MessageBoxButton.OK, MessageBoxImage.None);// a messagebox appears when the product is added
 
@@ -115,7 +102,7 @@ namespace PL.Windows
                 int price, inStock;
                 if (int.TryParse(txtPrice.Text, out price) == false) throw new BlInvalidExspressionException("Price");// if price is a string
                 if (int.TryParse(txtInStock.Text, out inStock) == false) throw new BlInvalidExspressionException("Amount in stock");// if amont is a string
-                bl.Product.UpdateProduct(new BO.Product// updating the product's details 
+                bl?.Product.UpdateProduct(new BO.Product// updating the product's details 
                 {
                     Id = Int32.Parse(txtId.Text),
                     Name = txtName.Text,

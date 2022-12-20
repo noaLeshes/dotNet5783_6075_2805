@@ -1,19 +1,18 @@
 ﻿using BlApi;
 using BO;
-using System.Collections.Generic;
-using System.Xml.Linq;
+
 
 
 namespace BlImplementation;
 
 internal class Product : IProduct
 {
-    DalApi.IDal dal = new Dal.DalList();
+    DalApi.IDal? dal = DalApi.Factory.Get();
     public void AddProduct(int id, string name, double price, int amount, BO.Category c)
     {
         try
         {
-            int i = dal.Product.Add(new DO.Product() // adding a product with the wanted details
+            int? i = dal?.Product.Add(new DO.Product() // adding a product with the wanted details
             {
                 ID = id > 0 ? id : throw new BO.BlInvalidExspressionException("Id"),// throwing if the detail is invalid
                 Name = name != "" ? name : throw new BO.BlNullPropertyException("Name"),
@@ -35,11 +34,11 @@ internal class Product : IProduct
             {
                 throw new BO.BlInvalidExspressionException("Id");
             }
-            var list = dal.OrderItem.GetAll();// list of all orderItems
-            var listtodel = list.Where(x => x?.ProductId == id);// finding orderItems with the same id as id
-            if (listtodel.Any() )// if aproduct with id found in an order
+            var list = dal?.OrderItem.GetAll();// list of all orderItems
+            var listtodel = list?.Where(x => x?.ProductId == id);// finding orderItems with the same id as id
+            if (listtodel!.Any())// if aproduct with id found in an order
                 throw new BO.BlAlreadyExistsEntityException("Product", -1);// throw
-            dal.Product.Delete(id);// if not found 
+            dal?.Product.Delete(id);// if not found 
         }
         catch(DO.DalMissingIdException exception)// if product doesn't exist
         {
@@ -48,7 +47,7 @@ internal class Product : IProduct
     }
    public IEnumerable<ProductForList?> GetProductsList(Func<BO.ProductForList?, bool>? filter = null)
     {
-        var l = from DO.Product? p in dal.Product.GetAll()// getting all the products
+        var l = from DO.Product? p in dal!.Product.GetAll()// getting all the products
                select new BO.ProductForList// conversion from product to productForList
                {
                    ID = p?.ID ?? throw new BO.BlInvalidExspressionException("Id"),// throwing if the detail is invalid
@@ -66,14 +65,14 @@ internal class Product : IProduct
             {
                 throw new BO.BlInvalidExspressionException("Id");
             }
-            DO.Product p = dal.Product.GetById(id);
+            DO.Product? p = dal?.Product.GetById(id);
             return new BO.ProductItem()// conversion from product to productItem
             {
-                Id = p.ID,
-                Name = p.Name,
-                Price = p.Price,
-                Category = (BO.Category)p.Category,
-                InStock = p.InStock > 0 ? true : false,
+                Id = p?.ID ?? 0,
+                Name = p?.Name,
+                Price = p?.Price ?? 0,
+                Category = (BO.Category)p?.Category! ,
+                InStock = p?.InStock > 0 ? true : false,
                 Amount = c.Items == null? 0: (from i in c.Items// calculating the amount
                          where i.ProductId == id
                          select i.Amount).Sum()
@@ -92,14 +91,14 @@ internal class Product : IProduct
             {
                 throw new BO.BlInvalidExspressionException("Id");
             }
-            DO.Product p = dal.Product.GetById(id);
+            DO.Product? p = dal?.Product.GetById(id);
             return new BO.Product()// conversion from doProduct to boProduct
             {
-                Id = p.ID,
-                Name = p.Name,
-                Price = p.Price,
-                Category = (BO.Category)p.Category,
-                InStock = p.InStock
+                Id = p?.ID ?? 0,
+                Name = p?.Name,
+                Price = p?.Price ?? 0,
+                Category = (BO.Category)p?.Category!,
+                InStock = p?.InStock ?? 0
             };
         }
         catch (DO.DalMissingIdException exception)// if product doesn't exist 
@@ -111,7 +110,7 @@ internal class Product : IProduct
     {
         try
         {
-            dal.Product.Update(new DO.Product()// updating the product
+            dal?.Product.Update(new DO.Product()// updating the product
             {
                 ID = p.Id > 0 ? p.Id : throw new BO.BlInvalidExspressionException("Id"),// throwing if the detail is invalid
                 Name = p.Name != "" ? p.Name : throw new BO.BlNullPropertyException("Name"),

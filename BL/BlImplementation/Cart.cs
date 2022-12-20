@@ -1,13 +1,12 @@
 ﻿using BlApi;
-using DalApi;
-using System.Security.Cryptography;
+
 
 namespace BlImplementation;
 
 internal class Cart : ICart
 {
     private static int index_orderItem =1000000;//  running number for when we create a new orderItem
-    DalApi.IDal dal = new Dal.DalList();
+    DalApi.IDal? dal = DalApi.Factory.Get();
    public BO.Cart AddItem(BO.Cart c, int productId)
     {
         try
@@ -16,7 +15,7 @@ internal class Cart : ICart
             BO.OrderItem? oi = (from item in c.Items// finding an orderItem
                                 where item.ProductId == productId
                                 select item).FirstOrDefault();
-            DO.Product p = dal.Product.GetById(productId);// finding a product
+            DO.Product p = dal!.Product.GetById(productId);// finding a product
             if (oi == null)// if not found
             {
                 if (p.InStock >= 0)// if the wanted product id in stock
@@ -32,7 +31,7 @@ internal class Cart : ICart
                         TotalPrice = p.Price
                     });
                     p.InStock -= 1;// updating the amount of product in stock
-                    dal.Product.Update(p);// update the produt stock
+                    dal?.Product.Update(p);// update the produt stock
                     index_orderItem++;
                 }
             }
@@ -83,9 +82,9 @@ internal class Cart : ICart
             //}
             foreach (BO.OrderItem oi in c.Items!)// checking the cart's items
             {
-                DO.Product p = dal.Product.GetById(oi.Id);
-                if (oi.Amount > p.InStock)// not enough in stock
-                    throw new BO.BlNotInStockException(p.Name!, p.ID);
+                DO.Product? p = dal?.Product.GetById(oi.Id);
+                if (oi.Amount > p?.InStock)// not enough in stock
+                    throw new BO.BlNotInStockException(p?.Name!, p?.ID ?? 0);
                 if (oi.Amount <= 0)// throwing if a detail is invalid
                     throw new BO.BlInvalidExspressionException("Amount");
             }
@@ -99,7 +98,7 @@ internal class Cart : ICart
             {
                 throw new BO.BlInvalidExspressionException("Email");
             }
-            int orderid = dal.Order.Add(new DO.Order()// adding a new order
+            int? orderid = dal?.Order.Add(new DO.Order()// adding a new order
             {
                 CustomerName = c.CostomerName,
                 CustomerAddress = c.CostomerAddress,
@@ -110,7 +109,7 @@ internal class Cart : ICart
             });
             foreach (BO.OrderItem oi in c.Items)// creating items for the order
             {
-                int orderitem_id = dal.OrderItem.Add(new DO.OrderItem()
+                int orderitem_id = dal!.OrderItem.Add(new DO.OrderItem()
                 {
                     ID = oi.Id,
                     ProductId = oi.ProductId,
@@ -144,7 +143,7 @@ internal class Cart : ICart
                 throw new BO.BlInvalidExspressionException("Amount");
             }
 
-            DO.Product p = dal.Product.GetById(productId);// getting the product
+            DO.Product? p = dal?.Product.GetById(productId);// getting the product
             BO.OrderItem? oi = (from item in c.Items  // finding orsderItem
                                 where item.ProductId == productId
                                 select item).First();
@@ -155,7 +154,7 @@ internal class Cart : ICart
             }
             else if (amount > oi.Amount)// increasing the amount
             {
-                if (p.InStock >= amount)
+                if (p?.InStock >= amount)
                 {
                     c.TotalPrice += oi.Price * (amount - oi.Amount);// updating the prices and the amount
                     oi.TotalPrice += oi.Price * (amount - oi.Amount);
@@ -176,7 +175,7 @@ internal class Cart : ICart
         }
         catch (DO.DalMissingIdException exception)//if product doesn't exist 
         {
-            throw new BO.BlMissingEntityException("Cart doesn't exist", exception);
+            throw new BO.BlMissingEntityException("Product doesn't exist in cart", exception);
         }
 
     }

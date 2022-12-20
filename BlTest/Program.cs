@@ -13,8 +13,7 @@ namespace BlTest
         public enum orderChoice { GetOrderDitails = 1, GetOrders, GetOrderTracking, UpdateIfProvided, UpdateShipping }// choices for the Order switch
         public enum cartChoice { Add = 1, ConfirmCart, UpdateItem }// choices for the Cart switch
         #endregion
-
-        private static IBl bl = new Bl();
+        private static IBl bl = BlApi.Factory.Get();
         #region productFunction
         private static void ProductFunc(Cart c)
         {

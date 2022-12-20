@@ -103,7 +103,7 @@ internal static class DataSource
     {
         for (int i = 0; i < 20; i++)//creating 40 orderitems
         {
-            int amountOfOrderItems = s_rand.Next(1, 4);//between 1 to 4 items per order
+            int amountOfOrderItems = s_rand.Next(1, 5);//between 1 to 4 items per order
             for (int j = 0; j < amountOfOrderItems; j++)
             {
                 int num = s_rand.Next(9);
