@@ -29,12 +29,25 @@ namespace PL
            
         }
 
-        private void Products_Click(object sender, RoutedEventArgs e)
+
+        private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
-            new ProductListWindow().Show();// the productListWindow shows when clicking the products button
-     
+            int i;
+            if (txtPass.Text == "123")
+            {
+                new ManagerWindow().Show();
+            }
+            else if (int.TryParse(txtPass.Text, out i))
+            {
+                new CustomerWindow().Show();
+            }
         }
 
-    
+        //private void Products_Click(object sender, RoutedEventArgs e)
+        //{
+        //    new ProductListWindow().Show();// the productListWindow shows when clicking the products button
+
+        //}
+
     }
 }

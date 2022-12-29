@@ -45,7 +45,7 @@ internal class Product : IProduct
             throw new BO.BlMissingEntityException("Product doesn't exist", exception);
         }
     }
-   public IEnumerable<ProductForList?> GetProductsList(Func<BO.ProductForList?, bool>? filter = null)
+    public IEnumerable<ProductForList?> GetProductsList(Func<BO.ProductForList?, bool>? filter = null)
     {
         var l = from DO.Product? p in dal!.Product.GetAll()// getting all the products
                select new BO.ProductForList// conversion from product to productForList
@@ -57,7 +57,7 @@ internal class Product : IProduct
                };
         return filter is null ? l : l.Where(filter);    
     }
-   public BO.ProductItem GetProductDitailes(int id, BO.Cart c)
+    public BO.ProductItem GetProductDitailes(int id, BO.Cart c)
     {
         try
         {
@@ -123,5 +123,10 @@ internal class Product : IProduct
         {
             throw new BO.BlMissingEntityException("Product doesn't exist", exception);
         }
+    }
+    public IEnumerable<ProductForList?> GetAllProductsByCategry(BO.Category c)
+    {
+        
+         return GetProductsList(x => x?.Category == c);
     }
 }

@@ -12,18 +12,15 @@
                 <ImageBrush ImageSource="/background.jfif"/>
             </Grid.Background>
             <Grid>
-                <!--<MediaElement x:Name="media" HorizontalAlignment="Left" Width="848" LoadedBehavior="Play" Source="C:\Users\User\Downloads\Screen_Recording_20221212-141946_Pinterest_1 (1).mp4" Canvas.Top="-218" RenderTransformOrigin="0.5,0.5" Height="1002" VerticalAlignment="Top" Canvas.Left="4" >
-                    <MediaElement.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform/>
-                            <SkewTransform AngleX="0.073"/>
-                            <RotateTransform/>
-                            <TranslateTransform X="0.749"/>
-                        </TransformGroup>
-                    </MediaElement.RenderTransform>
-                </MediaElement>-->
-                <Button Content="Products" x:Name="Products" VerticalAlignment="Top" Click="Products_Click" RenderTransformOrigin="0.5,0.5" Width="295" Background="#FF97AD96" Height="92" Foreground="#FF35442F" FontSize="60" FontWeight="Bold" FontFamily="Brush Script MT" Canvas.Left="152" Canvas.Top="502" Margin="195,625,0,0" HorizontalAlignment="Left" BorderBrush="#FF97AD96" />
+                <TextBox  HorizontalAlignment="Left" x:Name ="txtUser" Margin="229,323,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                <TextBox HorizontalAlignment="Left" x:Name ="txtPass" Margin="229,346,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" />
+                <!--<Button Content="Maneger" x:Name="Maneger" VerticalAlignment="Top" Click="Products_Click" RenderTransformOrigin="0.5,0.5" Width="295" Background="#FF97AD96" Height="92" Foreground="#FF35442F" FontSize="60" FontWeight="Bold" FontFamily="Brush Script MT" Canvas.Left="152" Canvas.Top="502" Margin="195,625,0,0" HorizontalAlignment="Left" BorderBrush="#FF97AD96" />
+                <Button Content="Order" x:Name="Order" VerticalAlignment="Top" Click="Products_Click" RenderTransformOrigin="0.5,0.5" Width="295" Background="#FF97AD96" Height="92" Foreground="#FF35442F" FontSize="60" FontWeight="Bold" FontFamily="Brush Script MT" Canvas.Left="152" Canvas.Top="502" Margin="195,625,0,0" HorizontalAlignment="Left" BorderBrush="#FF97AD96" />-->
+                <Label Content="User Name:" HorizontalAlignment="Left" Margin="124,305,0,0" VerticalAlignment="Top" Height="27" Width="80" FontFamily="ItalicT" FontSize="15" Foreground="#FF35442F"/>
+                <Label Content="Password:" HorizontalAlignment="Left" Margin="124,330,0,0" VerticalAlignment="Top" Height="27" Width="80" FontFamily="ItalicT" FontSize="15" Foreground="#FF35442F"/>
+                <Button Content="Enter" x:Name="btnEnter" HorizontalAlignment="Left" Margin="205,439,0,0" VerticalAlignment="Top" Width="55" Click="btnUpdate_Click" Height="32" BorderBrush="#FF222A18" Foreground="#FF222A18" Background="#FF97AD96" BorderThickness="3,3,3,3"/>
             </Grid>
+           
         </Grid>
 
     </Grid>
