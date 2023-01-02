@@ -21,14 +21,25 @@ namespace PL.Windows
     /// </summary>
     public partial class OrderWindow : Window
     {
-        //BlApi.IBl? bl = BlApi.Factory.Get();
-        //public BO.Order? orderCurrent
-        //{
-        //    get { return (BO.Order)GetValue(orderCurrentProperty); }
-        //}
+        BlApi.IBl? bl = BlApi.Factory.Get();
+        public BO.Order? orderCurrent
+        {
+            get { return (BO.Order?)GetValue(orderCurrentProperty); }
+            set { SetValue(orderCurrentProperty, value); }
+        }
+        // Using a DependencyProperty as the backing store for orderCurrent.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty orderCurrentProperty =
+            DependencyProperty.Register("orderCurrent", typeof(BO.Order), typeof(Window), new PropertyMetadata(null));
+
+
         public OrderWindow(int id)
         {
             InitializeComponent();
+            //int nid = (int)id;
+            orderCurrent = bl.Order.GetOrderDitailes(id);
+            statusComboBox.ItemsSource = Enum.GetValues(typeof(BO.OrderStatus));
+
         }
+
     }
 }

@@ -13,20 +13,21 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid Name="UpGrid" Height="auto" Grid.Row="0" Width="auto" Grid.ColumnSpan="2">
-            <Grid.ColumnDefinitions>
+            <!--<Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions >
+            </Grid.ColumnDefinitions >-->
         </Grid>
         <Label Content="Category" HorizontalAlignment="Left" Grid.Column="0" Width="400" Height="40" FontFamily="Brush Script MT" FontSize="25" Foreground="#FF1B2A15" Background="#FF97AD96" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.RowSpan="1" Grid.ColumnSpan="1" />
         <ComboBox x:Name="cmbCategorySelector" SelectionChanged="cmbCategorySelector_SelectionChanged" Height="40" Foreground="#FF1B2A15" Width="400" MaxDropDownHeight="240" Margin="400,0,0,0"/>
-        <ListView x:Name="ProductListview" d:ItemsSource="{d:SampleData ItemCount=5}" MouseDoubleClick="ProductListview_MouseDoubleClick" Grid.ColumnSpan="2" Margin="0,40,0,0" Grid.RowSpan="2" Background="#FF97AD96" Foreground="#FF1B2A15" BorderBrush="#FF97AD96">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn/>
-                </GridView>
-            </ListView.View>
-        </ListView>
+        <DataGrid x:Name="productForListDataGrid" Grid.Row="1" AutoGenerateColumns="False" IsReadOnly="True" EnableRowVirtualization="True" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="159,151,241,230" MouseDoubleClick="productForListDataGrid_MouseDoubleClick">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="categoryColumn" Binding="{Binding Category}" Header="Category" Width="*"/>
+                <DataGridTextColumn x:Name="iDColumn1" Binding="{Binding ID}" Header="ID" Width="*"/>
+                <DataGridTextColumn x:Name="nameColumn" Binding="{Binding Name}" Header="Name" Width="*"/>
+                <DataGridTextColumn x:Name="priceColumn" Binding="{Binding Price}" Header="Price" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
         <Button x:Name="btnAddProduct" Content="Add new Product" Grid.Row="2" HorizontalAlignment="Left" Margin="655,5,0,5" Click="btnAddProduct_Click" Width="125" Foreground="#FF1B2A18" Background="#FF97AD96" BorderBrush="#FF222A18" BorderThickness="2,2,2,2"/>
         <Button x:Name="btnRefresh" Content="Refresh" HorizontalAlignment="Left" Margin="590,0,0,0" Grid.Row="2" VerticalAlignment="Center" Width="55" Click="btnRefresh_Click" Background="#FF97AD96" Foreground="#FF1B2A15" BorderBrush="#FF222A18" BorderThickness="2,2,2,2"/>
     </Grid>

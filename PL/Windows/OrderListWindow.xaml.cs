@@ -1,18 +1,8 @@
-﻿using System;
-using BO;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BO;
+using System;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using System.Collections.ObjectModel;
 
 namespace PL.Windows
 {
@@ -23,31 +13,39 @@ namespace PL.Windows
     {
        
         BlApi.IBl? bl = BlApi.Factory.Get();
-        public static readonly DependencyProperty OrderDependency = DependencyProperty.Register("orders", typeof(ObservableCollection<OrderForList?>), typeof(Window));
-        public ObservableCollection<OrderForList?> orders
-        {
-            get { return (ObservableCollection<OrderForList?>)GetValue(OrderDependency); }
-            private set => SetValue(OrderDependency, value);
-        }
+        //public static readonly DependencyProperty OrderDependency = DependencyProperty.Register("orders", typeof(ObservableCollection<OrderForList?>), typeof(Window));
+        //public ObservableCollection<OrderForList?> orders
+        //{
+        //    get { return (ObservableCollection<OrderForList?>)GetValue(OrderDependency); }
+        //    private set => SetValue(OrderDependency, value);
+        //}
         public OrderListWindow()
         {
             InitializeComponent();
-            var temp = bl?.Order?.GetOrders();// getting the list of products
-                                              //if (temp == null)
-                                              //{
-                                              //    orders = new();
-                                              //}
-                                              //else
-                                              //    orders = new(temp);
-            orders = temp == null ? new() : new(temp);
+            //var temp = bl?.Order?.GetOrders();// getting the list of products
+            //                                  //if (temp == null)
+            //                                  //{
+            //                                  //    orders = new();
+            //                                  //}
+            //                                  //else
+            //                                  //    orders = new(temp);
+            //orders = temp == null ? new() : new(temp);
+            // gettin all the categories for the combobox
+            orderForListDataGrid.ItemsSource = bl.Order.GetOrders();
 
         }
 
-        private void OrderListview_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+
+        private void orderForListDataGridMouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-                int id = ((OrderForList?)(sender as ListViewItem)?.DataContext)?.ID ?? throw new NullReferenceException("oooo");
+            if(orderForListDataGrid.SelectedItem as BO.OrderForList != null)
+            {
+                BO.OrderForList? p = (BO.OrderForList?)orderForListDataGrid.SelectedItem;
+                int id = p?.ID ?? 0;
                 new OrderWindow(id).Show();
-          
+            }
+            
+            
         }
     }
 }

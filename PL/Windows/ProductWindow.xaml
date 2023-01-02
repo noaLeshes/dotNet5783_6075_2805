@@ -5,9 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL.Windows"
         mc:Ignorable="d"
+        DataContext="{Binding productCurrent, RelativeSource={RelativeSource Self}}"
         Title="ProductWindow" Height="450" Width="800">
     <Grid Background="#FF97AD96">
-        <Label Content="Id:" HorizontalAlignment="Left" Margin="200,60,0,0" VerticalAlignment="Top" Height="27" Width="80" FontFamily="ItalicT" FontSize="15" Foreground="#FF35442F"/>
+        <!--<Label Content="Id:" HorizontalAlignment="Left" Margin="200,60,0,0" VerticalAlignment="Top" Height="27" Width="80" FontFamily="ItalicT" FontSize="15" Foreground="#FF35442F"/>
         <Label Content="Category:" HorizontalAlignment="Left" Margin="200,100,0,0" VerticalAlignment="Top" Height="35" Width="109" FontFamily="ItalicT" FontSize="15" Foreground="#FF35442F"/>
         <Label Content="Name:" HorizontalAlignment="Left" Margin="200,140,0,0" VerticalAlignment="Top" Height="27" Width="80" FontFamily="ItalicT" FontSize="15" Foreground="#FF35442F"/>
         <Label Content="Price:" HorizontalAlignment="Left" Margin="200,180,0,0" VerticalAlignment="Top" Height="27" Width="80" FontFamily="ItalicT" FontSize="15" Foreground="#FF35442F"/>
@@ -16,10 +17,43 @@
         <TextBox x:Name="txtId" Text="" HorizontalAlignment="Left" Margin="418,60,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" Background="#FFE6E6E6"/>
         <TextBox x:Name="txtName" Text="" HorizontalAlignment="Left" Margin="418,140,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" Background="#FFEBEBF0"/>
         <TextBox x:Name="txtPrice" Text="0" HorizontalAlignment="Left" Margin="418,180,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" Background="#FFEBEBF0"/>
-        <TextBox x:Name="txtInStock" Text="0" HorizontalAlignment="Left" Margin="418,220,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" Background="#FFEBEBF0"/>
+        <TextBox x:Name="txtInStock" Text="0" HorizontalAlignment="Left" Margin="418,220,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" Background="#FFEBEBF0"/>-->
+        <Grid x:Name="gridProduct" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="236,26,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Label Grid.Column="0" Content="Id:" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
+            <TextBox x:Name="txtId"  Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="0" Text="{Binding Id, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+
+            <Label Grid.Column="0" Content="Category:" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
+            <ComboBox x:Name="cmbProductCategory" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="1" VerticalAlignment="Center" Width="120">
+                <ComboBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel/>
+                    </ItemsPanelTemplate>
+                </ComboBox.ItemsPanel>
+            </ComboBox>
+            <Label Grid.Column="0" Content="Name:" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
+            <TextBox x:Name="txtName" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="2" Text="{Binding Name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+
+            <Label Grid.Column="0" Content="Price:" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
+            <TextBox x:Name="txtPrice" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="3" Text="{Binding Price, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+
+            <Label Grid.Column="0" Content="In Stock:" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
+            <TextBox x:Name="txtInStock" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="4" Text="{Binding InStock, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+ 
+        </Grid>
         <Button Content="Add" x:Name="btnAdd" HorizontalAlignment="Left" Margin="200,293,0,0" VerticalAlignment="Top" Click="btnAdd_Click" Background="#FF97AD96" Foreground="#FF222A18" BorderBrush="#FF222A18" Height="32" Width="55" BorderThickness="3,3,3,3"/>
         <Button Content="Update" x:Name="btnUpdate" HorizontalAlignment="Left" Margin="200,293,0,0" VerticalAlignment="Top" Width="55" Click="btnUpdate_Click" Height="32" BorderBrush="#FF222A18" Foreground="#FF222A18" Background="#FF97AD96" BorderThickness="3,3,3,3"/>
         <Border BorderBrush="#FF222A18" BorderThickness="1"/>
-
     </Grid>
 </Window>

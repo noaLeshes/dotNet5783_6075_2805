@@ -12,10 +12,28 @@ namespace PL.Windows
     {
         BlApi.IBl? bl = BlApi.Factory.Get();
 
-        public ProductWindow()
-        {
 
+
+        public BO.Product? productCurrent
+        {
+            get { return (BO.Product?)GetValue(productCurrentProperty); }
+            set { SetValue(productCurrentProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for productCurrent.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty productCurrentProperty =
+            DependencyProperty.Register("productCurrent", typeof(BO.Product), typeof(Window), new PropertyMetadata(null));
+
+
+
+        public ProductWindow(int id=0)
+        {
+            
             InitializeComponent();
+            if (id != -1)
+            {
+                productCurrent = bl.Product.GetProductDitailesManager(id);
+            }
             cmbProductCategory.ItemsSource = Enum.GetValues(typeof(BO.Category));// gettin all the categories for the combobox
 
         }
