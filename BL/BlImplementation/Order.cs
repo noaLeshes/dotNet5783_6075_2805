@@ -120,7 +120,7 @@ internal class Order : IOrder
         }
     }
 
-    public BO.Order UpdateIfProvided(int id)
+    public BO.Order UpdateIfProvided(int id, DateTime? d)
     {
         try
         {
@@ -132,7 +132,11 @@ internal class Order : IOrder
                 throw new BlIncorrectDateException("shipping not updated");
             if (o.DeliveryDate == null && o.ShipDate != null)// DeliveryDate not updated and allready Shipped
             {
-                o.DeliveryDate = DateTime.Now;// updating DeliveryDate
+                if(d != null)
+                    o.DeliveryDate = d;
+                else
+                    o.DeliveryDate = DateTime.Now;// updating DeliveryDate
+
                 dal.Order.Update(o); // updating Order
                 t = createOrder(o); // turn DO.order into BO.order
             }
@@ -145,14 +149,17 @@ internal class Order : IOrder
         }
     }
 
-    public BO.Order UpdateShipping(int id)
+    public BO.Order UpdateShipping(int id, DateTime? d = null)
     {
         try
         {
             DO.Order o = dal!.Order.GetById(id);
             if (o.ShipDate == null && o.OrderDate != null)
             {
-                o.ShipDate = DateTime.Now;// updating ShipDate 
+                if (d != null)
+                    o.ShipDate = d;
+                else
+                    o.ShipDate = DateTime.Now;
                 dal.Order.Update(o); // updating Order
             }
             else if (o.OrderDate == null) 

@@ -39,7 +39,16 @@ namespace PL
             }
             else if (int.TryParse(txtPass.Text, out i))
             {
-                new CustomerWindow().Show();
+                List<BO.OrderItem>? temp = new();
+                BO.Cart c = new BO.Cart
+                {
+                    CostomerName = "",
+                    CostomerAddress = "",
+                    CostomerEmail = "",
+                    Items = temp,
+                    TotalPrice = 0
+                };
+                new CostumerProductListWindow(c).ShowDialog();
             }
         }
 

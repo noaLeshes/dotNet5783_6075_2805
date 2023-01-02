@@ -42,10 +42,11 @@ namespace PL.Windows
             {
                 BO.OrderForList? p = (BO.OrderForList?)orderForListDataGrid.SelectedItem;
                 int id = p?.ID ?? 0;
-                new OrderWindow(id).Show();
+                new OrderWindow(id).ShowDialog();
+                orderForListDataGrid.ItemsSource = bl?.Order.GetOrders();// getting the product list with the updated product
             }
-            
-            
+
+
         }
     }
 }

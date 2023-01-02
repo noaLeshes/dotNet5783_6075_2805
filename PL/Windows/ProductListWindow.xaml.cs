@@ -42,26 +42,6 @@ namespace PL.Windows
 
         }
 
-        //private void ProductListview_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        //{
-        //    string line = productForListDataGrid.SelectedItem.ToString()!;// all the product's details 
-        //    string[] listStrLineElements = line.Split(new char[] { ' ', '\r', '\n' });// spliting the product's details 
-        //    BO.ProductForList? pp = (BO.ProductForList?)productForListDataGrid.SelectedItem;
-        //    int id = pp?.ID ?? 0;
-        //    ProductWindow pw = new ProductWindow(id);// a new product window
-        //    pw.btnAdd.Visibility = Visibility.Hidden;// add button is hidden
-        //    pw.btnUpdate.Visibility = Visibility.Visible;// update button is visible
-        //    pw.txtId.Text = listStrLineElements[2];// get the chosen product's details to the new window
-        //    pw.txtId.IsEnabled = false;// enabling the option to update the product's id
-        //    pw.txtName.Text = listStrLineElements[4];
-        //    pw.txtPrice.Text = listStrLineElements[6];
-        //    pw.cmbProductCategory.Text = listStrLineElements[8];
-        //    pw.cmbProductCategory.IsEnabled = false;// enabling the option to update the product's category
-        //    Product? p = bl?.Product.GetProductDitailesManager(Int32.Parse(listStrLineElements[2]));
-        //    pw.txtInStock.Text = p?.InStock.ToString();
-        //    pw.ShowDialog();// showing the window 
-        //    productForListDataGrid.ItemsSource = bl?.Product.GetProductsList();// getting the product list with the updated product
-        //}
 
         private void btnRefresh_Click(object sender, RoutedEventArgs e)
         {
@@ -71,28 +51,13 @@ namespace PL.Windows
 
         private void productForListDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-        //    string line = productForListDataGrid.SelectedItem.ToString()!;// all the product's details 
-        //    string[] listStrLineElements = line.Split(new char[] { ' ', '\r', '\n' });// spliting the product's details 
-        //    BO.ProductForList? pp = (BO.ProductForList?)productForListDataGrid.SelectedItem;
-        //    int id = pp?.ID ?? 0;
-        //    ProductWindow pw = new ProductWindow(id);// a new product window
-        //    pw.btnAdd.Visibility = Visibility.Hidden;// add button is hidden
-        //    pw.btnUpdate.Visibility = Visibility.Visible;// update button is visible
-        //    pw.txtId.Text = listStrLineElements[2];// get the chosen product's details to the new window
-        //    pw.txtId.IsEnabled = false;// enabling the option to update the product's id
-        //    pw.txtName.Text = listStrLineElements[4];
-        //    pw.txtPrice.Text = listStrLineElements[6];
-        //    pw.cmbProductCategory.Text = listStrLineElements[8];
-        //    pw.cmbProductCategory.IsEnabled = false;// enabling the option to update the product's category
-        //    Product? p = bl?.Product.GetProductDitailesManager(Int32.Parse(listStrLineElements[2]));
-        //    pw.txtInStock.Text = p?.InStock.ToString();
-        //    pw.ShowDialog();// showing the window 
-        //    productForListDataGrid.ItemsSource = bl?.Product.GetProductsList();// getting the product list with the updated product
             if (productForListDataGrid.SelectedItem as BO.ProductForList != null)
             {
                 BO.ProductForList? p = (BO.ProductForList?)productForListDataGrid.SelectedItem;
                 int id = p?.ID ?? 0;
-                new ProductWindow(id).Show();
+                new ProductWindow(id).ShowDialog();
+                productForListDataGrid.ItemsSource = bl?.Product.GetProductsList();// getting the product list with the updated product
+
             }
 
         }

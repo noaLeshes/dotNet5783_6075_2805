@@ -57,6 +57,20 @@ internal class Product : IProduct
                };
         return filter is null ? l : l.Where(filter);    
     }
+    public IEnumerable<ProductItem?> GetProducts(Func<BO.ProductItem?, bool>? filter = null)
+    {
+        var l = from DO.Product? p in dal!.Product.GetAll()// getting all the products
+                select new BO.ProductItem// conversion from product to productForList
+                {
+                    Id = p?.ID ?? throw new BO.BlInvalidExspressionException("Id"),// throwing if the detail is invalid
+                    Name = p?.Name ?? throw new BO.BlNullPropertyException("Name"),
+                    Category = (BO.Category?)p?.Category ?? throw new BO.BlWrongCategoryException(),// throwing if wrong category
+                    Price = p?.Price ?? 0,
+                    InStock = p?.InStock>0 ? true:false ,
+                    Amount = p?.InStock ?? 0,
+                };
+        return filter is null ? l : l.Where(filter);
+    }
     public BO.ProductItem GetProductDitailes(int id, BO.Cart c)
     {
         try

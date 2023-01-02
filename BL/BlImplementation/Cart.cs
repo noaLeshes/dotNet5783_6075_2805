@@ -11,10 +11,13 @@ internal class Cart : ICart
     {
         try
         {
-
-            BO.OrderItem? oi = (from item in c.Items// finding an orderItem
-                                where item.ProductId == productId
-                                select item).FirstOrDefault();
+            BO.OrderItem? oi = null;
+            //if (c.Items != null)
+            //{
+                oi = (from item in c.Items// finding an orderItem
+                      where item.ProductId == productId
+                      select item).FirstOrDefault();
+            //}
             DO.Product p = dal!.Product.GetById(productId);// finding a product
             if (oi == null)// if not found
             {
@@ -30,7 +33,7 @@ internal class Cart : ICart
                         Price = p.Price,
                         TotalPrice = p.Price
                     });
-                    p.InStock -= 1;// updating the amount of product in stock
+                    //p.InStock -= 1;// updating the amount of product in stock
                     dal?.Product.Update(p);// update the produt stock
                     index_orderItem++;
                 }

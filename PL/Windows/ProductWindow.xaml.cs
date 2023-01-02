@@ -26,15 +26,15 @@ namespace PL.Windows
 
 
 
-        public ProductWindow(int id=0)
+        public ProductWindow(int id)
         {
             
             InitializeComponent();
+            cmbProductCategory.ItemsSource = Enum.GetValues(typeof(BO.Category));// gettin all the categories for the combobox
             if (id != -1)
             {
                 productCurrent = bl.Product.GetProductDitailesManager(id);
             }
-            cmbProductCategory.ItemsSource = Enum.GetValues(typeof(BO.Category));// gettin all the categories for the combobox
 
         }
 
@@ -120,14 +120,14 @@ namespace PL.Windows
                 int price, inStock;
                 if (int.TryParse(txtPrice.Text, out price) == false) throw new BlInvalidExspressionException("Price");// if price is a string
                 if (int.TryParse(txtInStock.Text, out inStock) == false) throw new BlInvalidExspressionException("Amount in stock");// if amont is a string
-                bl?.Product.UpdateProduct(new BO.Product// updating the product's details 
-                {
-                    Id = Int32.Parse(txtId.Text),
-                    Name = txtName.Text,
-                    Price = Int32.Parse(txtPrice.Text),
-                    InStock = Int32.Parse(txtInStock.Text),
-                    Category = (BO.Category)cmbProductCategory.SelectedItem
-                });
+                bl?.Product.UpdateProduct(productCurrent);// updating the product's details 
+                //{
+                //    Id = Int32.Parse(txtId.Text),
+                //    Name = txtName.Text,
+                //    Price = Int32.Parse(txtPrice.Text),
+                //    InStock = Int32.Parse(txtInStock.Text),
+                //    Category = (BO.Category)cmbProductCategory.SelectedItem
+                //});
                 this.Close();// closing the window after the product is added
                 MessageBox.Show("Product updated successfully ", " 😃 ", MessageBoxButton.OK, MessageBoxImage.None);// a messagebox appears when the product is updated
 
