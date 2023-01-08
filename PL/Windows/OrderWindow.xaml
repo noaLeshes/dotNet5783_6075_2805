@@ -7,62 +7,75 @@
         mc:Ignorable="d"
         DataContext="{Binding orderCurrent, RelativeSource={RelativeSource Self}}"
         Title="OrderWindow" Height="600" Width="900">
-    <!--<Window.Resources>
-        <local:NotDateTimeToVisibilityConverter
-x:Key="notBooleanToVisibilityConverter" />
-    </Window.Resources>-->
+    <Window.Resources>
+        <local:NotDateTimeToVisibilityConverter 
+           x:Key="notBooleanToVisibilityConverter"/>
+        <local:NotshipingToVisibilityConverter 
+           x:Key="NotshipingToVisibilityConverter"/>
+        <Style TargetType="Button">
+            <Setter Property="FontSize" Value="10" />
+            <Setter Property="FontFamily" Value="Segoe Print" />
+            <Setter Property="BorderBrush" Value="#FF222A18"/>
+            <Setter Property="Foreground" Value="#FF222A18"/>
+            <Setter Property="Background" Value="#FF97AD96"/>
+            <Setter Property="BorderThickness" Value="3,3,3,3"/>
+        </Style>
+    </Window.Resources>
+
     <Grid>
         <Grid x:Name="gridOrder" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="47,52,0,0" Height="287.64">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
 
             </Grid.RowDefinitions>
 
-        <Label Grid.Column="0" Content="ID:" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
-        <TextBox x:Name="iDTextBox" IsReadOnly="True" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="0" Text="{Binding ID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Grid.Column="0" Content="ID:" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
+            <TextBox x:Name="iDTextBox" IsReadOnly="True" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="0" Text="{Binding ID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
 
-        <Label Grid.Column="0" Content="Costumer Name:" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
+            <Label Grid.Column="0" Content="Costumer Name:" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
             <TextBox x:Name="costumerNameTextBox" IsReadOnly="True" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="1" Text="{Binding CostumerName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
 
-        <Label Grid.Column="0" Content="Costumer Adress:" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
+            <Label Grid.Column="0" Content="Costumer Adress:" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
             <TextBox x:Name="costumerAdressTextBox" IsReadOnly="True" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="2" Grid.Row="2" Text="{Binding CostumerAdress, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
 
-        <Label Grid.Column="0" Content="order Date:" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
+            <Label Grid.Column="0" Content="order Date:" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
             <DatePicker x:Name="orderDateDatePicker" IsHitTestVisible="False" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="3" SelectedDate="{Binding orderDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center"/>
 
-        <Label Grid.Column="0" Content="Payment Date:" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
+            <Label Grid.Column="0" Content="Payment Date:" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
             <DatePicker x:Name="paymentDateDatePicker" IsHitTestVisible="False" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="4" SelectedDate="{Binding PaymentDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center"/>
 
-        <Label Grid.Column="0" Content="Ship Date:" HorizontalAlignment="Left" Margin="3" Grid.Row="5" VerticalAlignment="Center"/>
-        <DatePicker x:Name="shipDateDatePicker" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="5" SelectedDate="{Binding ShipDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center"/>
+            <Label Grid.Column="0" Content="Ship Date:" HorizontalAlignment="Left" Margin="3" Grid.Row="5" VerticalAlignment="Center"/>
+            <DatePicker x:Name="shipDateDatePicker" IsHitTestVisible="False" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="5" SelectedDate="{Binding ShipDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center"/>
 
-        <Label Grid.Column="0" Content="Delivery Date:" HorizontalAlignment="Left" Margin="3" Grid.Row="6" VerticalAlignment="Center"/>
-        <DatePicker x:Name="deliveryDateDatePicker" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="6" SelectedDate="{Binding DeliveryDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center"/>
+            <Label Grid.Column="0" Content="Delivery Date:" HorizontalAlignment="Left" Margin="3" Grid.Row="6" VerticalAlignment="Center"/>
+            <DatePicker x:Name="deliveryDateDatePicker" IsHitTestVisible="False" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="6" SelectedDate="{Binding DeliveryDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center"/>
 
-        <Label Grid.Column="0" Content="Status:" HorizontalAlignment="Left" Margin="3" Grid.Row="7" VerticalAlignment="Center"/>
-            <ComboBox x:Name="statusComboBox" IsHitTestVisible="False" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="7" VerticalAlignment="Center" Width="120">
+            <Label Grid.Column="0" Content="Status:" HorizontalAlignment="Left" Margin="3" Grid.Row="7" VerticalAlignment="Center"/>
+            <TextBox x:Name="categoryTextBox" IsReadOnly="True" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="7" Text="{Binding Status, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+
+            <!--<ComboBox x:Name="statusComboBox" IsHitTestVisible="False" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="7" VerticalAlignment="Center" Width="120">
                 <ComboBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <VirtualizingStackPanel/>
                     </ItemsPanelTemplate>
                 </ComboBox.ItemsPanel>
-            </ComboBox>
+            </ComboBox>-->
 
             <Label Grid.Column="0" Content="Total Price:" HorizontalAlignment="Left" Margin="3" Grid.Row="8" VerticalAlignment="Center" RenderTransformOrigin="0.532,1.375" />
             <TextBox x:Name="totalPriceTextBox" IsReadOnly="True" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="8" Text="{Binding TotalPrice, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-    </Grid>
+        </Grid>
         <DataGrid x:Name="orderItemDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" IsReadOnly="True" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="38,345,423,17">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="idColumn2" Binding="{Binding Id}" Header="Id" Width="*"/>
@@ -73,8 +86,11 @@ x:Key="notBooleanToVisibilityConverter" />
                 <DataGridTextColumn x:Name="totalPriceColumn1" Binding="{Binding TotalPrice}" Header="Total Price" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="btnUpdateDelivery" Content="update" HorizontalAlignment="Left" Margin="386,309,0,0" VerticalAlignment="Top" Click="btnUpdateDelivery_Click"/>
-        <Button x:Name="btnUpdateshipping" Content="update" HorizontalAlignment="Left" Margin="386,276,0,0" VerticalAlignment="Top" Click="btnUpdateshipping_Click"/>
+        <Button x:Name="btnUpdateshipping" Content="updates" Visibility="{Binding ElementName=shipDateDatePicker, Path=Text,
+        Converter={StaticResource notBooleanToVisibilityConverter}}" HorizontalAlignment="Left" Margin="340,229,0,0" VerticalAlignment="Top" Click="btnUpdateshipping_Click" Width="72" Height="25"/>
+        <Button x:Name="btnUpdateDelivery" Content="updated" Visibility="{Binding ElementName=btnUpdateshipping, Path=Visibility,
+        Converter={StaticResource NotshipingToVisibilityConverter}}" HorizontalAlignment="Left" Margin="340,0,0,0" VerticalAlignment="Center" Click="btnUpdateDelivery_Click" Width="72" Height="35"/>
+        <Button x:Name="btnOk" Content="OK" HorizontalAlignment="Left" Margin="729,386,0,0" VerticalAlignment="Top" Click="btnOk_Click"/>
     </Grid>
 
 

@@ -17,7 +17,14 @@
 
         public override string ToString()
         {
+            if(EntityID != 0)
+            {
                 return $"{EntityName} number {EntityID} does not exist.";
+            }
+            else
+            {
+                return $"{EntityName} does not exist.";
+            }
         }
 
     }
@@ -35,7 +42,13 @@
                     : base(message, inner) { EntityId = id; EntityName = name; }
         public override string ToString()
         {
-            return $"{EntityName} number {EntityId} already exists.";
+            if (EntityId != 0)
+            {
+                return $"{EntityName} number {EntityId} already exists.";
+            }
+            {
+                return $"{EntityName} already exists.";
+            }
         }
         
     }

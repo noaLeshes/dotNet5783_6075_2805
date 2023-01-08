@@ -52,6 +52,11 @@ namespace PL
             }
         }
 
+        private void btnLogIn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
         //private void Products_Click(object sender, RoutedEventArgs e)
         //{
         //    new ProductListWindow().Show();// the productListWindow shows when clicking the products button

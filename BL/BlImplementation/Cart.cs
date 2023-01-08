@@ -21,7 +21,7 @@ internal class Cart : ICart
             DO.Product p = dal!.Product.GetById(productId);// finding a product
             if (oi == null)// if not found
             {
-                if (p.InStock >= 0)// if the wanted product id in stock
+                if (p.InStock > 0)// if the wanted product id in stock
                 {
                     c.TotalPrice += p.Price;
                     ((List<BO.OrderItem?>)c.Items!).Add(new BO.OrderItem// adding a new product
@@ -37,6 +37,11 @@ internal class Cart : ICart
                     dal?.Product.Update(p);// update the produt stock
                     index_orderItem++;
                 }
+                else if (p.InStock <= 0)// if the product is found and there aren't enough of it in stock
+                {
+                    throw new BO.BlNotInStockException(p.Name!, p.ID);
+                }
+
             }
             else if (p.InStock >= oi.Amount + 1)// if the product is found and there are enough of it in stock
             {
@@ -45,7 +50,7 @@ internal class Cart : ICart
                 oi.TotalPrice += oi.Price;// update the total price 
                 c.TotalPrice += p.Price;
             }
-            else// if the product is found and there aren't enough of it in stock
+            else if(p.InStock <= 0)// if the product is found and there aren't enough of it in stock
             {
                 throw new BO.BlNotInStockException(p.Name!, p.ID);
             }
@@ -85,7 +90,7 @@ internal class Cart : ICart
             //}
             foreach (BO.OrderItem oi in c.Items!)// checking the cart's items
             {
-                DO.Product? p = dal?.Product.GetById(oi.Id);
+                DO.Product? p = dal?.Product.GetById(oi.ProductId);
                 if (oi.Amount > p?.InStock)// not enough in stock
                     throw new BO.BlNotInStockException(p?.Name!, p?.ID ?? 0);
                 if (oi.Amount <= 0)// throwing if a detail is invalid
@@ -153,7 +158,7 @@ internal class Cart : ICart
             if (amount == 0)
             {
                 ((List<BO.OrderItem?>)c.Items!).Remove(oi);// if out of stock
-                c.TotalPrice -= oi.Price;// updating total price
+                c.TotalPrice -= oi.Price*oi.Amount;// updating total price
             }
             else if (amount > oi.Amount)// increasing the amount
             {

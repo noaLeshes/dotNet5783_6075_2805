@@ -55,7 +55,10 @@ namespace PL.Windows
             {
                 BO.ProductForList? p = (BO.ProductForList?)productForListDataGrid.SelectedItem;
                 int id = p?.ID ?? 0;
-                new ProductWindow(id).ShowDialog();
+                ProductWindow pw = new ProductWindow(id);// a new productWindow
+                pw.txtId.IsReadOnly = true;
+                pw.cmbProductCategory.IsHitTestVisible = false;
+                pw.ShowDialog();
                 productForListDataGrid.ItemsSource = bl?.Product.GetProductsList();// getting the product list with the updated product
 
             }

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -47,6 +49,7 @@ namespace PL.Windows
         private void btnadd_Click(object sender, RoutedEventArgs e)
         {
             bl.Cart.AddItem(myCart, myProduct.Id);
+            CostumerProductListWindow d = new CostumerProductListWindow(myCart);
             this.Close();// closing the window after the product is added
             MessageBox.Show("Product added successfully to your cart", " 😃 ", MessageBoxButton.OK, MessageBoxImage.None);// a messagebox appears when the product is added
         }

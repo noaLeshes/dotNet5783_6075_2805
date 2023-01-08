@@ -6,7 +6,17 @@
         xmlns:local="clr-namespace:PL.Windows"
         mc:Ignorable="d"
         Title="CostumerProductListWindow" Height="450" Width="800">
-    <Grid Name="MainGrid">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="FontFamily" Value="Segoe Print" />
+            <Setter Property="BorderBrush" Value="#FF222A18"/>
+            <Setter Property="Foreground" Value="#FF222A18"/>
+            <Setter Property="Background" Value="#FF97AD96"/>
+            <Setter Property="BorderThickness" Value="3,3,3,3"/>
+        </Style>
+    </Window.Resources>
+    <Grid Name="MainGrid"> 
         <Grid.RowDefinitions>
             <RowDefinition Height="50*"/>
             <RowDefinition Height="450*"/>
@@ -26,7 +36,9 @@
                 <DataGridCheckBoxColumn x:Name="inStockColumn" Binding="{Binding InStock}" Header="In Stock" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="btnRefresh1" Content="Refresh" HorizontalAlignment="Left" Margin="590,0,0,0" Grid.Row="2" VerticalAlignment="Center" Width="55"  Background="#FF97AD96" Foreground="#FF1B2A15" BorderBrush="#FF222A18" BorderThickness="2,2,2,2" Click="btnRefresh1_Click"/>
-        <Button Content="🛒" HorizontalAlignment="Left" Margin="83,0,0,0" Grid.Row="2" VerticalAlignment="Center" RenderTransformOrigin="0.928,-2.29" Height="33" Width="34"/>
+        <Button x:Name="btnRefresh1" Content="↺" HorizontalAlignment="Left" Margin="695,0,0,0" Grid.Row="2" VerticalAlignment="Center" Width="55"  Background="#FF97AD96" Foreground="#FF1B2A15" BorderBrush="#FF222A18" BorderThickness="2,2,2,2" Click="btnRefresh1_Click"/>
+        <Button Content="🛒" x:Name="btnCart" HorizontalAlignment="Left" Margin="59,299,0,0" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="0.928,-2.29" Height="79" Width="80" Click="btnCart_Click" FontSize="30" Grid.RowSpan="2"/>
+        <!--<Label Content= "{Binding Counter}" HorizontalAlignment="Left" Margin="160,309,0,0" Grid.Row="1" VerticalAlignment="Top" Height="74" Grid.RowSpan="2" Width="80" Background="#FFCE9898"/>-->
+
     </Grid>
 </Window>

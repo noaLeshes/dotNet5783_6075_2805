@@ -36,5 +36,10 @@ namespace PL.Windows
             new OrderListWindow().Show();
 
         }
+
+        private void btnOrderTracking_Click(object sender, RoutedEventArgs e)
+        {
+            new OrderTrackingWindow().Show();
+        }
     }
 }

@@ -6,10 +6,19 @@
         xmlns:local="clr-namespace:PL.Windows"
         mc:Ignorable="d"
         Title="ManagerWindow" Height="450" Width="800">
-    
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="FontFamily" Value="Segoe Print" />
+            <Setter Property="BorderBrush" Value="#FF222A18"/>
+            <Setter Property="Foreground" Value="#FF222A18"/>
+            <Setter Property="Background" Value="#FF97AD96"/>
+            <Setter Property="BorderThickness" Value="3,3,3,3"/>
+        </Style>
+    </Window.Resources>
     <Grid>
-        <Button Content="Products" x:Name="btnProducts" HorizontalAlignment="Left" Margin="205,200,0,0" VerticalAlignment="Top" Width="55" Click="btnProducts_Click" Height="32" BorderBrush="#FF222A18" Foreground="#FF222A18" Background="#FF97AD96" BorderThickness="3,3,3,3"/>
-        <Button Content="Orders" x:Name="btnOrders" HorizontalAlignment="Left" Margin="205,100,0,0" VerticalAlignment="Top" Width="55" Click="btnOrders_Click" Height="32" BorderBrush="#FF222A18" Foreground="#FF222A18" Background="#FF97AD96" BorderThickness="3,3,3,3"/>
-
+        <Button Content="Products" x:Name="btnProducts" HorizontalAlignment="Left" Margin="205,217,0,0" VerticalAlignment="Top" Width="166" Click="btnProducts_Click" Height="41" BorderBrush="#FF222A18" Foreground="#FF222A18" Background="#FF97AD96" BorderThickness="3,3,3,3"/>
+        <Button Content="Orders" x:Name="btnOrders" HorizontalAlignment="Left" Margin="205,100,0,0" VerticalAlignment="Top" Width="166" Click="btnOrders_Click" Height="41" BorderBrush="#FF222A18" Foreground="#FF222A18" Background="#FF97AD96" BorderThickness="3,3,3,3"/>
+        <Button Content="Order Tracking" x:Name="btnOrderTracking" HorizontalAlignment="Left" Margin="205,324,0,0" VerticalAlignment="Top" Width="166" Click="btnOrderTracking_Click" Height="41" BorderBrush="#FF222A18" Foreground="#FF222A18" Background="#FF97AD96" BorderThickness="3,3,3,3"/>
     </Grid>
 </Window>

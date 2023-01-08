@@ -10,11 +10,15 @@ internal static class DataSource
     internal static List<Product?> ProductList { get; } = new List<Product?>();
     internal static List<Order?> OrderList { get; } = new List<Order?>();
     internal static List<OrderItem?> OrderItemList { get; } = new List<OrderItem?>();
+    internal static List<User?> UserList { get; } = new List<User?>();
+
     private static void s_Initialize()
     {
         createAndInitProducts();
         createAndInitOrders();
         createAndInitOrderItems();
+        createAndInitUsers();
+        
     }
     /// <summary>
     /// creating the runing numbers for the add func
@@ -48,7 +52,6 @@ internal static class DataSource
             });
         }
     }
-
     private static void createAndInitOrders()//order constructor
     {
         /// <summary>
@@ -98,6 +101,7 @@ internal static class DataSource
 
         }
     }
+    
     private static int[] amounts = new int[5] { 2, 25, 15, 3, 5 };
     private static void createAndInitOrderItems()//orderItem constructor
     {
@@ -124,5 +128,37 @@ internal static class DataSource
                 }) ;
             }
         }
+    }
+    private static void createAndInitUsers()
+    {
+        string[] names = { "Moshe", "Yosi", "Avi", "Adi", "Rachel" };
+        string[] passwords = { "1111", "2222", "3333", "4444", "5555" };
+
+        UserList.Add(new User
+        {
+            UserStatus = UserStatus.MANAGER,
+            UserName = "Noa Leshes",
+            Password = "1234"
+        });
+        UserList.Add(new User
+        {
+            UserStatus = UserStatus.MANAGER,
+            UserName = "Hadas Carmen",
+            Password = "1234"
+        });
+        ;
+        for (int i = 0; i < names.Length; i++)
+        {
+            string userName = names[/*s_rand.Next(5)*/i];
+            string password = passwords[/*s_rand.Next(5)*/i];
+            UserList.Add(new User
+            {
+                UserStatus = UserStatus.CUSTOMER,
+                UserName = userName,
+                Password = password
+            });
+        }
+        
+
     }
 }

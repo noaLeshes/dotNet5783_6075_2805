@@ -1,5 +1,6 @@
 ﻿using BlApi;
 using BO;
+using DO;
 
 namespace BlImplementation;
 
@@ -86,7 +87,7 @@ internal class Order : IOrder
                                {
                               ID = o.ID,
                               CustomerName = o.CustomerName,
-                              AmountOfItems = orderitems.Count(),//count the number of orderitems in order
+                              AmountOfItems = dal?.OrderItem.GetAll(x => x?.OrderId == o.ID).Sum(x => x?.Amount) ?? 0,//count the number of orderitems in order
                               TotalPrice = orderitems.Sum(x => x?.Price ?? 0),// summarize all the products price
                               Status = findStatus(o) // find the current status
                           });
@@ -103,9 +104,9 @@ internal class Order : IOrder
             if (o?.OrderDate != null)// check if OrderDate updated
                 list.Add(Tuple.Create(o?.OrderDate, "your order has been accepted")); //add to Tracking
             if (o?.ShipDate != null)// check if ShipDate updated
-                list.Add(Tuple.Create(o?.OrderDate, "your order has been shipped ")); //add to Tracking
+                list.Add(Tuple.Create(o?.ShipDate, "your order has been shipped ")); //add to Tracking
             if (o?.DeliveryDate != null)// check if DeliveryDate updated
-                list.Add(Tuple.Create(o?.OrderDate, "your order has been deliverd ")); //add to Tracking
+                list.Add(Tuple.Create(o?.DeliveryDate, "your order has been deliverd ")); //add to Tracking
 
             return new BO.OrderTracking()
             {

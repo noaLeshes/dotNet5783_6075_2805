@@ -28,6 +28,10 @@ public class BlAlreadyExistsEntityException : Exception
         {
             return $"{EntityName} already exists in an order.";
         }
+        else if (EntityId == 0)
+        {
+            return $"{EntityName} already exists.";
+        }
         else
         {
             return $"{EntityName} number {EntityId} already exists.";

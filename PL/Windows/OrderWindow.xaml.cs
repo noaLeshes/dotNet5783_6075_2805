@@ -15,33 +15,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
+
 namespace PL.Windows
 {
     /// <summary>
     /// Interaction logic for OrderWindow.xaml
     /// </summary>
-   
+
     public partial class OrderWindow : Window
     {
         BlApi.IBl? bl = BlApi.Factory.Get()!;
-        //public class NotDateTimeToVisibilityConverter : IValueConverter
-        //{
-        //    //convert from source property type to target property type
-        //    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        //    {
-        //        if (value != null)
-        //            return Visibility.Hidden; //Visibility.Collapsed;
-        //        else
-        //        {
-        //            return Visibility.Visible;
-        //        }
-        //    }
-        //    //convert from target property type to source property type
-        //    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        //    {
-        //        throw new NotImplementedException();
-        //    }
-        //}
+
         public BO.Order? orderCurrent
         {
             get { return (BO.Order?)GetValue(orderCurrentProperty); }
@@ -55,9 +39,7 @@ namespace PL.Windows
         public OrderWindow(int id)
         {
             InitializeComponent();
-            //int nid = (int)id;
             orderCurrent = bl.Order.GetOrderDitailes(id);
-            statusComboBox.ItemsSource = Enum.GetValues(typeof(BO.OrderStatus));
             orderItemDataGrid.ItemsSource = bl.Order.GetOrderDitailes(id).Items;
 
 
@@ -65,17 +47,62 @@ namespace PL.Windows
 
         private void btnUpdateDelivery_Click(object sender, RoutedEventArgs e)
         {
-            Order? o = bl?.Order.UpdateIfProvided(orderCurrent.ID, orderCurrent.DeliveryDate);
+            Order? o = bl?.Order.UpdateIfProvided(orderCurrent.ID);
             this.Close();
             MessageBox.Show("Product updated successfully ", " 😃 ", MessageBoxButton.OK, MessageBoxImage.None);// a messagebox appears when the product is updated
         }
 
         private void btnUpdateshipping_Click(object sender, RoutedEventArgs e)
         {
-            Order? o = bl?.Order.UpdateShipping(orderCurrent.ID, orderCurrent.ShipDate);
+            Order? o = bl?.Order.UpdateShipping(orderCurrent.ID);
             this.Close();
             MessageBox.Show("Product updated successfully ", " 😃 ", MessageBoxButton.OK, MessageBoxImage.None);// a messagebox appears when the product is updated
         }
 
+        private void btnOk_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
+
+
+    public class NotDateTimeToVisibilityConverter : IValueConverter
+    {
+        //convert from source property type to target property type
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value.ToString() != "")
+                return Visibility.Hidden; //Visibility.Collapsed;
+            else
+            {
+                return Visibility.Visible;
+            }
+        }
+        //convert from target property type to source property type
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    
+    public class NotshipingToVisibilityConverter : IValueConverter
+    {
+        //convert from source property type to target property type
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            Visibility visableValue = (Visibility)value;
+            if (visableValue == Visibility.Visible)
+                return Visibility.Hidden; //Visibility.Collapsed;
+            else
+            {
+                return Visibility.Visible;
+            }
+        }
+        //convert from target property type to source property type
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
 }

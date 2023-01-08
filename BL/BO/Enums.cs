@@ -16,3 +16,8 @@ public enum Category
     LIPS, 
     BEAUTY
 }
+public enum UserStatus 
+{ 
+    Maneger,
+    Customer
+};
