@@ -31,17 +31,17 @@ internal static class DataSource
     internal static int _nextOrderItemNumber { get => nextOrderItemNumber++; }//orderItem
 
     //matrix of products
-    private static string[,] productNames = new string[5, 3] { { "EyeLiner", "Mascara", "Eyeshadow-Palette" }, //eyes
-                                                  { "Foundation","Concealer", "Blush" },// face
-                                                  { "Eyeshadow-Brush", "Blender-Brush", "Blush-Brush"},// brushes
-                                                  {"LipStick","Gloss", "Lip-Liner" },// lips
-                                                  {"Face-Mask","Moisturizer", "Makeup-Wipes" }/*beauty*/ };
+    private static string[,] productNames = new string[5, 4] { { "EyeLiner", "Mascara", "Eyeshadow-Palette", "Eyelash-Curler" }, //eyes
+                                                  { "Foundation","Concealer", "Blush", "Fix" },// face
+                                                  { "Eyeshadow-Brush", "Blender-Brush", "Blush-Brush", "Brush-Set"},// brushes
+                                                  {"LipStick","Gloss", "Lip-Liner", "Lip-Scrub" },// lips
+                                                  {"Face-Mask","Moisturizer", "Makeup-Wipes", "Eye-Patches" }/*beauty*/ };
     private static void createAndInitProducts()//product constructor
     {
-        for (int i = 0; i < 10; i++)//creating 10 products
+        for (int i = 0; i < 15; i++)//creating 10 products
         {
             int c = s_rand.Next(5);
-            int n = s_rand.Next(3);
+            int n = s_rand.Next(4);
             ProductList.Add(new Product//add the product to the array
             {
                 ID = i + 100000,

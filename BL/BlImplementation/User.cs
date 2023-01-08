@@ -36,7 +36,7 @@ internal class User : IUser
         }
 
     }
-    public BO.User GetByUserName(string userName)
+    public BO.User GetByUserName(string userName  )
     {
         try
         {
