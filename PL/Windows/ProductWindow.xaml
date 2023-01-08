@@ -7,6 +7,10 @@
         mc:Ignorable="d"
         DataContext="{Binding productCurrent, RelativeSource={RelativeSource Self}}"
         Title="ProductWindow" Height="450" Width="800">
+    <Window.Resources>
+        <local:convertImagePathToBitmap2 
+            x:Key="ImagePath" />
+    </Window.Resources>
     <Grid Background="#FF97AD96">
         <Grid x:Name="gridProduct" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="236,26,0,0">
             <Grid.ColumnDefinitions>
@@ -44,6 +48,9 @@
         </Grid>
         <Button Content="Add" x:Name="btnAdd" HorizontalAlignment="Left" Margin="200,293,0,0" VerticalAlignment="Top" Click="btnAdd_Click" Background="#FF97AD96" Foreground="#FF222A18" BorderBrush="#FF222A18" Height="32" Width="55" BorderThickness="3,3,3,3"/>
         <Button Content="Update" x:Name="btnUpdate" HorizontalAlignment="Left" Margin="200,293,0,0" VerticalAlignment="Top" Width="55" Click="btnUpdate_Click" Height="32" BorderBrush="#FF222A18" Foreground="#FF222A18" Background="#FF97AD96" BorderThickness="3,3,3,3"/>
-        <Border BorderBrush="#FF222A18" BorderThickness="1"/>
+        <Border BorderBrush="#FF222A18" BorderThickness="1" Margin="0,10,0,-10"/>
+        <Border x:Name="Border" Grid.Column="0" BorderBrush="#FF222A18" BorderThickness="5" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="24,26,0,0" Height="230"  Width="204">
+            <Image Grid.Column="0" x:Name="productImg" HorizontalAlignment="Left" Height="220"  VerticalAlignment="Top" Width="195" Source="{Binding Path=img, Converter={StaticResource ImagePath}}" Stretch="UniformToFill" Margin="0,0,0,0"  />
+        </Border>
     </Grid>
 </Window>

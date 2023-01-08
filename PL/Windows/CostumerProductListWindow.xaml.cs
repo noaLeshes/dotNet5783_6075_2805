@@ -74,12 +74,9 @@ namespace PL.Windows
         {
             new CartWindow(myCart).ShowDialog();
             catalog.ItemsSource = bl?.Product.GetProducts();// getting the product list with the updated product
-
-
-        }
-       
+        }  
     }
-    public class convertImagePathToBitmap : IValueConverter
+    public class convertImagePathToBitmap2 : IValueConverter
     {
         //convert from string type to Bitmap type
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
@@ -94,7 +91,7 @@ namespace PL.Windows
             }
             catch (Exception ex)
             {
-                string img = img = @"\pics\IMGNotFound.jpg";
+                string img = @"\pics\IMGNotFound.jpg";
                 string dirrectory = Environment.CurrentDirectory[..^4];
                 string fullName = dirrectory + img;
                 BitmapImage bitmapImage = new BitmapImage(new Uri(fullName));

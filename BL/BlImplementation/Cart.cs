@@ -31,6 +31,7 @@ internal class Cart : ICart
                         ProductId = p.ID,
                         Amount = 1,
                         Price = p.Price,
+                        img = @"\pics\IMG" + p.Name + ".jpg",
                         TotalPrice = p.Price
                     });
                     //p.InStock -= 1;// updating the amount of product in stock
@@ -67,27 +68,6 @@ internal class Cart : ICart
     {
         try
         {
-            //var list = from BO.OrderItem oi in c.Items// checking the cart's items
-            //           let p = dal.Product.GetById(oi.Id)
-            //           where oi.Amount > p.InStock
-            //           select oi;
-            //if (!list.Any())
-            //{
-            //    var p1 = from p in list
-            //             select p;
-            //    throw new BO.BlNotInStockException(p1, p.ID);
-            //}
-
-
-
-
-            //{
-            //    DO.Product p = dal.Product.GetById(oi.Id);
-            //    if (oi.Amount > p.InStock)// not enough in stock
-            //        throw new BO.BlNotInStockException(p.Name!, p.ID);
-            //    if (oi.Amount <= 0)// throwing if a detail is invalid
-            //        throw new BO.BlInvalidExspressionException("Amount");
-            //}
             foreach (BO.OrderItem oi in c.Items!)// checking the cart's items
             {
                 DO.Product? p = dal?.Product.GetById(oi.ProductId);

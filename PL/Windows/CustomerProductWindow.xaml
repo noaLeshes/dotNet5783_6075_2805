@@ -47,9 +47,10 @@
         <TextBox x:Name="amountTextBox" IsReadOnly="True" Grid.Column="1" HorizontalAlignment="Center" Height="NaN" Grid.Row="5" Text="{Binding Amount, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
         <Label Content="In Stock:" HorizontalAlignment="Center" Grid.Row="6" VerticalAlignment="Center"/>
         <CheckBox x:Name="inStockCheckBox" IsHitTestVisible="False"  Grid.Column="1" Content="" HorizontalAlignment="Left" IsChecked="{Binding InStock, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="3,0,0,0" Grid.Row="6" VerticalAlignment="Center"/>
-        <Button x:Name="btnadd" Content="Add to cart" HorizontalAlignment="Left" Margin="208,101,0,0" Grid.Row="6" VerticalAlignment="Top" RenderTransformOrigin="15.302,7.135" Click="btnadd_Click" Grid.Column="1" Grid.RowSpan="2"/>
         <Border x:Name="Border" BorderBrush="#FF222A18" BorderThickness="5" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="-256,12,108,7" Grid.RowSpan="5" Grid.Row="2" Height="210"  Width="204">
             <Image Grid.Row="0" x:Name="productImg" HorizontalAlignment="Left" Height="200"  VerticalAlignment="Top" Width="195" Source="{Binding Path=img, Converter={StaticResource ImagePath}}" Stretch="UniformToFill" Margin="0,0,0,0"  />
         </Border>
+        <Button x:Name="btnadd" Content="Add to cart" HorizontalAlignment="Left" Margin="221,42,0,0" Grid.Row="6" VerticalAlignment="Top" RenderTransformOrigin="15.302,7.135" Click="btnadd_Click" Height="45" Grid.Column="1" Background="#FF97AD96" Grid.RowSpan="3"/>
+
     </Grid>
 </Window>

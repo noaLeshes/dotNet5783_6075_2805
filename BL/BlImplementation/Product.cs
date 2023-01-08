@@ -52,6 +52,7 @@ internal class Product : IProduct
                {
                    ID = p?.ID ?? throw new BO.BlInvalidExspressionException("Id"),// throwing if the detail is invalid
                    Name = p?.Name ?? throw new BO.BlNullPropertyException("Name"),
+                   img = @"\pics\IMG" + p?.Name + ".jpg",
                    Category = (BO.Category?)p?.Category ?? throw new BO.BlWrongCategoryException(),// throwing if wrong category
                    Price = p?.Price ?? 0 
                };
