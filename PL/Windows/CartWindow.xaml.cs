@@ -102,7 +102,6 @@ namespace PL.Windows
             orderItemDataGrid.ItemsSource = cartCurrent!.Items;
             txtTotalPrice.Text = cartCurrent.TotalPrice.ToString();
             orderItemDataGrid.Items.Refresh();
-
         }
 
         private void btnConfirmCart_Click(object sender, RoutedEventArgs e)

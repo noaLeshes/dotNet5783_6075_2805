@@ -1,6 +1,7 @@
 ﻿using DO;
 using DalApi;
-namespace Dal;
+
+namespace DalTest;
 
 
 public enum MainChoice { End = 0, Product, Order, OrderItem }
@@ -26,7 +27,7 @@ internal class Program
             string? myName;
             double myPrice;
             Category myCategory;
-            if (SecondaryChoice.TryParse(Console.ReadLine(), out productChoice))
+            if (Enum.TryParse(Console.ReadLine(), out productChoice))
             {
                 switch (productChoice)
                 {
@@ -35,7 +36,7 @@ internal class Program
                         if (int.TryParse(Console.ReadLine(), out myId) == false) throw new Exception("incorrect id");//if not valid
                         Console.WriteLine("Enter the product's name: ");
                         myName = Console.ReadLine();
-                        
+
                         Console.WriteLine("Enter the product's price: ");
                         if (double.TryParse(Console.ReadLine(), out myPrice) == false) throw new Exception("incorrect price");//if not valid
                         Console.WriteLine(@"Enter the product's category:
@@ -44,7 +45,7 @@ internal class Program
                                            2 - BRUSHES
                                            3 - LIPS
                                            4 - BEAUTY");
-                        if (Category.TryParse(Console.ReadLine(), out myCategory) == false || (int)myCategory > 4 || (int)myCategory < 0) throw new Exception("incorrect category");
+                        if (Enum.TryParse(Console.ReadLine(), out myCategory) == false || (int)myCategory > 4 || (int)myCategory < 0) throw new Exception("incorrect category");
                         Console.WriteLine("Enter the amount of products in stock: ");
                         if (int.TryParse(Console.ReadLine(), out myInStock) == false) throw new Exception("incorrect amount");//if not valid
                         Product p = new Product //initalize the new product
@@ -81,7 +82,7 @@ internal class Program
                                            2 - BRUSHES
                                            3 - LIPS
                                            4 - BEAUTY");
-                        if (Category.TryParse(Console.ReadLine(), out myCategory) == false || (int)myCategory > 4 || (int)myCategory < 0) throw new Exception("incorrect category");
+                        if (Enum.TryParse(Console.ReadLine(), out myCategory) == false || (int)myCategory > 4 || (int)myCategory < 0) throw new Exception("incorrect category");
                         Console.WriteLine("Enter the amount of products in stock: ");
                         if (int.TryParse(Console.ReadLine(), out myInStock) == false) throw new Exception("incorrect amount");
                         Product p1 = new Product //updating the changes the user gave
@@ -139,7 +140,7 @@ internal class Program
             int myId;
             string? myCustomerName, myCustomerEmail, myCustomerAddress;
             DateTime myOrderDate;
-            if (SecondaryChoice.TryParse(Console.ReadLine(), out orderChoice))
+            if (Enum.TryParse(Console.ReadLine(), out orderChoice))
             {
                 switch (orderChoice)
                 {
@@ -244,7 +245,7 @@ internal class Program
             SecondaryChoice orderItemChoice = SecondaryChoice.Add;//initalize the choise
             int myId, myOrderId, myProductId, myAmount;
             double myPrice;
-            if (SecondaryChoice.TryParse(Console.ReadLine(), out orderItemChoice))
+            if (Enum.TryParse(Console.ReadLine(), out orderItemChoice))
             {
                 switch (orderItemChoice)
                 {
@@ -319,7 +320,7 @@ internal class Program
                     case SecondaryChoice.GetAllOrderProducts:
                         Console.WriteLine("Enter the order's id");
                         if (int.TryParse(Console.ReadLine(), out myId) == false) throw new Exception("incorrect id");
-                        IEnumerable<OrderItem?> newAllOrderProductsArr = dal.OrderItem.GetAll(x=> x?.OrderId == myId);// find the OrderItems of the wanted order
+                        IEnumerable<OrderItem?> newAllOrderProductsArr = dal.OrderItem.GetAll(x => x?.OrderId == myId);// find the OrderItems of the wanted order
                         foreach (var oi4 in newAllOrderProductsArr)
                         {
                             Console.WriteLine(oi4);//ptint all the OrderItems in the same order
@@ -330,7 +331,7 @@ internal class Program
                         if (int.TryParse(Console.ReadLine(), out myOrderId) == false) throw new Exception("incorrect order id");
                         Console.WriteLine("Enter the product's id: ");//get the wanted product id
                         if (int.TryParse(Console.ReadLine(), out myProductId) == false) throw new Exception("incorrect product id");
-                        OrderItem oi5 = dal.OrderItem.GetByFilter(x=> x?.ProductId == myProductId && x?.OrderId == myOrderId);//find the wanted OrderItem
+                        OrderItem oi5 = dal.OrderItem.GetByFilter(x => x?.ProductId == myProductId && x?.OrderId == myOrderId);//find the wanted OrderItem
                         Console.WriteLine(oi5);
                         break;
 
@@ -361,7 +362,7 @@ internal class Program
                             1 for Product
                             2 for Order
                             3 for OrderItem");
-                if (MainChoice.TryParse(Console.ReadLine(), out choice))
+                if (Enum.TryParse(Console.ReadLine(), out choice))
                 {
                     switch (choice)
                     {

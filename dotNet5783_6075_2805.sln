@@ -7,6 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stage0", "Stage0\Stage0.csp
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{350DD5F7-DB81-4D81-9058-F07D5F727F57}"
 	ProjectSection(SolutionItems) = preProject
+		BL\BlImplementation\Order.cs = BL\BlImplementation\Order.cs
 		..\README.md = ..\README.md
 	EndProjectSection
 EndProject
@@ -25,6 +26,31 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "xml", "xml", "{9181DB88-9D3A-4E2A-BC32-C108C2201363}"
 	ProjectSection(SolutionItems) = preProject
 		xml\dal-config.xml = xml\dal-config.xml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "pics", "pics", "{7DC69C5E-797D-4775-9F27-7C48322A6EE3}"
+	ProjectSection(SolutionItems) = preProject
+		pics\IMGBlender-Brush.jpg = pics\IMGBlender-Brush.jpg
+		pics\IMGBlush-Brush.jpg = pics\IMGBlush-Brush.jpg
+		pics\IMGBlush.jpg = pics\IMGBlush.jpg
+		pics\IMGBrush-Set.jpg = pics\IMGBrush-Set.jpg
+		pics\IMGConcealer.jpg = pics\IMGConcealer.jpg
+		pics\IMGEye-Patches.jpg = pics\IMGEye-Patches.jpg
+		pics\IMGEyelash-Curler.jpg = pics\IMGEyelash-Curler.jpg
+		pics\IMGEyeLiner.jpg = pics\IMGEyeLiner.jpg
+		pics\IMGEyeshadow-Brush.jpg = pics\IMGEyeshadow-Brush.jpg
+		pics\IMGEyeshadow-Palette.jpg = pics\IMGEyeshadow-Palette.jpg
+		pics\IMGFace-Mask.jpg = pics\IMGFace-Mask.jpg
+		pics\IMGFix.jpg = pics\IMGFix.jpg
+		pics\IMGFoundation.jpg = pics\IMGFoundation.jpg
+		pics\IMGGloss.jpg = pics\IMGGloss.jpg
+		pics\IMGLip-Liner.jpg = pics\IMGLip-Liner.jpg
+		pics\IMGLip-Scrub.jpg = pics\IMGLip-Scrub.jpg
+		pics\IMGLipStick.jpg = pics\IMGLipStick.jpg
+		pics\IMGMakeup-Wipes.jpg = pics\IMGMakeup-Wipes.jpg
+		pics\IMGMascara.jpg = pics\IMGMascara.jpg
+		pics\IMGMoisturizer.jpg = pics\IMGMoisturizer.jpg
+		pics\IMGNotFound.jpg = pics\IMGNotFound.jpg
 	EndProjectSection
 EndProject
 Global

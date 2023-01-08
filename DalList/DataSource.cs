@@ -46,7 +46,7 @@ internal static class DataSource
             {
                 ID = i + 100000,
                 Name = productNames[c, n],//get the product's name from the matrix
-                Price = s_rand.Next(50, 250),
+                Price = s_rand.Next(30, 100),
                 Category = (Category)c,
                 InStock = s_rand.Next(50)
             });

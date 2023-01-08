@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PL.Windows"
         mc:Ignorable="d"
         DataContext="{Binding myProduct, RelativeSource={RelativeSource Self}}"
-        Title="CustomerProductWindow" Height="450" Width="800">
+        Title="CustomerProductWindow" Height="450" Width="800" Background="#FF97AD96">
     <Window.Resources>
         <Style TargetType="Button">
             <Setter Property="FontSize" Value="18" />
@@ -16,6 +16,8 @@
             <Setter Property="Background" Value="#FF97AD96"/>
             <Setter Property="BorderThickness" Value="3,3,3,3"/>
         </Style>
+        <local:convertImagePathToBitmap 
+            x:Key="ImagePath" />
     </Window.Resources>
     <Grid x:Name="gridCustomerProduct" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="294,47,0,0" Height="302" Width="409">
         <Grid.ColumnDefinitions>
@@ -30,20 +32,24 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="6*"/>
         </Grid.RowDefinitions>
-        <Label Grid.Column="0" Content="Id:" HorizontalAlignment="Left" Margin="3,3,0,0" Grid.Row="0" VerticalAlignment="Top" Grid.RowSpan="2"/>
-        <TextBox x:Name="idTextBox1" IsReadOnly="True" Grid.Column="1" HorizontalAlignment="Center" Height="NaN" Margin="0,7,0,0" Grid.Row="0" Text="{Binding Id, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="120" Grid.RowSpan="2"/>
+        <Label Grid.Column="0" Content="Id:" HorizontalAlignment="Left" Margin="3,0,0,0" Grid.Row="0" VerticalAlignment="Center" Grid.RowSpan="2"/>
+        <TextBox x:Name="idTextBox1" IsReadOnly="True" Grid.Column="1" HorizontalAlignment="Center" Height="NaN" Grid.Row="0" Text="{Binding Id, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" Grid.RowSpan="2"/>
         <Label Grid.Column="0" Content="Name:" HorizontalAlignment="Left" Margin="3,0,0,0" Grid.Row="2" VerticalAlignment="Center"/>
         <TextBox x:Name="nameTextBox1" IsReadOnly="True" Grid.Column="1" HorizontalAlignment="Center" Height="NaN" Grid.Row="2" Text="{Binding Name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
         <Label Content="Category:" HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Center"/>
         <TextBox x:Name="categoryTextBox" IsReadOnly="True" Grid.Column="1" HorizontalAlignment="Center" Height="NaN" Grid.Row="3" Text="{Binding Category, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
         <Label Grid.Column="0" Content="Price:" HorizontalAlignment="Left" Margin="3,0,0,0" Grid.Row="4" VerticalAlignment="Center"/>
         <TextBox x:Name="priceTextBox1" IsReadOnly="True" Grid.Column="1" HorizontalAlignment="Center" Height="NaN" Grid.Row="4" Text="{Binding Price, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-        <Label Grid.Column="0" Content="Amount:" HorizontalAlignment="Left" Margin="3,0,0,0" Grid.Row="5" VerticalAlignment="Center"/>
+        <Label Content="Amount:" HorizontalAlignment="Center" Grid.Row="5" VerticalAlignment="Center"/>
         <TextBox x:Name="amountTextBox" IsReadOnly="True" Grid.Column="1" HorizontalAlignment="Center" Height="NaN" Grid.Row="5" Text="{Binding Amount, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-        <Label Grid.Column="0" Content="In Stock:" HorizontalAlignment="Left" Margin="3,0,0,0" Grid.Row="6" VerticalAlignment="Center"/>
+        <Label Content="In Stock:" HorizontalAlignment="Center" Grid.Row="6" VerticalAlignment="Center"/>
         <CheckBox x:Name="inStockCheckBox" IsHitTestVisible="False"  Grid.Column="1" Content="" HorizontalAlignment="Left" IsChecked="{Binding InStock, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="3,0,0,0" Grid.Row="6" VerticalAlignment="Center"/>
-        <Button x:Name="btnadd" Content="Add to cart" HorizontalAlignment="Left" Margin="208,101,0,0" Grid.Row="6" VerticalAlignment="Top" RenderTransformOrigin="15.302,7.135" Click="btnadd_Click" Grid.Column="1"/>
-
+        <Button x:Name="btnadd" Content="Add to cart" HorizontalAlignment="Left" Margin="208,101,0,0" Grid.Row="6" VerticalAlignment="Top" RenderTransformOrigin="15.302,7.135" Click="btnadd_Click" Grid.Column="1" Grid.RowSpan="2"/>
+        <Border x:Name="Border" BorderBrush="#FF222A18" BorderThickness="5" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="-256,12,108,7" Grid.RowSpan="5" Grid.Row="2" Height="210"  Width="204">
+            <Image Grid.Row="0" x:Name="productImg" HorizontalAlignment="Left" Height="200"  VerticalAlignment="Top" Width="195" Source="{Binding Path=img, Converter={StaticResource ImagePath}}" Stretch="UniformToFill" Margin="0,0,0,0"  />
+        </Border>
     </Grid>
 </Window>

@@ -8,6 +8,8 @@
         DataContext="{Binding cartCurrent, RelativeSource={RelativeSource Self}}"
         Title="CartWindow" Height="450" Width="800">
     <Window.Resources>
+        <local:convertImagePathToBitmap 
+            x:Key="ImagePath" />
         <Style x:Key="myButtonStyle" TargetType="Button">
             <Setter Property="FontSize" Value="18" />
             <Setter Property="FontFamily" Value="Segoe Print" />
@@ -27,6 +29,13 @@
                 <DataGridTextColumn x:Name="priceColumn1" Binding="{Binding Price}" Header="Price" Width="*"/>
                 <DataGridTextColumn x:Name="amountColumn" Binding="{Binding Amount}" Header="Amount" Width="*"/>
                 <DataGridTextColumn x:Name="totalPriceColumn1" Binding="{Binding TotalPrice}" Header="Total Price" Width="*"/>
+                <DataGridTemplateColumn Header="123">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image x:Name="img" Source="{Binding Path=img, Converter={StaticResource ImagePath}}" Width="70" Height="50" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
                 <DataGridTemplateColumn Header="Delete">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -55,5 +64,6 @@
         <Button Content="↩" x:Name="btnBack" Style="{StaticResource myButtonStyle}" HorizontalAlignment="Left" Margin="44,350,0,0" VerticalAlignment="Top" Click="btnBack_Click"/>
         <Button Content="Empty cart" x:Name="btnEmptyCart" Style="{StaticResource myButtonStyle}" HorizontalAlignment="Left" Margin="285,350,0,0" VerticalAlignment="Top" Click="btnEmptyCart_Click"/>
         <Button Content="CheckOut" x:Name="btnConfirmCart" Style="{StaticResource myButtonStyle}" HorizontalAlignment="Left" Margin="125,350,0,0" VerticalAlignment="Top" Click="btnConfirmCart_Click"/>
+        <!--<Label Content="😬" x:Name="empty" Visibility="" />-->
     </Grid>
 </Window>

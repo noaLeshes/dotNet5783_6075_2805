@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,10 +21,6 @@ namespace PL.Windows
     /// </summary>
     public partial class CostumerProductListWindow : Window
     {
-
-
-
-
         //public int Counter
         //{
         //    get { return (int)GetValue(CounterProperty); }
@@ -34,10 +31,6 @@ namespace PL.Windows
         //public static readonly DependencyProperty CounterProperty =
         //    DependencyProperty.Register("Counter", typeof(int), typeof(Window), new PropertyMetadata(0));
 
-
-      
-
-
         private Cart myCart;
         BlApi.IBl? bl = BlApi.Factory.Get();
         public CostumerProductListWindow( Cart c)
@@ -45,7 +38,7 @@ namespace PL.Windows
             InitializeComponent();
             myCart = c;
             //Counter = c?.Items?.Sum(x => x?.Amount) ??0;
-            productItemDataGrid.ItemsSource = bl.Product.GetProducts();// getting the list of products
+            catalog.ItemsSource = bl.Product.GetProducts();// getting the list of products
             cmbCategory.ItemsSource = Enum.GetValues(typeof(BO.Category));// gettin all the categories for the combobox        }
         }
 
@@ -54,25 +47,25 @@ namespace PL.Windows
             if (cmbCategory.SelectedItem != null)// if the combobox choice is not empty
             {
                 Category c = (BO.Category)cmbCategory.SelectedItem;// setting the combobox choice
-                productItemDataGrid.ItemsSource = bl?.Product.GetProducts(x => x?.Category == c);// getting the wanted products that belong to a specific category 
+                catalog.ItemsSource = bl?.Product.GetProducts(x => x?.Category == c);// getting the wanted products that belong to a specific category 
             }
         }
 
         private void btnRefresh1_Click(object sender, RoutedEventArgs e)
         {
-            productItemDataGrid.ItemsSource = bl?.Product.GetProducts();// getting the product list 
+            catalog.ItemsSource = bl?.Product.GetProducts();// getting the product list 
             cmbCategory.SelectedItem = null;// setting the combobox choice to empty
         }
 
         private void productItemDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if (productItemDataGrid.SelectedItem as BO.ProductItem != null)
+            if (catalog.SelectedItem as BO.ProductItem != null)
             {
-                BO.ProductItem? p = (BO.ProductItem?)productItemDataGrid.SelectedItem;
+                BO.ProductItem? p = (BO.ProductItem?)catalog.SelectedItem;
                 int id = p?.Id ?? 0;
                 
                new CustomerProductWindow(id, myCart).ShowDialog();
-                productItemDataGrid.ItemsSource = bl?.Product.GetProducts();// getting the product list with the updated product
+                catalog.ItemsSource = bl?.Product.GetProducts();// getting the product list with the updated product
 
             }
         }
@@ -80,9 +73,54 @@ namespace PL.Windows
         private void btnCart_Click(object sender, RoutedEventArgs e)
         {
             new CartWindow(myCart).ShowDialog();
-            productItemDataGrid.ItemsSource = bl?.Product.GetProducts();// getting the product list with the updated product
+            catalog.ItemsSource = bl?.Product.GetProducts();// getting the product list with the updated product
 
 
+        }
+       
+    }
+    //public class convertImagePathToBitmap : IValueConverter
+    //{
+    //    object IValueConverter.Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    //    {
+    //        string img = (string)value;
+    //        string dirrectory = Environment.CurrentDirectory[..^4];
+    //        string fullName = dirrectory + img;
+    //        BitmapImage bitmapImage = new BitmapImage(new Uri(fullName));
+    //        return bitmapImage;
+    //    }
+
+    //    object IValueConverter.ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    //    {
+    //        throw new NotImplementedException();
+    //    }
+    //}
+    public class convertImagePathToBitmap : IValueConverter
+    {
+        //convert from source property type to target property type
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            try
+            {
+                string img = (string)value;
+                string dirrectory = Environment.CurrentDirectory[..^4];
+                string fullName = dirrectory + img;
+                BitmapImage bitmapImage = new BitmapImage(new Uri(fullName));
+                return bitmapImage;
+            }
+            catch(Exception ex)
+            {
+                string img = img = @"\pics\IMGNotFound.jpg";
+                string dirrectory = Environment.CurrentDirectory[..^4];
+                string fullName = dirrectory + img;
+                BitmapImage bitmapImage = new BitmapImage(new Uri(fullName));
+                return bitmapImage;
+            }
+        }
+        //convert from target property type to source property type
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
         }
     }
 }

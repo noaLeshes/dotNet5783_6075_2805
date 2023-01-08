@@ -88,8 +88,14 @@
         </DataGrid>
         <Button x:Name="btnUpdateshipping" Content="updates" Visibility="{Binding ElementName=shipDateDatePicker, Path=Text,
         Converter={StaticResource notBooleanToVisibilityConverter}}" HorizontalAlignment="Left" Margin="340,229,0,0" VerticalAlignment="Top" Click="btnUpdateshipping_Click" Width="72" Height="25"/>
-        <Button x:Name="btnUpdateDelivery" Content="updated" Visibility="{Binding ElementName=btnUpdateshipping, Path=Visibility,
-        Converter={StaticResource NotshipingToVisibilityConverter}}" HorizontalAlignment="Left" Margin="340,0,0,0" VerticalAlignment="Center" Click="btnUpdateDelivery_Click" Width="72" Height="35"/>
+        <Button x:Name="btnUpdateDelivery" Content="updated" HorizontalAlignment="Left" Margin="340,0,0,0" VerticalAlignment="Center" Click="btnUpdateDelivery_Click" Width="72" Height="35">
+            <Button.Visibility>
+                <MultiBinding Converter="{StaticResource NotshipingToVisibilityConverter}">
+                    <Binding Path="Text" ElementName="shipDateDatePicker" />
+                    <Binding Path="Text" ElementName="deliveryDateDatePicker" />
+                </MultiBinding>
+            </Button.Visibility>
+        </Button>  
         <Button x:Name="btnOk" Content="OK" HorizontalAlignment="Left" Margin="729,386,0,0" VerticalAlignment="Top" Click="btnOk_Click"/>
     </Grid>
 

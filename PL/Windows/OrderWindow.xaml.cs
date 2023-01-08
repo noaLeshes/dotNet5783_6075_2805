@@ -84,14 +84,12 @@ namespace PL.Windows
             throw new NotImplementedException();
         }
     }
-    
-    public class NotshipingToVisibilityConverter : IValueConverter
-    {
-        //convert from source property type to target property type
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+     public class NotshipingToVisibilityConverter : IMultiValueConverter
         {
-            Visibility visableValue = (Visibility)value;
-            if (visableValue == Visibility.Visible)
+        //convert from source property type to target property type
+        public object Convert(object[] value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value[0].ToString() == "" && value[1].ToString() == "")
                 return Visibility.Hidden; //Visibility.Collapsed;
             else
             {
@@ -99,10 +97,10 @@ namespace PL.Windows
             }
         }
         //convert from target property type to source property type
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        public object[] ConvertBack(object value, Type[] targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }
-    }
+     }
 
 }

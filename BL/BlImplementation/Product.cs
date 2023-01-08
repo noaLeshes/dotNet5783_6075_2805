@@ -66,6 +66,7 @@ internal class Product : IProduct
                     Name = p?.Name ?? throw new BO.BlNullPropertyException("Name"),
                     Category = (BO.Category?)p?.Category ?? throw new BO.BlWrongCategoryException(),// throwing if wrong category
                     Price = p?.Price ?? 0,
+                    img = @"\pics\IMG" + p?.Name + ".jpg",
                     InStock = p?.InStock>0 ? true:false ,
                     Amount = p?.InStock ?? 0,
                 };
@@ -85,6 +86,7 @@ internal class Product : IProduct
                 Id = p?.ID ?? 0,
                 Name = p?.Name,
                 Price = p?.Price ?? 0,
+                img = @"\pics\IMG" + p?.Name + ".jpg",
                 Category = (BO.Category)p?.Category! ,
                 InStock = p?.InStock > 0 ? true : false,
                 Amount = c.Items == null? 0: (from i in c.Items// calculating the amount
@@ -111,6 +113,7 @@ internal class Product : IProduct
                 Id = p?.ID ?? 0,
                 Name = p?.Name,
                 Price = p?.Price ?? 0,
+                img = @"\pics\IMG" + p?.Name + ".jpg",
                 Category = (BO.Category)p?.Category!,
                 InStock = p?.InStock ?? 0
             };
