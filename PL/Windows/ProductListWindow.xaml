@@ -15,6 +15,8 @@
             <Setter Property="Background" Value="#FF97AD96"/>
             <Setter Property="BorderThickness" Value="3,3,3,3"/>
         </Style>
+        <local:convertImagePathToBitmap 
+            x:Key="ImagePath" />
     </Window.Resources>
     <Grid Name="MainGrid">
         <Grid.RowDefinitions>
@@ -32,6 +34,13 @@
                 <DataGridTextColumn x:Name="iDColumn1" Binding="{Binding ID}" Header="ID" Width="*"/>
                 <DataGridTextColumn x:Name="nameColumn" Binding="{Binding Name}" Header="Name" Width="*"/>
                 <DataGridTextColumn x:Name="priceColumn" Binding="{Binding Price}" Header="Price" Width="*"/>
+                <DataGridTemplateColumn Header="">
+                    <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                        <Image x:Name="img" Source="{Binding Path=img, Converter={StaticResource ImagePath}}" Width="70" Height="50" />
+                    </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
         <Button x:Name="btnAddProduct" Content="Add new Product" Grid.Row="2" HorizontalAlignment="Left" Margin="600,5,0,5" Click="btnAddProduct_Click" Width="180" Foreground="#FF1B2A18" Background="#FF97AD96" BorderBrush="#FF222A18" BorderThickness="2,2,2,2"/>

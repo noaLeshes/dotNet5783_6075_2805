@@ -79,25 +79,9 @@ namespace PL.Windows
         }
        
     }
-    //public class convertImagePathToBitmap : IValueConverter
-    //{
-    //    object IValueConverter.Convert(object value, Type targetType, object parameter, CultureInfo culture)
-    //    {
-    //        string img = (string)value;
-    //        string dirrectory = Environment.CurrentDirectory[..^4];
-    //        string fullName = dirrectory + img;
-    //        BitmapImage bitmapImage = new BitmapImage(new Uri(fullName));
-    //        return bitmapImage;
-    //    }
-
-    //    object IValueConverter.ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-    //    {
-    //        throw new NotImplementedException();
-    //    }
-    //}
     public class convertImagePathToBitmap : IValueConverter
     {
-        //convert from source property type to target property type
+        //convert from string type to Bitmap type
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             try
@@ -108,7 +92,7 @@ namespace PL.Windows
                 BitmapImage bitmapImage = new BitmapImage(new Uri(fullName));
                 return bitmapImage;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 string img = img = @"\pics\IMGNotFound.jpg";
                 string dirrectory = Environment.CurrentDirectory[..^4];

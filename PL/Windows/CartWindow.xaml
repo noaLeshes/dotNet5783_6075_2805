@@ -29,7 +29,7 @@
                 <DataGridTextColumn x:Name="priceColumn1" Binding="{Binding Price}" Header="Price" Width="*"/>
                 <DataGridTextColumn x:Name="amountColumn" Binding="{Binding Amount}" Header="Amount" Width="*"/>
                 <DataGridTextColumn x:Name="totalPriceColumn1" Binding="{Binding TotalPrice}" Header="Total Price" Width="*"/>
-                <DataGridTemplateColumn Header="123">
+                <DataGridTemplateColumn Header="">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Image x:Name="img" Source="{Binding Path=img, Converter={StaticResource ImagePath}}" Width="70" Height="50" />
