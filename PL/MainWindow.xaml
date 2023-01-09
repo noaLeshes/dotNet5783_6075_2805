@@ -15,7 +15,7 @@
             <Setter Property="Background" Value="#FF97AD96"/>
             <Setter Property="BorderThickness" Value="3,3,3,3"/>
         </Style>
-    </Window.Resources>    <Grid>
+    </Window.Resources>    <Grid x:Name="mainGrid">
 
         <Grid Margin="-24,-133,-24,0">
             <Grid.Background>
@@ -33,7 +33,6 @@
             <Label Content="glow up✨" HorizontalAlignment="Left" Margin="114,687,0,0" VerticalAlignment="Top" Height="50" Width="435"/>
             <Button x:Name="btnLogIn" Content="Log In" HorizontalAlignment="Left" Margin="99,143,0,0" VerticalAlignment="Top"/>
             <Button x:Name="btnSignIn" Content="Sign Up" HorizontalAlignment="Left" Margin="99,217,0,0" VerticalAlignment="Top"/>
-
         </Grid>
 
     </Grid>

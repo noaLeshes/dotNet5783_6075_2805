@@ -8,8 +8,6 @@
         DataContext="{Binding cartCurrent, RelativeSource={RelativeSource Self}}"
         Title="CartWindow" Height="450" Width="800" Background="#FF97AD96">
     <Window.Resources>
-
-       
         <Style x:Key="myButtonStyle" TargetType="{x:Type Control}">
             <Setter Property="FontSize" Value="18" />
             <Setter Property="FontFamily" Value="Segoe Print" />
@@ -60,14 +58,15 @@
 
             </DataGrid.Columns>
         </DataGrid>
-        <TextBox x:Name="txtTotalPrice" Style="{StaticResource myButtonStyle}" Text="{Binding TotalPrice, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnExceptions=True}"  HorizontalAlignment="Left" Margin="616,350,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="auto" TextChanged="txtTotalPrice_TextChanged" Height="40" RenderTransformOrigin="0,-0.376"/>
-        <Button Content="↩" x:Name="btnBack" Style="{StaticResource myButtonStyle}" HorizontalAlignment="Left" Margin="44,350,0,0" VerticalAlignment="Top" Click="btnBack_Click"/>
-        <Button Content="Empty cart" x:Name="btnEmptyCart" Style="{StaticResource myButtonStyle}" HorizontalAlignment="Left" Margin="125,350,0,0" VerticalAlignment="Top" Click="btnEmptyCart_Click" Visibility="{Binding ElementName=txtTotalPrice, Path=Text,
-        Converter={StaticResource checkoutVisibilityConverter}}"/>
+        <TextBox x:Name="txtTotalPrice" Style="{StaticResource myButtonStyle}" Text="{Binding TotalPrice, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnExceptions=True}"  HorizontalAlignment="Left" Margin="650,350,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="66" TextChanged="txtTotalPrice_TextChanged" Height="49" RenderTransformOrigin="0,-0.376" BorderThickness="3,3,3,3" BorderBrush="#FF97AD96"/>
+        <Button x:Name="btnBack" Style="{StaticResource myButtonStyle}" HorizontalAlignment="Left" Margin="65,377,0,0" VerticalAlignment="Top" Click="btnBack_Click"  Content="{Binding ElementName=txtTotalPrice, Path=Text,
+        Converter={StaticResource checkTextConverter}}" Width="178"/>
+        <Button Content="Empty cart" x:Name="btnEmptyCart" Style="{StaticResource myButtonStyle}" HorizontalAlignment="Left" Margin="92,332,0,0" VerticalAlignment="Top" Click="btnEmptyCart_Click" Visibility="{Binding ElementName=txtTotalPrice, Path=Text,
+        Converter={StaticResource checkoutVisibilityConverter}}" Height="40" Width="126"/>
         <Button Content="CheckOut" x:Name="btnConfirmCart" Style="{StaticResource myButtonStyle}" HorizontalAlignment="Left" Margin="285,350,0,0" VerticalAlignment="Top" Click="btnConfirmCart_Click" Visibility="{Binding ElementName=txtTotalPrice, Path=Text,
         Converter={StaticResource checkoutVisibilityConverter}}"/>
-        <Label Content="SUB-TOTAL" Width="auto" Style="{StaticResource myButtonStyle}" HorizontalAlignment="Left" Margin="460,350,0,0" VerticalAlignment="Top" Height="39.7733333333333"/>
-        <Label Content="$" HorizontalAlignment="Left" Style="{StaticResource myButtonStyle}" Margin="590,350,0,0" VerticalAlignment="Top" Height="40" RenderTransformOrigin="0.425,0.579"/>
+        <Label Content="SUB-TOTAL:" Width="auto" Style="{StaticResource myButtonStyle}" HorizontalAlignment="Left" Margin="483,350,0,0" VerticalAlignment="Top" Height="40" BorderBrush="#FF97AD96"/>
+        <Label Content="$" HorizontalAlignment="Left" Style="{StaticResource myButtonStyle}" Margin="618,347,0,0" VerticalAlignment="Top" Height="43" RenderTransformOrigin="1.821,0.652" BorderBrush="#FF97AD96" BorderThickness="3,3,0,3" Width="32" FontSize="20"/>
         <!--<Label Content="😬" x:Name="empty" Visibility="" />-->
     </Grid>
 </Window>

@@ -93,6 +93,62 @@ namespace PL
             throw new NotImplementedException();
         }
     }
+    public class cartEmptyToTextConverter : IValueConverter
+    {
+        //convert from source property type to target property type
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value.ToString() != "0")
+                return "Continue Shopping"; //Visibility.Collapsed;
+            else
+            {
+                return "start Shopping";
+            }
+        }
+        //convert from target property type to source property type
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    public class backgroundConverter : IValueConverter
+    {
+        //convert from source property type to target property type
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value.ToString() != "☀️")
+                return "Black"; 
+            else
+            {
+                return "White";
+            }
+        }
+        //convert from target property type to source property type
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    public class backgroundOpositeConverter : IValueConverter
+    {
+        //convert from source property type to target property type
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value.ToString() != "☀️")
+                return "White";
+            else
+            {
+                return "Black";
+
+            }
+        }
+        //convert from target property type to source property type
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
     internal class Converters
     {
     }

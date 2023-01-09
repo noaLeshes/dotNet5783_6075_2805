@@ -15,5 +15,11 @@
             x:Key="ImagePath" />
         <local:cartEmptyConverter 
            x:Key="checkoutVisibilityConverter"/>
+        <local:cartEmptyToTextConverter 
+           x:Key="checkTextConverter"/>
+        <local:backgroundConverter 
+           x:Key="backgroundConverter"/>
+        <local:backgroundOpositeConverter 
+           x:Key="backgroundOpositeConverter"/>
     </Application.Resources>
 </Application>

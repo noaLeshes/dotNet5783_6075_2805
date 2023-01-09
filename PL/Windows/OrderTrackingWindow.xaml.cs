@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -29,6 +30,16 @@ namespace PL.Windows
         {
             new ShowOrderTrackingWindow(Int32.Parse(txtId.Text)).ShowDialog();
             this.Close();
+        }
+        
+        private void btnLightDark_Click(object sender, RoutedEventArgs e)
+        {
+            //SetCursorPos(0, 0);
+            btnLightDark.FocusVisualStyle = null;
+            if (btnLightDark.Content == "🌙")
+                btnLightDark.Content = "☀️";
+            else
+                btnLightDark.Content = "🌙";
         }
     }
 }

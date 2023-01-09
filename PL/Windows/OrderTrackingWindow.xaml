@@ -16,10 +16,16 @@
             <Setter Property="BorderThickness" Value="3,3,3,3"/>
         </Style>
     </Window.Resources>
-    <Grid>
+    <Grid x:Name="myGrid"
+        Background="{Binding ElementName=btnLightDark, Path=Content,
+        Converter={StaticResource backgroundConverter}}">
         <Button Content="ok" x:Name="btnOk" HorizontalAlignment="Left" Margin="493,71,0,0" VerticalAlignment="Top" Width="53" Click="Button_Click"/>
         <TextBox x:Name="txtId" HorizontalAlignment="Left" Margin="280,71,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <Label Content="Enterid" HorizontalAlignment="Left" Margin="190,71,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btnLightDark"   Content="☀️" HorizontalAlignment="Left" Margin="646,35,0,0" VerticalAlignment="Top" Click="btnLightDark_Click" Height="45" Width="41" Background="{Binding ElementName=btnLightDark, Path=Content,
+        Converter={StaticResource backgroundConverter}}" Foreground="{Binding ElementName=btnLightDark, Path=Content,
+        Converter={StaticResource backgroundOpositeConverter}}" BorderBrush="{Binding ElementName=btnLightDark, Path=Content,
+        Converter={StaticResource backgroundConverter}}" />
 
     </Grid>
 </Window>
