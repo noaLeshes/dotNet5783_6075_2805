@@ -7,5 +7,13 @@
         <Style TargetType="Border">
             <Setter Property="CornerRadius" Value="5"/>
         </Style>
+        <local:NotshipingToVisibilityConverter 
+           x:Key="NotshipingToVisibilityConverter"/>
+        <local:NotDateTimeToVisibilityConverter 
+           x:Key="notBooleanToVisibilityConverter"/>
+        <local:convertImagePathToBitmap 
+            x:Key="ImagePath" />
+        <local:cartEmptyConverter 
+           x:Key="checkoutVisibilityConverter"/>
     </Application.Resources>
 </Application>

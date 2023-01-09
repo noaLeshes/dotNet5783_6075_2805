@@ -8,10 +8,8 @@
         DataContext="{Binding orderCurrent, RelativeSource={RelativeSource Self}}"
         Title="OrderWindow" Height="600" Width="900">
     <Window.Resources>
-        <local:NotDateTimeToVisibilityConverter 
-           x:Key="notBooleanToVisibilityConverter"/>
-        <local:NotshipingToVisibilityConverter 
-           x:Key="NotshipingToVisibilityConverter"/>
+        
+        
         <Style TargetType="Button">
             <Setter Property="FontSize" Value="10" />
             <Setter Property="FontFamily" Value="Segoe Print" />
@@ -65,13 +63,6 @@
             <Label Grid.Column="0" Content="Status:" HorizontalAlignment="Left" Margin="3" Grid.Row="7" VerticalAlignment="Center"/>
             <TextBox x:Name="categoryTextBox" IsReadOnly="True" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="7" Text="{Binding Status, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
 
-            <!--<ComboBox x:Name="statusComboBox" IsHitTestVisible="False" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="7" VerticalAlignment="Center" Width="120">
-                <ComboBox.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <VirtualizingStackPanel/>
-                    </ItemsPanelTemplate>
-                </ComboBox.ItemsPanel>
-            </ComboBox>-->
 
             <Label Grid.Column="0" Content="Total Price:" HorizontalAlignment="Left" Margin="3" Grid.Row="8" VerticalAlignment="Center" RenderTransformOrigin="0.532,1.375" />
             <TextBox x:Name="totalPriceTextBox" IsReadOnly="True" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="8" Text="{Binding TotalPrice, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>

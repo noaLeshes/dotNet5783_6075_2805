@@ -40,11 +40,6 @@ public ShowOrderTrackingWindow(int id)
         {
             InitializeComponent();
             myId = id;
-            //List<Tuple<DateTime?, string>?>  trackingList = bl.Order.GetOrderTracking(id).Tracking;
-            //foreach (Tuple<DateTime?, string>? Item in trackingList)
-            //{
-            //    trackingDataGrid1.ItemsSource = Item;
-            //}
             orderTrackingCurrent = bl.Order.GetOrderTracking(id);
             trackingDataGrid.ItemsSource = bl.Order.GetOrderTracking(id).Tracking;
 

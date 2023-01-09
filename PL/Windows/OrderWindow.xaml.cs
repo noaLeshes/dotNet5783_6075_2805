@@ -66,42 +66,7 @@ namespace PL.Windows
     }
 
 
-    public class NotDateTimeToVisibilityConverter : IValueConverter
-    {
-        //convert from source property type to target property type
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            if (value.ToString() != "")
-                return Visibility.Hidden; //Visibility.Collapsed;
-            else
-            {
-                return Visibility.Visible;
-            }
-        }
-        //convert from target property type to source property type
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
-    }
-     public class NotshipingToVisibilityConverter : IMultiValueConverter
-        {
-        //convert from source property type to target property type
-        public object Convert(object[] value, Type targetType, object parameter, CultureInfo culture)
-        {
-            if (value[0].ToString() == "" && value[1].ToString() == "")// not shippted
-                return Visibility.Hidden; //Visibility.Collapsed;
-            if ( value[1].ToString() != "") // if already delivered
-                return Visibility.Hidden;
-            else
-            {
-                return Visibility.Visible;
-            }
-        }
-        public object[] ConvertBack(object value, Type[] targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
-     }
+    
+     
 
 }

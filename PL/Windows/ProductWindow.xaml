@@ -8,8 +8,7 @@
         DataContext="{Binding productCurrent, RelativeSource={RelativeSource Self}}"
         Title="ProductWindow" Height="450" Width="800">
     <Window.Resources>
-        <local:convertImagePathToBitmap2 
-            x:Key="ImagePath" />
+        
     </Window.Resources>
     <Grid Background="#FF97AD96">
         <Grid x:Name="gridProduct" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="236,26,0,0">

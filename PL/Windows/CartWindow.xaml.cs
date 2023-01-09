@@ -129,49 +129,6 @@ namespace PL.Windows
 
         }
     }
-    public class convertImagePathToBitmap1 : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            try
-            {
-                string img = (string)value;
-                string dirrectory = Environment.CurrentDirectory[..^4];
-                string fullName = dirrectory + img;
-                BitmapImage bitmapImage = new BitmapImage(new Uri(fullName));
-                return bitmapImage;
-            }
-            catch (Exception ex)
-            {
-                string img = @"\pics\IMGNotFound.jpg";
-                string dirrectory = Environment.CurrentDirectory[..^4];
-                string fullName = dirrectory + img;
-                BitmapImage bitmapImage = new BitmapImage(new Uri(fullName));
-                return bitmapImage;
-            }
-        }
-        //convert from target property type to source property type
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
-    }
-    public class cartEmptyConverter : IValueConverter
-    {
-        //convert from source property type to target property type
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            if (value.ToString() != "0")
-                return Visibility.Visible; //Visibility.Collapsed;
-            else
-            {
-                return Visibility.Hidden;
-            }
-        }
-        //convert from target property type to source property type
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
-    }
+    
+    
 }

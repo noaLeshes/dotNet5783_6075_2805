@@ -16,8 +16,7 @@
             <Setter Property="Background" Value="#FF97AD96"/>
             <Setter Property="BorderThickness" Value="3,3,3,3"/>
         </Style>
-        <local:convertImagePathToBitmap 
-            x:Key="ImagePath" />
+       
     </Window.Resources>
     <Grid x:Name="gridCustomerProduct" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="294,47,0,0" Height="302" Width="409">
         <Grid.ColumnDefinitions>

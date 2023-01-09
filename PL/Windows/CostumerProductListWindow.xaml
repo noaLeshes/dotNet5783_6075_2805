@@ -15,8 +15,7 @@
             <Setter Property="Background" Value="#FF97AD96"/>
             <Setter Property="BorderThickness" Value="3,3,3,3"/>
         </Style>
-        <local:convertImagePathToBitmap 
-            x:Key="ImagePath" />
+       
         <DataTemplate x:Key="oneProduct" DataType="local: Product" >
             <Grid Name="gridCatalog" Width="200" Height="300"  Background="#FF97AD96" >
                 <Grid.RowDefinitions>

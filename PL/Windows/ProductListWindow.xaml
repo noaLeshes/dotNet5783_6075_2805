@@ -15,8 +15,7 @@
             <Setter Property="Background" Value="#FF97AD96"/>
             <Setter Property="BorderThickness" Value="3,3,3,3"/>
         </Style>
-        <local:convertImagePathToBitmap2 
-            x:Key="ImagePath" />
+        
     </Window.Resources>
     <Grid Name="MainGrid">
         <Grid.RowDefinitions>

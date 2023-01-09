@@ -13,24 +13,11 @@ namespace PL.Windows
     {
        
         BlApi.IBl? bl = BlApi.Factory.Get();
-        //public static readonly DependencyProperty OrderDependency = DependencyProperty.Register("orders", typeof(ObservableCollection<OrderForList?>), typeof(Window));
-        //public ObservableCollection<OrderForList?> orders
-        //{
-        //    get { return (ObservableCollection<OrderForList?>)GetValue(OrderDependency); }
-        //    private set => SetValue(OrderDependency, value);
-        //}
+      
         public OrderListWindow()
         {
             InitializeComponent();
-            //var temp = bl?.Order?.GetOrders();// getting the list of products
-            //                                  //if (temp == null)
-            //                                  //{
-            //                                  //    orders = new();
-            //                                  //}
-            //                                  //else
-            //                                  //    orders = new(temp);
-            //orders = temp == null ? new() : new(temp);
-            // gettin all the categories for the combobox
+         
             orderForListDataGrid.ItemsSource = bl.Order.GetOrders();
 
         }
