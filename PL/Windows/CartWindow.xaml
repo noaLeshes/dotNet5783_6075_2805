@@ -19,7 +19,7 @@
         </Style>
     </Window.Resources>
     <Grid>
-        <DataGrid x:Name="orderItemDataGrid" Background="#FF97AD96" AutoGenerateColumns="False" EnableRowVirtualization="True" IsReadOnly="True" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="44,10,84,107">
+        <DataGrid x:Name="orderItemDataGrid" Background="#FF97AD96" AutoGenerateColumns="False" EnableRowVirtualization="True" IsReadOnly="True" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="44,10,84,107" BorderBrush="#FF97AD96">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="idColumn2" Binding="{Binding Id}" Header="Id" Width="*"/>
                 <DataGridTextColumn x:Name="productIdColumn" Binding="{Binding ProductId}" Header="Product Id" Width="*"/>
