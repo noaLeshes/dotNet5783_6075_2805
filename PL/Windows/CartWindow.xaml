@@ -6,11 +6,13 @@
         xmlns:local="clr-namespace:PL.Windows"
         mc:Ignorable="d"
         DataContext="{Binding cartCurrent, RelativeSource={RelativeSource Self}}"
-        Title="CartWindow" Height="450" Width="800">
+        Title="CartWindow" Height="450" Width="800" Background="#FF97AD96">
     <Window.Resources>
         <local:convertImagePathToBitmap1 
             x:Key="ImagePath" />
-        <Style x:Key="myButtonStyle" TargetType="Button">
+        <local:cartEmptyConverter 
+           x:Key="notBooleanToVisibilityConverter"/>
+        <Style x:Key="myButtonStyle" TargetType="{x:Type Control}">
             <Setter Property="FontSize" Value="18" />
             <Setter Property="FontFamily" Value="Segoe Print" />
             <!--<Setter Property="FontWeight" Value="Bold" />-->
@@ -21,7 +23,7 @@
         </Style>
     </Window.Resources>
     <Grid>
-        <DataGrid x:Name="orderItemDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" IsReadOnly="True" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="44,10,84,107">
+        <DataGrid x:Name="orderItemDataGrid" Background="#FF97AD96" AutoGenerateColumns="False" EnableRowVirtualization="True" IsReadOnly="True" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="44,10,84,107">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="idColumn2" Binding="{Binding Id}" Header="Id" Width="*"/>
                 <DataGridTextColumn x:Name="productIdColumn" Binding="{Binding ProductId}" Header="Product Id" Width="*"/>
@@ -60,10 +62,13 @@
 
             </DataGrid.Columns>
         </DataGrid>
-        <TextBox x:Name="txtTotalPrice" Text="{Binding TotalPrice, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnExceptions=True}"  HorizontalAlignment="Left" Margin="500,372,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="txtTotalPrice_TextChanged"/>
+        <TextBox x:Name="txtTotalPrice" BorderThickness="0,3,3,3"  Style="{StaticResource myButtonStyle}" Text="{Binding TotalPrice, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnExceptions=True}"  HorizontalAlignment="Left" Margin="604,350,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="auto" TextChanged="txtTotalPrice_TextChanged" Height="40" RenderTransformOrigin="0,-0.376"/>
         <Button Content="↩" x:Name="btnBack" Style="{StaticResource myButtonStyle}" HorizontalAlignment="Left" Margin="44,350,0,0" VerticalAlignment="Top" Click="btnBack_Click"/>
-        <Button Content="Empty cart" x:Name="btnEmptyCart" Style="{StaticResource myButtonStyle}" HorizontalAlignment="Left" Margin="285,350,0,0" VerticalAlignment="Top" Click="btnEmptyCart_Click"/>
-        <Button Content="CheckOut" x:Name="btnConfirmCart" Style="{StaticResource myButtonStyle}" HorizontalAlignment="Left" Margin="125,350,0,0" VerticalAlignment="Top" Click="btnConfirmCart_Click"/>
+        <Button Content="Empty cart" x:Name="btnEmptyCart" Style="{StaticResource myButtonStyle}" HorizontalAlignment="Left" Margin="125,350,0,0" VerticalAlignment="Top" Click="btnEmptyCart_Click"/>
+        <Button Content="CheckOut" x:Name="btnConfirmCart" Style="{StaticResource myButtonStyle}" HorizontalAlignment="Left" Margin="285,350,0,0" VerticalAlignment="Top" Click="btnConfirmCart_Click" Visibility="{Binding ElementName=txtTotalPrice, Path=Text,
+        Converter={StaticResource notBooleanToVisibilityConverter}}"/>
+        <Label Content="SUB-TOTAL $" BorderThickness="3,3,0,3" Width="auto" Style="{StaticResource myButtonStyle}" HorizontalAlignment="Left" Margin="460,350,0,0" VerticalAlignment="Top" Height="39.7733333333333"/>
+        <Label Content="$" HorizontalAlignment="Left" Style="{StaticResource myButtonStyle}" Margin="639,346,0,0" VerticalAlignment="Top"/>
         <!--<Label Content="😬" x:Name="empty" Visibility="" />-->
     </Grid>
 </Window>

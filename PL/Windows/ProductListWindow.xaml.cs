@@ -37,6 +37,7 @@ namespace PL.Windows
             //int id = p?.ID ?? 0
             int id = -1;
             ProductWindow pw =new ProductWindow(id);// a new productWindow
+            pw.Border.Visibility = Visibility.Hidden;
             pw.btnAdd.Visibility = Visibility.Visible;// add button is visible
             pw.btnUpdate.Visibility = Visibility.Hidden;// update button is hidden
             pw.ShowDialog();// showing the window 

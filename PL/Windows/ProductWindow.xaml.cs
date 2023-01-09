@@ -41,7 +41,6 @@ namespace PL.Windows
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-
             if (txtId.Text == "")// a message box appears when one of the feilds is empty
             {
                 MessageBox.Show("Id is empty", "ERROR", MessageBoxButton.OK, MessageBoxImage.Warning);
