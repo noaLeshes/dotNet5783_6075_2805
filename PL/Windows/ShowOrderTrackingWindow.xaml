@@ -31,9 +31,9 @@
             <DataGrid x:Name="trackingDataGrid" IsReadOnly="True" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding Tracking}" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="10,0,-376,-139" Grid.Row="2" Grid.Column="1">
                 <DataGrid.Columns>
 
-                    <DataGridTextColumn x:Name="item1Column" Binding="{Binding Item1}" Header="Item 1" IsReadOnly="True" Width="250" />
+                    <DataGridTextColumn x:Name="item1Column" Binding="{Binding Item1}" Header="Date:" IsReadOnly="True" Width="250" />
 
-                    <DataGridTextColumn x:Name="item2Column" Binding="{Binding Item2}" Header="Item 2" IsReadOnly="True" Width="250"/>
+                    <DataGridTextColumn x:Name="item2Column" Binding="{Binding Item2}" Header="Status:" IsReadOnly="True" Width="250"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>

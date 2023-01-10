@@ -113,7 +113,7 @@ namespace PL.Windows
             cartCurrent.CostomerName = p.txtName.Text;
             cartCurrent.CostomerEmail = p.txtEmail.Text;
             cartCurrent.CostomerAddress = p.txtAddress.Text;
-            bl?.Cart.ConfirmCart(cartCurrent, cartCurrent.CostomerName, cartCurrent.CostomerAddress, cartCurrent.CostomerEmail);
+            int? orderId = bl?.Cart.ConfirmCart(cartCurrent, cartCurrent.CostomerName, cartCurrent.CostomerAddress, cartCurrent.CostomerEmail);
             List<BO.OrderItem>? temp = new();
             cartCurrent.Items = temp;
             cartCurrent.TotalPrice = 0;
@@ -124,7 +124,8 @@ namespace PL.Windows
             txtTotalPrice.Text = cartCurrent.TotalPrice.ToString();
             orderItemDataGrid.Items.Refresh();
             MessageBox.Show(@"Your order has been confirmed
-                              Thank you for your purchase!", " 😃 ", MessageBoxButton.OK, MessageBoxImage.None);// a messagebox appears when the product is added
+                              Thank you for your purchase!
+                            Order Id: " + orderId, " 😃 ", MessageBoxButton.OK, MessageBoxImage.None);// a messagebox appears when the product is added
             this.Close();
 
         }

@@ -15,7 +15,7 @@
             <Setter Property="Background" Value="#FF97AD96"/>
             <Setter Property="BorderThickness" Value="3,3,3,3"/>
         </Style>
-       
+
         <DataTemplate x:Key="oneProduct" DataType="local: Product" >
             <Grid Name="gridCatalog" Width="200" Height="300"  Background="#FF97AD96" >
                 <Grid.RowDefinitions>
@@ -65,5 +65,6 @@
                 </ItemsControl.ItemsPanel>
             </ListView>
         </ScrollViewer>
+        <Button x:Name="btnTracking" Content="Follow Your Order" HorizontalAlignment="Left" Margin="129,0,0,0" Grid.Row="2" VerticalAlignment="Center" Click="btnTracking_Click"/>
     </Grid>
 </Window>

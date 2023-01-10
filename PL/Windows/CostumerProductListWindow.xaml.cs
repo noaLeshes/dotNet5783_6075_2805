@@ -74,7 +74,12 @@ namespace PL.Windows
         {
             new CartWindow(myCart).ShowDialog();
             catalog.ItemsSource = bl?.Product.GetProducts();// getting the product list with the updated product
-        }  
+        }
+
+        private void btnTracking_Click(object sender, RoutedEventArgs e)
+        {
+            new OrderTrackingWindow().Show();
+        }
     }
     
 }

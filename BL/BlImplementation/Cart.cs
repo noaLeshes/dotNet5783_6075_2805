@@ -64,7 +64,7 @@ internal class Cart : ICart
         }
     }
 
-    public void ConfirmCart(BO.Cart c, string name, string address, string email)
+    public int ConfirmCart(BO.Cart c, string name, string address, string email)
     {
         try
         {
@@ -110,6 +110,8 @@ internal class Cart : ICart
                 product.InStock -= orderitem.Amount;// updating the amount of product in stock
                 dal.Product.Update(product);
             }
+            return orderid ?? -1;
+
         }
         catch (DO.DalMissingIdException exception)//if product doesn't exist 
         {
