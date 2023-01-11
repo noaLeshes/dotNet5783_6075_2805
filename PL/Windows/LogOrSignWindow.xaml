@@ -6,24 +6,26 @@
         xmlns:local="clr-namespace:PL.Windows"
         mc:Ignorable="d"
         DataContext="{Binding currentUser, RelativeSource={RelativeSource Self}}"
-        Title="LogOrSignWindow" Height="450" Width="800">
-    <Grid>
-        <Grid x:Name="gridLogIn"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="333,57,0,0">
+        Title="LogOrSignWindow" Height="243" Width="600" Background="#FF97AD96">
+    <Grid Margin="10,0,26,0" >
+        <Grid x:Name="gridLogIn"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="181,63,0,0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="0"/>
+                <ColumnDefinition Width="12"/>
+                <ColumnDefinition Width="56.147"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <Label Grid.Column="0" Content="Email:" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
-            <TextBox x:Name="userGmailTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="0" Text="{Binding UserGmail, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-            <Label Grid.Column="0" Content="Password:" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
-            <TextBox x:Name="passwordTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="1" Text="{Binding Password, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-            
+            <Label Grid.Column="0" Content="Email:" HorizontalAlignment="Left" Margin="3,0,0,0" VerticalAlignment="Center" Grid.ColumnSpan="3"/>
+            <TextBox x:Name="userGmailTextBox" Grid.Column="3" HorizontalAlignment="Center" Height="NaN" Text="{Binding UserGmail, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" BorderBrush="Black"/>
+            <Label Grid.Column="0" Content="Password:" HorizontalAlignment="Left" Margin="3,0,0,0" Grid.Row="1" VerticalAlignment="Center" Grid.ColumnSpan="3"/>
+            <TextBox x:Name="passwordTextBox" Grid.Column="3" HorizontalAlignment="Center" Height="NaN" Grid.Row="1" Text="{Binding Password, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" BorderBrush="Black"/>
+
         </Grid>
-        <Grid x:Name="gridSignUp"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="333,126,0,0" >
+        <Grid x:Name="gridSignUp"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="188,120,0,0" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
@@ -35,11 +37,12 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Label Grid.Column="0" Content="Name:" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
-            <TextBox x:Name="nameTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="0" Text="{Binding Name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <TextBox x:Name="nameTextBox" Grid.Column="1" HorizontalAlignment="Center" Height="NaN" Text="{Binding Name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" BorderBrush="Black"/>
             <Label Grid.Column="0" Content="Address:" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
-            <TextBox x:Name="addressTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="1" Grid.Row="3" Text="{Binding Address, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <TextBox x:Name="addressTextBox" HorizontalAlignment="Left" Height="NaN" Margin="61,4,0,0" Grid.Row="1" Text="{Binding Address, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="120" BorderBrush="Black" Grid.ColumnSpan="2"/>
         </Grid>
-        <Button Content="Enter" x:Name="btnEnter1" HorizontalAlignment="Left" Margin="621,341,0,0" VerticalAlignment="Top" Width="69" Height="43" BorderBrush="#FF222A18" Foreground="#FF222A18" Background="#FF97AD96" BorderThickness="3,3,3,3" RenderTransformOrigin="-0.739,1.117" FontFamily="Segoe Print" Click="btnEnter1_Click"/>
+        <Button Content="Enter" x:Name="btnEnter1" HorizontalAlignment="Left" Margin="463,152,0,0" VerticalAlignment="Top" Width="69" Height="43" BorderBrush="#FF222A18" Foreground="#FF222A18" Background="#FF97AD96" BorderThickness="3,3,3,3" RenderTransformOrigin="-0.739,1.117" FontFamily="Segoe Print" Click="btnEnter1_Click"/>
+        <Label Content="Enter Ditails:" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Background="#FF97AD96" FontSize="25" FontFamily="Brush Script MT"/>
 
     </Grid>
 </Window>

@@ -41,5 +41,14 @@ namespace PL.Windows
             Cart c = new Cart();//temporary
             new LogOrSignWindow(ref c, "sign", 0).ShowDialog();
         }
+
+        private void btnLightDark1_Click(object sender, RoutedEventArgs e)
+        {
+            if (btnLightDark1.Content == "☀️")
+                btnLightDark1.Content = "🌙";
+            else
+                btnLightDark1.Content = "☀️";
+        }
     }
+
 }

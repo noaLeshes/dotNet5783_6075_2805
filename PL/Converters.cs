@@ -117,14 +117,14 @@ namespace PL
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
                 if(value == null)
-                    return "Black";
+                    return "#FF222A18";
 
-                if (value.ToString() != "☀️")
-                    return "White";
-                else
-                {
-                    return "Black";
-                }
+            if (value.ToString() != "☀️")
+                return "#FF97AD96";
+            else
+            {
+                return "#FF222A18";
+            }
         }
         //convert from target property type to source property type
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
@@ -138,10 +138,10 @@ namespace PL
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value.ToString() != "☀️")
-                return "Black";
+                return "#FF222A18";
             else
             {
-                return "White";
+                return "#FF97AD96";
 
             }
         }
