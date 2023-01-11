@@ -133,29 +133,42 @@ internal static class DataSource
     {
         string[] names = { "Moshe", "Yosi", "Avi", "Adi", "Rachel" };
         string[] passwords = { "1111", "2222", "3333", "4444", "5555" };
+        string[] arrayAdresses = {"Hadekel 1", "Hadekel 2", "Hadekel 3", "Hadekel 4", "Hadekel 5",
+                                  "Pinkas 1", "Pinkas 2", "Pinkas 3","Pinkas 4" };
+        string[] emails = { "Moshe@gmail.com", "Yosi@gmail.com", "Avi@gmail.com", "Adi@gmail.com", "Rachel@gmail.com" };
 
         UserList.Add(new User
         {
             UserStatus = UserStatus.MANAGER,
-            UserName = "Noa Leshes",
-            Password = "1234"
+            Name = "Noa Leshes",
+            Password = "1234",
+            UserGmail = "noa.leshes@gmail.com",
+            Address = "Pinkas 5"
         });
         UserList.Add(new User
         {
             UserStatus = UserStatus.MANAGER,
-            UserName = "Hadas Carmen",
-            Password = "1234"
+            Name = "Hadas Carmen",
+            Password = "1234",
+            UserGmail = "hadascarmen@gmail.com",
+            Address = "David 3"
         });
         ;
         for (int i = 0; i < names.Length; i++)
         {
-            string userName = names[/*s_rand.Next(5)*/i];
-            string password = passwords[/*s_rand.Next(5)*/i];
+            string userName = names[i];
+            string password = passwords[i];
+            string email = emails[i];
+            string address = arrayAdresses[i];
+
+
             UserList.Add(new User
             {
                 UserStatus = UserStatus.CUSTOMER,
-                UserName = userName,
-                Password = password
+                Name = userName,
+                Password = password,
+                UserGmail = email,
+                Address = address
             });
         }
         

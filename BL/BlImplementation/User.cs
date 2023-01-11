@@ -11,23 +11,36 @@ internal class User : IUser
 {
     DalApi.IDal? dal = DalApi.Factory.Get();
 
-    public void AddUser(BO.User u)
+    public void AddUser(BO.User u, int position)
     {
-        if(u.UserName == null || u.UserName == "")
+        if(u.Name == null || u.Name == "")
         {
-            throw new BO.BlNullPropertyException("User Name");
+            throw new BO.BlNullPropertyException("Name");
         }
         if (u.Password == null || u.Password == "")
         {
             throw new BO.BlNullPropertyException("Password");
         }
+        if (u.Address == null || u.Address == "")
+        {
+            throw new BO.BlNullPropertyException("Address");
+        }
+        if (u.UserGmail == null || u.UserGmail == "")
+        {
+            throw new BO.BlNullPropertyException("Email");
+        }
+
         try
         {
             dal?.User.Add(new DO.User()
             {
-                UserName = u.UserName ?? "",
+                Name = u.Name ?? "",
                 Password = u.Password ?? "0",
-                UserStatus = (DO.UserStatus) u?.UserStatus!,  
+                UserStatus = (DO.UserStatus)position,
+                UserGmail=u.UserGmail,
+                Address=u.Address
+
+
             });
         }
         catch(DO.DalAlreadyExistsIdException ex)
@@ -36,26 +49,33 @@ internal class User : IUser
         }
 
     }
-    public BO.User GetByUserName(string userName  )
+    public BO.User GetByUserName(string name, string password )
     {
         try
         {
-            if (userName == null || userName == "")
+            if (name == null || name == "")
             {
-                throw new BO.BlNullPropertyException("User Name");
+                throw new BO.BlNullPropertyException("Email");
+            }
+            if (password == null || password == "")
+            {
+                throw new BO.BlNullPropertyException("Password");
             }
 
-            DO.User? u = dal?.User.GetByUser(userName);
+            DO.User? u = dal?.User.GetByUser(name, password);
             return new BO.User()
             {
-                UserName = u?.UserName ?? "",
+                Name = u?.Name ?? "",
+                Password = u?.Password ?? "",
                 UserStatus = (BO.UserStatus)u?.UserStatus!,
-                Password = u?.Password ?? ""
+                UserGmail = u?.UserGmail,
+                Address = u?.Address
             };
         }
-        catch (DO.DalAlreadyExistsIdException ex)
+        catch (DO.DalMissingIdException ex)
         {
-            throw new BO.BlAlreadyExistsEntityException("User", 0);
+            throw new BO.BlMissingEntityException(@"User doesn't exist,
+                                                              Sign up first",ex);
         }
        
     }

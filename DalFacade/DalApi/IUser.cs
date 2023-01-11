@@ -4,5 +4,5 @@ using DO;
 public interface IUser 
 {
     public void Add(User u);
-    public User GetByUser(string userName);
+    public User GetByUser(string userName, string password);
 }
