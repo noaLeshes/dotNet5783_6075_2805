@@ -92,6 +92,7 @@ namespace PL.Windows
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
+           // CostumerProductListWindow cw = new CostumerProductListWindow(cartCurrent);
             this.Close();
         }
 

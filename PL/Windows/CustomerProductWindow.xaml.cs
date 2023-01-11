@@ -48,10 +48,22 @@ namespace PL.Windows
 
         private void btnadd_Click(object sender, RoutedEventArgs e)
         {
-            bl.Cart.AddItem(myCart, myProduct.Id);
-            CostumerProductListWindow d = new CostumerProductListWindow(myCart);
-            this.Close();// closing the window after the product is added
-            MessageBox.Show("Product added successfully to your cart", " 😃 ", MessageBoxButton.OK, MessageBoxImage.None);// a messagebox appears when the product is added
+            try
+            {
+                bl.Cart.AddItem(myCart, myProduct.Id);
+                CostumerProductListWindow d = new CostumerProductListWindow(myCart);
+                this.Close();// closing the window after the product is added
+                MessageBox.Show("Product added successfully to your cart", " 😃 ", MessageBoxButton.OK, MessageBoxImage.None);// a messagebox appears when the product is added
+                CostumerProductListWindow p = new CostumerProductListWindow(myCart);
+                p.catalog.ItemsSource = bl?.Product.GetProducts();// getting the product list with the updated product
+
+            }
+            catch (BO.BlNotInStockException ex)
+            {
+                MessageBox.Show(ex.ToString(), "ERROR", MessageBoxButton.OK, MessageBoxImage.Warning);
+
+            }
+
         }
     }
 }

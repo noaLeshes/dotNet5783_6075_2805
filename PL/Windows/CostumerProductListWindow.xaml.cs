@@ -65,7 +65,6 @@ namespace PL.Windows
                 int id = p?.Id ?? 0;
                 
                new CustomerProductWindow(id, myCart).ShowDialog();
-                catalog.ItemsSource = bl?.Product.GetProducts();// getting the product list with the updated product
 
             }
         }
@@ -74,6 +73,7 @@ namespace PL.Windows
         {
             new CartWindow(myCart).ShowDialog();
             catalog.ItemsSource = bl?.Product.GetProducts();// getting the product list with the updated product
+            cmbCategory.SelectedItem = null;// setting the combobox choice to empty
         }
 
         private void btnTracking_Click(object sender, RoutedEventArgs e)

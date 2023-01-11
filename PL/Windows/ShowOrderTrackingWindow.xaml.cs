@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -42,6 +43,9 @@ public ShowOrderTrackingWindow(int id)
             myId = id;
             orderTrackingCurrent = bl.Order.GetOrderTracking(id);
             trackingDataGrid.ItemsSource = bl.Order.GetOrderTracking(id).Tracking;
+            
+         
+
 
         }
 

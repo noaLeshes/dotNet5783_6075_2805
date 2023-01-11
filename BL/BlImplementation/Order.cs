@@ -99,6 +99,10 @@ internal class Order : IOrder
     {
         try
         {
+            if(id<0)
+            {
+                throw new BO.BlInvalidExspressionException("Id");
+            }
             DO.Order? o = dal?.Order.GetById(id);
             List<Tuple<DateTime?, string>> list = new List<Tuple<DateTime?, string>>();// create new list<Tuple>
             if (o?.OrderDate != null)// check if OrderDate updated
