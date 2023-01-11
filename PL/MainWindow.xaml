@@ -18,22 +18,17 @@
     </Window.Resources>
     <Grid x:Name="mainGrid">
 
-        <Grid Margin="-24,-133,-24,0">
+        <Grid Margin="-24,-191,-24,58">
             <Grid.Background>
                 <ImageBrush ImageSource="/background.jfif"/>
             </Grid.Background>
             <Grid>
-                <TextBox  HorizontalAlignment="Left" x:Name ="txtUser" Margin="229,323,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-                <TextBox HorizontalAlignment="Left" x:Name ="txtPass" Margin="229,346,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" />
                 <!--<Button Content="Maneger" x:Name="Maneger" VerticalAlignment="Top" Click="Products_Click" RenderTransformOrigin="0.5,0.5" Width="295" Background="#FF97AD96" Height="92" Foreground="#FF35442F" FontSize="60" FontWeight="Bold" FontFamily="Brush Script MT" Canvas.Left="152" Canvas.Top="502" Margin="195,625,0,0" HorizontalAlignment="Left" BorderBrush="#FF97AD96" />
                 <Button Content="Order" x:Name="Order" VerticalAlignment="Top" Click="Products_Click" RenderTransformOrigin="0.5,0.5" Width="295" Background="#FF97AD96" Height="92" Foreground="#FF35442F" FontSize="60" FontWeight="Bold" FontFamily="Brush Script MT" Canvas.Left="152" Canvas.Top="502" Margin="195,625,0,0" HorizontalAlignment="Left" BorderBrush="#FF97AD96" />-->
-                <Label Content="User Name:" HorizontalAlignment="Left" Margin="124,305,0,0" VerticalAlignment="Top" Height="27" Width="80" FontFamily="ItalicT" FontSize="15" Foreground="#FF35442F"/>
-                <Label Content="Password:" HorizontalAlignment="Left" Margin="124,330,0,0" VerticalAlignment="Top" Height="27" Width="80" FontFamily="ItalicT" FontSize="15" Foreground="#FF35442F"/>
-                <Button Content="Enter" x:Name="btnEnter" HorizontalAlignment="Left" Margin="555,657,0,0" VerticalAlignment="Top" Width="69" Click="btnUpdate_Click" Height="43" BorderBrush="#FF222A18" Foreground="#FF222A18" Background="#FF97AD96" BorderThickness="3,3,3,3" RenderTransformOrigin="-0.739,1.117" FontFamily="Segoe Print"/>
             </Grid>
             <Label Content="glow up✨" HorizontalAlignment="Left" Margin="114,687,0,0" VerticalAlignment="Top" Height="50" Width="435"/>
-            <Button x:Name="btnLogIn" Content="Log In" HorizontalAlignment="Left" Margin="212,607,0,0" VerticalAlignment="Top" Click="btnLogIn_Click" RenderTransformOrigin="1.246,0.479"/>
-            <Button x:Name="btnSignIn" Content="Sign Up" HorizontalAlignment="Center" Margin="0,607,0,0" VerticalAlignment="Top"/>
+            <Button x:Name="btnLogIn" Content="Log In" HorizontalAlignment="Left" Margin="207,607,0,0" VerticalAlignment="Top" Click="btnLogIn_Click" RenderTransformOrigin="1.246,0.479"/>
+            <Button x:Name="btnSignIn" Content="Sign Up" HorizontalAlignment="Left" Margin="364,607,0,0" VerticalAlignment="Top" Click="btnSignIn_Click"/>
         </Grid>
 
     </Grid>

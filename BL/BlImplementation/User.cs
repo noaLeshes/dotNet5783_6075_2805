@@ -29,7 +29,10 @@ internal class User : IUser
         {
             throw new BO.BlNullPropertyException("Email");
         }
-
+        if (!u.UserGmail.Contains("@"))
+        {
+            throw new BO.BlInvalidExspressionException("Email");
+        }
         try
         {
             dal?.User.Add(new DO.User()
@@ -37,7 +40,7 @@ internal class User : IUser
                 Name = u.Name ?? "",
                 Password = u.Password ?? "0",
                 UserStatus = (DO.UserStatus)position,
-                UserGmail=u.UserGmail,
+                UserGmail=u.UserGmail  ,
                 Address=u.Address
 
 
@@ -75,7 +78,7 @@ internal class User : IUser
         catch (DO.DalMissingIdException ex)
         {
             throw new BO.BlMissingEntityException(@"User doesn't exist,
-                                                              Sign up first",ex);
+                                        Sign up first",ex);
         }
        
     }

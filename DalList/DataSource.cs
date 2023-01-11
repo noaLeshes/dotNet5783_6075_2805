@@ -150,7 +150,7 @@ internal static class DataSource
             UserStatus = UserStatus.MANAGER,
             Name = "Hadas Carmen",
             Password = "1234",
-            UserGmail = "hadascarmen@gmail.com",
+            UserGmail = "@",
             Address = "David 3"
         });
         ;

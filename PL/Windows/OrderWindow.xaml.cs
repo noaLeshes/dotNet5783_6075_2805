@@ -35,14 +35,18 @@ namespace PL.Windows
         public static readonly DependencyProperty orderCurrentProperty =
             DependencyProperty.Register("orderCurrent", typeof(BO.Order), typeof(Window), new PropertyMetadata(null));
 
-
         public OrderWindow(int id)
         {
             InitializeComponent();
             orderCurrent = bl.Order.GetOrderDitailes(id);
             orderItemDataGrid.ItemsSource = bl.Order.GetOrderDitailes(id).Items;
-
-
+        }
+        public OrderWindow(int id,int i)
+        {
+            InitializeComponent();
+            orderCurrent = bl.Order.GetOrderDitailes(id);
+            orderCurrent.CostumerName = " " + orderCurrent.CostumerName;
+            orderItemDataGrid.ItemsSource = bl.Order.GetOrderDitailes(id).Items;
         }
 
         private void btnUpdateDelivery_Click(object sender, RoutedEventArgs e)

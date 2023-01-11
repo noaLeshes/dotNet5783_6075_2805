@@ -28,20 +28,19 @@ namespace PL.Windows
 
         public ProductWindow(int id)
         {
-            
-            InitializeComponent();
-            cmbProductCategory.ItemsSource = Enum.GetValues(typeof(BO.Category));// gettin all the categories for the combobox
             if (id != -1)
             {
-                productCurrent = bl.Product.GetProductDitailesManager(id);
-            }
-
+                productCurrent = bl.Product.GetProductDitailesManager(id);            }
+            InitializeComponent();
+            cmbProductCategory.ItemsSource = Enum.GetValues(typeof(BO.Category));// gettin all the categories for the combobox
         }
 
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-            if (txtId.Text == "")// a message box appears when one of the feilds is empty
+            BO.Product p = new Product();
+            p = productCurrent;
+            if (txtId.Text == null)// a message box appears when one of the feilds is empty
             {
                 MessageBox.Show("Id is empty", "ERROR", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
@@ -99,12 +98,13 @@ namespace PL.Windows
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
-            if (txtPrice.Text == "")// a message box appears when one of the feilds is empty
+            string s = txtInStock.Text;
+            if (productCurrent.Id == null)// a message box appears when one of the feilds is empty
             {
                 MessageBox.Show("Price is empty", "ERROR", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
-            if (txtInStock.Text == "")
+            if (productCurrent.InStock == null)
             {
                 MessageBox.Show("In Stock is empty", "ERROR", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;

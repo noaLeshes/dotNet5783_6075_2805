@@ -49,7 +49,7 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="btnAddProduct"  Style="{StaticResource myButtonStyle}" Content="Add new Product" Grid.Row="2" HorizontalAlignment="Left" Margin="600,5,0,5" Click="btnAddProduct_Click" Width="180" Foreground="#FF1B2A18" Background="#FF97AD96" BorderBrush="#FF222A18" BorderThickness="2,2,2,2"/>
+        <Button x:Name="btnAddProduct"  Style="{StaticResource myButtonStyle}"  Content="Add new Product" Grid.Row="2" HorizontalAlignment="Left" Margin="600,5,0,5" Click="btnAddProduct_Click" Width="180" Foreground="#FF1B2A18" Background="#FF97AD96" BorderBrush="#FF222A18" BorderThickness="2,2,2,2"/>
         <Button x:Name="btnRefresh"  Style="{StaticResource myButtonStyle}" Content="↺" HorizontalAlignment="Left" Margin="530,0,0,0" Grid.Row="2" VerticalAlignment="Center" Width="55" Click="btnRefresh_Click" Background="#FF97AD96" Foreground="#FF1B2A15" BorderBrush="#FF222A18" BorderThickness="2,2,2,2"/>
     </Grid>
 </Window>

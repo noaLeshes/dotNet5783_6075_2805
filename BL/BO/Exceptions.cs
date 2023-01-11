@@ -30,7 +30,8 @@ public class BlAlreadyExistsEntityException : Exception
         }
         else if (EntityId == 0)
         {
-            return $"{EntityName} already exists.";
+            return $"{EntityName} already exists " +
+                $"go Log In.";
         }
         else
         {

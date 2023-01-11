@@ -21,5 +21,15 @@
            x:Key="backgroundConverter"/>
         <local:backgroundOpositeConverter 
            x:Key="backgroundOpositeConverter"/>
+        <local:borderVisibility 
+           x:Key="borderVisibility"/>
+        <local:TextToBool 
+           x:Key="TextToBool"/>
+        <local:TextToBoolOpposite 
+           x:Key="TextToBoolOpposite"/>
+        <local:visibilToHidden 
+           x:Key="visibilToHidden"/>
+        <local:NameTovisibility 
+           x:Key="NameTovisibility"/>
     </Application.Resources>
 </Application>

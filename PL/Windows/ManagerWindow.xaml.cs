@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,23 +24,22 @@ namespace PL.Windows
         {
             InitializeComponent();
         }
-
-    
         private void btnProducts_Click(object sender, RoutedEventArgs e)
         {
             new ProductListWindow().Show();
-
         }
-
         private void btnOrders_Click(object sender, RoutedEventArgs e)
         {
             new OrderListWindow().Show();
-
         }
-
         private void btnOrderTracking_Click(object sender, RoutedEventArgs e)
         {
             new OrderTrackingWindow().Show();
+        }
+        private void btnNewManager_Click(object sender, RoutedEventArgs e)
+        {
+            Cart c = new Cart();//temporary
+            new LogOrSignWindow(ref c, "sign", 0).ShowDialog();
         }
     }
 }

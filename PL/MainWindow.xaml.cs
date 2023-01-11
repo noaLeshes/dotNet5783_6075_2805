@@ -23,50 +23,35 @@ namespace PL
     /// </summary>
     public partial class MainWindow : Window
     {
+        public BO.Cart myCart;
         public MainWindow()
         {
             InitializeComponent();
-           
-        }
-
-
-        private void btnUpdate_Click(object sender, RoutedEventArgs e)
-        {
-            int i;
-            if (txtPass.Text == "123")
+            List<BO.OrderItem>? temp = new();
+             myCart= new BO.Cart
             {
-                new ManagerWindow().Show();
-            }
-            else if (int.TryParse(txtPass.Text, out i))
-            {
-                List<BO.OrderItem>? temp = new();
-                BO.Cart c = new BO.Cart
-                {
-                    CostomerName = "",
-                    CostomerAddress = "",
-                    CostomerEmail = "",
-                    Items = temp,
-                    TotalPrice = 0
-                };
-                new CostumerProductListWindow(c).ShowDialog();
-            }
+                CostomerName = "",
+                CostomerAddress = "",
+                CostomerEmail = "",
+                Items = temp,
+                TotalPrice = 0
+            };
         }
 
         private void btnLogIn_Click(object sender, RoutedEventArgs e)
         {
-
+            LogOrSignWindow ls = new LogOrSignWindow(ref myCart,"log",1);
+            ls.gridLogIn.Visibility = Visibility.Visible;
+            ls.gridSignUp.Visibility = Visibility.Hidden;
+            ls.ShowDialog();
         }
 
-        
-
-
-
-
-        //private void Products_Click(object sender, RoutedEventArgs e)
-        //{
-        //    new ProductListWindow().Show();// the productListWindow shows when clicking the products button
-
-        //}
-
+        private void btnSignIn_Click(object sender, RoutedEventArgs e)
+        {
+            LogOrSignWindow ls = new LogOrSignWindow(ref myCart,"sign",1);
+            ls.gridLogIn.Visibility = Visibility.Visible;
+            ls.gridSignUp.Visibility = Visibility.Visible;
+            ls.ShowDialog();
+        }
     }
 }

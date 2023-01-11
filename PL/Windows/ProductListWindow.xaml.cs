@@ -18,16 +18,6 @@ namespace PL.Windows
 
     public partial class ProductListWindow : Window
     {
-        //public BO.ProductForList? productCurrent1
-        //{
-        //    get { return (BO.ProductForList?)GetValue(productCurrent1Property); }
-        //    set { SetValue(productCurrent1Property, value); }
-        //}
-
-        //// Using a DependencyProperty as the backing store for productCurrent1.  This enables animation, styling, binding, etc...
-        //public static readonly DependencyProperty productCurrent1Property =
-        //    DependencyProperty.Register("productCurrent1", typeof(BO.ProductForList), typeof(Window), new PropertyMetadata(null));
-
         BlApi.IBl? bl = BlApi.Factory.Get();
         public ProductListWindow()
         {
@@ -47,25 +37,17 @@ namespace PL.Windows
 
         private void btnAddProduct_Click(object sender, RoutedEventArgs e)
         {
-            //BO.ProductForList? p = (BO.ProductForList?)productForListDataGrid.SelectedItem;
-            //int id = p?.ID ?? 0
             int id = -1;
             ProductWindow pw =new ProductWindow(id);// a new productWindow
-            pw.Border.Visibility = Visibility.Hidden;
-            pw.btnAdd.Visibility = Visibility.Visible;// add button is visible
-            pw.btnUpdate.Visibility = Visibility.Hidden;// update button is hidden
             pw.ShowDialog();// showing the window 
             productForListDataGrid.ItemsSource = bl?.Product.GetProductsList();// getting the product list with the new product
-
         }
-
 
         private void btnRefresh_Click(object sender, RoutedEventArgs e)
         {
             productForListDataGrid.ItemsSource = bl?.Product.GetProductsList();// getting the product list 
             cmbCategorySelector.SelectedItem = null;// setting the combobox choice to empty
         }
-
         private void productForListDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (productForListDataGrid.SelectedItem as BO.ProductForList != null)
@@ -73,15 +55,11 @@ namespace PL.Windows
                 BO.ProductForList? p = (BO.ProductForList?)productForListDataGrid.SelectedItem;
                 int id = p?.ID ?? 0;
                 ProductWindow pw = new ProductWindow(id);// a new productWindow
-                pw.txtId.IsReadOnly = true;
-                pw.cmbProductCategory.IsHitTestVisible = false;
                 pw.ShowDialog();
                 productForListDataGrid.ItemsSource = bl?.Product.GetProductsList();// getting the product list with the updated product
 
             }
-
         }
-
         private void btnDelete1_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -91,6 +69,7 @@ namespace PL.Windows
                 bl?.Product.DeleteProduct(id);
                 productForListDataGrid.ItemsSource = bl?.Product.GetProductsList();// getting the list of products
                 productForListDataGrid.Items.Refresh();
+                cmbCategorySelector.SelectedItem = null;
             }
             catch (BO.BlAlreadyExistsEntityException ex)
             {

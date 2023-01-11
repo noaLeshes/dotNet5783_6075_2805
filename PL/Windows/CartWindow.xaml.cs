@@ -50,7 +50,7 @@ namespace PL.Windows
             int id = p.ProductId;
             cartCurrent = bl!.Cart.UpdateItem(cartCurrent, id, 0);
             orderItemDataGrid.ItemsSource = cartCurrent!.Items;
-            txtTotalPrice.Text = cartCurrent.TotalPrice.ToString();
+            //txtTotalPrice.Text = cartCurrent.TotalPrice.ToString();
             orderItemDataGrid.Items.Refresh();
 
         }
@@ -80,11 +80,8 @@ namespace PL.Windows
             catch(BO.BlNotInStockException ex)
             {
                 MessageBox.Show(ex.ToString(), "ERROR", MessageBoxButton.OK, MessageBoxImage.Warning);
-
             }
-
         }
-
         private void txtTotalPrice_TextChanged(object sender, TextChangedEventArgs e)
         {
             txtTotalPrice.Text = cartCurrent.TotalPrice.ToString();
@@ -92,7 +89,6 @@ namespace PL.Windows
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
-           // CostumerProductListWindow cw = new CostumerProductListWindow(cartCurrent);
             this.Close();
         }
 
@@ -108,27 +104,17 @@ namespace PL.Windows
 
         private void btnConfirmCart_Click(object sender, RoutedEventArgs e)
         {
-
-            UserDetailsWindow p = new UserDetailsWindow(cartCurrent);
-            p.ShowDialog();
-            cartCurrent.CostomerName = p.txtName.Text;
-            cartCurrent.CostomerEmail = p.txtEmail.Text;
-            cartCurrent.CostomerAddress = p.txtAddress.Text;
             int? orderId = bl?.Cart.ConfirmCart(cartCurrent, cartCurrent.CostomerName, cartCurrent.CostomerAddress, cartCurrent.CostomerEmail);
+            txtTotalPrice.Text = cartCurrent.TotalPrice.ToString();
+            orderItemDataGrid.Items.Refresh();
+            MessageBox.Show("hello " + cartCurrent.CostomerName +@" your order has been confirmed
+                              Thank you for your purchase!
+                               Order Id: " + orderId, " 😃 ", MessageBoxButton.OK, MessageBoxImage.None);// a messagebox appears when the product is added
             List<BO.OrderItem>? temp = new();
             cartCurrent.Items = temp;
             cartCurrent.TotalPrice = 0;
-            cartCurrent.CostomerAddress = "";
-            cartCurrent.CostomerName = "";
-            cartCurrent.CostomerEmail = "";
             orderItemDataGrid.ItemsSource = cartCurrent!.Items;
-            txtTotalPrice.Text = cartCurrent.TotalPrice.ToString();
-            orderItemDataGrid.Items.Refresh();
-            MessageBox.Show(@"Order has been confirmed
-                              Thank you for your purchase!
-                               Order Id: " + orderId, " 😃 ", MessageBoxButton.OK, MessageBoxImage.None);// a messagebox appears when the product is added
             this.Close();
-
         }
     }
     

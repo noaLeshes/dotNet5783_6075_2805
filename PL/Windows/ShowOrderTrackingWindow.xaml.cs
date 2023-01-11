@@ -36,24 +36,17 @@ namespace PL.Windows
         public static readonly DependencyProperty orderTrackingCurrentProperty =
             DependencyProperty.Register("orderTrackingCurrent", typeof(BO.OrderTracking), typeof(Window), new PropertyMetadata(null));
 
-
 public ShowOrderTrackingWindow(int id)
         {
             InitializeComponent();
             myId = id;
             orderTrackingCurrent = bl.Order.GetOrderTracking(id);
             trackingDataGrid.ItemsSource = bl.Order.GetOrderTracking(id).Tracking;
-            
-         
-
-
         }
 
         private void btnOrder_Click(object sender, RoutedEventArgs e)
         {
-            OrderWindow po = new OrderWindow(myId);
-            po.btnUpdateDelivery.Visibility = Visibility.Hidden;
-            po.btnUpdateshipping.Visibility = Visibility.Hidden;
+            OrderWindow po = new OrderWindow(myId, 1);
             po.ShowDialog();
         }
 

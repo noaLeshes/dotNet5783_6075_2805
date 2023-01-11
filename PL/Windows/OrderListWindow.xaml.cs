@@ -17,12 +17,8 @@ namespace PL.Windows
         public OrderListWindow()
         {
             InitializeComponent();
-         
             orderForListDataGrid.ItemsSource = bl.Order.GetOrders();
-
         }
-
-
         private void orderForListDataGridMouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if(orderForListDataGrid.SelectedItem as BO.OrderForList != null)
