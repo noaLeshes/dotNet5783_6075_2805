@@ -76,7 +76,7 @@ namespace PL.Windows
                 if (int.TryParse(txtPrice.Text, out price) == false) throw new BlInvalidExspressionException("Price");// if price is a string
                 if (int.TryParse(txtInStock.Text, out inStock) == false) throw new BlInvalidExspressionException("Amount in stock");// if amount is a string
                 Category category = (BO.Category)cmbProductCategory.SelectedItem;
-                bl?.Product.AddProduct(id, name, price, inStock, category);// addin the new product
+                bl?.Product.AddProduct(id, name, price, inStock, category);// adding the new product
                 this.Close();// closing the window after the product is added
                 MessageBox.Show("Product added successfully ", " 😃 ", MessageBoxButton.OK, MessageBoxImage.None);// a messagebox appears when the product is added
 

@@ -123,9 +123,9 @@ namespace PL.Windows
             orderItemDataGrid.ItemsSource = cartCurrent!.Items;
             txtTotalPrice.Text = cartCurrent.TotalPrice.ToString();
             orderItemDataGrid.Items.Refresh();
-            MessageBox.Show(@"Your order has been confirmed
+            MessageBox.Show(@"Order has been confirmed
                               Thank you for your purchase!
-                            Order Id: " + orderId, " 😃 ", MessageBoxButton.OK, MessageBoxImage.None);// a messagebox appears when the product is added
+                               Order Id: " + orderId, " 😃 ", MessageBoxButton.OK, MessageBoxImage.None);// a messagebox appears when the product is added
             this.Close();
 
         }

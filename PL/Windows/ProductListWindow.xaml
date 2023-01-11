@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="ProductListWindow" Height="640" Width="800">
     <Window.Resources>
-        <Style TargetType="Button">
+        <Style x:Key="myButtonStyle" TargetType="{x:Type Control}">
             <Setter Property="FontSize" Value="18" />
             <Setter Property="FontFamily" Value="Segoe Print" />
             <Setter Property="BorderBrush" Value="#FF222A18"/>
@@ -17,7 +17,7 @@
         </Style>
         
     </Window.Resources>
-    <Grid Name="MainGrid">
+    <Grid Name="MainGrid" Background="#FF97AD96">
         <Grid.RowDefinitions>
             <RowDefinition Height="40*"/>
             <RowDefinition Height="500*"/>
@@ -27,7 +27,7 @@
         </Grid>
         <Label Content="Category" HorizontalAlignment="Left" Grid.Column="0" Width="400" Height="40" FontFamily="Brush Script MT" FontSize="25" Foreground="#FF1B2A15" Background="#FF97AD96" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.RowSpan="1" Grid.ColumnSpan="1" />
         <ComboBox x:Name="cmbCategorySelector" SelectionChanged="cmbCategorySelector_SelectionChanged" Height="40" Foreground="#FF1B2A15" Width="400" MaxDropDownHeight="240" Margin="400,0,0,0"/>
-        <DataGrid x:Name="productForListDataGrid" Grid.Row="1" AutoGenerateColumns="False" IsReadOnly="True" EnableRowVirtualization="True" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="10,10,10,10" MouseDoubleClick="productForListDataGrid_MouseDoubleClick">
+        <DataGrid x:Name="productForListDataGrid" Grid.Row="1" BorderBrush="#FF97AD96" AutoGenerateColumns="False" IsReadOnly="True" EnableRowVirtualization="True" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="10,10,10,10" MouseDoubleClick="productForListDataGrid_MouseDoubleClick" Background="#FF97AD96">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="categoryColumn" Binding="{Binding Category}" Header="Category" Width="*"/>
                 <DataGridTextColumn x:Name="iDColumn1" Binding="{Binding ID}" Header="ID" Width="*"/>
@@ -40,9 +40,16 @@
                     </DataTemplate>
                 </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Delete">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="🗑" x:Name="btnDelete1" Click="btnDelete1_Click" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="btnAddProduct" Content="Add new Product" Grid.Row="2" HorizontalAlignment="Left" Margin="600,5,0,5" Click="btnAddProduct_Click" Width="180" Foreground="#FF1B2A18" Background="#FF97AD96" BorderBrush="#FF222A18" BorderThickness="2,2,2,2"/>
-        <Button x:Name="btnRefresh" Content="↺" HorizontalAlignment="Left" Margin="530,0,0,0" Grid.Row="2" VerticalAlignment="Center" Width="55" Click="btnRefresh_Click" Background="#FF97AD96" Foreground="#FF1B2A15" BorderBrush="#FF222A18" BorderThickness="2,2,2,2"/>
+        <Button x:Name="btnAddProduct"  Style="{StaticResource myButtonStyle}" Content="Add new Product" Grid.Row="2" HorizontalAlignment="Left" Margin="600,5,0,5" Click="btnAddProduct_Click" Width="180" Foreground="#FF1B2A18" Background="#FF97AD96" BorderBrush="#FF222A18" BorderThickness="2,2,2,2"/>
+        <Button x:Name="btnRefresh"  Style="{StaticResource myButtonStyle}" Content="↺" HorizontalAlignment="Left" Margin="530,0,0,0" Grid.Row="2" VerticalAlignment="Center" Width="55" Click="btnRefresh_Click" Background="#FF97AD96" Foreground="#FF1B2A15" BorderBrush="#FF222A18" BorderThickness="2,2,2,2"/>
     </Grid>
 </Window>
