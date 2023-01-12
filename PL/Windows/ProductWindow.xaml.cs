@@ -12,8 +12,6 @@ namespace PL.Windows
     {
         BlApi.IBl? bl = BlApi.Factory.Get();
 
-
-
         public BO.Product? productCurrent
         {
             get { return (BO.Product?)GetValue(productCurrentProperty); }
@@ -30,37 +28,42 @@ namespace PL.Windows
         {
             if (id != -1)
             {
-                productCurrent = bl.Product.GetProductDitailesManager(id);            }
-            InitializeComponent();
+                productCurrent = bl.Product.GetProductDitailesManager(id);
+            }
+            else
+            {
+                productCurrent = new Product();
+            }
+                InitializeComponent();
             cmbProductCategory.ItemsSource = Enum.GetValues(typeof(BO.Category));// gettin all the categories for the combobox
         }
 
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-            BO.Product p = new Product();
-            p = productCurrent;
-            if (txtId.Text == null)// a message box appears when one of the feilds is empty
+            //BO.Product p = new Product();
+            //p = productCurrent;
+            if (productCurrent.Id == 0)// a message box appears when one of the feilds is empty
             {
                 MessageBox.Show("Id is empty", "ERROR", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
-            if (cmbProductCategory.Text == "")
+            if (cmbProductCategory.SelectedItem == null)
             {
                 MessageBox.Show("Category is empty", "ERROR", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
-            if (txtName.Text == "")
+            if (productCurrent.Name == null)
             {
                 MessageBox.Show("Name is empty", "ERROR", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
-            if (txtPrice.Text == "")
+            if (productCurrent.Price == 0)
             {
                 MessageBox.Show("Price is empty", "ERROR", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
-            if (txtInStock.Text == "")
+            if (productCurrent.InStock == 0)
             {
                 MessageBox.Show("In Stock is empty", "ERROR", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
@@ -70,10 +73,10 @@ namespace PL.Windows
             try
             {
                 int id, price, inStock;
-                if (int.TryParse(txtId.Text, out id) == false) throw new BlInvalidExspressionException("Id");// if id is a string
+                if (int.TryParse(productCurrent.Id.ToString(), out id) == false) throw new BlInvalidExspressionException("Id");// if id is a string
                 string name = txtName.Text;
-                if (int.TryParse(txtPrice.Text, out price) == false) throw new BlInvalidExspressionException("Price");// if price is a string
-                if (int.TryParse(txtInStock.Text, out inStock) == false) throw new BlInvalidExspressionException("Amount in stock");// if amount is a string
+                if (int.TryParse(productCurrent.Price.ToString(), out price) == false) throw new BlInvalidExspressionException("Price");// if price is a string
+                if (int.TryParse(productCurrent.InStock.ToString() ,out inStock) == false) throw new BlInvalidExspressionException("Amount in stock");// if amount is a string
                 Category category = (BO.Category)cmbProductCategory.SelectedItem;
                 bl?.Product.AddProduct(id, name, price, inStock, category);// adding the new product
                 this.Close();// closing the window after the product is added
@@ -98,18 +101,17 @@ namespace PL.Windows
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
-            string s = txtInStock.Text;
-            if (productCurrent.Id == null)// a message box appears when one of the feilds is empty
+            if (productCurrent.Price == 0)// a message box appears when one of the feilds is empty
             {
                 MessageBox.Show("Price is empty", "ERROR", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
-            if (productCurrent.InStock == null)
+            if (productCurrent.InStock == 0)
             {
                 MessageBox.Show("In Stock is empty", "ERROR", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
-            if (txtName.Text == "")
+            if (productCurrent.Name == null)
             {
                 MessageBox.Show("Name is empty", "ERROR", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
