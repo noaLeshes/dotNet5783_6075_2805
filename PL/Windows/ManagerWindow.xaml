@@ -7,9 +7,8 @@
         mc:Ignorable="d"
         Title="ManagerWindow" Height="450" Width="800" >
     <Window.Resources>
-        <SolidColorBrush x:Key="ButtonMouseOverBrush" Color="{Binding ElementName=btnLightDark, Path=Content,
-        Converter={StaticResource backgroundConverter}}"/>
-        <SolidColorBrush x:Key="ButtonPressedBrush" Color="Green"/>
+        <SolidColorBrush x:Key="ButtonMouseOverBrush" Color="#FF97AD96"/>
+        <SolidColorBrush x:Key="ButtonPressedBrush" Color="#FF97AD96"/>
         <Style TargetType="Button">
             <Setter Property="FontSize" Value="18" />
             <Setter Property="FontFamily" Value="Segoe Print" />
@@ -47,8 +46,8 @@
         <Button Content="Orders" x:Name="btnOrders" HorizontalAlignment="Left" Margin="205,100,0,0" VerticalAlignment="Top" Width="166" Click="btnOrders_Click" Height="41" BorderBrush="#FF222A18" Foreground="#FF222A18" Background="#FF97AD96" BorderThickness="3,3,3,3"/>
         <Button Content="Order Tracking" x:Name="btnOrderTracking" HorizontalAlignment="Left" Margin="205,252,0,0" VerticalAlignment="Top" Width="166" Click="btnOrderTracking_Click" Height="41" BorderBrush="#FF222A18" Foreground="#FF222A18" Background="#FF97AD96" BorderThickness="3,3,3,3"/>
         <Button x:Name="btnNewManager" Content="Add new manager" HorizontalAlignment="Left" Margin="205,335,0,0" VerticalAlignment="Top" Width="166" Height="41" Click="btnNewManager_Click"/>
-        <Button x:Name="btnLightDark1" Style="{StaticResource ButtonStyle}" Content="🌙" HorizontalAlignment="Left" Margin="646,35,0,0" VerticalAlignment="Top"  Height="50" Width="50" Background="{Binding ElementName=btnLightDark, Path=Content,
-        Converter={StaticResource backgroundConverter}}" Foreground="{Binding Content, Converter={StaticResource backgroundOpositeConverter}, ElementName=btnLightDark1}" BorderBrush="{Binding ElementName=btnLightDark, Path=Content,
+        <Button x:Name="btnLightDark1" Style="{StaticResource ButtonStyle}" Content="🌙" HorizontalAlignment="Left" Margin="646,35,0,0" VerticalAlignment="Top"  Height="50" Width="50" Background="{Binding ElementName=btnLightDark1, Path=Content,
+        Converter={StaticResource backgroundConverter}}" Foreground="{Binding Content, Converter={StaticResource backgroundOpositeConverter}, ElementName=btnLightDark1}" BorderBrush="{Binding ElementName=btnLightDark1, Path=Content,
         Converter={StaticResource backgroundConverter}}" FontSize="18" Click="btnLightDark1_Click" />
     </Grid>
 </Window>

@@ -50,7 +50,7 @@ namespace PL.Windows
             int id = p.ProductId;
             cartCurrent = bl!.Cart.UpdateItem(cartCurrent, id, 0);
             orderItemDataGrid.ItemsSource = cartCurrent!.Items;
-            //txtTotalPrice.Text = cartCurrent.TotalPrice.ToString();
+            txtTotalPrice.Text = cartCurrent.TotalPrice.ToString();
             orderItemDataGrid.Items.Refresh();
 
         }

@@ -41,6 +41,7 @@ namespace PL.Windows
             ProductWindow pw =new ProductWindow(id);// a new productWindow
             pw.ShowDialog();// showing the window 
             productForListDataGrid.ItemsSource = bl?.Product.GetProductsList();// getting the product list with the new product
+            cmbCategorySelector.SelectedItem = null;// setting the combobox choice to empty
         }
 
         private void btnRefresh_Click(object sender, RoutedEventArgs e)
@@ -57,6 +58,7 @@ namespace PL.Windows
                 ProductWindow pw = new ProductWindow(id);// a new productWindow
                 pw.ShowDialog();
                 productForListDataGrid.ItemsSource = bl?.Product.GetProductsList();// getting the product list with the updated product
+                cmbCategorySelector.SelectedItem = null;// setting the combobox choice to empty
 
             }
         }

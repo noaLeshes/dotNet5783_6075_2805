@@ -6,9 +6,16 @@
         xmlns:local="clr-namespace:PL.Windows"
         mc:Ignorable="d"
         DataContext="{Binding productCurrent, RelativeSource={RelativeSource Self}}"
-        Title="ProductWindow" Height="450" Width="800">
+        Title="ProductWindow" Height="330" Width="450">
     <Window.Resources>
-
+        <Style TargetType="Button">
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="FontFamily" Value="Segoe Print" />
+            <Setter Property="BorderBrush" Value="#FF222A18"/>
+            <Setter Property="Foreground" Value="#FF222A18"/>
+            <Setter Property="Background" Value="#FF97AD96"/>
+            <Setter Property="BorderThickness" Value="3,3,3,3"/>
+        </Style>
     </Window.Resources>
     <Grid Background="#FF97AD96">
         <Grid x:Name="gridProduct" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="236,26,0,0">
@@ -25,29 +32,23 @@
             </Grid.RowDefinitions>
 
             <Label Grid.Column="0" Content="Id:" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
-            <TextBox x:Name="txtId" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="0" IsReadOnly="{Binding ElementName=txtName, Path=Text, Converter={StaticResource TextToBool},Mode=OneTime}" Text="{Binding Id, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <TextBox x:Name="txtId" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="0" IsReadOnly="{Binding ElementName=txtName, Path=Text, Converter={StaticResource TextToBool},Mode=OneTime}" Text="{Binding Id, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" BorderBrush="Black"/>
 
             <Label Grid.Column="0" Content="Category:" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
-            <ComboBox x:Name="cmbProductCategory" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="1"  IsHitTestVisible="{Binding ElementName=txtName, Path=Text, Converter={StaticResource TextToBoolOpposite},Mode=OneTime}" Text="{Binding Category, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120">
-                <ComboBox.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <VirtualizingStackPanel/>
-                    </ItemsPanelTemplate>
-                </ComboBox.ItemsPanel>
-            </ComboBox>
+            <ComboBox x:Name="cmbProductCategory" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="1"  IsHitTestVisible="{Binding ElementName=txtName, Path=Text, Converter={StaticResource TextToBoolOpposite},Mode=OneTime}" Text="{Binding Category, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" BorderBrush="Black" />
+
             <Label Grid.Column="0" Content="Name:" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
-            <TextBox x:Name="txtName" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="2" Text="{Binding Name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"  />
+            <TextBox x:Name="txtName" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="2" Text="{Binding Name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" BorderBrush="Black"  />
 
             <Label Grid.Column="0" Content="Price:" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
-            <TextBox x:Name="txtPrice" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="3" Text="{Binding Price, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <TextBox x:Name="txtPrice" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="3" Text="{Binding Price, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" BorderBrush="Black"/>
 
             <Label Grid.Column="0" Content="In Stock:" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
-            <TextBox x:Name="txtInStock" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="4" Text="{Binding InStock, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <TextBox x:Name="txtInStock" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="4" Text="{Binding InStock, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" BorderBrush="Black"/>
 
         </Grid>
-        <Button Content="Add" x:Name="btnAdd" HorizontalAlignment="Left"  Visibility="{Binding ElementName=Border, Path=Visibility, Converter={StaticResource visibilToHidden}}"  Margin="200,293,0,0" VerticalAlignment="Top" Click="btnAdd_Click" Background="#FF97AD96" Foreground="#FF222A18" BorderBrush="#FF222A18" Height="32" Width="55" BorderThickness="3,3,3,3"/>
-        <Button Content="Update" x:Name="btnUpdate"  Visibility="{Binding ElementName=Border, Path=Visibility}" HorizontalAlignment="Left" Margin="277,293,0,0" VerticalAlignment="Top" Width="55" Click="btnUpdate_Click" Height="32" BorderBrush="#FF222A18" Foreground="#FF222A18" Background="#FF97AD96" BorderThickness="3,3,3,3"/>
-        <Border BorderBrush="#FF222A18" BorderThickness="1" Margin="0,10,0,-10"/>
+        <Button Content="Add" x:Name="btnAdd" HorizontalAlignment="Left"  Visibility="{Binding ElementName=Border, Path=Visibility, Converter={StaticResource visibilToHidden}}"  Margin="370,229,0,0" VerticalAlignment="Top" Click="btnAdd_Click" />
+        <Button Content="Update" x:Name="btnUpdate"  Visibility="{Binding ElementName=Border, Path=Visibility}" HorizontalAlignment="Left"  Margin="370,229,0,0" VerticalAlignment="Top" Width="55" Click="btnUpdate_Click" />
         <Border x:Name="Border" Visibility="{Binding ElementName=txtName, Path=Text, Converter={StaticResource borderVisibility}, Mode=OneTime}" Grid.Column="0" BorderBrush="#FF222A18" BorderThickness="5" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="24,26,0,0" Height="230"  Width="204">
             <Image Grid.Column="0" x:Name="productImg" HorizontalAlignment="Left" Height="220"  VerticalAlignment="Top" Width="195" Source="{Binding Path=img, Converter={StaticResource ImagePath}}" Stretch="UniformToFill" Margin="0,0,0,0"  />
         </Border>

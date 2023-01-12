@@ -5,11 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL.Windows"
         mc:Ignorable="d"
-        Title="OrderTrackingWindow" Height="450" Width="800">
+        Title="OrderTrackingWindow" Height="165" Width="800">
     <Window.Resources>
-        <SolidColorBrush x:Key="ButtonMouseOverBrush" Color="{Binding ElementName=btnLightDark, Path=Content,
-        Converter={StaticResource backgroundConverter}}"/>
-        <SolidColorBrush x:Key="ButtonPressedBrush" Color="Green"/>
+        <SolidColorBrush x:Key="ButtonMouseOverBrush" Color="#FF97AD96"/>
+        <SolidColorBrush x:Key="ButtonPressedBrush" Color="#FF97AD96"/>
         <Style TargetType="Button">
             <Setter Property="FontSize" Value="18" />
             <Setter Property="FontFamily" Value="Segoe Print" />
@@ -40,13 +39,12 @@
                 </Setter.Value>
             </Setter>
         </Style>
-
     </Window.Resources>
     <Grid x:Name="myGrid"
         Background="{Binding ElementName=btnLightDark, Path=Content,
         Converter={StaticResource backgroundConverter}}">
         <Button Content="ok" x:Name="btnOk" HorizontalAlignment="Left" Margin="493,71,0,0" VerticalAlignment="Top" Width="53" Click="Button_Click"/>
-        <TextBox x:Name="txtId" HorizontalAlignment="Left" Margin="280,71,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="txtId" HorizontalAlignment="Left" Margin="280,71,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" BorderBrush="Black"/>
         <Label Content="Enter Id" HorizontalAlignment="Left" Foreground="{Binding ElementName=btnLightDark, Path=Content,
         Converter={StaticResource backgroundOpositeConverter}}" Margin="190,71,0,0" VerticalAlignment="Top"/>
         <Button x:Name="btnLightDark" Style="{StaticResource ButtonStyle}" Content="🌙" HorizontalAlignment="Left" Margin="646,35,0,0" VerticalAlignment="Top" Click="btnLightDark_Click" Height="50" Width="50" Background="{Binding ElementName=btnLightDark, Path=Content,
