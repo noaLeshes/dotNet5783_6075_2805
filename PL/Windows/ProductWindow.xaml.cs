@@ -45,38 +45,43 @@ namespace PL.Windows
             //p = productCurrent;
             if (productCurrent.Id == 0)// a message box appears when one of the feilds is empty
             {
-                MessageBox.Show("Id is empty", "ERROR", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Id is invalid", "ERROR", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
             if (cmbProductCategory.SelectedItem == null)
             {
-                MessageBox.Show("Category is empty", "ERROR", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Category is invalid", "ERROR", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
             if (productCurrent.Name == null)
             {
-                MessageBox.Show("Name is empty", "ERROR", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Name is invalid", "ERROR", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
             if (productCurrent.Price == 0)
             {
-                MessageBox.Show("Price is empty", "ERROR", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Price is invalid", "ERROR", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
             if (productCurrent.InStock == 0)
             {
-                MessageBox.Show("In Stock is empty", "ERROR", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("In Stock is invalid", "ERROR", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
             
             
             try
             {
-                int id, price, inStock;
-                if (int.TryParse(productCurrent.Id.ToString(), out id) == false) throw new BlInvalidExspressionException("Id");// if id is a string
-                string name = txtName.Text;
-                if (int.TryParse(productCurrent.Price.ToString(), out price) == false) throw new BlInvalidExspressionException("Price");// if price is a string
-                if (int.TryParse(productCurrent.InStock.ToString() ,out inStock) == false) throw new BlInvalidExspressionException("Amount in stock");// if amount is a string
+                int id, inStock;
+                double price;
+                id = productCurrent.Id;
+                price = productCurrent.Price;
+                inStock = productCurrent.InStock;
+                string name = productCurrent.Name;
+                //if (int.TryParse(txtId.Text, out id) == false) throw new BlInvalidExspressionException("Id");// if id is a string
+                //string name = txtName.Text;
+                //if (double.TryParse(productCurrent.Price.ToString(), out price) == false) throw new BlInvalidExspressionException("Price");// if price is a string
+                //if (int.TryParse(txtInStock.Text ,out inStock) == false) throw new BlInvalidExspressionException("Amount in stock");// if amount is a string
                 Category category = (BO.Category)cmbProductCategory.SelectedItem;
                 bl?.Product.AddProduct(id, name, price, inStock, category);// adding the new product
                 this.Close();// closing the window after the product is added
@@ -103,17 +108,17 @@ namespace PL.Windows
         {
             if (productCurrent.Price == 0)// a message box appears when one of the feilds is empty
             {
-                MessageBox.Show("Price is empty", "ERROR", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Price is invalid", "ERROR", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
             if (productCurrent.InStock == 0)
             {
-                MessageBox.Show("In Stock is empty", "ERROR", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("In Stock is invalid", "ERROR", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
             if (productCurrent.Name == null)
             {
-                MessageBox.Show("Name is empty", "ERROR", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Name is invalid", "ERROR", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
             try

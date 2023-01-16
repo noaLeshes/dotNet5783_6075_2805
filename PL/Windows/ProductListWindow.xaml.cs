@@ -82,9 +82,13 @@ namespace PL.Windows
 
         private void btnPopularProducts_Click(object sender, RoutedEventArgs e)
         {
-           PopularProductsWindow pw = new PopularProductsWindow();
-           pw.ShowDialog();
-            
+            productForListDataGrid.ItemsSource = bl?.Product.PopularProducts();
+            //PopularProductsWindow pw = new PopularProductsWindow();
+            // pw.ShowDialog();
+            cmbCategorySelector.SelectedItem = null;
+            productForListDataGrid.Items.Refresh();
+
+
         }
     }
     

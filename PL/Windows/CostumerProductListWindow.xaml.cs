@@ -65,8 +65,11 @@ namespace PL.Windows
 
         private void btnPopularProducts1_Click(object sender, RoutedEventArgs e)
         {
-            PopularProductsWindow pw = new PopularProductsWindow();
-            pw.ShowDialog();
+            catalog.ItemsSource = bl?.Product.PopularProducts();
+            //PopularProductsWindow pw = new PopularProductsWindow();
+            // pw.ShowDialog();
+            cmbCategory.SelectedItem = null;
+            catalog.Items.Refresh();
         }
     }
     
