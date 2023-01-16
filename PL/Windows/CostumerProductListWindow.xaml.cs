@@ -62,6 +62,12 @@ namespace PL.Windows
         {
             new OrderTrackingWindow().Show();
         }
+
+        private void btnPopularProducts1_Click(object sender, RoutedEventArgs e)
+        {
+            PopularProductsWindow pw = new PopularProductsWindow();
+            pw.ShowDialog();
+        }
     }
     
 }

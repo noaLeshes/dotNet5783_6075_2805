@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PL.Windows"
         mc:Ignorable="d"
         DataContext="{Binding cartCurrent, RelativeSource={RelativeSource Self}}"
-        Title="CartWindow" Height="450" Width="800" Background="#FF97AD96">
+        Title="CartWindow" Height="450" Width="800" Background="#FF97AD96" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Style x:Key="myButtonStyle" TargetType="{x:Type Control}">
             <Setter Property="FontSize" Value="18" />

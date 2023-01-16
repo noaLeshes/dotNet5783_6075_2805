@@ -17,6 +17,7 @@ internal class Product : IProduct
                 ID = id > 0 ? id : throw new BO.BlInvalidExspressionException("Id"),// throwing if the detail is invalid
                 Name = name != "" ? name : throw new BO.BlNullPropertyException("Name"),
                 Category = (DO.Category)c ,
+                img = @"\pics\IMG" + name + ".jpg",
                 Price = price > 0 ? price : throw new BO.BlInvalidExspressionException("Price"),
                 InStock = amount > 0 ? amount : throw new BO.BlInvalidExspressionException("Amount in stock")
             });
@@ -133,6 +134,7 @@ internal class Product : IProduct
                 ID = p.Id > 0 ? p.Id : throw new BO.BlInvalidExspressionException("Id"),// throwing if the detail is invalid
                 Name = p.Name != "" ? p.Name : throw new BO.BlNullPropertyException("Name"),
                 Category = (DO.Category)p.Category,
+                img = @"\pics\IMG" + p?.Name + ".jpg",
                 Price = p.Price > 0 ? p.Price : throw new BO.BlInvalidExspressionException("Price"),
                 InStock = p.InStock > 0 ? p.InStock : throw new BO.BlInvalidExspressionException("Amount in stock")//if there are not enough products in stock
             });
@@ -146,5 +148,31 @@ internal class Product : IProduct
     {
         
          return GetProductsList(x => x?.Category == c);
+    }
+    public IEnumerable<ProductForList?> PopularProducts()
+    {
+        var plist = from item in dal!.OrderItem.GetAll()
+                group item by ((DO.OrderItem?)(item))?.ProductId into groupPopular
+                select new { id = groupPopular.Key, Items = groupPopular };
+
+        plist = plist.OrderByDescending(x => x.Items.Count()).Take(10);
+        try
+        {
+            return from item in plist
+                   let p = dal.Product.GetById(item?.id ?? throw new BO.BlInvalidExspressionException("Product"))
+                   select new BO.ProductForList
+                   {
+                       ID = p.ID,
+                       Name = p.Name,
+                       Price = p.Price,
+                       Category = (BO.Category?)p.Category ?? throw new BO.BlWrongCategoryException(),// throwing if wrong category
+                       img = p.img
+
+                   };
+        }
+        catch (DO.DalMissingIdException exception)// if product doesn't exist 
+        {
+            throw new BO.BlMissingEntityException("Product doesn't exist", exception);
+        }
     }
 }

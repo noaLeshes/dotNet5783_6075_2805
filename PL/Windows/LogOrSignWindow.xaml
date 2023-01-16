@@ -6,7 +6,17 @@
         xmlns:local="clr-namespace:PL.Windows"
         mc:Ignorable="d"
         DataContext="{Binding currentUser, RelativeSource={RelativeSource Self}}"
-        Title="LogOrSignWindow" Height="243" Width="600" Background="#FF97AD96">
+        Title="LogOrSignWindow" Height="243" Width="600" Background="#FF97AD96" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="FontFamily" Value="Segoe Print" />
+            <Setter Property="BorderBrush" Value="#FF222A18"/>
+            <Setter Property="Foreground" Value="#FF222A18"/>
+            <Setter Property="Background" Value="#FF97AD96"/>
+            <Setter Property="BorderThickness" Value="3,3,3,3"/>
+        </Style>
+    </Window.Resources>
     <Grid Margin="10,0,26,0" >
         <Grid x:Name="gridLogIn"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="181,63,0,0" Background="#FF97AD96">
             <Grid.ColumnDefinitions>

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="MainWindow" Height="824" Width="700">
+        Title="MainWindow" Height="550" Width="500" WindowStartupLocation="CenterScreen" Background="#FF97AD96">
     <Window.Resources>
         <Style TargetType="Button">
             <Setter Property="FontSize" Value="18" />
@@ -16,19 +16,14 @@
             <Setter Property="BorderThickness" Value="3,3,3,3"/>
         </Style>
     </Window.Resources>
-    <Grid x:Name="mainGrid">
-
-        <Grid Margin="-24,-191,-24,58">
+    <Grid x:Name="mainGrid" Background="#FF97AD96">
+        <Grid Margin="0,0,0,0">
             <Grid.Background>
                 <ImageBrush ImageSource="/background.jfif"/>
             </Grid.Background>
-            <Grid>
-                <!--<Button Content="Maneger" x:Name="Maneger" VerticalAlignment="Top" Click="Products_Click" RenderTransformOrigin="0.5,0.5" Width="295" Background="#FF97AD96" Height="92" Foreground="#FF35442F" FontSize="60" FontWeight="Bold" FontFamily="Brush Script MT" Canvas.Left="152" Canvas.Top="502" Margin="195,625,0,0" HorizontalAlignment="Left" BorderBrush="#FF97AD96" />
-                <Button Content="Order" x:Name="Order" VerticalAlignment="Top" Click="Products_Click" RenderTransformOrigin="0.5,0.5" Width="295" Background="#FF97AD96" Height="92" Foreground="#FF35442F" FontSize="60" FontWeight="Bold" FontFamily="Brush Script MT" Canvas.Left="152" Canvas.Top="502" Margin="195,625,0,0" HorizontalAlignment="Left" BorderBrush="#FF97AD96" />-->
-            </Grid>
-            <Label Content="glow up✨" HorizontalAlignment="Left" Margin="114,687,0,0" VerticalAlignment="Top" Height="50" Width="435"/>
-            <Button x:Name="btnLogIn" Content="Log In" HorizontalAlignment="Left" Margin="207,607,0,0" VerticalAlignment="Top" Click="btnLogIn_Click" RenderTransformOrigin="1.246,0.479"/>
-            <Button x:Name="btnSignIn" Content="Sign Up" HorizontalAlignment="Left" Margin="364,607,0,0" VerticalAlignment="Top" Click="btnSignIn_Click"/>
+            <Label Content="glow up✨" HorizontalAlignment="Center" Margin="0,474,0,0" VerticalAlignment="Top" Height="50" Width="436" FontFamily="Segoe Print"/>
+            <Button x:Name="btnLogIn" Content="Log In" HorizontalAlignment="Left" Margin="150,400,0,0" VerticalAlignment="Top" Click="btnLogIn_Click" RenderTransformOrigin="1.246,0.479"/>
+            <Button x:Name="btnSignIn" Content="Sign Up" HorizontalAlignment="Left" Margin="250,400,0,0" VerticalAlignment="Top" Click="btnSignIn_Click"/>
         </Grid>
 
     </Grid>

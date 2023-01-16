@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BlApi;
+using DO;
 using BO;
 namespace BlImplementation;
 
@@ -13,22 +14,23 @@ internal class User : IUser
 
     public void AddUser(BO.User u, int position)
     {
-        if(u.Name == null || u.Name == "")
+        if (u.UserGmail == null || u.UserGmail == "")
         {
-            throw new BO.BlNullPropertyException("Name");
+            throw new BO.BlNullPropertyException("Email");
         }
         if (u.Password == null || u.Password == "")
         {
             throw new BO.BlNullPropertyException("Password");
         }
+        if (u.Name == null || u.Name == "")
+        {
+            throw new BO.BlNullPropertyException("Name");
+        }
         if (u.Address == null || u.Address == "")
         {
             throw new BO.BlNullPropertyException("Address");
         }
-        if (u.UserGmail == null || u.UserGmail == "")
-        {
-            throw new BO.BlNullPropertyException("Email");
-        }
+      
         if (!u.UserGmail.Contains("@"))
         {
             throw new BO.BlInvalidExspressionException("Email");
@@ -46,7 +48,7 @@ internal class User : IUser
 
             });
         }
-        catch(DO.DalAlreadyExistsIdException ex)
+        catch(DalAlreadyExistsIdException ex)
         {
             throw new BO.BlAlreadyExistsEntityException("User", 0);
         }

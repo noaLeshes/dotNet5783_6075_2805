@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PL.Windows"
         mc:Ignorable="d"
         DataContext="{Binding orderTrackingCurrent, RelativeSource={RelativeSource Self}}"
-        Title="ShowOrderTrackingWindow" Height="450" Width="800" Background="#FF97AD96">
+        Title="ShowOrderTrackingWindow" Height="370" Width="800" Background="#FF97AD96" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Style TargetType="Button">
             <Setter Property="FontSize" Value="18" />
@@ -29,13 +29,13 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Label Grid.Column="0" Content="ID:" HorizontalAlignment="Left"  Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
-            <TextBox x:Name="iDTextBox" IsReadOnly="True" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="0" Text="{Binding ID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <TextBox x:Name="iDTextBox" IsReadOnly="True" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="0" Text="{Binding ID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" BorderBrush="Black"/>
 
             <Label Grid.Column="0" Content="Status:" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
-            <TextBox x:Name="statusTextBox" IsReadOnly="True" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="1" Text="{Binding Status, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <TextBox x:Name="statusTextBox" IsReadOnly="True" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="1" Text="{Binding Status, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" BorderBrush="Black"/>
             <Label Grid.Column="0" Content="Tracking" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
 
-            <DataGrid x:Name="trackingDataGrid" Background="#FF97AD96" IsReadOnly="True" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding Tracking}" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="10,0,-376,-139" Grid.Row="2" Grid.Column="1">
+            <DataGrid x:Name="trackingDataGrid" Background="#FF97AD96" IsReadOnly="True" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding Tracking}" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="3,10,-369,-149" Grid.Row="2" Grid.Column="1" BorderBrush="#FF97AD96">
                 <DataGrid.Columns>
 
                     <DataGridTextColumn x:Name="item1Column" Binding="{Binding Item1}" Header="Date:" IsReadOnly="True" Width="250" />
@@ -44,8 +44,8 @@
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>
-        <Button x:Name="btnOrder" Content="order details" HorizontalAlignment="Left" Margin="679,217,0,0" VerticalAlignment="Top" Click="btnOrder_Click"/>
-        <Button x:Name="btnOk" Content="OK" HorizontalAlignment="Left" Margin="729,386,0,0" VerticalAlignment="Top" Click="btnOk_Click"/>
+        <Button x:Name="btnOrder" Content="order details" HorizontalAlignment="Left" Margin="83,289,0,0" VerticalAlignment="Top" Click="btnOrder_Click"/>
+        <Button x:Name="btnOk" Content="OK" HorizontalAlignment="Left" Margin="722,299,0,0" VerticalAlignment="Top" Click="btnOk_Click" Width="23" FontSize="10"/>
 
     </Grid>
 

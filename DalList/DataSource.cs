@@ -1,4 +1,6 @@
 ﻿using DO;
+using System.Xml.Linq;
+
 namespace Dal;
 internal static class DataSource
 {
@@ -48,6 +50,7 @@ internal static class DataSource
                 Name = productNames[c, n],//get the product's name from the matrix
                 Price = s_rand.Next(30, 100),
                 Category = (Category)c,
+                img = @"\pics\IMG" + productNames[c, n] + ".jpg",
                 InStock = s_rand.Next(50)
             });
         }

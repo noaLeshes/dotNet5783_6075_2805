@@ -53,14 +53,14 @@ namespace PL.Windows
         {
             Order? o = bl?.Order.UpdateIfProvided(orderCurrent.ID);
             this.Close();
-            MessageBox.Show("Product updated successfully ", " 😃 ", MessageBoxButton.OK, MessageBoxImage.None);// a messagebox appears when the product is updated
+            MessageBox.Show("Order updated successfully ", " 😃 ", MessageBoxButton.OK, MessageBoxImage.None);// a messagebox appears when the product is updated
         }
 
         private void btnUpdateshipping_Click(object sender, RoutedEventArgs e)
         {
             Order? o = bl?.Order.UpdateShipping(orderCurrent.ID);
             this.Close();
-            MessageBox.Show("Product updated successfully ", " 😃 ", MessageBoxButton.OK, MessageBoxImage.None);// a messagebox appears when the product is updated
+            MessageBox.Show("Order updated successfully ", " 😃 ", MessageBoxButton.OK, MessageBoxImage.None);// a messagebox appears when the product is updated
         }
 
         private void btnOk_Click(object sender, RoutedEventArgs e)

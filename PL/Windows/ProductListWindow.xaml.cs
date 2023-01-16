@@ -56,6 +56,7 @@ namespace PL.Windows
                 BO.ProductForList? p = (BO.ProductForList?)productForListDataGrid.SelectedItem;
                 int id = p?.ID ?? 0;
                 ProductWindow pw = new ProductWindow(id);// a new productWindow
+                pw.cmbProductCategory.SelectedItem = pw.productCurrent.Category;
                 pw.ShowDialog();
                 productForListDataGrid.ItemsSource = bl?.Product.GetProductsList();// getting the product list with the updated product
                 cmbCategorySelector.SelectedItem = null;// setting the combobox choice to empty
@@ -77,6 +78,13 @@ namespace PL.Windows
             {
                 MessageBox.Show(ex.ToString(), "ERROR", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
+        }
+
+        private void btnPopularProducts_Click(object sender, RoutedEventArgs e)
+        {
+           PopularProductsWindow pw = new PopularProductsWindow();
+           pw.ShowDialog();
+            
         }
     }
     

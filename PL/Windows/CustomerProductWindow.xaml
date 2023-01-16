@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PL.Windows"
         mc:Ignorable="d"
         DataContext="{Binding myProduct, RelativeSource={RelativeSource Self}}"
-        Title="CustomerProductWindow" Height="395" Width="725" Background="#FF97AD96">
+        Title="CustomerProductWindow" Height="395" Width="725" Background="#FF97AD96" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Style TargetType="Button">
             <Setter Property="FontSize" Value="18" />

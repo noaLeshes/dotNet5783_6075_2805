@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL.Windows"
         mc:Ignorable="d"
-        Title="CostumerProductListWindow" Height="600" Width="850">
+        Title="CostumerProductListWindow" Height="600" Width="850" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Style TargetType="Button">
             <Setter Property="FontSize" Value="18" />
@@ -66,5 +66,7 @@
             </ListView>
         </ScrollViewer>
         <Button x:Name="btnTracking" Content="Follow Your Order" HorizontalAlignment="Left" Margin="129,0,0,0" Grid.Row="2" VerticalAlignment="Center" Click="btnTracking_Click"/>
+        <Button Content="Popular Products" x:Name="btnPopularProducts1" HorizontalAlignment="Center" Margin="0,20,0,20" Grid.Row="2" Height="39.7733333333333" Click="btnPopularProducts1_Click" />
+
     </Grid>
 </Window>

@@ -14,4 +14,6 @@ public interface IProduct
     void AddProduct(int id, string name, double price, int amount, BO.Category c);// add product
     void DeleteProduct(int id);// delete product
     void UpdateProduct(BO.Product p);// update product
+    public IEnumerable<ProductForList?> PopularProducts();
+
 }

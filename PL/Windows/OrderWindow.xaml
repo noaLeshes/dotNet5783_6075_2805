@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PL.Windows"
         mc:Ignorable="d"
         DataContext="{Binding orderCurrent, RelativeSource={RelativeSource Self}}"
-        Title="OrderWindow" Height="600" Width="900" Background="#FF97AD96">
+        Title="OrderWindow" Height="600" Width="900" Background="#FF97AD96" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Style TargetType="Button">
             <Setter Property="FontSize" Value="10" />

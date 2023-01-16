@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL.Windows"
         mc:Ignorable="d"
-        Title="ProductListWindow" Height="640" Width="800">
+        Title="ProductListWindow" Height="640" Width="800" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Style x:Key="myButtonStyle" TargetType="{x:Type Control}">
             <Setter Property="FontSize" Value="18" />
@@ -15,7 +15,7 @@
             <Setter Property="Background" Value="#FF97AD96"/>
             <Setter Property="BorderThickness" Value="3,3,3,3"/>
         </Style>
-        
+
     </Window.Resources>
     <Grid Name="MainGrid" Background="#FF97AD96">
         <Grid.RowDefinitions>
@@ -35,10 +35,10 @@
                 <DataGridTextColumn x:Name="priceColumn" Binding="{Binding Price}" Header="Price" Width="*"/>
                 <DataGridTemplateColumn Header="">
                     <DataGridTemplateColumn.CellTemplate>
-                    <DataTemplate>
-                        <Image x:Name="img" Source="{Binding Path=img, Converter={StaticResource ImagePath}}" Width="70" Height="50" />
-                    </DataTemplate>
-                </DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image x:Name="img" Source="{Binding Path=img, Converter={StaticResource ImagePath}}" Width="70" Height="50" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTemplateColumn Header="Delete">
                     <DataGridTemplateColumn.CellTemplate>
@@ -49,7 +49,8 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="btnAddProduct"  Style="{StaticResource myButtonStyle}"  Content="Add new Product" Grid.Row="2" HorizontalAlignment="Left" Margin="600,5,0,5" Click="btnAddProduct_Click" Width="180" Foreground="#FF1B2A18" Background="#FF97AD96" BorderBrush="#FF222A18" BorderThickness="2,2,2,2"/>
-        <Button x:Name="btnRefresh"  Style="{StaticResource myButtonStyle}" Content="↺" HorizontalAlignment="Left" Margin="530,0,0,0" Grid.Row="2" VerticalAlignment="Center" Width="55" Click="btnRefresh_Click" Background="#FF97AD96" Foreground="#FF1B2A15" BorderBrush="#FF222A18" BorderThickness="2,2,2,2"/>
+        <Button x:Name="btnAddProduct"  Style="{StaticResource myButtonStyle}"  Content="Add new Product" Grid.Row="2" HorizontalAlignment="Left" Margin="600,5,0,5" Click="btnAddProduct_Click" Height="39.7733333333333" FontFamily="Segoe Print" />
+        <Button x:Name="btnRefresh"  Style="{StaticResource myButtonStyle}" Content="↺" HorizontalAlignment="Left" Margin="530,0,0,0" Grid.Row="2" VerticalAlignment="Center" Width="55" Click="btnRefresh_Click"/>
+        <Button Content="Popular Products" x:Name="btnPopularProducts" Style="{StaticResource myButtonStyle}" HorizontalAlignment="Left" Margin="35,14,0,14" Grid.Row="2" Click="btnPopularProducts_Click"/>
     </Grid>
 </Window>
