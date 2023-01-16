@@ -38,10 +38,10 @@ namespace PL.Windows
         public int myStatus;
         public LogOrSignWindow(User u, ref BO.Cart c,string logOrSign, int status)
         {
+            currentUser = u;
             InitializeComponent();
             myCart = c;
             myLogOrSign = logOrSign;
-            currentUser = u;
             myStatus = status;
         }
         private void btnEnter1_Click(object sender, RoutedEventArgs e)

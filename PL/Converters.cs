@@ -258,7 +258,7 @@ namespace PL
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             string pass = (string)value;
-            if (pass == "1111")
+            if (pass == "1111" || pass=="")
                 return Visibility.Hidden; //Visibility.Collapsed;
             else
             {
