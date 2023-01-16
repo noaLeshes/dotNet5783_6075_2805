@@ -39,7 +39,12 @@ namespace PL.Windows
         private void btnNewManager_Click(object sender, RoutedEventArgs e)
         {
             Cart c = new Cart();//temporary
-            new LogOrSignWindow(ref c, "sign", 0).ShowDialog();
+            User u = new User
+            {
+                UserGmail = "example@gmail.com",
+                Password = "2222"
+            };
+            new LogOrSignWindow(u,ref c, "sign", 0).ShowDialog();
         }
 
         private void btnLightDark1_Click(object sender, RoutedEventArgs e)

@@ -44,7 +44,7 @@
         Background="{Binding ElementName=btnLightDark, Path=Content,
         Converter={StaticResource backgroundConverter}}">
         <Button Content="ok" x:Name="btnOk" HorizontalAlignment="Left" Margin="493,71,0,0" VerticalAlignment="Top" Width="53" Click="Button_Click"/>
-        <TextBox x:Name="txtId" HorizontalAlignment="Left" Margin="280,71,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" BorderBrush="Black"/>
+        <TextBox x:Name="txtId" HorizontalAlignment="Left" Margin="280,71,0,0" TextWrapping="Wrap" Text=""  VerticalAlignment="Top" Width="120" BorderBrush="Black"/>
         <Label Content="Enter Id" HorizontalAlignment="Left" Foreground="{Binding ElementName=btnLightDark, Path=Content,
         Converter={StaticResource backgroundOpositeConverter}}" Margin="190,71,0,0" VerticalAlignment="Top"/>
         <Button x:Name="btnLightDark" Style="{StaticResource ButtonStyle}" Content="🌙" HorizontalAlignment="Left" Margin="646,35,0,0" VerticalAlignment="Top" Click="btnLightDark_Click" Height="50" Width="50" Background="{Binding ElementName=btnLightDark, Path=Content,

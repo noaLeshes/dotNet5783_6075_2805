@@ -1,5 +1,6 @@
 ﻿using BlApi;
 using BlImplementation;
+using BO;
 using PL.Windows;
 using System;
 using System.Collections.Generic;
@@ -40,17 +41,24 @@ namespace PL
 
         private void btnLogIn_Click(object sender, RoutedEventArgs e)
         {
-            LogOrSignWindow ls = new LogOrSignWindow(ref myCart,"log",1);
-            ls.gridLogIn.Visibility = Visibility.Visible;
-            ls.gridSignUp.Visibility = Visibility.Hidden;
+            User u = new User
+            {
+                UserGmail = "example@gmail.com",
+                Password = "1111"
+            };
+            
+            LogOrSignWindow ls = new LogOrSignWindow(u,ref myCart,"log",1);
             ls.ShowDialog();
         }
 
         private void btnSignIn_Click(object sender, RoutedEventArgs e)
         {
-            LogOrSignWindow ls = new LogOrSignWindow(ref myCart,"sign",1);
-            ls.gridLogIn.Visibility = Visibility.Visible;
-            ls.gridSignUp.Visibility = Visibility.Visible;
+            User u = new User
+            {
+                UserGmail = "example@gmail.com",
+                Password = "2222"
+            };
+            LogOrSignWindow ls = new LogOrSignWindow(u,ref myCart,"sign",1);
             ls.ShowDialog();
         }
     }

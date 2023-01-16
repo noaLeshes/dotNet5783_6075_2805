@@ -19,21 +19,14 @@ namespace PL.Windows
     /// <summary>
     /// Interaction logic for OrderTrackingWindow.xaml
     /// </summary>
-    public partial class OrderTrackingWindow : Window
+    public partial class OrderTrackingWindow : Window 
     {
-        public int myId
-        {
-            get { return (int)GetValue(myIdProperty); }
-            set { SetValue(myIdProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for myId.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty myIdProperty =
-            DependencyProperty.Register("myId", typeof(int), typeof(Window), new PropertyMetadata(0));
         BlApi.IBl? bl = BlApi.Factory.Get();
+
         public OrderTrackingWindow()
-        {
+        { 
             InitializeComponent();
+            this.DataContext = this;
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {

@@ -36,12 +36,12 @@ namespace PL.Windows
         public BO.Cart myCart;
         public string myLogOrSign;
         public int myStatus;
-        public LogOrSignWindow(ref BO.Cart c,string logOrSign, int status)
+        public LogOrSignWindow(User u, ref BO.Cart c,string logOrSign, int status)
         {
             InitializeComponent();
             myCart = c;
             myLogOrSign = logOrSign;
-            currentUser = new User();
+            currentUser = u;
             myStatus = status;
         }
         private void btnEnter1_Click(object sender, RoutedEventArgs e)
