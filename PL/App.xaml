@@ -31,7 +31,7 @@
            x:Key="visibilToHidden"/>
         <local:NameTovisibility 
            x:Key="NameTovisibility"/>
-        <local:VisibilityByPassword 
-           x:Key="VisibilityByPassword"/>
+        <local:VisibilityByMail 
+           x:Key="VisibilityByMail"/>
     </Application.Resources>
 </Application> 

@@ -6,18 +6,16 @@ using System.Windows;
 namespace PL.Windows
 {
     /// <summary>
-    /// Interaction logic for ProductWindow.xaml
+    /// The window where the manager can see the products details and update it or add a new product.
     /// </summar
     public partial class ProductWindow : Window
     {
         BlApi.IBl? bl = BlApi.Factory.Get();
-
-        public BO.Product? productCurrent
+        public BO.Product? productCurrent//dependancyproperty for the current product
         {
             get { return (BO.Product?)GetValue(productCurrentProperty); }
             set { SetValue(productCurrentProperty, value); }
         }
-
         // Using a DependencyProperty as the backing store for productCurrent.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty productCurrentProperty =
             DependencyProperty.Register("productCurrent", typeof(BO.Product), typeof(Window), new PropertyMetadata(null));
@@ -26,24 +24,22 @@ namespace PL.Windows
 
         public ProductWindow(int id)
         {
-            if (id != -1)
+            if (id != -1)//update the product
             {
                 productCurrent = bl.Product.GetProductDitailesManager(id);
             }
-            else
+            else//add a new product
             {
                 productCurrent = new Product();
             }
-                InitializeComponent();
+            InitializeComponent();
             cmbProductCategory.ItemsSource = Enum.GetValues(typeof(BO.Category));// gettin all the categories for the combobox
         }
 
 
-        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        private void btnAdd_Click(object sender, RoutedEventArgs e)//button to add a new product
         {
-            //BO.Product p = new Product();
-            //p = productCurrent;
-            if (productCurrent.Id == 0)// a message box appears when one of the feilds is empty
+            if (productCurrent!.Id == 0)// a message box appears when one of the feilds is empty or invalid
             {
                 MessageBox.Show("Id is invalid", "ERROR", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
@@ -78,10 +74,6 @@ namespace PL.Windows
                 price = productCurrent.Price;
                 inStock = productCurrent.InStock;
                 string name = productCurrent.Name;
-                //if (int.TryParse(txtId.Text, out id) == false) throw new BlInvalidExspressionException("Id");// if id is a string
-                //string name = txtName.Text;
-                //if (double.TryParse(productCurrent.Price.ToString(), out price) == false) throw new BlInvalidExspressionException("Price");// if price is a string
-                //if (int.TryParse(txtInStock.Text ,out inStock) == false) throw new BlInvalidExspressionException("Amount in stock");// if amount is a string
                 Category category = (BO.Category)cmbProductCategory.SelectedItem;
                 bl?.Product.AddProduct(id, name, price, inStock, category);// adding the new product
                 this.Close();// closing the window after the product is added
@@ -104,9 +96,9 @@ namespace PL.Windows
 
         }
 
-        private void btnUpdate_Click(object sender, RoutedEventArgs e)
+        private void btnUpdate_Click(object sender, RoutedEventArgs e)//button to update a product
         {
-            if (productCurrent.Price == 0)// a message box appears when one of the feilds is empty
+            if (productCurrent!.Price == 0)// a message box appears when one of the feilds is empty or invalid
             {
                 MessageBox.Show("Price is invalid", "ERROR", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
@@ -124,8 +116,8 @@ namespace PL.Windows
             try
             {
                 int price, inStock;
-                if (int.TryParse(txtPrice.Text, out price) == false) throw new BlInvalidExspressionException("Price");// if price is a string
-                if (int.TryParse(txtInStock.Text, out inStock) == false) throw new BlInvalidExspressionException("Amount in stock");// if amont is a string
+                if (int.TryParse(txtPrice.Text, out price) == false) throw new BlInvalidExspressionException("Price");// if price is invalid
+                if (int.TryParse(txtInStock.Text, out inStock) == false) throw new BlInvalidExspressionException("Amount in stock");// if amont is invalid
                 bl?.Product.UpdateProduct(productCurrent);// updating the product's details 
                 this.Close();// closing the window after the product is added
                 MessageBox.Show("Product updated successfully ", " 😃 ", MessageBoxButton.OK, MessageBoxImage.None);// a messagebox appears when the product is updated

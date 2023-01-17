@@ -10,16 +10,16 @@ using System.Windows.Media.Imaging;
 
 namespace PL
 {
-    public class NotDateTimeToVisibilityConverter : IValueConverter
+    public class NotDateTimeToVisibilityConverter : IValueConverter // convert for update bottons
     {
         //convert from source property type to target property type
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value.ToString() != "")
-                return Visibility.Hidden; //Visibility.Collapsed;
+                return Visibility.Hidden; //if the date is not null return hidden
             else
             {
-                return Visibility.Visible;
+                return Visibility.Visible;// else visible
             }
         }
         //convert from target property type to source property type
@@ -77,17 +77,16 @@ namespace PL
     }
     public class cartEmptyConverter : IValueConverter
     {
-        //convert from source property type to target property type
+        //convert if cart is empty the button is hidden else visible
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value.ToString() != "0")
-                return Visibility.Visible; //Visibility.Collapsed;
+                return Visibility.Visible; //
             else
             {
                 return Visibility.Hidden;
             }
         }
-        //convert from target property type to source property type
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
@@ -95,14 +94,14 @@ namespace PL
     }
     public class cartEmptyToTextConverter : IValueConverter
     {
-        //convert from source property type to target property type
+        // change the text of the button acording to the total price
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value.ToString() != "0")
-                return "Continue Shopping"; //Visibility.Collapsed;
+            if (value.ToString() != "0") // if cart is not empty 
+                return "Continue Shopping"; 
             else
             {
-                return "start Shopping";
+                return "start Shopping"; 
             }
         }
         //convert from target property type to source property type
@@ -113,7 +112,7 @@ namespace PL
     }
     public class backgroundConverter : IValueConverter
     {
-        //convert from source property type to target property type
+        // change the color of the widow acording to the contant of the button
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
                 if(value == null)
@@ -134,7 +133,7 @@ namespace PL
     }
     public class backgroundOpositeConverter : IValueConverter
     {
-        //convert from source property type to target property type
+        // change the color of the widow acording to the contant of the button opposite
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value.ToString() != "☀️")
@@ -153,7 +152,7 @@ namespace PL
     }
     public class borderVisibility : IValueConverter
     {
-        //convert from source property type to target property type
+       // if we enterd the window with empty name we want the border to be hidden
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value.ToString() != "")
@@ -176,7 +175,7 @@ namespace PL
         //convert from source property type to target property type
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value.ToString() != "")
+            if (value.ToString() != "")//if null return true else false
                 return true;
             else
             {
@@ -195,7 +194,7 @@ namespace PL
         //convert from source property type to target property type
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value.ToString() == "")
+            if (value.ToString() == "") // if text is null return true else false
                 return true;
             else
             {
@@ -230,12 +229,12 @@ namespace PL
     }
     public class NameTovisibility : IValueConverter
     {
-        //convert from source property type to target property type
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value.ToString() != "")
             {
-                if (value.ToString()[0] == ' ')
+                if (value.ToString()![0] == ' ') //get the name and if he has space in the begining he returns hidden
+
                     return Visibility.Hidden;
                 else
                 {
@@ -252,17 +251,17 @@ namespace PL
             throw new NotImplementedException();
         }
     }
-    public class VisibilityByPassword : IValueConverter
+    public class VisibilityByMail : IValueConverter
     {
         //convert from source property type to target property type
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            string pass = (string)value;
-            if (pass == "1111" || pass=="")
-                return Visibility.Hidden; //Visibility.Collapsed;
+            string mail = (string)value;
+            if (mail == "example@gmail.com" || mail=="") // if we gor lowercase e we came from the button log 
+                return Visibility.Hidden; //so we will return hidden to the grid
             else
             {
-                return Visibility.Visible;
+                return Visibility.Visible; // we came from sign
             }
         }
         //convert from target property type to source property type

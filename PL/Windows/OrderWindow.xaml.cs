@@ -1,32 +1,18 @@
 ﻿using BO;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+
 
 
 namespace PL.Windows
 {
     /// <summary>
-    /// Interaction logic for OrderWindow.xaml
+    /// The window where the manager and customer can see the order's details and the manager can update the order's dates.
     /// </summary>
 
     public partial class OrderWindow : Window
     {
         BlApi.IBl? bl = BlApi.Factory.Get()!;
-
-        public BO.Order? orderCurrent
+        public BO.Order? orderCurrent//dependancyproperty for the current cart
         {
             get { return (BO.Order?)GetValue(orderCurrentProperty); }
             set { SetValue(orderCurrentProperty, value); }
@@ -35,34 +21,31 @@ namespace PL.Windows
         public static readonly DependencyProperty orderCurrentProperty =
             DependencyProperty.Register("orderCurrent", typeof(BO.Order), typeof(Window), new PropertyMetadata(null));
 
-        public OrderWindow(int id)
+        public OrderWindow(int id)//getting the id of the wanted order
         {
             InitializeComponent();
-            orderCurrent = bl.Order.GetOrderDitailes(id);
-            orderItemDataGrid.ItemsSource = bl.Order.GetOrderDitailes(id).Items;
+            orderCurrent = bl.Order.GetOrderDitailes(id);//getting the order's details
+            orderItemDataGrid.ItemsSource = bl.Order.GetOrderDitailes(id).Items;//getting the orderItems in the wanted order
         }
-        public OrderWindow(int id,int i)
+        public OrderWindow(int id,int i)//another constructor that is getting the id of the wanted order and an int 
         {
             InitializeComponent();
-            orderCurrent = bl.Order.GetOrderDitailes(id);
-            orderCurrent.CostumerName = " " + orderCurrent.CostumerName;
-            orderItemDataGrid.ItemsSource = bl.Order.GetOrderDitailes(id).Items;
+            orderCurrent = bl.Order.GetOrderDitailes(id);//getting the order's details
+            orderCurrent.CostumerName = " " + orderCurrent.CostumerName;//we added " " so that we will have a different if we came from manager or customer
+            orderItemDataGrid.ItemsSource = bl.Order.GetOrderDitailes(id).Items;//getting the orderItems in the wanted order
         }
-
-        private void btnUpdateDelivery_Click(object sender, RoutedEventArgs e)
+        private void btnUpdateDelivery_Click(object sender, RoutedEventArgs e)//button to update the delivery date
         {
-            Order? o = bl?.Order.UpdateIfProvided(orderCurrent.ID);
+            Order? o = bl?.Order.UpdateIfProvided(orderCurrent!.ID);//sending the current order to get updated
             this.Close();
             MessageBox.Show("Order updated successfully ", " 😃 ", MessageBoxButton.OK, MessageBoxImage.None);// a messagebox appears when the product is updated
         }
-
-        private void btnUpdateshipping_Click(object sender, RoutedEventArgs e)
+        private void btnUpdateshipping_Click(object sender, RoutedEventArgs e)//button to update the ship date
         {
-            Order? o = bl?.Order.UpdateShipping(orderCurrent.ID);
+            Order? o = bl?.Order.UpdateShipping(orderCurrent!.ID);//sending the current order to get updated
             this.Close();
             MessageBox.Show("Order updated successfully ", " 😃 ", MessageBoxButton.OK, MessageBoxImage.None);// a messagebox appears when the product is updated
         }
-
         private void btnOk_Click(object sender, RoutedEventArgs e)
         {
             this.Close();

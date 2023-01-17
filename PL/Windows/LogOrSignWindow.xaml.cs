@@ -1,27 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿using System.Windows;
 using BO;
 
 namespace PL.Windows
 {
 
     /// <summary>
-    /// Interaction logic for LogOrSign.xaml
+    /// The window where costumers and managers can log in or sign up.
     /// </summary>
     public partial class LogOrSignWindow : Window
     {
-        public User currentUser
+        public User currentUser//dependancyproperty for the current user
         {
             get { return (User)GetValue(currentUserProperty); }
             set { SetValue(currentUserProperty, value); }
@@ -32,15 +20,14 @@ namespace PL.Windows
             DependencyProperty.Register("currentUser", typeof(User), typeof(Window), new PropertyMetadata(null));
 
         BlApi.IBl? bl = BlApi.Factory.Get()!;
-
-        public BO.Cart myCart;
+        public BO.Cart myCart;//initializing the cart
         public string myLogOrSign;
         public int myStatus;
-        public LogOrSignWindow(User u, ref BO.Cart c,string logOrSign, int status)
+        public LogOrSignWindow(User u, ref BO.Cart c,string logOrSign, int status)//getting the cart, user, the users status and if we log in or sign up
         {
-            currentUser = u;
+            currentUser = u;//initializing the current user with the user we got
             InitializeComponent();
-            myCart = c;
+            myCart = c;//initializing the cart
             myLogOrSign = logOrSign;
             myStatus = status;
         }
@@ -48,27 +35,27 @@ namespace PL.Windows
         {
             try
             {
-                if (myLogOrSign == "log")
-                    currentUser = bl?.User.GetByUserName(currentUser.UserGmail!, currentUser.Password!)!;
-                else
+                if (myLogOrSign == "log")//if we are loging in 
+                    currentUser = bl?.User.GetByUserName(currentUser.UserGmail!, currentUser.Password!)!;//getting the registered user 
+                else//if we are signing up
                 {
-                    bl?.User.AddUser(currentUser, myStatus);
-                    currentUser.UserStatus = (UserStatus)myStatus;
+                    bl?.User.AddUser(currentUser, myStatus);//adding a new user
+                    currentUser.UserStatus = (UserStatus)myStatus;//updating the user's status
                 }
-                myCart.CostomerAddress = currentUser.Address;
+                myCart.CostomerAddress = currentUser.Address;//updating the user's details
                 myCart.CostomerName = currentUser.Name;
                 myCart.CostomerEmail = currentUser.UserGmail;
                 this.Close();
-                if (currentUser.UserStatus == BO.UserStatus.Customer)
+                if (currentUser.UserStatus == BO.UserStatus.Customer)//opening the costumer window
                 {
                     new CostumerProductListWindow(myCart).ShowDialog();
                 }
-                if (currentUser.UserStatus == BO.UserStatus.Maneger)
+                if (currentUser.UserStatus == BO.UserStatus.Maneger)//opening the manager window
                 {
                     new ManagerWindow().ShowDialog();
                 }
             }
-            catch (BO.BlAlreadyExistsEntityException ex)
+            catch (BO.BlAlreadyExistsEntityException ex)//catching exceptions from the bl
             {
                 MessageBox.Show(ex.ToString(), "ERROR", MessageBoxButton.OK, MessageBoxImage.Warning);
                 this.Close();

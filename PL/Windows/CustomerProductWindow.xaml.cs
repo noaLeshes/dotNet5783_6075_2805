@@ -1,18 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.Metrics;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿using System.Windows;
 using BO;
 
 namespace PL.Windows
@@ -22,8 +8,8 @@ namespace PL.Windows
         BlApi.IBl? bl = BlApi.Factory.Get();
         Cart myCart;
         /// <summary>
-        /// Interaction logic for CustomerProductWindow.xaml
-        public BO.ProductItem? myProduct
+        /// The window where the customer can see the product's details and add it to the cart
+        public BO.ProductItem? myProduct//dependancyproperty for the current product
         {
             get { return (BO.ProductItem?)GetValue(myProductProperty); }
             set { SetValue(myProductProperty, value); }
@@ -31,9 +17,9 @@ namespace PL.Windows
         // Using a DependencyProperty as the backing store for myProduct.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty myProductProperty =
             DependencyProperty.Register("myProduct", typeof(BO.ProductItem), typeof(Window), new PropertyMetadata(null));
-        public CustomerProductWindow(int id, Cart c )
+        public CustomerProductWindow(int id, Cart c )//getting the cart and the wanted product's id
         {
-            myCart = c;
+            myCart = c;//initializing the cart
             InitializeComponent();
             myProduct = bl.Product.GetProductDitailes(id,c);
         }
@@ -41,14 +27,14 @@ namespace PL.Windows
         {
             try
             {
-                bl.Cart.AddItem(myCart, myProduct.Id);
-                CostumerProductListWindow d = new CostumerProductListWindow(myCart);
+                bl?.Cart.AddItem(myCart, myProduct!.Id);//adding the wanted product to the cart
+                CostumerProductListWindow d = new CostumerProductListWindow(myCart);//sending the cart to the next window
                 this.Close();// closing the window after the product is added
                 MessageBox.Show("Product added successfully to your cart", " 😃 ", MessageBoxButton.OK, MessageBoxImage.None);// a messagebox appears when the product is added
                 CostumerProductListWindow p = new CostumerProductListWindow(myCart);
                 p.catalog.ItemsSource = bl?.Product.GetProducts();// getting the product list with the updated product
             }
-            catch (BO.BlNotInStockException ex)
+            catch (BO.BlNotInStockException ex)//if there isn't enough of the product in stock
             {
                 MessageBox.Show(ex.ToString(), "ERROR", MessageBoxButton.OK, MessageBoxImage.Warning);
             }

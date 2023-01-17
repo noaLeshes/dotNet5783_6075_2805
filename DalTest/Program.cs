@@ -8,10 +8,7 @@ public enum MainChoice { End = 0, Product, Order, OrderItem }
 public enum SecondaryChoice { Add = 1, Delete, Update, GetById, GetAll, GetAllOrderProducts, GetByProductIdAndOrderId }
 internal class Program
 {
-    //private static DalProduct dalProduct = new DalProduct();
-    //private static DalOrder dalOrder = new DalOrder();
-    //private static DalOrderItem dalOrderItem = new DalOrderItem();
-    private static IDal dal = new DalList();
+    private static IDal dal = DalApi.Factory.Get()!;
     private static void productFunc()
     {
         Console.WriteLine(@"please enter your choice:

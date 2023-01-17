@@ -35,8 +35,8 @@
             <TextBox x:Name="passwordTextBox" Grid.Column="3" HorizontalAlignment="Center" Height="NaN" Grid.Row="1" Text="{Binding Password, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" BorderBrush="Black"/>
 
         </Grid>
-        <Grid x:Name="gridSignUp" Visibility="{Binding ElementName=passwordTextBox, Path=Text,
-        Converter={StaticResource VisibilityByPassword},Mode=OneTime}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="188,120,0,0" Background="#FF97AD96" >
+        <Grid x:Name="gridSignUp" Visibility="{Binding ElementName=userGmailTextBox, Path=Text,
+        Converter={StaticResource VisibilityByMail},Mode=OneTime}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="188,120,0,0" Background="#FF97AD96" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>

@@ -40,7 +40,7 @@ internal static class DataSource
                                                   {"Face-Mask","Moisturizer", "Makeup-Wipes", "Eye-Patches" }/*beauty*/ };
     private static void createAndInitProducts()//product constructor
     {
-        for (int i = 0; i < 15; i++)//creating 10 products
+        for (int i = 0; i < 15; i++)//creating 15 products
         {
             int c = s_rand.Next(5);
             int n = s_rand.Next(4);
@@ -134,13 +134,13 @@ internal static class DataSource
     }
     private static void createAndInitUsers()
     {
-        string[] names = { "Moshe", "Yosi", "Avi", "Adi", "Rachel" };
-        string[] passwords = { "1111", "2222", "3333", "4444", "5555" };
+        string[] names = { "Moshe", "Yosi", "Avi", "Adi", "Rachel" };//matrix of names
+        string[] passwords = { "1111", "2222", "3333", "4444", "5555" };//matrix of passwords
         string[] arrayAdresses = {"Hadekel 1", "Hadekel 2", "Hadekel 3", "Hadekel 4", "Hadekel 5",
-                                  "Pinkas 1", "Pinkas 2", "Pinkas 3","Pinkas 4" };
-        string[] emails = { "Moshe@gmail.com", "Yosi@gmail.com", "Avi@gmail.com", "Adi@gmail.com", "Rachel@gmail.com" };
+                                  "Pinkas 1", "Pinkas 2", "Pinkas 3","Pinkas 4" };//matrix of addresses
+        string[] emails = { "Moshe@gmail.com", "Yosi@gmail.com", "Avi@gmail.com", "Adi@gmail.com", "Rachel@gmail.com" };//matrix of emails
 
-        UserList.Add(new User
+        UserList.Add(new User//adding the first registered manager
         {
             UserStatus = UserStatus.MANAGER,
             Name = "Noa Leshes",
@@ -148,16 +148,16 @@ internal static class DataSource
             UserGmail = "noa.leshes@gmail.com",
             Address = "Pinkas 5"
         });
-        UserList.Add(new User
+        UserList.Add(new User//adding the second registered manager
         {
             UserStatus = UserStatus.MANAGER,
             Name = "Hadas Carmen",
             Password = "1234",
-            UserGmail = "@",
+            UserGmail = "hadas@gmail.com",
             Address = "David 3"
         });
         ;
-        for (int i = 0; i < names.Length; i++)
+        for (int i = 0; i < names.Length; i++)//adding 5 costumers useres
         {
             string userName = names[i];
             string password = passwords[i];

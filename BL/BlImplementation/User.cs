@@ -14,7 +14,7 @@ internal class User : IUser
 
     public void AddUser(BO.User u, int position)
     {
-        if (u.UserGmail == null || u.UserGmail == "")
+        if (u.UserGmail == null || u.UserGmail == "")//if one of the details is empty
         {
             throw new BO.BlNullPropertyException("Email");
         }
@@ -30,14 +30,13 @@ internal class User : IUser
         {
             throw new BO.BlNullPropertyException("Address");
         }
-      
-        if (!u.UserGmail.Contains("@"))
+        if (!u.UserGmail.Contains("@"))//if the email is invalid
         {
             throw new BO.BlInvalidExspressionException("Email");
         }
         try
         {
-            dal?.User.Add(new DO.User()
+            dal?.User.Add(new DO.User()//adding the user with th given details 
             {
                 Name = u.Name ?? "",
                 Password = u.Password ?? "0",
@@ -48,7 +47,7 @@ internal class User : IUser
 
             });
         }
-        catch(DalAlreadyExistsIdException ex)
+        catch(DalAlreadyExistsIdException ex)//if the user already exists 
         {
             throw new BO.BlAlreadyExistsEntityException("User", 0);
         }
@@ -58,7 +57,7 @@ internal class User : IUser
     {
         try
         {
-            if (name == null || name == "")
+            if (name == null || name == "")//if one of the details is empty
             {
                 throw new BO.BlNullPropertyException("Email");
             }
@@ -67,7 +66,7 @@ internal class User : IUser
                 throw new BO.BlNullPropertyException("Password");
             }
 
-            DO.User? u = dal?.User.GetByUser(name, password);
+            DO.User? u = dal?.User.GetByUser(name, password);//getting the user's details
             return new BO.User()
             {
                 Name = u?.Name ?? "",
@@ -77,7 +76,7 @@ internal class User : IUser
                 Address = u?.Address
             };
         }
-        catch (DO.DalMissingIdException ex)
+        catch (DO.DalMissingIdException ex)//if the user doesn't exist
         {
             throw new BO.BlMissingEntityException(@"User doesn't exist,
                                         Sign up first",ex);

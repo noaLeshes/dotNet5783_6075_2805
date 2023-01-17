@@ -1,47 +1,37 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using BO;
 
 namespace PL.Windows
 {
     /// <summary>
-    /// Interaction logic for CostumerProductListWindow.xaml
+    /// The window where the customer can see the products catalog and add products to the cart.
     /// </summary>
     public partial class CostumerProductListWindow : Window
     {
         private Cart myCart;
         BlApi.IBl? bl = BlApi.Factory.Get();
-        public CostumerProductListWindow( Cart c)
+        public CostumerProductListWindow( Cart c)//getting the cart
         {
             InitializeComponent();
-            myCart = c;
-            catalog.ItemsSource = bl.Product.GetProducts();// getting the list of products
-            cmbCategory.ItemsSource = Enum.GetValues(typeof(BO.Category));// gettin all the categories for the combobox        }
+            myCart = c;//initializing the cart
+            catalog.ItemsSource = bl.Product.GetProducts();//getting the list of products
+            cmbCategory.ItemsSource = Enum.GetValues(typeof(BO.Category));//gettin all the categories for the combobox        
         }
         private void cmbCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (cmbCategory.SelectedItem != null)// if the combobox choice is not empty
+            if (cmbCategory.SelectedItem != null)//if the combobox choice is not empty
             {
-                Category c = (BO.Category)cmbCategory.SelectedItem;// setting the combobox choice
-                catalog.ItemsSource = bl?.Product.GetProducts(x => x?.Category == c);// getting the wanted products that belong to a specific category 
+                Category c = (BO.Category)cmbCategory.SelectedItem;//setting the combobox choice
+                catalog.ItemsSource = bl?.Product.GetProducts(x => x?.Category == c);// getting the wanted products that belong to the specific category 
             }
         }
-        private void btnRefresh1_Click(object sender, RoutedEventArgs e)
+        private void btnRefresh1_Click(object sender, RoutedEventArgs e)//button to refresh the products
         {
-            catalog.ItemsSource = bl?.Product.GetProducts();// getting the product list 
-            cmbCategory.SelectedItem = null;// setting the combobox choice to empty
+            catalog.ItemsSource = bl?.Product.GetProducts();//getting the product list 
+            cmbCategory.SelectedItem = null;//setting the combobox choice to empty
         }
         private void productItemDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
@@ -49,26 +39,23 @@ namespace PL.Windows
             {
                 BO.ProductItem? p = (BO.ProductItem?)catalog.SelectedItem;
                 int id = p?.Id ?? 0;
-               new CustomerProductWindow(id, myCart).ShowDialog();
+                new CustomerProductWindow(id, myCart).ShowDialog();//sending the id of the selected product an the cart to the next window
             }
         }
-        private void btnCart_Click(object sender, RoutedEventArgs e)
+        private void btnCart_Click(object sender, RoutedEventArgs e)//button to go to cart
         {
-            new CartWindow(myCart).ShowDialog();
-            catalog.ItemsSource = bl?.Product.GetProducts();// getting the product list with the updated product
-            cmbCategory.SelectedItem = null;// setting the combobox choice to empty
+            new CartWindow(myCart).ShowDialog();//sending the cart to the next wondow
+            catalog.ItemsSource = bl?.Product.GetProducts();//getting the products list 
+            cmbCategory.SelectedItem = null;//setting the combobox choice to empty
         }
-        private void btnTracking_Click(object sender, RoutedEventArgs e)
+        private void btnTracking_Click(object sender, RoutedEventArgs e)//button to track the order
         {
-            new OrderTrackingWindow().Show();
+            new OrderTrackingWindow().Show();//the next window for order tracking
         }
-
-        private void btnPopularProducts1_Click(object sender, RoutedEventArgs e)
+        private void btnPopularProducts1_Click(object sender, RoutedEventArgs e)//button to see the popular products in the store
         {
-            catalog.ItemsSource = bl?.Product.PopularProducts();
-            //PopularProductsWindow pw = new PopularProductsWindow();
-            // pw.ShowDialog();
-            cmbCategory.SelectedItem = null;
+            catalog.ItemsSource = bl?.Product.PopularProducts();//getting the list of the popular products
+            cmbCategory.SelectedItem = null;//setting the combobox choice to empty
             catalog.Items.Refresh();
         }
     }
