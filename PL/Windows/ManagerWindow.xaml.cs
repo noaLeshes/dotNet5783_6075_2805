@@ -30,8 +30,7 @@ namespace PL.Windows
             Cart c = new Cart();//temporary cart
             User u = new User//example user details
             {
-                UserGmail = "example@gmail.com",
-                Password = "2222"
+                UserGmail = "Example@gmail.com",
             };
             new LogOrSignWindow(u,ref c, "sign", 0).ShowDialog();//sending the example user, cart, 0-for the position of the user and "sign" so we can know that the user is signing up
         }
