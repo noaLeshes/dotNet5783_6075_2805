@@ -54,6 +54,7 @@
         </Grid>
         <Button Content="Enter" x:Name="btnEnter1" HorizontalAlignment="Left" Margin="463,152,0,0" VerticalAlignment="Top" Width="69" Height="43" BorderBrush="#FF222A18" Foreground="#FF222A18" Background="#FF97AD96" BorderThickness="3,3,3,3" RenderTransformOrigin="-0.739,1.117" FontFamily="Segoe Print" Click="btnEnter1_Click"/>
         <Label Content="Enter Ditails:" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Background="#FF97AD96" FontSize="25" FontFamily="Brush Script MT"/>
+        <Image HorizontalAlignment="Left" Height="100" Source="/IMGUser.png" Margin="40,30,0,0" VerticalAlignment="Top" Visibility="Visible" Width="100"/>
 
     </Grid>
 </Window>

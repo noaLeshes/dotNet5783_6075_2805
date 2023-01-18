@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfUser xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<User>
+		<Name>Noa Leshes</Name>
+		<Password>1234</Password>
+		<UserGmail>noa.leshes@gmail.com</UserGmail>
+		<Address>Pinkas 5</Address>
+		<UserStatus>MANAGER</UserStatus>
+	</User>
+	<User>
+		<Name>Hadas Carmen</Name>
+		<Password>1234</Password>
+		<UserGmail>hadas@gmail.com</UserGmail>
+		<Address>David 3</Address>
+		<UserStatus>MANAGER</UserStatus>
+	</User>
+	<User>
+		<Name>Moshe</Name>
+		<Password>1111</Password>
+		<UserGmail>Moshe@gmail.com</UserGmail>
+		<Address>Hadekel 1</Address>
+		<UserStatus>CUSTOMER</UserStatus>
+	</User>
+	<User>
+		<Name>Yosi</Name>
+		<Password>2222</Password>
+		<UserGmail>Yosi@gmail.com</UserGmail>
+		<Address>Hadekel 2</Address>
+		<UserStatus>CUSTOMER</UserStatus>
+	</User>
+	<User>
+		<Name>Avi</Name>
+		<Password>3333</Password>
+		<UserGmail>Avi@gmail.com</UserGmail>
+		<Address>Hadekel 3</Address>
+		<UserStatus>CUSTOMER</UserStatus>
+	</User>
+	<User>
+		<Name>Adi</Name>
+		<Password>4444</Password>
+		<UserGmail>Adi@gmail.com</UserGmail>
+		<Address>Hadekel 4</Address>
+		<UserStatus>CUSTOMER</UserStatus>
+	</User>
+	<User>
+		<Name>Rachel</Name>
+		<Password>5555</Password>
+		<UserGmail>Rachel@gmail.com</UserGmail>
+		<Address>Hadekel 5</Address>
+		<UserStatus>CUSTOMER</UserStatus>
+	</User>
+</ArrayOfUser>

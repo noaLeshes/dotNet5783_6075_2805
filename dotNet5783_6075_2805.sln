@@ -26,6 +26,10 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "xml", "xml", "{9181DB88-9D3A-4E2A-BC32-C108C2201363}"
 	ProjectSection(SolutionItems) = preProject
 		xml\dal-config.xml = xml\dal-config.xml
+		xml\orderItems.xml = xml\orderItems.xml
+		xml\orders.xml = xml\orders.xml
+		xml\products.xml = xml\products.xml
+		xml\users.xml = xml\users.xml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "pics", "pics", "{7DC69C5E-797D-4775-9F27-7C48322A6EE3}"
@@ -52,6 +56,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "pics", "pics", "{7DC69C5E-7
 		pics\IMGMoisturizer.jpg = pics\IMGMoisturizer.jpg
 		pics\IMGNotFound.jpg = pics\IMGNotFound.jpg
 	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DalXml", "DalXml\DalXml.csproj", "{127F3F86-4A9C-4BE8-80A0-530DE7629593}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -87,6 +93,10 @@ Global
 		{04C66208-3C3F-41F3-AD65-D45C8C667512}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{04C66208-3C3F-41F3-AD65-D45C8C667512}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{04C66208-3C3F-41F3-AD65-D45C8C667512}.Release|Any CPU.Build.0 = Release|Any CPU
+		{127F3F86-4A9C-4BE8-80A0-530DE7629593}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{127F3F86-4A9C-4BE8-80A0-530DE7629593}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{127F3F86-4A9C-4BE8-80A0-530DE7629593}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{127F3F86-4A9C-4BE8-80A0-530DE7629593}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -14,8 +14,8 @@ namespace PL
         public BO.Cart myCart;
         public MainWindow()
         {
-            InitializeComponent();
-            List<BO.OrderItem>? temp = new();
+             InitializeComponent();
+             List<BO.OrderItem>? temp = new();
              myCart= new BO.Cart//initializing a cart with empty values
              {
                 CostomerName = "",
