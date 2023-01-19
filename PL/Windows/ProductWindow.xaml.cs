@@ -39,11 +39,6 @@ namespace PL.Windows
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)//button to add a new product
         {
-            if (productCurrent!.Id == 0)// a message box appears when one of the feilds is empty or invalid
-            {
-                MessageBox.Show("Id is invalid", "ERROR", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
-            }
             if (cmbProductCategory.SelectedItem == null)
             {
                 MessageBox.Show("Category is invalid", "ERROR", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -68,14 +63,13 @@ namespace PL.Windows
             
             try
             {
-                int id, inStock;
+                int inStock;
                 double price;
-                id = productCurrent.Id;
                 price = productCurrent.Price;
                 inStock = productCurrent.InStock;
                 string name = productCurrent.Name;
                 Category category = (BO.Category)cmbProductCategory.SelectedItem;
-                bl?.Product.AddProduct(id, name, price, inStock, category);// adding the new product
+                bl?.Product.AddProduct(1, name, price, inStock, category);// adding the new product
                 this.Close();// closing the window after the product is added
                 MessageBox.Show("Product added successfully ", " 😃 ", MessageBoxButton.OK, MessageBoxImage.None);// a messagebox appears when the product is added
 

@@ -15,5 +15,7 @@ public interface IProduct
     void DeleteProduct(int id);// delete product
     void UpdateProduct(BO.Product p);// update product
     public IEnumerable<ProductForList?> PopularProducts();
+    public IEnumerable<ProductItem?> PopularProducts1();
+
 
 }

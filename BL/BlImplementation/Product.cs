@@ -175,4 +175,32 @@ internal class Product : IProduct
             throw new BO.BlMissingEntityException("Product doesn't exist", exception);
         }
     }
+    public IEnumerable<ProductItem?> PopularProducts1()
+    {
+        var plist = from item in dal!.OrderItem.GetAll()
+                    group item by ((DO.OrderItem?)(item))?.ProductId into groupPopular
+                    select new { id = groupPopular.Key, Items = groupPopular };
+
+        plist = plist.OrderByDescending(x => x.Items.Count()).Take(10);
+        try
+        {
+            return from item in plist
+                   let p = dal.Product.GetById(item?.id ?? throw new BO.BlInvalidExspressionException("Product"))
+                   select new BO.ProductItem
+                   {
+                       Id = p.ID,
+                       Name = p.Name,
+                       Price = p.Price,
+                       Category = (BO.Category?)p.Category ?? throw new BO.BlWrongCategoryException(),// throwing if wrong category
+                       img = p.img,
+                       InStock = p.InStock > 0 ? true : false,
+                       Amount = p.InStock ,
+
+                   };
+        }
+        catch (DO.DalMissingIdException exception)// if product doesn't exist 
+        {
+            throw new BO.BlMissingEntityException("Product doesn't exist", exception);
+        }
+    }
 }

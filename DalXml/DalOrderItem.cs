@@ -18,7 +18,9 @@ internal class DalOrderItem : IOrderItem
         {
             throw new DalAlreadyExistsIdException(item.ID, "OrderItem");
         }
+        item.ID = Config.GetNextOrderItemId();
         oi.Add(item);
+        Config.SetNextOrderItemId(item.ID + 1);
         XMLTools.SaveListToXMLSerializer(oi, s_orderItems);
         return item.ID;
     }
@@ -61,6 +63,12 @@ internal class DalOrderItem : IOrderItem
     public void Update(OrderItem item)
     {
         Delete(item.ID);
-        Add(item);
+        List<DO.OrderItem?> oi = XMLTools.LoadListFromXMLSerializer<DO.OrderItem>(s_orderItems);
+        if (oi.FirstOrDefault(x => x?.ID == item.ID) != null)
+        {
+            throw new DalAlreadyExistsIdException(item.ID, "OrderItem");
+        }
+        oi.Add(item);
+        XMLTools.SaveListToXMLSerializer(oi, s_orderItems);
     }
 }

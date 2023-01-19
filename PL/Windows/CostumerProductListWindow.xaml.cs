@@ -54,7 +54,7 @@ namespace PL.Windows
         }
         private void btnPopularProducts1_Click(object sender, RoutedEventArgs e)//button to see the popular products in the store
         {
-            catalog.ItemsSource = bl?.Product.PopularProducts();//getting the list of the popular products
+            catalog.ItemsSource = bl?.Product.PopularProducts1();//getting the list of the popular products
             cmbCategory.SelectedItem = null;//setting the combobox choice to empty
             catalog.Items.Refresh();
         }

@@ -20,7 +20,9 @@ internal class DalProduct : IProduct
         {
             throw new DalAlreadyExistsIdException(item.ID, "Product");
         }
+        item.ID = Config.GetNextProductId();
         p.Add(item);
+        Config.SetNextProductId(item.ID+1);
         XMLTools.SaveListToXMLSerializer(p, s_products);
         return item.ID;
     }
@@ -63,6 +65,12 @@ internal class DalProduct : IProduct
     public void Update(Product item)
     {
         Delete(item.ID);
-        Add(item);
+        List<DO.Product?> p = XMLTools.LoadListFromXMLSerializer<DO.Product>(s_products);
+        if (p.FirstOrDefault(x => x?.ID == item.ID) != null)
+        {
+            throw new DalAlreadyExistsIdException(item.ID, "Product");
+        }
+        p.Add(item);
+        XMLTools.SaveListToXMLSerializer(p, s_products);
     }
 }

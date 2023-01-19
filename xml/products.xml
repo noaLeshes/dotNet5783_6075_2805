@@ -2,122 +2,122 @@
 <ArrayOfProduct xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<Product>
 		<ID>100000</ID>
-		<Name>Lip-Liner</Name>
-		<Price>98</Price>
-		<img>\pics\IMGLip-Liner.jpg</img>
-		<Category>LIPS</Category>
-		<InStock>33</InStock>
-	</Product>
-	<Product>
-		<ID>100001</ID>
-		<Name>Eye-Patches</Name>
-		<Price>97</Price>
-		<img>\pics\IMGEye-Patches.jpg</img>
-		<Category>BEAUTY</Category>
-		<InStock>16</InStock>
+		<Name>Blender-Brush</Name>
+		<Price>95</Price>
+		<img>\pics\IMGBlender-Brush.jpg</img>
+		<Category>BRUSHES</Category>
+		<InStock>46</InStock>
 	</Product>
 	<Product>
 		<ID>100002</ID>
-		<Name>Concealer</Name>
-		<Price>80</Price>
-		<img>\pics\IMGConcealer.jpg</img>
+		<Name>Blush</Name>
+		<Price>95</Price>
+		<img>\pics\IMGBlush.jpg</img>
 		<Category>FACE</Category>
-		<InStock>31</InStock>
+		<InStock>39</InStock>
 	</Product>
 	<Product>
 		<ID>100003</ID>
-		<Name>Eye-Patches</Name>
-		<Price>45</Price>
-		<img>\pics\IMGEye-Patches.jpg</img>
-		<Category>BEAUTY</Category>
-		<InStock>34</InStock>
+		<Name>Gloss</Name>
+		<Price>66</Price>
+		<img>\pics\IMGGloss.jpg</img>
+		<Category>LIPS</Category>
+		<InStock>46</InStock>
 	</Product>
 	<Product>
 		<ID>100004</ID>
-		<Name>Moisturizer</Name>
-		<Price>65</Price>
-		<img>\pics\IMGMoisturizer.jpg</img>
-		<Category>BEAUTY</Category>
-		<InStock>49</InStock>
-	</Product>
-	<Product>
-		<ID>100005</ID>
-		<Name>EyeLiner</Name>
-		<Price>69</Price>
-		<img>\pics\IMGEyeLiner.jpg</img>
-		<Category>EYES</Category>
-		<InStock>30</InStock>
-	</Product>
-	<Product>
-		<ID>100006</ID>
-		<Name>Eyeshadow-Palette</Name>
-		<Price>79</Price>
-		<img>\pics\IMGEyeshadow-Palette.jpg</img>
-		<Category>EYES</Category>
-		<InStock>22</InStock>
-	</Product>
-	<Product>
-		<ID>100007</ID>
-		<Name>Eye-Patches</Name>
-		<Price>69</Price>
-		<img>\pics\IMGEye-Patches.jpg</img>
-		<Category>BEAUTY</Category>
-		<InStock>44</InStock>
+		<Name>Foundation</Name>
+		<Price>36</Price>
+		<img>\pics\IMGFoundation.jpg</img>
+		<Category>FACE</Category>
+		<InStock>48</InStock>
 	</Product>
 	<Product>
 		<ID>100008</ID>
-		<Name>Blush</Name>
-		<Price>75</Price>
-		<img>\pics\IMGBlush.jpg</img>
-		<Category>FACE</Category>
-		<InStock>4</InStock>
+		<Name>Eyelash-Curler</Name>
+		<Price>83</Price>
+		<img>\pics\IMGEyelash-Curler.jpg</img>
+		<Category>EYES</Category>
+		<InStock>45</InStock>
 	</Product>
 	<Product>
 		<ID>100009</ID>
-		<Name>Blush</Name>
-		<Price>53</Price>
-		<img>\pics\IMGBlush.jpg</img>
+		<Name>Foundation</Name>
+		<Price>89</Price>
+		<img>\pics\IMGFoundation.jpg</img>
 		<Category>FACE</Category>
-		<InStock>49</InStock>
+		<InStock>39</InStock>
 	</Product>
 	<Product>
 		<ID>100010</ID>
-		<Name>Blush</Name>
-		<Price>67</Price>
-		<img>\pics\IMGBlush.jpg</img>
-		<Category>FACE</Category>
-		<InStock>1</InStock>
+		<Name>Eyeshadow-Palette</Name>
+		<Price>80</Price>
+		<img>\pics\IMGEyeshadow-Palette.jpg</img>
+		<Category>EYES</Category>
+		<InStock>47</InStock>
 	</Product>
 	<Product>
 		<ID>100011</ID>
 		<Name>Fix</Name>
-		<Price>35</Price>
+		<Price>86</Price>
 		<img>\pics\IMGFix.jpg</img>
 		<Category>FACE</Category>
-		<InStock>37</InStock>
-	</Product>
-	<Product>
-		<ID>100012</ID>
-		<Name>Blender-Brush</Name>
-		<Price>30</Price>
-		<img>\pics\IMGBlender-Brush.jpg</img>
-		<Category>BRUSHES</Category>
-		<InStock>35</InStock>
-	</Product>
-	<Product>
-		<ID>100013</ID>
-		<Name>Eyelash-Curler</Name>
-		<Price>48</Price>
-		<img>\pics\IMGEyelash-Curler.jpg</img>
-		<Category>EYES</Category>
 		<InStock>20</InStock>
 	</Product>
 	<Product>
-		<ID>100014</ID>
-		<Name>Eyelash-Curler</Name>
-		<Price>57</Price>
-		<img>\pics\IMGEyelash-Curler.jpg</img>
+		<ID>100012</ID>
+		<Name>Mascara</Name>
+		<Price>58</Price>
+		<img>\pics\IMGMascara.jpg</img>
 		<Category>EYES</Category>
-		<InStock>15</InStock>
+		<InStock>22</InStock>
+	</Product>
+	<Product>
+		<ID>100013</ID>
+		<Name>Eye-Patches</Name>
+		<Price>50</Price>
+		<img>\pics\IMGEye-Patches.jpg</img>
+		<Category>BEAUTY</Category>
+		<InStock>17</InStock>
+	</Product>
+	<Product>
+		<ID>100014</ID>
+		<Name>Mascara</Name>
+		<Price>41</Price>
+		<img>\pics\IMGMascara.jpg</img>
+		<Category>EYES</Category>
+		<InStock>45</InStock>
+	</Product>
+	<Product>
+		<ID>100005</ID>
+		<Name>Eyeshadow-Palette</Name>
+		<Price>48</Price>
+		<img>\pics\IMGEyeshadow-Palette.jpg</img>
+		<Category>EYES</Category>
+		<InStock>47</InStock>
+	</Product>
+	<Product>
+		<ID>100007</ID>
+		<Name>Lip-Liner</Name>
+		<Price>77</Price>
+		<img>\pics\IMGLip-Liner.jpg</img>
+		<Category>LIPS</Category>
+		<InStock>-4</InStock>
+	</Product>
+	<Product>
+		<ID>100001</ID>
+		<Name>Concealer</Name>
+		<Price>38</Price>
+		<img>\pics\IMGConcealer.jpg</img>
+		<Category>FACE</Category>
+		<InStock>19</InStock>
+	</Product>
+	<Product>
+		<ID>100006</ID>
+		<Name>Eyeshadow-Palette</Name>
+		<Price>53</Price>
+		<img>\pics\IMGEyeshadow-Palette.jpg</img>
+		<Category>EYES</Category>
+		<InStock>4</InStock>
 	</Product>
 </ArrayOfProduct>

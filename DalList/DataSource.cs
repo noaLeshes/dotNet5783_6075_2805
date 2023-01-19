@@ -21,6 +21,12 @@ internal static class DataSource
         createAndInitOrderItems();
         createAndInitUsers();
 
+        XMLTools.SaveListToXMLSerializer(ProductList, "products");
+        XMLTools.SaveListToXMLSerializer(OrderList, "orders");
+        XMLTools.SaveListToXMLSerializer(OrderItemList, "orderItems");
+        XMLTools.SaveListToXMLSerializer(UserList, "users");
+
+
     }
     /// <summary>
     /// creating the runing numbers for the add func

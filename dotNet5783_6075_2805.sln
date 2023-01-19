@@ -25,9 +25,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PL", "PL\PL.csproj", "{04C6
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "xml", "xml", "{9181DB88-9D3A-4E2A-BC32-C108C2201363}"
 	ProjectSection(SolutionItems) = preProject
+		xml\configuration.xml = xml\configuration.xml
 		xml\dal-config.xml = xml\dal-config.xml
-		xml\orderItems.xml = xml\orderItems.xml
 		xml\orders.xml = xml\orders.xml
+		xml\orderItems.xml = xml\orderItems.xml
 		xml\products.xml = xml\products.xml
 		xml\users.xml = xml\users.xml
 	EndProjectSection
@@ -55,6 +56,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "pics", "pics", "{7DC69C5E-7
 		pics\IMGMascara.jpg = pics\IMGMascara.jpg
 		pics\IMGMoisturizer.jpg = pics\IMGMoisturizer.jpg
 		pics\IMGNotFound.jpg = pics\IMGNotFound.jpg
+		pics\IMGUser.png = pics\IMGUser.png
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DalXml", "DalXml\DalXml.csproj", "{127F3F86-4A9C-4BE8-80A0-530DE7629593}"
