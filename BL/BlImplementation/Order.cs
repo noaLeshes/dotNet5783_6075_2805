@@ -178,6 +178,20 @@ internal class Order : IOrder
             throw new BO.BlMissingEntityException("Order doesn't exist", exception);
         }
     }
+    public int? getOldest()
+    {
+        IEnumerable<DO.Order?> orderForLists = dal!.Order.GetAll();
+        var o = orderForLists.OrderBy(x => selectDate(x)).FirstOrDefault();
+        return o?.ID;
+    }
+    private DateTime? selectDate(DO.Order? o)
+    {
+        if(findStatus(o)== OrderStatus.Ordered)
+            return o?.OrderDate;
+        if(findStatus(o)== OrderStatus.Shipped)
+            return o?.ShipDate;
+        return null;
+    }
 }
 
 

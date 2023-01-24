@@ -41,6 +41,11 @@ namespace PL.Windows
             else
                 btnLightDark1.Content = "☀️";
         }
+
+        private void btnSimulate_Click(object sender, RoutedEventArgs e)
+        {
+            new SimulateWindow().ShowDialog();
+        }
     }
 
 }

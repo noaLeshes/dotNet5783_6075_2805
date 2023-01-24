@@ -1,1 +1,192 @@
-﻿<?xml version="1.0" encoding="utf-8"?><ArrayOfOrder xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"><Order><ID>100000</ID><CustomerName>Moshe Cohen</CustomerName><CustomerEmail>MosheCohen@gmail.com</CustomerEmail><CustomerAddress>Herzl 1</CustomerAddress><OrderDate>2022-11-27T21:01:58.1564646+02:00</OrderDate><ShipDate>2022-12-08T21:01:58.1564646+02:00</ShipDate><DeliveryDate>2022-12-13T21:01:58.1564646+02:00</DeliveryDate></Order><Order><ID>100001</ID><CustomerName>Avi David</CustomerName><CustomerEmail>AviDavid@gmail.com</CustomerEmail><CustomerAddress>Herzl 3</CustomerAddress><OrderDate>2022-09-30T21:01:58.1590879+03:00</OrderDate><ShipDate>2022-10-15T21:01:58.1590879+03:00</ShipDate><DeliveryDate>2022-10-20T21:01:58.1590879+03:00</DeliveryDate></Order><Order><ID>100002</ID><CustomerName>Moshe Cohen</CustomerName><CustomerEmail>MosheCohen@gmail.com</CustomerEmail><CustomerAddress>Pinkas 3</CustomerAddress><OrderDate>2022-07-21T21:01:58.1591051+03:00</OrderDate><ShipDate>2022-08-05T21:01:58.1591051+03:00</ShipDate><DeliveryDate>2022-08-06T21:01:58.1591051+03:00</DeliveryDate></Order><Order><ID>100003</ID><CustomerName>Moshe Miller</CustomerName><CustomerEmail>MosheMiller@gmail.com</CustomerEmail><CustomerAddress>Bagno 3</CustomerAddress><OrderDate>2022-12-11T21:01:58.1591089+02:00</OrderDate><ShipDate>2022-12-24T21:01:58.1591089+02:00</ShipDate><DeliveryDate>2022-12-28T21:01:58.1591089+02:00</DeliveryDate></Order><Order><ID>100004</ID><CustomerName>Avi Miller</CustomerName><CustomerEmail>AviMiller@gmail.com</CustomerEmail><CustomerAddress>Herzl 1</CustomerAddress><OrderDate>2022-07-16T21:01:58.1591133+03:00</OrderDate><ShipDate>2022-08-02T21:01:58.1591133+03:00</ShipDate><DeliveryDate>2022-08-05T21:01:58.1591133+03:00</DeliveryDate></Order><Order><ID>100005</ID><CustomerName>Rachel David</CustomerName><CustomerEmail>RachelDavid@gmail.com</CustomerEmail><CustomerAddress>Herzl 3</CustomerAddress><OrderDate>2022-07-22T21:01:58.1591186+03:00</OrderDate><ShipDate>2022-08-09T21:01:58.1591186+03:00</ShipDate><DeliveryDate>2022-08-16T21:01:58.1591186+03:00</DeliveryDate></Order><Order><ID>100006</ID><CustomerName>Yosi Hadad</CustomerName><CustomerEmail>YosiHadad@gmail.com</CustomerEmail><CustomerAddress>Hadekel 4</CustomerAddress><OrderDate>2023-01-11T21:01:58.1591197+02:00</OrderDate><ShipDate>2023-01-29T21:01:58.1591197+02:00</ShipDate><DeliveryDate>2023-02-06T21:01:58.1591197+02:00</DeliveryDate></Order><Order><ID>100007</ID><CustomerName>Adi Hadad</CustomerName><CustomerEmail>AdiHadad@gmail.com</CustomerEmail><CustomerAddress>Hadekel 1</CustomerAddress><OrderDate>2022-11-21T21:01:58.1591208+02:00</OrderDate><ShipDate>2022-12-10T21:01:58.1591208+02:00</ShipDate><DeliveryDate>2022-12-18T21:01:58.1591208+02:00</DeliveryDate></Order><Order><ID>100008</ID><CustomerName>Rachel Hadad</CustomerName><CustomerEmail>RachelHadad@gmail.com</CustomerEmail><CustomerAddress>Herzl 5</CustomerAddress><OrderDate>2022-10-28T21:01:58.1591215+03:00</OrderDate><ShipDate>2022-11-16T21:01:58.1591215+02:00</ShipDate><DeliveryDate>2022-11-23T21:01:58.1591215+02:00</DeliveryDate></Order><Order><ID>100009</ID><CustomerName>Avi Cohen</CustomerName><CustomerEmail>AviCohen@gmail.com</CustomerEmail><CustomerAddress>Bagno 4</CustomerAddress><OrderDate>2022-12-28T21:01:58.1591226+02:00</OrderDate><ShipDate>2023-01-12T21:01:58.1591226+02:00</ShipDate><DeliveryDate>2023-01-19T21:01:58.1591226+02:00</DeliveryDate></Order><Order><ID>100010</ID><CustomerName>Rachel Levi</CustomerName><CustomerEmail>RachelLevi@gmail.com</CustomerEmail><CustomerAddress>Pinkas 2</CustomerAddress><OrderDate>2022-09-04T21:01:58.1591233+03:00</OrderDate><ShipDate>2022-09-14T21:01:58.1591233+03:00</ShipDate><DeliveryDate xsi:nil="true" /></Order><Order><ID>100011</ID><CustomerName>Avi Miller</CustomerName><CustomerEmail>AviMiller@gmail.com</CustomerEmail><CustomerAddress>Hadekel 2</CustomerAddress><OrderDate>2022-10-25T21:01:58.1591241+03:00</OrderDate><ShipDate>2022-11-09T21:01:58.1591241+02:00</ShipDate><DeliveryDate xsi:nil="true" /></Order><Order><ID>100012</ID><CustomerName>Adi Miller</CustomerName><CustomerEmail>AdiMiller@gmail.com</CustomerEmail><CustomerAddress>Pinkas 5</CustomerAddress><OrderDate>2022-07-21T21:01:58.1591248+03:00</OrderDate><ShipDate>2022-08-08T21:01:58.1591248+03:00</ShipDate><DeliveryDate xsi:nil="true" /></Order><Order><ID>100013</ID><CustomerName>Avi Levi</CustomerName><CustomerEmail>AviLevi@gmail.com</CustomerEmail><CustomerAddress>Herzl 5</CustomerAddress><OrderDate>2022-11-12T21:01:58.1591255+02:00</OrderDate><ShipDate>2022-11-24T21:01:58.1591255+02:00</ShipDate><DeliveryDate xsi:nil="true" /></Order><Order><ID>100014</ID><CustomerName>Yosi Miller</CustomerName><CustomerEmail>YosiMiller@gmail.com</CustomerEmail><CustomerAddress>Herzl 3</CustomerAddress><OrderDate>2022-07-20T21:01:58.1591283+03:00</OrderDate><ShipDate>2022-07-30T21:01:58.1591283+03:00</ShipDate><DeliveryDate xsi:nil="true" /></Order><Order><ID>100015</ID><CustomerName>Moshe Levi</CustomerName><CustomerEmail>MosheLevi@gmail.com</CustomerEmail><CustomerAddress>Hadekel 4</CustomerAddress><OrderDate>2022-11-25T21:01:58.159129+02:00</OrderDate><ShipDate>2022-12-10T21:01:58.159129+02:00</ShipDate><DeliveryDate xsi:nil="true" /></Order><Order><ID>100016</ID><CustomerName>Yosi Cohen</CustomerName><CustomerEmail>YosiCohen@gmail.com</CustomerEmail><CustomerAddress>Herzl 3</CustomerAddress><OrderDate>2022-12-21T21:01:58.1591297+02:00</OrderDate><ShipDate xsi:nil="true" /><DeliveryDate xsi:nil="true" /></Order><Order><ID>100017</ID><CustomerName>Rachel David</CustomerName><CustomerEmail>RachelDavid@gmail.com</CustomerEmail><CustomerAddress>Hadekel 4</CustomerAddress><OrderDate>2022-12-08T21:01:58.1591306+02:00</OrderDate><ShipDate xsi:nil="true" /><DeliveryDate xsi:nil="true" /></Order><Order><ID>100018</ID><CustomerName>Yosi Hadad</CustomerName><CustomerEmail>YosiHadad@gmail.com</CustomerEmail><CustomerAddress>Hadekel 5</CustomerAddress><OrderDate>2022-12-03T21:01:58.1591313+02:00</OrderDate><ShipDate xsi:nil="true" /><DeliveryDate xsi:nil="true" /></Order><Order><ID>100019</ID><CustomerName>Rachel Miller</CustomerName><CustomerEmail>RachelMiller@gmail.com</CustomerEmail><CustomerAddress>Herzl 2</CustomerAddress><OrderDate>2022-11-16T21:01:58.159132+02:00</OrderDate><ShipDate xsi:nil="true" /><DeliveryDate xsi:nil="true" /></Order><Order><ID>100020</ID><CustomerName>Moshe</CustomerName><CustomerEmail>Moshe@gmail.com</CustomerEmail><CustomerAddress>Hadekel 1</CustomerAddress><OrderDate>2023-01-19T21:08:21.0992502+02:00</OrderDate><ShipDate xsi:nil="true" /><DeliveryDate xsi:nil="true" /></Order></ArrayOfOrder>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfOrder xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<Order>
+		<ID>100000</ID>
+		<CustomerName>Moshe Cohen</CustomerName>
+		<CustomerEmail>MosheCohen@gmail.com</CustomerEmail>
+		<CustomerAddress>Herzl 1</CustomerAddress>
+		<OrderDate>2022-11-27T21:01:58.1564646+02:00</OrderDate>
+		<ShipDate>2022-12-08T21:01:58.1564646+02:00</ShipDate>
+		<DeliveryDate>2022-12-13T21:01:58.1564646+02:00</DeliveryDate>
+	</Order>
+	<Order>
+		<ID>100001</ID>
+		<CustomerName>Avi David</CustomerName>
+		<CustomerEmail>AviDavid@gmail.com</CustomerEmail>
+		<CustomerAddress>Herzl 3</CustomerAddress>
+		<OrderDate>2022-09-30T21:01:58.1590879+03:00</OrderDate>
+		<ShipDate>2022-10-15T21:01:58.1590879+03:00</ShipDate>
+		<DeliveryDate>2022-10-20T21:01:58.1590879+03:00</DeliveryDate>
+	</Order>
+	<Order>
+		<ID>100002</ID>
+		<CustomerName>Moshe Cohen</CustomerName>
+		<CustomerEmail>MosheCohen@gmail.com</CustomerEmail>
+		<CustomerAddress>Pinkas 3</CustomerAddress>
+		<OrderDate>2022-07-21T21:01:58.1591051+03:00</OrderDate>
+		<ShipDate>2022-08-05T21:01:58.1591051+03:00</ShipDate>
+		<DeliveryDate>2022-08-06T21:01:58.1591051+03:00</DeliveryDate>
+	</Order>
+	<Order>
+		<ID>100003</ID>
+		<CustomerName>Moshe Miller</CustomerName>
+		<CustomerEmail>MosheMiller@gmail.com</CustomerEmail>
+		<CustomerAddress>Bagno 3</CustomerAddress>
+		<OrderDate>2022-12-11T21:01:58.1591089+02:00</OrderDate>
+		<ShipDate>2022-12-24T21:01:58.1591089+02:00</ShipDate>
+		<DeliveryDate>2022-12-28T21:01:58.1591089+02:00</DeliveryDate>
+	</Order>
+	<Order>
+		<ID>100004</ID>
+		<CustomerName>Avi Miller</CustomerName>
+		<CustomerEmail>AviMiller@gmail.com</CustomerEmail>
+		<CustomerAddress>Herzl 1</CustomerAddress>
+		<OrderDate>2022-07-16T21:01:58.1591133+03:00</OrderDate>
+		<ShipDate>2022-08-02T21:01:58.1591133+03:00</ShipDate>
+		<DeliveryDate>2022-08-05T21:01:58.1591133+03:00</DeliveryDate>
+	</Order>
+	<Order>
+		<ID>100005</ID>
+		<CustomerName>Rachel David</CustomerName>
+		<CustomerEmail>RachelDavid@gmail.com</CustomerEmail>
+		<CustomerAddress>Herzl 3</CustomerAddress>
+		<OrderDate>2022-07-22T21:01:58.1591186+03:00</OrderDate>
+		<ShipDate>2022-08-09T21:01:58.1591186+03:00</ShipDate>
+		<DeliveryDate>2022-08-16T21:01:58.1591186+03:00</DeliveryDate>
+	</Order>
+	<Order>
+		<ID>100006</ID>
+		<CustomerName>Yosi Hadad</CustomerName>
+		<CustomerEmail>YosiHadad@gmail.com</CustomerEmail>
+		<CustomerAddress>Hadekel 4</CustomerAddress>
+		<OrderDate>2023-01-11T21:01:58.1591197+02:00</OrderDate>
+		<ShipDate>2023-01-29T21:01:58.1591197+02:00</ShipDate>
+		<DeliveryDate>2023-02-06T21:01:58.1591197+02:00</DeliveryDate>
+	</Order>
+	<Order>
+		<ID>100007</ID>
+		<CustomerName>Adi Hadad</CustomerName>
+		<CustomerEmail>AdiHadad@gmail.com</CustomerEmail>
+		<CustomerAddress>Hadekel 1</CustomerAddress>
+		<OrderDate>2022-11-21T21:01:58.1591208+02:00</OrderDate>
+		<ShipDate>2022-12-10T21:01:58.1591208+02:00</ShipDate>
+		<DeliveryDate>2022-12-18T21:01:58.1591208+02:00</DeliveryDate>
+	</Order>
+	<Order>
+		<ID>100008</ID>
+		<CustomerName>Rachel Hadad</CustomerName>
+		<CustomerEmail>RachelHadad@gmail.com</CustomerEmail>
+		<CustomerAddress>Herzl 5</CustomerAddress>
+		<OrderDate>2022-10-28T21:01:58.1591215+03:00</OrderDate>
+		<ShipDate>2022-11-16T21:01:58.1591215+02:00</ShipDate>
+		<DeliveryDate>2022-11-23T21:01:58.1591215+02:00</DeliveryDate>
+	</Order>
+	<Order>
+		<ID>100009</ID>
+		<CustomerName>Avi Cohen</CustomerName>
+		<CustomerEmail>AviCohen@gmail.com</CustomerEmail>
+		<CustomerAddress>Bagno 4</CustomerAddress>
+		<OrderDate>2022-12-28T21:01:58.1591226+02:00</OrderDate>
+		<ShipDate>2023-01-12T21:01:58.1591226+02:00</ShipDate>
+		<DeliveryDate>2023-01-19T21:01:58.1591226+02:00</DeliveryDate>
+	</Order>
+	<Order>
+		<ID>100010</ID>
+		<CustomerName>Rachel Levi</CustomerName>
+		<CustomerEmail>RachelLevi@gmail.com</CustomerEmail>
+		<CustomerAddress>Pinkas 2</CustomerAddress>
+		<OrderDate>2022-09-04T21:01:58.1591233+03:00</OrderDate>
+		<ShipDate>2022-09-14T21:01:58.1591233+03:00</ShipDate>
+		<DeliveryDate xsi:nil="true" />
+	</Order>
+	<Order>
+		<ID>100011</ID>
+		<CustomerName>Avi Miller</CustomerName>
+		<CustomerEmail>AviMiller@gmail.com</CustomerEmail>
+		<CustomerAddress>Hadekel 2</CustomerAddress>
+		<OrderDate>2022-10-25T21:01:58.1591241+03:00</OrderDate>
+		<ShipDate>2022-11-09T21:01:58.1591241+02:00</ShipDate>
+		<DeliveryDate xsi:nil="true" />
+	</Order>
+	<Order>
+		<ID>100012</ID>
+		<CustomerName>Adi Miller</CustomerName>
+		<CustomerEmail>AdiMiller@gmail.com</CustomerEmail>
+		<CustomerAddress>Pinkas 5</CustomerAddress>
+		<OrderDate>2022-07-21T21:01:58.1591248+03:00</OrderDate>
+		<ShipDate>2022-08-08T21:01:58.1591248+03:00</ShipDate>
+		<DeliveryDate xsi:nil="true" />
+	</Order>
+	<Order>
+		<ID>100013</ID>
+		<CustomerName>Avi Levi</CustomerName>
+		<CustomerEmail>AviLevi@gmail.com</CustomerEmail>
+		<CustomerAddress>Herzl 5</CustomerAddress>
+		<OrderDate>2022-11-12T21:01:58.1591255+02:00</OrderDate>
+		<ShipDate>2022-11-24T21:01:58.1591255+02:00</ShipDate>
+		<DeliveryDate xsi:nil="true" />
+	</Order>
+	<Order>
+		<ID>100014</ID>
+		<CustomerName>Yosi Miller</CustomerName>
+		<CustomerEmail>YosiMiller@gmail.com</CustomerEmail>
+		<CustomerAddress>Herzl 3</CustomerAddress>
+		<OrderDate>2022-07-20T21:01:58.1591283+03:00</OrderDate>
+		<ShipDate>2022-07-30T21:01:58.1591283+03:00</ShipDate>
+		<DeliveryDate xsi:nil="true" />
+	</Order>
+	<Order>
+		<ID>100015</ID>
+		<CustomerName>Moshe Levi</CustomerName>
+		<CustomerEmail>MosheLevi@gmail.com</CustomerEmail>
+		<CustomerAddress>Hadekel 4</CustomerAddress>
+		<OrderDate>2022-11-25T21:01:58.159129+02:00</OrderDate>
+		<ShipDate>2022-12-10T21:01:58.159129+02:00</ShipDate>
+		<DeliveryDate xsi:nil="true" />
+	</Order>
+	<Order>
+		<ID>100016</ID>
+		<CustomerName>Yosi Cohen</CustomerName>
+		<CustomerEmail>YosiCohen@gmail.com</CustomerEmail>
+		<CustomerAddress>Herzl 3</CustomerAddress>
+		<OrderDate>2022-12-21T21:01:58.1591297+02:00</OrderDate>
+		<ShipDate xsi:nil="true" />
+		<DeliveryDate xsi:nil="true" />
+	</Order>
+	<Order>
+		<ID>100017</ID>
+		<CustomerName>Rachel David</CustomerName>
+		<CustomerEmail>RachelDavid@gmail.com</CustomerEmail>
+		<CustomerAddress>Hadekel 4</CustomerAddress>
+		<OrderDate>2022-12-08T21:01:58.1591306+02:00</OrderDate>
+		<ShipDate xsi:nil="true" />
+		<DeliveryDate xsi:nil="true" />
+	</Order>
+	<Order>
+		<ID>100018</ID>
+		<CustomerName>Yosi Hadad</CustomerName>
+		<CustomerEmail>YosiHadad@gmail.com</CustomerEmail>
+		<CustomerAddress>Hadekel 5</CustomerAddress>
+		<OrderDate>2022-12-03T21:01:58.1591313+02:00</OrderDate>
+		<ShipDate xsi:nil="true" />
+		<DeliveryDate xsi:nil="true" />
+	</Order>
+	<Order>
+		<ID>100019</ID>
+		<CustomerName>Rachel Miller</CustomerName>
+		<CustomerEmail>RachelMiller@gmail.com</CustomerEmail>
+		<CustomerAddress>Herzl 2</CustomerAddress>
+		<OrderDate>2022-11-16T21:01:58.159132+02:00</OrderDate>
+		<ShipDate xsi:nil="true" />
+		<DeliveryDate xsi:nil="true" />
+	</Order>
+	<Order>
+		<ID>100020</ID>
+		<CustomerName>Moshe</CustomerName>
+		<CustomerEmail>Moshe@gmail.com</CustomerEmail>
+		<CustomerAddress>Hadekel 1</CustomerAddress>
+		<OrderDate>2023-01-19T21:08:21.0992502+02:00</OrderDate>
+		<ShipDate xsi:nil="true" />
+		<DeliveryDate xsi:nil="true" />
+	</Order>
+</ArrayOfOrder>

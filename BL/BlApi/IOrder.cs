@@ -8,4 +8,6 @@ public interface IOrder
     Order UpdateShipping(int id, DateTime? d = null);// update shipping status
     Order UpdateIfProvided(int id, DateTime? d = null);// update delivering status
     OrderTracking GetOrderTracking(int id);// get the order tracking
+    int? getOldest();// return the oldest order for simulation
+
 }
