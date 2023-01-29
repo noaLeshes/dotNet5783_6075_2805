@@ -44,7 +44,7 @@ namespace PL.Windows
 
         private void btnSimulate_Click(object sender, RoutedEventArgs e)
         {
-            new SimulateWindow().ShowDialog();
+            new SimulateWindow().Show();
         }
     }
 

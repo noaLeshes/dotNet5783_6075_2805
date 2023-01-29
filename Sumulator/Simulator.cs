@@ -10,8 +10,7 @@ namespace Simulator;
 public static class Simulator
 {
     private static readonly Random rand = new ();
-
-    public static void activate()
+    public static void Activate()
     {
         BlApi.IBl? bl = BlApi.Factory.Get();
         new Thread(() =>

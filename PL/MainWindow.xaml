@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="MainWindow" Height="550" Width="500" WindowStartupLocation="CenterScreen" Background="#FF97AD96">
-  
+
     <Window.Resources>
         <Style TargetType="Button">
             <Setter Property="FontSize" Value="18" />
@@ -25,8 +25,8 @@
             <Label Content="glow up✨" HorizontalAlignment="Center" Margin="0,474,0,0" VerticalAlignment="Top" Height="50" Width="436" FontFamily="Segoe Print"/>
             <Button x:Name="btnLogIn" Content="Log In" HorizontalAlignment="Left" Margin="150,400,0,0" VerticalAlignment="Top" Click="btnLogIn_Click" RenderTransformOrigin="1.246,0.479"/>
             <Button x:Name="btnSignIn" Content="Sign Up" HorizontalAlignment="Left" Margin="250,400,0,0" VerticalAlignment="Top" Click="btnSignIn_Click"/>
-            <MediaElement HorizontalAlignment="Left" Height="115" Margin="50,54,0,0" VerticalAlignment="Top" Width="200" Source="IMG2.mp4" LoadedBehavior="Play" UnloadedBehavior="Manual"/>
-      
+            <MediaElement HorizontalAlignment="Center" Height="248" Margin="0,124,0,0" VerticalAlignment="Top" Width="400" Source="IMG3.mp4" LoadedBehavior="Play" UnloadedBehavior="Manual"/>
+
         </Grid>
 
     </Grid>

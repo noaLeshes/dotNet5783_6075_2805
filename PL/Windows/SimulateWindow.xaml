@@ -7,6 +7,11 @@
         mc:Ignorable="d"
         Title="SimulateWindow" Height="450" Width="800" WindowStyle="None">
     <Grid>
-        
+        <Button x:Name="btnCancel" Content="Cancel" HorizontalAlignment="Left" Margin="470,305,0,0" VerticalAlignment="Top" Height="65" Width="160" FontSize="30" Click="btnCancel_Click"/>
+        <Button x:Name="btnStart" Content="Start" HorizontalAlignment="Left" Margin="160,305,0,0" VerticalAlignment="Top" Height="65" Width="160" FontSize="30" Click="btnStart_Click"/>
+        <TextBox x:Name="txtClock" HorizontalAlignment="Left" Margin="240,85,0,0" TextWrapping="Wrap" Text="00:00" VerticalAlignment="Top" Width="270" Height="80" FontSize="40" TextAlignment="Center"/>
+        <ProgressBar x:Name="progresBar" HorizontalAlignment="Left" Height="40" Margin="240,0,0,0" VerticalAlignment="Center" Width="270"/>
+        <Label x:Name="lblResult" Content="0 %" HorizontalAlignment="Left" Margin="185,0,0,0" VerticalAlignment="Center" RenderTransformOrigin="1.352,0.963" FontSize="20"/>
+
     </Grid>
 </Window>
