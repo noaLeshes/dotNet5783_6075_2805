@@ -24,6 +24,7 @@ namespace PL.Windows
     /// </summary>
     public partial class SimulateWindow : Window
     {
+        bool canceled = false;
         static int timerNum = 0;
         string msg;
         private Stopwatch stopWatch;
@@ -39,13 +40,14 @@ namespace PL.Windows
             InitializeComponent();
             bw = new BackgroundWorker();
             stopWatch = new Stopwatch();
+            stopWatch.Start();
             bw.DoWork += Worker_DoWork;
             bw.ProgressChanged += Worker_ProgressChanged;
             bw.RunWorkerCompleted += Worker_RunWorkerCompleted;
-
             bw.WorkerReportsProgress = true;
             bw.WorkerSupportsCancellation = true;
             bw.RunWorkerAsync();
+
         }
         private void Worker_DoWork(object sender, DoWorkEventArgs e)
         {
@@ -53,7 +55,7 @@ namespace PL.Windows
             Simulator.Simulator.Register1(DoR1);
             Simulator.Simulator.Register2(DoR2);
             Simulator.Simulator.Register3(DoR3);
-            while (bw.CancellationPending==false)
+            while (bw.CancellationPending == false)
             {
                 Thread.Sleep(1000);
             }
@@ -69,6 +71,8 @@ namespace PL.Windows
                     txtId.Text = id.ToString();
                     txtFirstStatus.Text = before.ToString();
                     txtSecondStatus.Text = after.ToString();
+                    txtBegin.Text = begin.ToString();
+                    txtEnd.Text = end.ToString();
                     timerNum++;
                     lblResult.Content = timerNum+"%";
                     progresBar.Value++;
@@ -76,7 +80,8 @@ namespace PL.Windows
                 case 1:
                     break;
                 case 2:
-                    MessageBox.Show(msg, " 😃 ", MessageBoxButton.OK, MessageBoxImage.None);// a messagebox appears when the product is added
+                    MessageBox.Show(msg, " 😃 ", MessageBoxButton.OK, MessageBoxImage.None);
+                    Close();
                     break;
 
 
@@ -88,23 +93,25 @@ namespace PL.Windows
         }
         private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            Simulator.Simulator.UnRegister1(DoR1);
-            Simulator.Simulator.UnRegister2(DoR2);
-            Simulator.Simulator.UnRegister3(DoR3);
-        }
-        private void btnStart_Click(object sender, RoutedEventArgs e)
-        {
-            stopWatch.Restart();
-
+            if (e.Cancelled == true)
+            {
+                Simulator.Simulator.UnRegister1(DoR1);
+                Simulator.Simulator.UnRegister2(DoR2);
+                Simulator.Simulator.UnRegister3(DoR3);
+            }
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
-            if(bw.WorkerSupportsCancellation==true)
+            if (bw.IsBusy)
             {
+                canceled= true;
+                Simulator.Simulator.activate=false;
                 bw.CancelAsync();
+                Simulator.Simulator.UnRegister1(DoR1);
+                Simulator.Simulator.UnRegister2(DoR2);
+                this.Close();
             }
-            this.Close();
         }
         public void DoR1(Order o, OrderStatus first, DateTime b, OrderStatus second, DateTime e)
         {
@@ -123,7 +130,8 @@ namespace PL.Windows
         public void DoR3(string s)
         {
             msg = s;
-            bw.ReportProgress(2);
+            if(!canceled)
+                bw.ReportProgress(2);
         }
     }
 }

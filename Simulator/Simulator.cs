@@ -19,6 +19,7 @@ namespace Simulator
         public static Report3 report3;
         public static void Activate()
         {
+            activate = true;
             BlApi.IBl? bl = BlApi.Factory.Get();
             new Thread(() =>
             {
@@ -28,7 +29,7 @@ namespace Simulator
                     if (orderId != null)
                     {
                         Order o = bl.Order.GetOrderDitailes((int)orderId);
-                        int delay = rand.Next(3, 5);
+                        int delay = rand.Next(3, 11);
                         DateTime t = DateTime.Now + new TimeSpan(delay * 1000);
                         OrderStatus final;
                         if (o.Status == OrderStatus.Ordered)
@@ -37,11 +38,12 @@ namespace Simulator
                             final = OrderStatus.Delivered;
                         report1(o, o.Status, DateTime.Now, final, t);
                         Thread.Sleep(delay * 1000);
-                        report2("finished updating order number: ");
                         if (o.Status == OrderStatus.Ordered)
                             bl.Order.UpdateShipping((int)orderId);
                         else if (o.Status == OrderStatus.Shipped)
                             bl.Order.UpdateIfProvided((int)orderId);
+                        if(activate)
+                         report2("finished updating order number: ");
                     }
                     else
                         activate = false;
@@ -50,10 +52,6 @@ namespace Simulator
                 report3("finshed Simulation");
             }).Start();
         }
-        //public static void StopActivate()
-        //{
-        //    activate = false;
-        //}
         public static void Register1(Report1 r1)
         {
             report1 += r1;
