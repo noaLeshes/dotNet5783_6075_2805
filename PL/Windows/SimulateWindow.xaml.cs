@@ -37,7 +37,6 @@ namespace PL.Windows
             bw.WorkerSupportsCancellation = true;
             bw.RunWorkerAsync();
         }
-        public 
         private void Worker_DoWork(object sender, DoWorkEventArgs e)
         {
 

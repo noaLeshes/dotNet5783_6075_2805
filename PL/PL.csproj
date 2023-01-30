@@ -14,14 +14,25 @@
 
 	<ItemGroup>
 	  <None Remove="background.jfif" />
-	  <None Remove="IMG2.mp4" />
+	  <None Remove="img5.mp4" />
 	  <None Remove="Windows\IMGUser.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Remove="background.jfif" />
+		<None Remove="IMG3.mp4" />
+		<None Remove="Windows\IMGUser.png" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Content Include="IMG2.mp4">
+	  <Content Include="img5.mp4">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
+	</ItemGroup>
+	
+	<ItemGroup>
+		<Content Include="IMG3.mp4">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
 	</ItemGroup>
 
 	<ItemGroup>

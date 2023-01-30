@@ -44,5 +44,20 @@ namespace PL
             LogOrSignWindow ls = new LogOrSignWindow(u,ref myCart,"sign",1);//sending the user, cart, if we are log or sign up and the status of the user
             ls.ShowDialog();
         }
+
+        private void btnNextPicture_Click(object sender, RoutedEventArgs e)
+        {
+
+            picture2.Visibility = Visibility.Visible;
+            picture1.Visibility = Visibility.Hidden;
+            //picture1.Source = null;
+        }
+
+        private void btnPrevPicture_Click(object sender, RoutedEventArgs e)
+        {
+            picture2.Visibility = Visibility.Hidden;
+            picture1.Visibility = Visibility.Visible;
+            //picture2.Source = null;
+        }
     }
 }
