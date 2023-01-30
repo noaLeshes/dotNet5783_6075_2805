@@ -181,7 +181,8 @@ internal class Order : IOrder
     public int? getOldest()
     {
         IEnumerable<DO.Order?> orderForLists = dal!.Order.GetAll();
-        var o = orderForLists.OrderBy(x => selectDate(x)).FirstOrDefault();
+        var shipedAndOrderd = orderForLists.Where(o => o?.DeliveryDate == null);
+        var o = shipedAndOrderd.OrderBy(x => selectDate(x)).FirstOrDefault();
         return o?.ID;
     }
     private DateTime? selectDate(DO.Order? o)
