@@ -5,13 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL.Windows"
         mc:Ignorable="d"
+        DataContext="{Binding RelativeSource={RelativeSource Self}}"
         Title="SimulateWindow" Height="450" Width="800" WindowStyle="None">
     <Grid>
         <Button x:Name="btnCancel" Content="Cancel" HorizontalAlignment="Left" Margin="470,305,0,0" VerticalAlignment="Top" Height="65" Width="160" FontSize="30" Click="btnCancel_Click"/>
         <Button x:Name="btnStart" Content="Start" HorizontalAlignment="Left" Margin="160,305,0,0" VerticalAlignment="Top" Height="65" Width="160" FontSize="30" Click="btnStart_Click"/>
-        <TextBox x:Name="txtClock" HorizontalAlignment="Left" Margin="240,85,0,0" TextWrapping="Wrap" Text="00:00" VerticalAlignment="Top" Width="270" Height="80" FontSize="40" TextAlignment="Center"/>
+        <TextBox x:Name="txtClock" HorizontalAlignment="Left" Margin="240,85,0,0" TextWrapping="Wrap" Text="00:00:00" VerticalAlignment="Top" Width="270" Height="80" FontSize="40" TextAlignment="Center"/>
         <ProgressBar x:Name="progresBar" HorizontalAlignment="Left" Height="40" Margin="240,0,0,0" VerticalAlignment="Center" Width="270"/>
-        <Label x:Name="lblResult" Content="0 %" HorizontalAlignment="Left" Margin="185,0,0,0" VerticalAlignment="Center" RenderTransformOrigin="1.352,0.963" FontSize="20"/>
+        <Label x:Name="lblResult" Content="0%" HorizontalAlignment="Left" Margin="185,0,0,0" VerticalAlignment="Center" RenderTransformOrigin="1.352,0.963" FontSize="20"/>
+        <TextBox x:Name="txtId" HorizontalAlignment="Left" Margin="315,39,0,0" TextWrapping="Wrap" Text="{Binding id}" VerticalAlignment="Top" Width="139" Height="21" TextAlignment="Center"/>
+        <TextBox x:Name="txtSecondStatus" HorizontalAlignment="Left" Margin="570,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="120" TextAlignment="Center"/>
+        <TextBox x:Name="txtFirstStatus" HorizontalAlignment="Left" Margin="31,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="120" RenderTransformOrigin="-2.45,2.45" TextAlignment="Center"/>
+        <TextBox HorizontalAlignment="Left" Margin="31,252,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
 
     </Grid>
 </Window>
