@@ -11,7 +11,7 @@ namespace Simulator
     {
         private static readonly Random rand = new();
         public static bool activate = true;
-        public delegate void Report1(Order o, OrderStatus before, DateTime begin, OrderStatus after, DateTime end);
+        public delegate void Report1(Order o, OrderStatus before,OrderStatus after, int delay);
         public static Report1 report1;
         public delegate void Report2(string msg);
         public static Report2 report2;
@@ -36,7 +36,7 @@ namespace Simulator
                             final = OrderStatus.Shipped;
                         else
                             final = OrderStatus.Delivered;
-                        report1(o, o.Status, DateTime.Now, final, t);
+                        report1(o, o.Status, final, delay);
                         Thread.Sleep(delay * 1000);
                         if (o.Status == OrderStatus.Ordered)
                             bl.Order.UpdateShipping((int)orderId);

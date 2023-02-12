@@ -18,15 +18,12 @@
         </Style>
     </Window.Resources>
     <Grid x:Name="mainGrid" Background="#FF97AD96">
-        <Grid Margin="0,0,0,0">
-            <Grid.Background>
-                <ImageBrush ImageSource="/background.jfif"/>
-            </Grid.Background>
+        <Grid Margin="0,0,0,0" Background="#FF97AD96">
             <Label Content="glow up✨" HorizontalAlignment="Center" Margin="0,474,0,0" VerticalAlignment="Top" Height="50" Width="436" FontFamily="Segoe Print"/>
             <Button x:Name="btnLogIn" Content="Log In" HorizontalAlignment="Left" Margin="150,400,0,0" VerticalAlignment="Top" Click="btnLogIn_Click" RenderTransformOrigin="1.246,0.479"/>
             <Button x:Name="btnSignIn" Content="Sign Up" HorizontalAlignment="Left" Margin="250,400,0,0" VerticalAlignment="Top" Click="btnSignIn_Click"/>
             <MediaElement x:Name="picture1" Visibility="Visible" HorizontalAlignment="Left" Height="233" Margin="43,131,0,0" VerticalAlignment="Top" Width="462" Source="IMG3.mp4" LoadedBehavior="Play" UnloadedBehavior="Manual"/>
-            <MediaElement x:Name="picture2" Visibility="Hidden" HorizontalAlignment="Left" Height="233" Margin="43,131,0,0" VerticalAlignment="Top" Width="462" Source="IMG5.mp4"  LoadedBehavior="Play" UnloadedBehavior="Manual"/>
+            <MediaElement x:Name="picture2" Visibility="Hidden" Volume="0" HorizontalAlignment="Left" Height="233" Margin="43,131,0,0" VerticalAlignment="Top" Width="462" Source="IMG5.mp4"  LoadedBehavior="Play" UnloadedBehavior="Manual"/>
             <Button x:Name="btnNextPicture" Content="&lt;" HorizontalAlignment="Left" Margin="20,230,0,0" VerticalAlignment="Top" Click="btnNextPicture_Click" RenderTransformOrigin="0.567,0.102"/>
             <Button x:Name="btnPrevPicture" Content="&gt;" HorizontalAlignment="Left" Margin="462,230,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.567,0.102" Click="btnPrevPicture_Click"/>
 
