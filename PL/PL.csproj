@@ -21,6 +21,7 @@
 		<None Remove="background.jfif" />
 		<None Remove="IMG3.mp4" />
 		<None Remove="Windows\IMGUser.png" />
+		<None Remove="Windows\WhatsApp Image 2023-02-21 at 00.32.05 %281%29.jpeg" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -43,5 +44,6 @@
 	<ItemGroup>
 	  <Resource Include="background.jfif" />
 	  <Resource Include="Windows\IMGUser.png" />
+	  <Resource Include="Windows\WhatsApp Image 2023-02-21 at 00.32.05 (1).jpeg" />
 	</ItemGroup>
 </Project>

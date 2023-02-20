@@ -12,11 +12,11 @@ namespace Simulator
         private static readonly Random rand = new();
         public static bool activate = true;
         public delegate void Report1(Order o, OrderStatus before,OrderStatus after, int delay);
-        public static Report1 report1;
+        public static Report1? report1;
         public delegate void Report2(string msg);
-        public static Report2 report2;
+        public static Report2? report2;
         public delegate void Report3(string msg);
-        public static Report3 report3;
+        public static Report3? report3;
         public static void Activate()
         {
             activate = true;
@@ -33,16 +33,20 @@ namespace Simulator
                         DateTime t = DateTime.Now + new TimeSpan(delay * 1000);
                         OrderStatus final;
                         if (o.Status == OrderStatus.Ordered)
+                        {
                             final = OrderStatus.Shipped;
-                        else
-                            final = OrderStatus.Delivered;
-                        report1(o, o.Status, final, delay);
-                        Thread.Sleep(delay * 1000);
-                        if (o.Status == OrderStatus.Ordered)
+                            report1(o, o.Status, final, delay);
                             bl.Order.UpdateShipping((int)orderId);
-                        else if (o.Status == OrderStatus.Shipped)
+                            Thread.Sleep(delay * 1000);
+                        }
+                        else if(o.Status == OrderStatus.Shipped)
+                        {
+                            final = OrderStatus.Delivered;
+                            report1(o, o.Status, final, delay);
                             bl.Order.UpdateIfProvided((int)orderId);
-                        if(activate)
+                            Thread.Sleep(delay * 1000);
+                        }
+                        if (activate)
                          report2("finished updating order number: ");
                     }
                     else

@@ -8,15 +8,17 @@
         DataContext="{Binding RelativeSource={RelativeSource Self}}"
         Title="SimulateWindow" Height="450" Width="800" WindowStyle="None">
     <Grid>
-        <Button x:Name="btnCancel" Content="Cancel" HorizontalAlignment="Left" Margin="294,280,0,0" VerticalAlignment="Top" Height="65" Width="160" FontSize="30" Click="btnCancel_Click"/>
-        <TextBox x:Name="txtClock" HorizontalAlignment="Left" Margin="240,85,0,0" TextWrapping="Wrap"  Text="00:00:00" VerticalAlignment="Top" Width="270" Height="80" FontSize="40" TextAlignment="Center"/>
-        <ProgressBar x:Name="progresBar" HorizontalAlignment="Left" Foreground="#FF97AD96" Height="40" Margin="240,0,0,0" VerticalAlignment="Center" Width="270"/>
-        <Label x:Name="lblResult" Content="0%" HorizontalAlignment="Left" Margin="185,0,0,0" VerticalAlignment="Center" RenderTransformOrigin="1.352,0.963" FontSize="20"/>
-        <TextBox x:Name="txtId" HorizontalAlignment="Left" Margin="315,39,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="139" Height="21" TextAlignment="Center"/>
-        <TextBox x:Name="txtSecondStatus" HorizontalAlignment="Left" Margin="570,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="120" TextAlignment="Center"/>
-        <TextBox x:Name="txtFirstStatus" HorizontalAlignment="Left" Margin="31,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="120" RenderTransformOrigin="-2.45,2.45" TextAlignment="Center"/>
-        <TextBox x:Name="txtBegin" HorizontalAlignment="Left" Margin="31,252,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextAlignment="Center"/>
-        <TextBox x:Name="txtEnd" HorizontalAlignment="Left" Margin="570,252,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextAlignment="Center"/>
+        <Image HorizontalAlignment="Left" Height="262" Margin="515,239,0,0" VerticalAlignment="Top" Width="306" Source="/Windows/WhatsApp Image 2023-02-21 at 00.32.05 (1).jpeg"/>
+
+        <Button Content="Cancel" HorizontalAlignment="Left" Margin="294,280,0,0" VerticalAlignment="Top" Height="65" Width="160" FontSize="30" Click="btnCancel_Click"/>
+        <TextBox  HorizontalAlignment="Left" Margin="239,104,0,0" TextWrapping="Wrap"  Text="{Binding timer}" VerticalAlignment="Top" Width="270" Height="80" FontSize="40" TextAlignment="Center" BorderBrush="White" FontFamily="Segoe UI Emoji"/>
+        <ProgressBar  Value="{Binding progressChange}" HorizontalAlignment="Left" Foreground="#FF97AD96" Height="40" Margin="240,0,0,0" VerticalAlignment="Center" Width="270"/>
+        <Label Content="{Binding progress}" HorizontalAlignment="Left" Margin="185,0,0,0" VerticalAlignment="Center" RenderTransformOrigin="1.352,0.963" FontSize="20"/>
+        <TextBox HorizontalAlignment="Left" Margin="315,39,0,0" TextWrapping="Wrap" Text="{Binding id}" VerticalAlignment="Top" Width="139" Height="21" TextAlignment="Center"/>
+        <TextBox HorizontalAlignment="Left" Margin="570,0,0,0" Text="{Binding statusAfter}" TextWrapping="Wrap" VerticalAlignment="Center" Width="120" TextAlignment="Center"/>
+        <TextBox HorizontalAlignment="Left" Margin="31,0,0,0" Text="{Binding statusBefore}" TextWrapping="Wrap" VerticalAlignment="Center" Width="120" RenderTransformOrigin="-2.45,2.45" TextAlignment="Center"/>
+        <TextBox HorizontalAlignment="Left" Text="{Binding begin}" Margin="31,252,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextAlignment="Center"/>
+        <TextBox HorizontalAlignment="Left" Text="{Binding end}" Margin="570,252,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextAlignment="Center"/>
 
     </Grid>
 </Window>

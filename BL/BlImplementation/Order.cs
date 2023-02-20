@@ -132,6 +132,7 @@ internal class Order : IOrder
             BO.Order t = new();
             DO.Order o = dal!.Order.GetById(id);//find the wanted order
             if (o.DeliveryDate != null)  
+                
                 throw new BlIncorrectDateException("delevery already updated ");
             if ( o.ShipDate == null)
                 throw new BlIncorrectDateException("shipping not updated");
