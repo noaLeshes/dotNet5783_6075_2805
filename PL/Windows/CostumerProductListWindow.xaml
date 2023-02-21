@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL.Windows"
         mc:Ignorable="d"
-        Title="CostumerProductListWindow" Height="600" Width="850" WindowStartupLocation="CenterScreen">
+        Title="CostumerProductListWindow" Height="600" Width="850" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
     <Window.Resources>
         <Style TargetType="Button">
             <Setter Property="FontSize" Value="18" />
@@ -41,21 +41,10 @@
         </Grid.RowDefinitions>
         <Grid Name="UpGrid" Height="auto" Grid.Row="0" Width="auto" Grid.ColumnSpan="2">
         </Grid>
-        <Label Content="Category" HorizontalAlignment="Left" Grid.Column="0" Width="400" Height="40" FontFamily="Brush Script MT" FontSize="25" Foreground="#FF1B2A15" Background="#FF97AD96" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.RowSpan="1" Grid.ColumnSpan="1" />
+        <Label Content="Category" HorizontalAlignment="Left" Grid.Column="0" Width="400" Height="40" FontFamily="Segoe Print" FontSize="25" Foreground="#FF1B2A15" Background="#FF97AD96" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.RowSpan="1" Grid.ColumnSpan="1" />
         <ComboBox x:Name="cmbCategory"  Height="40" Foreground="#FF1B2A15" Width="400" MaxDropDownHeight="240" Margin="400,0,0,0" SelectionChanged="cmbCategory_SelectionChanged"/>
-        <!--<DataGrid x:Name="productItemDataGrid" Grid.Row="1" AutoGenerateColumns="False" EnableRowVirtualization="True" IsReadOnly="True" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="59,13,50,28" MouseDoubleClick="productItemDataGrid_MouseDoubleClick">
-            <DataGrid.Columns>
-                <DataGridTextColumn x:Name="idColumn3" Binding="{Binding Id}" Header="Id" Width="*"/>
-                <DataGridTextColumn x:Name="nameColumn2" Binding="{Binding Name}" Header="Name" Width="*"/>
-                <DataGridTextColumn x:Name="categoryColumn1" Binding="{Binding Category}" Header="Category" Width="*"/>
-                <DataGridTextColumn x:Name="priceColumn2" Binding="{Binding Price}" Header="Price" Width="*"/>
-                <DataGridTextColumn x:Name="amountColumn1" Binding="{Binding Amount}" Header="Amount" Width="*"/>
-                <DataGridCheckBoxColumn x:Name="inStockColumn" Binding="{Binding InStock}" Header="In Stock" Width="*"/>
-            </DataGrid.Columns>
-        </DataGrid>-->
         <Button x:Name="btnRefresh1" Content="↺" HorizontalAlignment="Left" Margin="695,0,0,0" Grid.Row="2" VerticalAlignment="Center" Width="55"  Background="#FF97AD96" Foreground="#FF1B2A15" BorderBrush="#FF222A18" BorderThickness="2,2,2,2" Click="btnRefresh1_Click"/>
         <Button Content="🛒" x:Name="btnCart" HorizontalAlignment="Left" Margin="41,10,0,0" Grid.Row="2" VerticalAlignment="Top" RenderTransformOrigin="0.928,-2.29" Height="63" Width="55" Click="btnCart_Click" FontSize="30"/>
-        <!--<Label Content= "{Binding Counter}" HorizontalAlignment="Left" Margin="160,309,0,0" Grid.Row="1" VerticalAlignment="Top" Height="74" Grid.RowSpan="2" Width="80" Background="#FFCE9898"/>-->
         <ScrollViewer Grid.Row="1">
             <ListView x:Name="catalog"  ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.CanContentScroll="True" HorizontalAlignment="Right" ItemsSource="{Binding}" ItemTemplate="{StaticResource oneProduct}" PreviewMouseDoubleClick="productItemDataGrid_MouseDoubleClick" MouseDoubleClick="productItemDataGrid_MouseDoubleClick" Background="#FF97AD96"  Width="850" Foreground="#FF97AD96">
                 <ItemsControl.ItemsPanel>
@@ -67,6 +56,5 @@
         </ScrollViewer>
         <Button x:Name="btnTracking" Content="Follow Your Order" HorizontalAlignment="Left" Margin="129,0,0,0" Grid.Row="2" VerticalAlignment="Center" Click="btnTracking_Click"/>
         <Button Content="Popular Products" x:Name="btnPopularProducts1" HorizontalAlignment="Center" Margin="0,20,0,20" Grid.Row="2" Height="39.7733333333333" Click="btnPopularProducts1_Click" />
-
     </Grid>
 </Window>

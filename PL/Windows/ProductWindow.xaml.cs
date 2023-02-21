@@ -44,7 +44,7 @@ namespace PL.Windows
                 MessageBox.Show("Category is invalid", "ERROR", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
-            if (productCurrent.Name == null)
+            if (productCurrent!.Name == null)
             {
                 MessageBox.Show("Name is invalid", "ERROR", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;

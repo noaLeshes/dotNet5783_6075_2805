@@ -11,14 +11,29 @@ namespace PL.Windows
     /// </summary>
     public partial class CostumerProductListWindow : Window
     {
+
+
+        //public Cart? currentCart
+        //{
+        //    get { return (Cart?)GetValue(currentCartProperty); }
+        //    set { SetValue(currentCartProperty, value); }
+        //}
+
+        //// Using a DependencyProperty as the backing store for currentCart.  This enables animation, styling, binding, etc...
+        //public static readonly DependencyProperty currentCartProperty =
+        //    DependencyProperty.Register("currentCart", typeof(Cart), typeof(Window), new PropertyMetadata(null));
+
+
         private Cart myCart;
         BlApi.IBl? bl = BlApi.Factory.Get();
         public CostumerProductListWindow( Cart c)//getting the cart
         {
             InitializeComponent();
             myCart = c;//initializing the cart
+           // currentCart = c;
+            //currentCart.CostomerName = "Hello " + currentCart.CostomerName;
             catalog.ItemsSource = bl.Product.GetProducts();//getting the list of products
-            cmbCategory.ItemsSource = Enum.GetValues(typeof(BO.Category));//gettin all the categories for the combobox        
+            cmbCategory.ItemsSource = Enum.GetValues(typeof(BO.Category));//gettin all the categories for the combobox
         }
         private void cmbCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -57,6 +72,11 @@ namespace PL.Windows
             catalog.ItemsSource = bl?.Product.PopularProducts1();//getting the list of the popular products
             cmbCategory.SelectedItem = null;//setting the combobox choice to empty
             catalog.Items.Refresh();
+        }
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            string[] insparation = { "" };
+            MessageBox.Show("Hello " + myCart.CostomerName, " 😃 ", MessageBoxButton.OK, MessageBoxImage.None);
         }
     }
     

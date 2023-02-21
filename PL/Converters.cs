@@ -115,11 +115,14 @@ namespace PL
         // change the color of the widow acording to the contant of the button
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-                if(value == null)
-                    return "#FF222A18";
-
+            if(value == null)
+            {
+                return "#FF222A18";
+            }
             if (value.ToString() != "☀️")
+            {
                 return "#FF97AD96";
+            }
             else
             {
                 return "#FF222A18";
@@ -133,7 +136,7 @@ namespace PL
     }
     public class backgroundOpositeConverter : IValueConverter
     {
-        // change the color of the widow acording to the contant of the button opposite
+        // change the color of the window acording to the contant of the button opposite
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value.ToString() != "☀️")
@@ -172,7 +175,7 @@ namespace PL
     }
     public class TextToBool : IValueConverter
     {
-        //convert from source property type to target property type
+        //convert from name property type to id readOnly property type
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value.ToString() != "")//if null return true else false
@@ -180,7 +183,6 @@ namespace PL
             else
             {
                 return false;
-
             }
         }
         //convert from target property type to source property type
@@ -191,7 +193,7 @@ namespace PL
     }
     public class TextToBoolOpposite : IValueConverter
     {
-        //convert from source property type to target property type
+        //convert from name property type to category IsHitTestVisible property type
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value.ToString() == "") // if text is null return true else false
