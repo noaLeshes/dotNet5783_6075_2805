@@ -32,6 +32,7 @@ namespace PL.Windows
             set { SetValue(progressProperty, value); }
         }
 
+
         // Using a DependencyProperty as the backing store for progress.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty progressProperty =
             DependencyProperty.Register("progress", typeof(string), typeof(Window), new PropertyMetadata(""));
@@ -115,9 +116,8 @@ namespace PL.Windows
         int myDelay;
         bool timerRun = true;
         bool canceled = false;
-        //static int myprogress=0;
-        public string timerText { get; set; }
         string msg;
+        public string timerText { get; set; }
         private Stopwatch stopWatch;
         BackgroundWorker bw;
        
@@ -228,7 +228,6 @@ namespace PL.Windows
             {
                 Simulator.Simulator.activate = false;
                 bw.CancelAsync();
-                //Thread.Sleep((myDelay - index) * 00);
                 canceled = true;
                 Simulator.Simulator.UnRegister1(DoR1);
                 Simulator.Simulator.UnRegister2(DoR2);
@@ -253,7 +252,6 @@ namespace PL.Windows
         }
         public void DoR2(string s)
         {
-           // msg = s +id ;
             bw.ReportProgress(2);
         }
         public void DoR3(string s)

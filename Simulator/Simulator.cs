@@ -35,25 +35,25 @@ namespace Simulator
                         if (o.Status == OrderStatus.Ordered)
                         {
                             final = OrderStatus.Shipped;
-                            report1(o, o.Status, final, delay);
+                            report1!(o, o.Status, final, delay);
                             bl.Order.UpdateShipping((int)orderId);
                             Thread.Sleep(delay * 1000);
                         }
                         else if(o.Status == OrderStatus.Shipped)
                         {
                             final = OrderStatus.Delivered;
-                            report1(o, o.Status, final, delay);
+                            report1!(o, o.Status, final, delay);
                             bl.Order.UpdateIfProvided((int)orderId);
                             Thread.Sleep(delay * 1000);
                         }
                         if (activate)
-                         report2("finished updating order number: ");
+                         report2!("finished updating order number: ");
                     }
                     else
                         activate = false;
                     Thread.Sleep(1000);
                 }
-                report3("finshed Simulation");
+                report3!("finshed Simulation");
             }).Start();
         }
         public static void Register1(Report1 r1)
